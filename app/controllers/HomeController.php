@@ -13,6 +13,6 @@ class HomeController
 
     public function index()
     {
-        require __DIR__ . '/../views/home/index.php';
+        require __DIR__ . '/../views/festival/index.php';
     }
 }
