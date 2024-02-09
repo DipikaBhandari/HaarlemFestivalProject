@@ -2,8 +2,19 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/app/." isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/./controllers" isTestSource="false" packagePrefix="App\Controllers\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/./models" isTestSource="false" packagePrefix="App\Models\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/./repositories" isTestSource="false" packagePrefix="App\Repositories\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/./services" isTestSource="false" packagePrefix="App\Services\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/./views" isTestSource="false" packagePrefix="App\Views\" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/composer" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="9a724642-4be9-43f4-a17f-02b89a97196b" />
   </component>
 </module>
