@@ -8,7 +8,7 @@ class HomeController
 
     public function __construct()
     {
-        $this->listingService = new \App\Services\ListingService();
+        $this->listingService = new \App\Service\homeService();
     }
 
     public function index()
