@@ -1,6 +1,6 @@
 <?php
-$type = "mysql";
-$servername = "mysql";
-$username = "root";
-$password = "secret123";
-$database = "FestivalProject";
+$type = "sqlsrv";
+$servername = "festivalserver.database.windows.net";
+$username = "festivaladmin";
+$password = "Festival123";
+$database = "HaarlemFestivalDatabase";

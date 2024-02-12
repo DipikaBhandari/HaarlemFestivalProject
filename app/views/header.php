@@ -1,15 +1,7 @@
-<?php if (isset($_SESSION['timeout']) && time() > $_SESSION['timeout']) {
-    session_unset();
-    session_destroy();
-    header("Location: /login");
-    exit();
-} else {
-    $_SESSION['timeout'] = time() + 1800;
-} ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Reducey</title>
+    <title>Haarlem Festival</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -21,10 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/css/headerFooterStyle.css">
-    <?php if (isset($isFeedPage) && $isFeedPage) { ?>
-        <link rel="stylesheet" type="text/css" href="/css/feedStyle.css">
-    <?php } ?>
+    <link rel="stylesheet" type="text/css" href="/css/headerStyle.css">
     <script defer>
         document.addEventListener('DOMContentLoaded', function () {
             const currentPage = window.location.pathname;
@@ -40,16 +29,20 @@
 </head>
 <body>
 <header>
+    <div>
+        <img id="logo" src="../img/festivalLogo.svg" >
+    </div>
     <nav class="navbar navbar-expand-lg bg-body-primary d-flex justify-content-between px-2">
-        <a class="navbar-brand" href="/home/index">
-            <img src="/images/reduceyLogo.svg" alt="reducey logo" width="50" height="50"
-                 class="d-inline-block align-text-top">
-            Reducey
-        </a>
         <div class="navbar-nav flex-row flex-lg">
-            <a id="homeLink" class="nav-link ps-5" aria-current="page" href="/home/index">Home</a>
-            <a id="feedLink" class="nav-link ps-5" href="/feed">Feed</a>
-            <a id="loginLink" class="nav-link ps-5" href="/login">Login</a>
+            <a id="homeLink" class="nav-link pe-5 text-white" aria-current="page" href="/festival/index">The Festival</a>
+            <a id="yummyLink" class="nav-link pe-5 text-white" href="/yummy">Yummy</a>
+            <a id="historyLink" class="nav-link pe-5 text-white" href="/history">History</a>
+        </div>
+        <div class="navbar-nav flex-row flex-lg">
+            <a id="loginLink" class="nav-link text-white pt-0 pb-0" href="/login/login">Login</a>
+            <a id="personalProgramLink" class="nav-link ps-5" href="/personalProgram">
+                <img src="../img/heartbutton.svg" alt="personal program button" width="30" height="30" class="d-inline-block">
+            </a>
         </div>
     </nav>
 </header>

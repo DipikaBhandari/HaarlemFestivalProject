@@ -2,7 +2,7 @@
 
 namespace App\model;
 
-class adminitrator
+class administrator
 {
 
 }
