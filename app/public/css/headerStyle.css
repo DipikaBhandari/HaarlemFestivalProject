@@ -1,0 +1,31 @@
+.bg-body-primary {
+    background-color: #006D77;
+}
+
+.navbar-brand {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+}
+
+.nav-link {
+    font-size: 25px;
+    min-width: 10%;
+    color:white;
+}
+
+#logo{
+    background-color: #006D77;
+    height: 50px;
+    width: 100%;
+    align-content: center;
+}
+
+#loginLink{
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: #2E294E;
+    padding: 0px 5px 0px 5px;
+
+    float: right;
+}
