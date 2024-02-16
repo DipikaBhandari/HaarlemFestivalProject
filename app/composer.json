@@ -1,7 +1,8 @@
 {
   "name": "root/app",
   "require": {
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "phpmailer/phpmailer": "^6.5"
   },
   "autoload": {
     "psr-4": {
