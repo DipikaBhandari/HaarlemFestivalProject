@@ -18,7 +18,7 @@
         <div class="container">
             <h1>Forgot your password?</h1>
             <p>Enter your email address below. We will send you a link to reset your password.</p>
-            <form method="POST" action="/login/sendResetLink">
+            <form id="forgotPasswordForm" method="POST">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Email@address.com" required>
@@ -26,5 +26,39 @@
                 <button class="btn btn-primary" type="submit">Send</button>
             </form>
         </div>
+        <?php include __DIR__ . '/../modal.php'; ?>
     </body>
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('forgotPasswordForm').addEventListener("submit", function(event) {
+            event.preventDefault();
+            let formData = new FormData(this);
+
+            fetch('/login/sendResetLink',{
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    let sentLinkModal = new bootstrap.Modal(document.getElementById('modal'));
+                    let modalBody = document.getElementById('modalBody');
+                    let loginButton = document.getElementById('modalBtn1');
+                    let goToHomepageButton = document.getElementById('modalBtn2');
+                    modalBody.innerHTML = data.message;
+                    if(data.success){
+                        loginButton.style.display = 'block';
+                        goToHomepageButton.style.display = 'block';
+                    } else{
+                        loginButton.style.display = 'none';
+                        goToHomepageButton.style.display = 'none';
+                    }
+                    sentLinkModal.show();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again later.');
+                })
+        })
+    });
+</script>

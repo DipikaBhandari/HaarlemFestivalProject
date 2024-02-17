@@ -40,10 +40,18 @@ class logincontroller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = isset($_POST["email"]) ? htmlspecialchars($_POST["email"]) : '';
             $success = $this->userService->sendResetLink($email);
+            $response = [];
             if ($success){
-                require '../views/login/passwordLinkSent.php';
+                $response['success'] = true;
+                $response['message'] = "We have sent a reset link to your email address.";
+            }
+            else{
+                $response['success'] = false;
+                $response['message'] = "There has been a problem with sending your reset link. Please try again later.";
             }
         }
+        header('Content-Type: application/json');
+        echo json_encode($response);
     }
 
     public function resetPassword(){
@@ -60,13 +68,22 @@ class logincontroller
     public function updatePassword(){
         $password = isset($_POST["newPassword"]) ? htmlspecialchars($_POST["newPassword"]) : '';
         $confirmPassword = isset($_POST["confirmPassword"]) ? htmlspecialchars($_POST["confirmPassword"]) : '';
-        $email = $_GET['email'];
+        $email = isset($_POST["email"]) ? htmlspecialchars($_POST["email"]) : '';
+        $response = [];
         if ($password === $confirmPassword){
             if($this->userService->updatePassword($email, $password)){
-                require '../views/login/resetSuccessful.php';
+                $response['success'] = true;
+                $response['message'] = "Password updated successfully";
+            } else{
+                $response['success'] = false;
+                $response['message'] = "Error updating password";
             }
         } else{
-            return "The passwords don't match";
+            $response['success'] = false;
+            $response['message'] = "The passwords don't match";
         }
+
+        header('Content-Type: application/json');
+        echo json_encode($response);
     }
 }

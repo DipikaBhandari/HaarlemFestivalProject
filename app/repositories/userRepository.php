@@ -78,10 +78,12 @@ class userRepository extends Repository
     public function updatePassword($email, $password)
     {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "UPDATE [User] SET password = :hashedPassword WHERE email = :email";
+        $currentTime = date('Y-m-d H:i:s');
+        $sql = "UPDATE [User] SET password = :hashedPassword, reset_token_expires_at = :currentTime WHERE email = :email";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':hashedPassword', $hashedPassword);
+        $stmt->bindParam(':currentTime', $currentTime);
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
