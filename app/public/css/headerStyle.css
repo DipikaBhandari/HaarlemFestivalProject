@@ -29,3 +29,49 @@
 
     float: right;
 }
+
+/*manage Account style*/
+/* Manage Account Style */
+.default-avatar, .avatar {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%; /* Ensures the image/avatar is circular */
+}
+
+.default-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background-color: #777; /* Example background color */
+    color: white; /* Font color for the initials */
+    border-radius: 50%; /* Ensures the default avatar is circular */
+}
+
+.profile-pic-label {
+    position: relative; /* This is necessary for absolute positioning of children */
+    display: inline-block; /* Adjust as necessary to fit your layout */
+    border-radius: 50%; /* Ensures the container is circular */
+    overflow: hidden; /* Prevents children from overflowing the circular boundary */
+    width: 150px; /* Match child size */
+    height: 150px; /* Match child size */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensures overlay covers the avatar/default-avatar */
+    height: 100%; /* Ensures overlay covers the avatar/default-avatar */
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: none; /* Change to 'none' to hide it by default */
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Maintains the circular shape */
+}
+
+.profile-pic-label:hover .overlay {
+    display: flex; /* Show the overlay on hover */
+}
