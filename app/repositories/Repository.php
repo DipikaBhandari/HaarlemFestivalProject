@@ -6,7 +6,7 @@ use PDO;
 
 class Repository
 {
-    protected $connection;
+    protected PDO $connection;
 
     function __construct()
     {
@@ -15,6 +15,8 @@ class Repository
         try {
             $this->connection = new PDO("sqlsrv:server = tcp:festivalserver.database.windows.net,1433; Database = HaarlemFestivalDatabase", "festivaladmin", "Festival123");
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
         }
         catch (PDOException $e) {
             print("Error connecting to SQL Server.");
