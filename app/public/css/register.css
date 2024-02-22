@@ -1,4 +1,6 @@
-
+section{
+    background-color: antiquewhite;
+}
 
 .avatar-preview {
     width: 150px;
@@ -13,13 +15,28 @@
     border-radius: 50%;
     object-fit: cover;
 }
+.avatar-upload , label{
+   margin-left: 40px;
 
+}
+
+.avatar-upload label{
+    border-style: solid;
+    cursor: pointer;
+    border-color: #006D77;
+}
+
+.avatar-upload input[type=file] {
+    display: none;
+}
+.col input{
+    width: 250px;
+}
 .card {
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
     height: 100%;
 }
-
 
 .card-body {
     width: 100%;
@@ -31,12 +48,9 @@
     width: 100%;
 }
 
-
-
 .form-outline {
     position: relative;
 }
-
 
 .avatar-preview {
     margin-top: 10px;
@@ -47,15 +61,13 @@
     max-width: 100px;
     max-height: 100px;
     border-radius: 50%;
-    border: 2px solid #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #224fa1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-outline {
-    margin-bottom: 20px; /* Adjust the margin bottom value as needed */
-
+    margin-bottom: 10px; /* Adjust the margin bottom value as needed */
     padding: 10px;
-
 }
 
 .image-container {
@@ -70,5 +82,21 @@
 label{
     border-radius: 5px;
     width: 100%;
-    height: 20px;
+}
+
+#logo{
+    align-content: center;
+    width: 100%;
+    height: 100px;
+}
+
+button{
+    width: 250px;
+    margin-left: 10px;
+    border-radius: 4px;
+    background-color: #e0bc32;
+    color: #090000;
+    cursor: pointer;
+    font-weight: bold;
+    height: 30px;
 }

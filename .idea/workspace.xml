@@ -5,24 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/model/Roles.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/css/register.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/blankPerson.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/example.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/dbconfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/dbconfig.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/logincontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/logincontroller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/model/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/Repository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/Repository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/userRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/userRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/userService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/userService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/Login/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Login/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/public/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/css/register.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/Login/registeruser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Login/registeruser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/history/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/history/homepage.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +125,7 @@
       <workItem from="1707486584962" duration="7713000" />
       <workItem from="1707828926624" duration="5421000" />
       <workItem from="1708099215058" duration="3694000" />
-      <workItem from="1708351982294" duration="21228000" />
+      <workItem from="1708351982294" duration="25455000" />
     </task>
     <servers />
   </component>
