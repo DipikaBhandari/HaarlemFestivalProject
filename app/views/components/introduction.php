@@ -1,4 +1,4 @@
-<div class="container introduction">
+<div class="container introduction col-10">
     <?php if (!empty($section['heading'])): ?>
         <h1>
             <?php echo $section['heading']; ?>
@@ -15,6 +15,6 @@
     <?php endif; ?>
 
     <?php if (!empty($section['linkText'])): ?>
-        <a><?php echo $section['linkText']; ?></a>
+        <a id="readMoreLink" href="#"><?php echo $section['linkText']; ?></a>
     <?php endif; ?>
 </div>

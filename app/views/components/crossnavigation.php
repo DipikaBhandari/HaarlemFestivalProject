@@ -1,18 +1,18 @@
-<div class="container" style="background-color: #006D77; width: 100%">
+<div class="crossNavigation">
     <?php if(!empty($section['heading'])): ?>
         <h1><?php echo($section['heading']); ?></h1>
     <?php endif; ?>
 
     <?php if(!empty($section['subTitle'])): ?>
-        <h2><?php echo($section['subTitle']); ?></h2>
+        <h4><?php echo($section['subTitle']); ?></h4>
     <?php endif; ?>
 
-    <div id="myCarousel" class="carousel" style="background-color: white; width: 50%" >
+    <div id="myCarousel" class="carousel" >
         <div class="carousel-inner">
             <?php foreach ($section['carouselItems'] as $index => $item):?>
                 <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
                     <div class="d-flex justify-content-center align-items-center">
-                        <div class="card text-start" style="width:500px">
+                        <div class="card text-start">
                             <?php
                             if (!empty($item['imageId'])):
                                 $imagePath = '';
@@ -23,13 +23,13 @@
                                     }
                                 }
                                 if (!empty($imagePath)): ?>
-                                    <img src="<?php echo $imagePath; ?>" alt="Carousel Image" class="card-img-top img-fluid" width="200px">
+                                    <img src="<?php echo $imagePath; ?>" alt="Carousel Image" class="card-img-top img-fluid">
                                 <?php endif;
                             endif; ?>
                             <div class="card-body" style="background-color: #006D77">
                                 <h3 class="card-title"><?php echo $item['title']; ?></h3>
                                 <p class="card-text"><?php echo $item['subtitle']; ?></p>
-                                <a href=""><?php echo $item['linkText']; ?></a>
+                                <a href="<?php echo $item['linkPath']; ?>" class="btn btn-light"><?php echo $item['linkText']; ?></a>
                             </div>
                         </div>
                     </div>
