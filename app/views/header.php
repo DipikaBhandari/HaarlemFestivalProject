@@ -13,6 +13,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aleo:wght@400&family=Architects+Daughter&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="/css/headerStyle.css">
     <script defer>
         document.addEventListener('DOMContentLoaded', function () {
@@ -35,7 +37,7 @@
     <nav class="navbar navbar-expand-lg bg-body-primary d-flex justify-content-between px-2">
         <div class="navbar-nav flex-row flex-lg">
             <a id="homeLink" class="nav-link pe-5 text-white" aria-current="page" href="/festival/index">The Festival</a>
-            <a id="yummyLink" class="nav-link pe-5 text-white" href="/yummy">Yummy</a>
+            <a id="yummyLink" class="nav-link pe-5 text-white" href="/restaurant/yummyHome">Yummy</a>
             <a id="historyLink" class="nav-link pe-5 text-white" href="/manageAccount/showAccount">History</a>
         </div>
         <div class="navbar-nav flex-row flex-lg">

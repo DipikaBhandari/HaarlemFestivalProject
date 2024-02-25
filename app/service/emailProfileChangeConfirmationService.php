@@ -19,9 +19,7 @@ class emailProfileChangeConfirmationService
             $mail->Username = 'haarlem.festival2024@gmail.com';
             $mail->Password = 'btopgeyatiddblrn';
             $mail->SMTPSecure = 'tls';
-            $mail->Port = 465;
-
-            
+            $mail->Port = 587;
 
 
             $mail->setFrom('haarlem.festival2024@gmail.com', 'Haarlem Festival');

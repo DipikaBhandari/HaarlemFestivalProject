@@ -74,4 +74,27 @@
 
 .profile-pic-label:hover .overlay {
     display: flex; /* Show the overlay on hover */
+
+}
+.header-subtitle-line {
+    display: block;
+    width: 100%;
+    max-width: 500px; /* Adjust as needed */
+    height: auto; /* Adjust as needed */
+    margin: 0 auto 1rem; /* Centers the image and provides space below */
+}
+
+.subtitle-position {
+    position: relative;
+    top: -20px; /* Adjust as needed */
+    left: 0; /* Adjust as needed */
+    color: #FFD700;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .subtitle-position {
+        top: -40px; /* Adjust as needed for larger screens */
+        left: 200px; /* Adjust as needed for larger screens */
+    }
 }
