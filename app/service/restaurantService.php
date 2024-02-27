@@ -26,5 +26,21 @@ class restaurantService
     {
         return $this->restaurantRepository->getCardItemsBySection($sectionId);
     }
-
+    public function getRestaurantDetails($restaurantId)
+    {
+        return $this->restaurantRepository->find($restaurantId);
+    }
+    public function getSectionsForRestaurant($restaurantId)
+    {
+        return $this->restaurantRepository->getSectionsForRestaurant($restaurantId);
+    }
+    public function getYummyParagraphsBySection($restaurantSectionId){
+        return $this->restaurantRepository->getYummyParagraphsBySection($restaurantSectionId);
+    }
+    public function getYummyOpeningBySection($restaurantSectionId){
+        return $this->restaurantRepository->getYummyOpeningBySection($restaurantSectionId);
+    }
+    public function getAllYummyLocations() {
+        return $this->restaurantRepository->getAllYummyLocations();
+    }
 }

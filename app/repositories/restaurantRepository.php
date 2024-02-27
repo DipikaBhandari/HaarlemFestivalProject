@@ -48,4 +48,43 @@ class restaurantRepository extends Repository
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function find($restaurantId)
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM Yummy WHERE restaurantId = :restaurantId");
+        $stmt->bindParam(':restaurantId', $restaurantId);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getSectionsForRestaurant($restaurantId)
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM RestaurantSection WHERE restaurantId = :restaurantId");
+        $stmt->bindParam(':restaurantId', $restaurantId);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getYummyParagraphsBySection($restaurantSectionId)
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM YummyParagraph WHERE restaurantSectionId = :restaurantSectionId");
+        $stmt->bindParam(':restaurantSectionId', $restaurantSectionId);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getYummyOpeningBySection($restaurantSectionId)
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM OpeningTime WHERE restaurantSectionId = :restaurantSectionId");
+        $stmt->bindParam(':restaurantSectionId', $restaurantSectionId);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getAllYummyLocations()
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM YummyLocation");
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

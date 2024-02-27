@@ -98,3 +98,12 @@
         left: 200px; /* Adjust as needed for larger screens */
     }
 }
+.opening-hours-container {
+    /* other styles */
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    /* This will place the top edge of the element in the middle of the container,
+       and then shift it up by half its own height to center it vertically. */
+}

@@ -32,7 +32,7 @@
 <body>
 <header>
     <div>
-        <img id="logo" src="../img/festivalLogo.svg" >
+        <img id="logo" src="/img/festivalLogo.svg" >
     </div>
     <nav class="navbar navbar-expand-lg bg-body-primary d-flex justify-content-between px-2">
         <div class="navbar-nav flex-row flex-lg">
@@ -43,7 +43,7 @@
         <div class="navbar-nav flex-row flex-lg">
             <a id="loginLink" class="nav-link text-white pt-0 pb-0" href="/login/login">Login</a>
             <a id="personalProgramLink" class="nav-link ps-5" href="/personalProgram">
-                <img src="../img/heartbutton.svg" alt="personal program button" width="30" height="30" class="d-inline-block">
+                <img src="/img/heartbutton.svg" alt="personal program button" width="30" height="30" class="d-inline-block">
             </a>
         </div>
     </nav>
