@@ -14,10 +14,14 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;900&display=swap" rel="stylesheet">
     </head>
-    <body>
-        <div class="container">
-            <h1>Forgot your password?</h1>
-            <p>Enter your email address below. We will send you a link to reset your password.</p>
+    <body class="min-vh-100 d-flex align-items-center">
+        <div class="container vh-90">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="card-title">Forgot your password?</h1>
+                            <p class="card-text">Enter your email address below. We will send you a link to reset your password.</p>
             <form id="forgotPasswordForm" method="POST">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
