@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/logincontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/logincontroller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/afterlogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/afterlogin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/history/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/history/homepage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/home/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/home/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/yummy/YummyHome.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/yummy/YummyHome.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/manageAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageAccount.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +58,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Development",
+    "git-widget-placeholder": "Dipika",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Inholland/Documents/GitHub/HaarlemFestivalProject/app/public/img",
