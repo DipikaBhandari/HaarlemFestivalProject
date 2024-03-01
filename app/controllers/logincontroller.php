@@ -43,23 +43,23 @@ class logincontroller
 
 
 
-    public function register()
-    {
-        $errorMessage = "";
-        if (isset($_POST["registerBtn"])) {
-            if (empty($_POST["username"])) {
-                $errorMessage = "Please fill out your first name";
-            }
-            else if (empty($_POST["email"])) {
-                $errorMessage = "Please fill out your email";
-            } else if (empty($_POST["password"])) {
-                $errorMessage = "Please fill out your password";
-            } else {
-                $this->createNewUser();
-            }
-        }
-        require __DIR__ . '/../views/Login/registeruser.php';
-    }
+//    public function register()
+//    {
+//        $errorMessage = "";
+//        if (isset($_POST["registerBtn"])) {
+//            if (empty($_POST["username"])) {
+//                $errorMessage = "Please fill out your first name";
+//            }
+//            else if (empty($_POST["email"])) {
+//                $errorMessage = "Please fill out your email";
+//            } else if (empty($_POST["password"])) {
+//                $errorMessage = "Please fill out your password";
+//            } else {
+//                $this->createNewUser();
+//            }
+//        }
+//        require __DIR__ . '/../views/Login/registeruser.php';
+//    }
 
     public function createNewUser(): void
     {
@@ -103,5 +103,4 @@ class logincontroller
 
         require __DIR__ . '/../views/Login/registeruser.php';
     }
-
 }

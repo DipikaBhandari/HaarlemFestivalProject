@@ -1,12 +1,25 @@
-section{
-    background-color: antiquewhite;
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #495057;
 }
 
+/* Section Styles */
+section {
+    background-color: antiquewhite;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Avatar Styles */
 .avatar-preview {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     overflow: hidden;
     position: relative;
+    margin: 10px;
+    text-align: center;
 }
 
 .avatar-preview img {
@@ -14,89 +27,77 @@ section{
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-}
-.avatar-upload , label{
-   margin-left: 40px;
-
+    border: 2px solid #224fa1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.avatar-upload label{
-    border-style: solid;
+/* Avatar Upload Styles */
+.avatar-upload label {
+    display: inline-block;
+    padding: 10px 10px;
+    border: 2px solid #006D77;
+    border-radius: 5px;
     cursor: pointer;
-    border-color: #006D77;
 }
 
 .avatar-upload input[type=file] {
     display: none;
 }
-.col input{
-    width: 250px;
-}
+
+/* Card Styles */
 .card {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    height: 100%;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 20px;
 }
 
 .card-body {
-    width: 100%;
-    max-width: 300px; /* Adjust as needed */
-    margin: auto; /* Center horizontally */
+    max-width: 300px;
+    margin: auto;
 }
 
-.card-body form {
-    width: 100%;
+/* Form Styles */
+.form-outline input{
+    width: 200px;
+    margin: 15px;
 }
 
-.form-outline {
-    position: relative;
-}
-
-.avatar-preview {
-    margin-top: 10px;
-    text-align: center;
-}
-
-.avatar-preview img {
-    max-width: 100px;
-    max-height: 100px;
-    border-radius: 50%;
-    border: 2px solid #224fa1;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-outline {
-    margin-bottom: 10px; /* Adjust the margin bottom value as needed */
-    padding: 10px;
-}
-
+/* Image Container Styles */
 .image-container {
-    flex: 1; /* Take remaining space */
-    padding: 20px; /* Adjust as needed */
+    padding: 20px;
 }
 
 .image-container img {
     width: 100%;
     border-radius: 15px;
 }
-label{
-    border-radius: 5px;
-    width: 100%;
-}
 
-#logo{
-    align-content: center;
-    width: 100%;
-    height: 100px;
-}
-
-button{
-    width: 250px;
-    margin-left: 10px;
+/* Button Styles */
+button {
+    width: 200px;
+    margin-left: 15px;
     border-radius: 4px;
     background-color: #e0bc32;
     color: #090000;
     cursor: pointer;
     font-weight: bold;
-    height: 30px;
+    height: 40px;
+    border: none;
+    outline: none;
+}
+
+button:hover{
+    background-color: rgba(224, 188, 50, 0.7);
+    font-weight: bold;
+}
+/* Label Styles */
+label {
+    text-align: center;
+    border-radius: 5px;
+    width: 200px;
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #006D77;
+    cursor: pointer;
 }

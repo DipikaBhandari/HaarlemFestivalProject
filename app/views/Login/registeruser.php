@@ -1,25 +1,23 @@
 <link rel="stylesheet" type="text/css" href="/css/register.css">
 <section class="vh-100 bg-image">
     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-        <div class="container h-100">
+        <div class="container">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                     <div class="card" style="border-radius: 15px; display: flex;">
-                        <div>
-                        </div>
+
                         <div class="card-body">
 
                             <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
                             <form method="post" enctype="multipart/form-data">
                                 <div class="form-outline mb-4">
-                                    <label class="form-label text-center mb-5" for="imageUpload">Profile Picture</label>
                                     <div class="avatar-upload">
                                         <div class="avatar-preview">
                                             <img id="imagePreview" src="/img/<?=DEFAULT_PROFILE?>" alt="Preview">
                                         </div>
                                         <input type="file" name="createUserImage" id="imageUpload" accept=".png, .jpg, .jpeg" onchange="previewImage(this)">
-                                        <label for="imageUpload" class="btn btn-primary">Choose Image</label>
+                                        <label for="imageUpload" class="btn btn-primary">Choose Profile Picture</label>
                                     </div>
                                 </div>
 
@@ -66,12 +64,16 @@
 
 <script>
     function previewImage(input) {
+        var preview = document.getElementById('imagePreview');
         if (input.files && input.files[0]) {
-            let reader = new FileReader();
-            reader.onload = function (e) {
-                document.getElementById('imagePreview').src = e.target.result;
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
             }
             reader.readAsDataURL(input.files[0]);
+        } else {
+            preview.src = "/img/<?=DEFAULT_PROFILE?>"; // If no file is selected, show the default avatar
         }
     }
+
 </script>
