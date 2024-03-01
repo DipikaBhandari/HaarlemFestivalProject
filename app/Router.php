@@ -20,7 +20,12 @@ class Router
             $explodedUri[0] = 'home';
         }
         $controllerName = "App\\Controllers\\" . $explodedUri[0] . "Controller";
-
+        if ($explodedUri[0] === 'restaurant' && $explodedUri[1] === 'details' && isset($explodedUri[2])) {
+            $restaurantId = $explodedUri[2];
+            $controller = new Controllers\RestaurantController();
+            $controller->details($restaurantId);
+            return;
+        }
         if (!isset($explodedUri[1]) || empty($explodedUri[1])) {
             $explodedUri[1] = 'index';
         }
@@ -31,7 +36,12 @@ class Router
             http_response_code(404);
             return;
         }
-
+        if ($explodedUri[0] === 'restaurant' && $explodedUri[1] === 'details' && isset($explodedUri[2])) {
+            $restaurantId = $explodedUri[2];
+            $controller = new Controllers\RestaurantController();
+            $controller->details($restaurantId);
+            return;
+        }
         try {
             $controllerObj = new $controllerName();
             $controllerObj->$methodName();

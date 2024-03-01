@@ -48,5 +48,4 @@ class image
     {
         $this->imagePath = $imagePath;
     }
-
 }
