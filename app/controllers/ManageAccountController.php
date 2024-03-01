@@ -28,8 +28,7 @@ class ManageAccountController
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
-        // Temporarily
-        $_SESSION['email'] = 'adordawit4@gmail.com';
+
         if (!isset($_SESSION['email'])) {
             header('Location: /login');
             exit;
@@ -54,12 +53,12 @@ class ManageAccountController
                 exit;
             }
             $user = new User();
-
-            $user->setEmail($_SESSION['email']);
-            $user->setName(htmlspecialchars($_POST['name']));
+            $user->setEmail(htmlspecialchars($_POST['email']));
+            $user->setName($_SESSION['username']);
             $user->setEmail(htmlspecialchars($_POST['email']));
             $user->setAddress(htmlspecialchars($_POST['address']));
             $user->setPhoneNumber(htmlspecialchars($_POST['phoneNumber']));
+
 
 
 
@@ -77,7 +76,7 @@ class ManageAccountController
                 $emailService = new emailProfileChangeConfirmationService();
 
 
-                if ($emailService->sendAccountUpdateEmail("adordawit4@gmail.com")) {
+                if ($emailService->sendAccountUpdateEmail($_SESSION['email'])) {
 
                     echo json_encode(['success' => true, 'message' => 'Account updated successfully, confirmation email sent.']);
                 } else {

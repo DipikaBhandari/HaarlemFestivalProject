@@ -10,6 +10,7 @@
       <change beforePath="$PROJECT_DIR$/app/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/vendor/composer/autoload_real.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/afterlogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/afterlogin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/manageAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageAccount.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/logincontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/logincontroller.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
