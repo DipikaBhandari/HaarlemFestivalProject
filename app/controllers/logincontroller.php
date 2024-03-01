@@ -165,4 +165,12 @@ class logincontroller
         require __DIR__ . '/../views/Login/registeruser.php';
 
     }
+    public function logout(){
+        session_start();
+        $_SESSION = array();
+        session_destroy();
+
+        header("Location: /home");
+        exit();
+    }
 }

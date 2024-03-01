@@ -1,7 +1,3 @@
-<?php
-//session_start();
-//?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +47,7 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li><a class="dropdown-item" href="/profile">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
                 </ul>
             </div>
 
