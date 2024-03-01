@@ -1,0 +1,55 @@
+.header {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+h1{
+    margin-top: 50px;
+}
+
+
+.container.subsection{
+    display: none;
+}
+
+#photo-col {
+    display:none;
+    width:100%;
+    margin-top:20%;
+}
+
+#photo-col img{
+    max-width: 100%;
+    margin: 0;
+    height: auto;
+}
+
+.crossNavigation{
+    background: linear-gradient(180deg, #006D77 0%, rgba(0, 109, 119, 0.594792) 99.99%, rgba(0, 109, 119, 0) 100%);
+    width: 100%;
+    color: white;
+}
+.crossNavigation h1{
+    padding-top: 5%;
+    padding-left: 5%;
+}
+.crossNavigation h4{
+    padding-left: 5%;
+}
+.carousel{
+    width: 80%;
+    margin: auto;
+}
+
+.card{
+    color: white;
+    border: none;
+    margin: 5% 0;
+}
+
+#map {
+    margin-top: 7%;
+    margin-left: 10%;
+    height: 350px;
+    width: 400px;
+}

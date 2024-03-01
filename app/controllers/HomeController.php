@@ -13,7 +13,16 @@ class HomeController
 
     public function index()
     {
+        $sections = $this->homeService->getSectionsByPage(2);
 
-        require __DIR__ . '/../views/festival/index.php';
+        foreach ($sections as $key => $section) {
+            if ($section['type'] === 'crossnavigation') {
+                $sections[$key]['carouselItems'] = $this->homeService->getCarouselItemsBySection($section['sectionId']);
+            }
+            $sections[$key]['images'] = $this->homeService->getImageBySection($section['sectionId']);
+            $sections[$key]['paragraphs'] = $this->homeService->getParagraphsBySection($section['sectionId']);
+        }
+
+        require __DIR__ . '/../views/home/index.php';
     }
 }

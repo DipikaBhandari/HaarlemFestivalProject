@@ -4,26 +4,10 @@ namespace App\model;
 
 class User
 {
-    private $name;
-    private $email;
+    private string $email;
     private $address;
-    private $password;
-
-    /**
-     * @return mixed
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param mixed $password
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
+    private string $password;
+    private string $username;
     private $phoneNumber;
     private $profilePicture;
 
@@ -32,24 +16,64 @@ class User
      */
     public function getName()
     {
-        return $this->name;
+        return $this->username;
     }
 
     /**
-     * @param mixed $name
+     * @param mixed $username
      */
-    public function setName($name)
+    public function setName($username)
     {
-        $this->name = $name;
+        $this->username = $username;
     }
 
     /**
      * @return mixed
      */
-    public function getEmail()
+
+    public string $picture;
+    private Roles $role;
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): void
+    {
+        $this->username=$username;
+    }
+
+    public function getPicture(): string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): void
+    {
+        $this->picture=$picture;
+    }
+    /**
+     * @return Roles
+     */
+    public function getRole(): Roles
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param Roles $role
+     */
+    public function setRole(Roles $role): void
+    {
+        $this->role = $role;
+    }
+    public function getEmail(): string
+
     {
         return $this->email;
     }
+
 
     /**
      * @param mixed $email
@@ -62,10 +86,13 @@ class User
     /**
      * @return mixed
      */
-    public function getAddress()
+
+    public function getAddress(): string
+
     {
         return $this->address;
     }
+
 
     /**
      * @param mixed $address
@@ -107,5 +134,19 @@ class User
         $this->profilePicture = $profilePicture;
     }
 
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->password=$password;
+    }
+
+    public function jsonSerialize():mixed
+    {
+        return get_object_vars($this);
+    }
 
 }

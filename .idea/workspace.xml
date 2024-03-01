@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/model/Roles.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/css/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/css/register.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/65d6004be0496.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/65e1ae7229052.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/blankPerson.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/cheers.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/example.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/finish.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/food.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/historyhome.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/marketing1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/original.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/start.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/walk.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/windmill.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/javascript/historyComponents.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/afterlogin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/header.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/introduction.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/list.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/marketing.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/subsection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/timetable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/dbconfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/dbconfig.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/historyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/historyController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/logincontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/logincontroller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/usercontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/usercontroller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/history.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/history.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/page.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/section.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/section.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/Repository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/Repository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/historyRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/historyRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/userRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/userRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/historyService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/historyService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/userService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/userService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/Login/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Login/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/Login/registeruser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Login/registeruser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/history/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/history/homepage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/home/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/home/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/manageAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageAccount.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/yummy/YummyHome.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/yummy/YummyHome.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/yummy/details.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/yummy/details.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" show_ignored="true">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="module" />
+    </option>
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/app/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/app/vendor/composer" />
+      <path value="$PROJECT_DIR$/app/vendor/phpmailer/phpmailer" />
+    </include_path>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2c8FEVacyKswKRBfIuNKi4fEQSh" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Docker.PHP.Dockerfile.executor": "Run",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Merging Development",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Inholland/Documents/GitHub/HaarlemFestivalProject/app/public/img",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Inholland\Documents\GitHub\HaarlemFestivalProject\app\public\img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Inholland\Documents\GitHub\HaarlemFestivalProject\app\views" />
+      <recent name="C:\Users\Inholland\Documents\GitHub\HaarlemFestivalProject\app\public\img" />
+    </key>
+  </component>
+  <component name="RunManager" selected="PHP Script.historyController.php">
+    <configuration name="historyController.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/app/controllers/historyController.php">
+      <method v="2" />
+    </configuration>
+    <configuration name="PHP.Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="PHP.Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHP Script.historyController.php" />
+        <item itemvalue="Docker.PHP.Dockerfile" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="" />
+      <created>1707485186269</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1707485186269</updated>
+      <workItem from="1707485187379" duration="1383000" />
+      <workItem from="1707486584962" duration="7713000" />
+      <workItem from="1707828926624" duration="5421000" />
+      <workItem from="1708099215058" duration="3694000" />
+      <workItem from="1708351982294" duration="31792000" />
+      <workItem from="1708954327220" duration="34285000" />
+      <workItem from="1709151583194" duration="230000" />
+      <workItem from="1709213516179" duration="20928000" />
+      <workItem from="1709283857425" duration="5549000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+</project>
