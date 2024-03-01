@@ -13,25 +13,6 @@ class logincontroller
         $this->userService = new \App\Service\userService();
     }
 
-    public function login()
-    {
-        require __DIR__ . '/../views/Login/login.php';
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $username = htmlspecialchars($_POST["username"]);
-            $password = htmlspecialchars($_POST["password"]);
-            $loggedUser= $this->userService->authenticateUser($username, $password);
-            if($loggedUser){
-                header("Location: home/what");
-                exit;
-            } else {
-                $loginError = "Invalid username or password";
-                $pageTitle = "Login";
-                require '../views/loginUser/login.php';
-            }
-        }
-    }
-
     public function forgotPassword(){
         require __DIR__ . '/../views/Login/forgotPassword.php';
     }
