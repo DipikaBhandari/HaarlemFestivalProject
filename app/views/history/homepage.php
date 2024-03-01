@@ -1,5 +1,9 @@
 <?php
-include __DIR__ . '/../header.php';
+if(isset($_SESSION['username'])) {
+    include __DIR__ . '/../afterlogin.php'; // Include afterlogin.php for logged-in users
+} else {
+    include __DIR__ . '/../header.php'; // Include default header for non-logged-in users
+}
 ?>
     <head>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
