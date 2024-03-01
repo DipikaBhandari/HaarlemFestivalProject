@@ -5,38 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/model/image.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/model/page.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/model/paragraph.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/model/section.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/65e1ae7229052.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/marketing1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/javascript/historyComponents.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/afterlogin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/header.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/introduction.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/list.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/marketing.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/subsection.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/timetable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/historyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/historyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/logincontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/logincontroller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/usercontroller.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/model/history.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/history.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/css/register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/historyRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/historyRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/historyService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/historyService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/userService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/userService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/Login/registeruser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Login/registeruser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/festival/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/festival/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/history/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/history/homepage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/yummy/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/yummy/homepage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/HomeController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,5 +145,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>
