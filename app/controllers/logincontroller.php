@@ -91,7 +91,8 @@ class logincontroller
                 $_SESSION['username'] = $loggedUser->getUsername();
 
                 // Redirect to the festival index page
-                require __DIR__ . '/../views/home/index.php';
+                header("Location: /home");
+                               // require __DIR__ . '/../views/home/index.php';
                 exit(); // Ensure that no further code is executed after redirection
             }
         }

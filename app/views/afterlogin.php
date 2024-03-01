@@ -1,3 +1,7 @@
+<?php
+//session_start();
+//?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +39,7 @@
     <nav class="navbar navbar-expand-lg bg-body-primary d-flex justify-content-between px-2">
         <div class="navbar-nav flex-row flex-lg">
             <a id="homeLink" class="nav-link pe-5 text-white" aria-current="page" href="/home">The Festival</a>
-            <a id="yummyLink" class="nav-link pe-5 text-white" href="/yummy">Yummy</a>
+            <a id="yummyLink" class="nav-link pe-5 text-white" href="/restaurant/yummyHome">Yummy</a>
             <a id="historyLink" class="nav-link pe-5 text-white" href="/history">History</a>
         </div>
         <div class="navbar-nav flex-row flex-lg">
