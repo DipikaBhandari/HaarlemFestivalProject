@@ -1,13 +1,11 @@
 <?php
 use App\model\User;
 
-
-
-
-if(isset($_SESSION['username'])) {
+ if(isset($_SESSION['username'])) {
     include __DIR__ . '/afterlogin.php'; // Include afterlogin.php for logged-in users
 } else {
-    session_start();
+     session_start();
+
     include __DIR__ . '/header.php'; // Include default header for non-logged-in users
 }
 
@@ -108,8 +106,8 @@ if (!isset($user) || !$user instanceof User) {
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="/manageAccountPasswordUpdate.js"></script>
-<script src="/manageAccount.js"></script>
+<script src="../public/javascript/manageAccountPasswordUpdate.js"></script>
+<script src="../public/javascript/manageAccount.js"></script>
 <?php
 include __DIR__ . '/footer.php';
 ?>

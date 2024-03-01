@@ -76,7 +76,9 @@ class ManageAccountController
 
                 $emailService = new emailProfileChangeConfirmationService();
 
+
                 if ($emailService->sendAccountUpdateEmail("adordawit4@gmail.com")) {
+
                     echo json_encode(['success' => true, 'message' => 'Account updated successfully, confirmation email sent.']);
                 } else {
                     echo json_encode(['success' => true, 'message' => 'Account updated successfully, but the confirmation email could not be sent.']);
