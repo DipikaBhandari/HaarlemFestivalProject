@@ -38,7 +38,7 @@
         <div class="navbar-nav flex-row flex-lg">
             <a id="homeLink" class="nav-link pe-5 text-white" aria-current="page" href="/home/index">The Festival</a>
             <a id="yummyLink" class="nav-link pe-5 text-white" href="/restaurant/yummyHome">Yummy</a>
-            <a id="historyLink" class="nav-link pe-5 text-white" href="/manageAccount/showAccount">History</a>
+            <a id="historyLink" class="nav-link pe-5 text-white" href="/history">History</a>
         </div>
         <div class="navbar-nav flex-row flex-lg">
             <a id="loginLink" class="nav-link text-white pt-0 pb-0" href="/login/login">Login</a>

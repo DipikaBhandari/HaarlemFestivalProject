@@ -4,9 +4,9 @@ namespace App\service;
 use App\Repositories\userRepository;
 use App\Model\User;
 
-
 class userService
 {
+
     private $userRepository;
 
     private $emailService;
@@ -70,6 +70,34 @@ class userService
     public function updateUserPassword($email, $newPassword): bool {
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
         return $this->userRepository->updateUserPasswordByEmail($email, $hashedPassword);
+    }
+
+    public function registered($newUser): bool
+    {
+        $plainPassword = $newUser['password'];
+        $newUser['password'] = $this->hashPassword($plainPassword);
+        $image = $newUser['picture'];
+        if (!empty($image['name'])) {
+            $newUser['picture'] = $this->userImage($image);
+        } else {
+            $newUser['picture'] = DEFAULT_PROFILE; // default image
+        }
+     return  $this->userRepository->registerUser($newUser);
+
+    }
+    public function userImage($image)
+    {
+        $ext = pathinfo($image['name'], PATHINFO_EXTENSION);
+        $imageName = uniqid() . '.' . $ext;
+        $upload_dir = __DIR__ . '/../public/img/';
+        if (!move_uploaded_file($image['tmp_name'], $upload_dir . $imageName)) {
+            throw new Exception("Failed to move uploaded file.");
+        }
+        return $imageName;
+    }
+    public function hashPassword($password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
     }
 }
 

@@ -1,28 +1,50 @@
-<div class="container ">
-    <div class="d-flex flex-column justify-content-center align-items-center " style="min-height: 100vh;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+<link rel="stylesheet" type="text/css" href="/css/login.css">
 
-        <h2>Please Login</h2>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    ></script>
+</head>
+<body>
+
+<div class="container">
+    <img id="loginImage" src="../img/example.jpg" >
+    <div class="login-container">
+
+    <div class="d-flex flex-column">
+        <h1>Welcome To Haarlem Festival</h1>
         <br>
-        <form method='POST'>
-            <div class="mb-3">
+        <form method='POST' >
+            <div>
+            <div>
                 <label for="exampleInputEmail1" class="form-label">Username</label>
+            </div>
+            <div>
                 <input class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" required>
             </div>
-            <div class="mb-3">
+            <div>
                 <label for="exampleInputPassword1" class="form-label">Password</label>
+            </div>
+            <div>
                 <input type="password" class="form-control" name="password" id="exampleInputPassword1" required>
             </div>
-
-            <button type="submit" class="btn btn-light" name="btnLogin" >Login</button>
+            <button class="submit-btn" type="submit" name="btnLogin">Login</button>
+            </div>
         </form>
-        <a href="./forgotPassword">Forgot Password?</a>
+        <form class="register-form" action="/login/createNewUser" method="POST">
+            <div>
+                <button class="register-btn btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" name="registerSubmit" type="submit">Don't have an account? Sign Up</button>
+            </div>
+        </form>
+        <form class="register-form" action="/login/resetPasswordViaEmail" method="POST">
+            <div>
+                <a class="register-btn" href="./forgotPassword">Forgot Password?</a>
+            </div>
+        </form>
+    </div>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-></script>
-
-
-<?php
-include __DIR__ . '/../footer.php';
-?>
+</body>
+</html>

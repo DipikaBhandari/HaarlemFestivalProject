@@ -16,8 +16,13 @@ class section
     public const TYPE_INTRODUCTION = 'introduction';
     public const TYPE_SUBSECTION = 'subsection';
     public const TYPE_PHOTOSECTION = 'photosection';
+
     public const TYPE_CROSNAVIGATION = 'crossnavigation';
     public const TYPE_CARD= 'card';
+    public const TYPE_LIST = 'list';
+    public const TYPE_TIMETABLE= 'timetable';
+
+    public const TYPE_MARKETING= 'marketing';
 
     public function getPageId(): int
     {

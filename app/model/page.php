@@ -4,8 +4,8 @@ namespace App\model;
 
 class page
 {
-   private int $pageId;
-   private string $pageTitle;
+    private int $pageId;
+    private string $pageTitle;
 
     public function getPageId(): int
     {
