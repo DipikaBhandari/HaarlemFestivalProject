@@ -44,10 +44,14 @@
                     Manage Account
                 </a>
 
+
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-                    <li><a class="dropdown-item" href="/manageAccount/showAccount">Profile</a></li>
-
+                    <li><a class="dropdown-item" href="/manageaccount/showAccount">Profile</a></li>
+                    <li><a class="dropdown-item admin hide" href="#">Manage Users</a></li>
+                    <li><a class="dropdown-item admin hide" href="#">Manage History Events</a></li>
+                    <li><a class="dropdown-item admin hide" href="#">Manage Yummy Events</a></li>
+                    <li><a class="dropdown-item admin hide" href="#">Manage Contents</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
                 </ul>
@@ -61,3 +65,23 @@
 </header>
 <main>
 
+<script>
+     const role = "<?php echo $_SESSION["role"]?>";
+     const items = document.querySelectorAll('.admin');
+
+     if(role === "Administrator"){
+         items.forEach(item =>{
+             item.classList.remove("hide");
+         })
+     } else{
+         items.forEach(item =>{
+             item.classList.add("hide");
+         })
+     }
+
+</script>
+    <style>
+        .hide{
+            display:none;
+        }
+    </style>

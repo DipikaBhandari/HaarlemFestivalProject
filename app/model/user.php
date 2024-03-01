@@ -32,7 +32,7 @@ class User
      */
 
     public string $picture;
-    private Roles $role;
+    private string $role;
 
     public function getUsername(): string
     {
@@ -54,17 +54,17 @@ class User
         $this->picture=$picture;
     }
     /**
-     * @return Roles
+     * @return mixed
      */
-    public function getRole(): Roles
+    public function getRole(): string
     {
         return $this->role;
     }
 
     /**
-     * @param Roles $role
+     * @param mixed $role
      */
-    public function setRole(Roles $role): void
+    public function setRole(string $role): void
     {
         $this->role = $role;
     }
