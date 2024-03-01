@@ -24,6 +24,7 @@ class userRepository extends Repository
                 $user->setUsername($userArray['username']);
                 $user->setPassword($userArray['password']);
                 $user->setEmail($userArray['email']);
+                $user->setRole($userArray['role']);
                 return $user;
             }
 

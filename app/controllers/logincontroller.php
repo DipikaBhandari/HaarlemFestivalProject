@@ -89,6 +89,8 @@ class logincontroller
             if ($loggedUser) {
                 // Start the session and store user information
                 $_SESSION['username'] = $loggedUser->getUsername();
+                $_SESSION['email'] = $loggedUser->getEmail();
+                $_SESSION['role'] = $loggedUser->getRole();
 
                 // Redirect to the festival index page
                 header("Location: /home");
