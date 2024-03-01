@@ -29,7 +29,7 @@ class ManageAccountController
             session_start();
         }
         // Temporarily
-        $_SESSION['email'] = 'dipika@gmail.com';
+        $_SESSION['email'] = 'adordawit4@gmail.com';
         if (!isset($_SESSION['email'])) {
             header('Location: /login');
             exit;
@@ -75,8 +75,8 @@ class ManageAccountController
             if ($updateSuccess) {
 
                 $emailService = new emailProfileChangeConfirmationService();
-
-                if ($emailService->sendAccountUpdateEmail($_SESSION['email'])) {
+                 ;
+                if ($emailService->sendAccountUpdateEmail("adordawit4@gmail.com")){
                     echo json_encode(['success' => true, 'message' => 'Account updated successfully, confirmation email sent.']);
                 } else {
                     echo json_encode(['success' => true, 'message' => 'Account updated successfully, but the confirmation email could not be sent.']);

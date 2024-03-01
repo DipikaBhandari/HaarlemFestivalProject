@@ -17,7 +17,7 @@ class emailProfileChangeConfirmationService
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'haarlem.festival2024@gmail.com';
-            $mail->Password = 'btopgeyatiddblrn';
+            $mail->Password = 'olineyaoabmzziuj';
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
