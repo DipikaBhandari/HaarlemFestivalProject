@@ -1,10 +1,14 @@
 <?php
 use App\model\User;
 
- if(isset($_SESSION['username'])) {
-    include __DIR__ . '/../afterlogin.php'; // Include afterlogin.php for logged-in users
+
+
+
+if(isset($_SESSION['username'])) {
+    include __DIR__ . '/afterlogin.php'; // Include afterlogin.php for logged-in users
 } else {
-    include __DIR__ . '/../header.php'; // Include default header for non-logged-in users
+    session_start();
+    include __DIR__ . '/header.php'; // Include default header for non-logged-in users
 }
 
 if (!isset($user) || !$user instanceof User) {
