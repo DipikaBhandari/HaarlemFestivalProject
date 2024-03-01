@@ -7,7 +7,7 @@ class userRepository extends Repository
 {
     public function updateUser(User $user)
     {
-        $sql = "UPDATE [dbo].[User] SET username = ?, address = ?, phonenumber = ?, profile_picture = ? WHERE email = ?";
+        $sql = "UPDATE [dbo].[User] SET username = ?, address = ?, phonenumber = ?, picture = COALESCE(?, picture) WHERE email = ?";
         try {
             $stmt = $this->connection->prepare($sql);
             $stmt->execute([
@@ -39,9 +39,42 @@ class userRepository extends Repository
             $user->setAddress($userData['address']);
             $user->setPhoneNumber($userData['phonenumber']);
             $user->setPassword($userData['password']);
-            $user->setProfilePicture($userData['profile_picture']);
+            $user->setProfilePicture($userData['picture']);
             return $user;
         }
         return null;
     }
+    public function getUserByEmail($email): ?User {
+        try {
+            $sql = "SELECT * FROM [User] WHERE email = :email";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindValue(':email', $email);
+            $stmt->execute();
+
+            $userArray = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($userArray) {
+                $user = new User();
+                // Set other required attributes of the User model
+                $user->setPassword($userArray['password']);
+                return $user;
+            }
+        } catch (PDOException $e) {
+            // Handle the error properly
+            error_log($e->getMessage());
+            // Depending on your error handling strategy, you might want to show an error or log it.
+        }
+        return null;
+    }
+    public function updateUserPasswordByEmail($email, $hashedPassword): bool {
+        $sql = "UPDATE [dbo].[User] SET password = ? WHERE email = ?";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            return $stmt->execute([$hashedPassword, $email]);
+        } catch (\PDOException $e) {
+            // Handle error appropriately
+            return false;
+        }
+    }
 }
+
+

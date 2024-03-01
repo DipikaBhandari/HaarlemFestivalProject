@@ -54,13 +54,29 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 console.log(data); // Process and display success message or redirect
                 alert('Profile updated successfully!');
-                // Optionally, redirect the user or clear/reset the form
-                // location.href = 'success-page.html'; // Redirect example
-                // form.reset(); // Reset form fields example
+                document.getElementById('feedbackMessage').textContent = 'Account updated successfully.';
+                const feedbackAlert = document.getElementById('feedbackAlert');
+                feedbackAlert.classList.remove('d-none');
+
+                // Hide the alert after 5 seconds
+                setTimeout(() => {
+                    feedbackAlert.classList.add('d-none');
+                }, 3000);
             })
             .catch(error => {
                 console.error('Error:', error);
+                 // Process and display success message or redirect
+                alert('Profile updated successfully!');
+                document.getElementById('feedbackMessage').textContent = 'Account updated successfully.';
+                const feedbackAlert = document.getElementById('feedbackAlert');
+                feedbackAlert.classList.remove('d-none');
+
+                // Hide the alert after 5 seconds
+                setTimeout(() => {
+                    feedbackAlert.classList.add('d-none');
+                }, 3000);
                 alert('An error occurred while updating the profile.');
             });
     });
 });
+

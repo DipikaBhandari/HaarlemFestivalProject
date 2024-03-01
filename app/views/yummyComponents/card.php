@@ -9,7 +9,7 @@
         <!-- Loop through each card and display its content -->
         <?php foreach ($section['card'] as $card): ?>
             <div class="col-md-4 mb-3">
-                <div class="card h-100">
+                <div class="card h-100" style="width: 100% ;position: relative;">
                     <div class="card-body">
                         <a href="/restaurant/details/<?= $card['restaurantId']; ?>" class="stretched-link"></a>
                         <?php if (isset($card['restaurantName'])): ?>
@@ -36,15 +36,23 @@
                         <?php endif; ?>
                     </div>
                     <div class="card-footer">
-                        <?php if (isset($card['email'])): ?>
-                            <a href="mailto:<?= htmlspecialchars($card['email']); ?>" class="card-link">Email</a>
-                        <?php endif; ?>
                         <?php if (isset($card['phoneNumber'])): ?>
                             <a href="tel:<?= htmlspecialchars($card['phoneNumber']); ?>" class="card-link">Call</a>
                         <?php endif; ?>
                     </div>
-
+                    <br>
+                    <br>
+                    <div style="text-align: center; position: absolute; bottom: -30px; left: 50%; border-radius: 30px;
+    text-align: center;
+    line-height: 61px; /* Center the text vertically */
+    text-decoration: none;
+    transform: translateX(-50%); background-color: #A3AF1E; width: 266px; height: 61px; line-height: 61px; margin: 20px auto; border-radius: 5px;">
+                        <a href="http://yourlink.com" style="font-size: 24px;   font-family: Arial, sans-serif;   color: #ffffff; text-decoration: none;border-radius: 30px; display: block;">
+                            MORE INFO
+                        </a>
+                    </div>
                 </div>
+
             </div>
         <?php endforeach; ?>
             <div id="map" style=" height: 400px;"></div>

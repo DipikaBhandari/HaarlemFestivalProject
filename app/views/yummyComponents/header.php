@@ -15,7 +15,7 @@
             <div class="col-md-6 d-none d-md-block">
                 <?php foreach ($section['images'] as $images): ?>
                     <img src="<?= htmlspecialchars($images['imagePath']); ?>" alt="<?= htmlspecialchars($images['imageName']); ?>" style="width:  92vh; height:100%; max-height: 76.5vh; object-fit: cover; position: absolute; top: 120px; right: 0;">
-                    <h2 style="font-family: 'Playfair Display'; font-size: 32px; font-weight: 700; position: absolute; top: 0; left: 50%; transform: translateX(-50%);" class="fs-3 text-center"><?= htmlspecialchars($section['subTitle']); ?></h2>
+                    <h2 style="font-family: 'Playfair Display'; font-size: 32px; font-weight: 700; position: absolute; top: 200px; left: 65%; transform: translateX(-50%);" class="fs-3 text-center"><?= htmlspecialchars($section['subTitle']); ?></h2>
                 <?php endforeach; ?>
             </div>
         </div>
