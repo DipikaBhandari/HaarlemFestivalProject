@@ -4,112 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/d/3d2b87ebf3d878f0fd8d573e5b07bf2efd6350f2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/7/67d3df00f383cfd95456fe90fdf71c4d0d5109d8" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/0/709a94d6e7896f2925a5a0400902dc200307e9ab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/f/7ffbf6bf5b9a31dc5a32879d87a0f98e1b8f644e" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/b/9bb6e8444935035f8d62e909e1eab3f721034864" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/5/a589b37f6bada5e63f6077ccab9d39764b932e66" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/3/e37a1ff7cc7010f110186ae3d0d4b7a9fdb93bad" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/3/d/3d2b87ebf3d878f0fd8d573e5b07bf2efd6350f2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/7/67d3df00f383cfd95456fe90fdf71c4d0d5109d8" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/7/0/709a94d6e7896f2925a5a0400902dc200307e9ab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/7/f/7ffbf6bf5b9a31dc5a32879d87a0f98e1b8f644e" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/b/9bb6e8444935035f8d62e909e1eab3f721034864" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/a/5/a589b37f6bada5e63f6077ccab9d39764b932e66" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/e/3/e37a1ff7cc7010f110186ae3d0d4b7a9fdb93bad" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/logincontroller.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/model/Roles.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/css/homeStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/css/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/css/register.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/65d6004be0496.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/65e1ae7229052.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/DancePhoto.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/HistoryNavigation.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/HistoryPhoto.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/HomeHeader1.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/HomeHeader2.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/HomeHeader3.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/SpeakerIcon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/TeylerPhoto.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/YummyNavigation.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/YummyPhoto.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/blankPerson.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/cheers.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/example.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/finish.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/food.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/historyhome.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/marketing1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/original.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/start.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/walk.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/windmill.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/javascript/historyComponents.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/javascript/home.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/service/emailService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/Login/forgotPassword.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/Login/resetPassword.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/Login/timedOutResetLink.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/afterlogin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/components/crossnavigation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/components/header.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/components/introduction.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/components/map.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/components/photosection.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/components/subsection.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/header.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/introduction.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/list.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/marketing.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/subsection.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/historyComponents/timetable.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/home/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/modal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/HaarlemFestivalProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HaarlemFestivalProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="manage account done. yummy home page 80per, in progress">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/app/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/dbconfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/dbconfig.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ManageAccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ManageAccountController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/historyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/historyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/logincontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/logincontroller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/model/history.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/history.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/model/homepage.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/model/section.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/section.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/model/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/Repository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/Repository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/historyRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/historyRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/homepageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/homepageRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/userRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/userRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/historyService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/historyService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/homeService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/homeService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/userService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/userService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/Login/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Login/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/Login/registeruser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Login/registeruser.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/afterlogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/afterlogin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/festival/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/history/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/history/homepage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/home/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/home/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/manageAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageAccount.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/yummy/YummyHome.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/yummy/YummyHome.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +58,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Merging Ador",
+    "git-widget-placeholder": "Ador",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Inholland/Documents/GitHub/HaarlemFestivalProject/app/public/img",
@@ -250,7 +148,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="manage account done. yummy home page 80per, in progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="manage account done. yummy home page 80per, in progress" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
