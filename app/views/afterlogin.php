@@ -47,7 +47,7 @@
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-                    <li><a class="dropdown-item" href="/manageaccount/showAccount">Profile</a></li>
+                    <li><a class="dropdown-item" href="/manageAccount/showAccount">Profile</a></li>
                     <li><a class="dropdown-item admin hide" href="#">Manage Users</a></li>
                     <li><a class="dropdown-item admin hide" href="#">Manage History Events</a></li>
                     <li><a class="dropdown-item admin hide" href="#">Manage Yummy Events</a></li>
