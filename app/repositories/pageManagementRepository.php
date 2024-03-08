@@ -37,10 +37,26 @@ class pageManagementRepository extends Repository
 
     public function getSectionContent($sectionId)
     {
-        $stmt = $this->connection->prepare("SELECT * FROM Sections LEFT JOIN Paragraph ON Sections.sectionId = Paragraph.sectionId LEFT JOIN Images ON Sections.sectionId = Images.sectionId WHERE Sections.sectionId = :sectionId");
-        $stmt->bindParam(':sectionId', $sectionId);
-        $stmt->execute();
+        $sectionStmt = $this->connection->prepare("SELECT * FROM Sections WHERE sectionId = :sectionId");
+        $sectionStmt->bindParam(':sectionId', $sectionId);
+        $sectionStmt->execute();
+        $section = $sectionStmt->fetch(PDO::FETCH_ASSOC);
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $paragraphStmt = $this->connection->prepare("SELECT * FROM Paragraph WHERE sectionId = :sectionId");
+        $paragraphStmt->bindParam(':sectionId', $sectionId);
+        $paragraphStmt->execute();
+        $paragraphs = $paragraphStmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $imageStmt = $this->connection->prepare("SELECT * FROM Images WHERE sectionId = :sectionId");
+        $imageStmt->bindParam(':sectionId', $sectionId);
+        $imageStmt->execute();
+        $images = $imageStmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return [
+            'section' => $section,
+            'paragraphs' => $paragraphs,
+            'images' => $images
+        ];
+
     }
 }

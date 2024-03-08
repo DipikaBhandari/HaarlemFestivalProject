@@ -53,29 +53,32 @@ if(isset($_SESSION['username'])) {
                 }
             })
             .then(data =>{
+                console.log(data);
                 var htmlContent = '';
-                data.forEach(row => {
-                    if (row.heading) {
-                        htmlContent += row.heading;
-                    }
-                    if (row.subTitle){
-                        htmlContent += row.subTitle;
-                    }
-                    if (row.text){
-                        htmlContent += row.text;
-                    }
+                document.querySelector('#image-div').innerHTML= '';
+                if (data.section.heading) {
+                    htmlContent += data.section.heading;
+                }
+                if (data.section.subTitle){
+                    htmlContent += data.section.subTitle;
+                }
 
-                    if (row.imagePath) {
-                        //document.getElementById('currentImage').src = row.imagePath;
+                data.paragraphs.forEach(paragraph => {
+                    if (paragraph.text) {
+                        htmlContent += paragraph.text;
+                    }
+                });
+
+                data.images.forEach(image => {
                         const currentImage = document.createElement('img');
-                        currentImage.src = row.imagePath;
-                        currentImage.id = row.imageId;
+                        currentImage.src = image.imagePath;
+                        currentImage.id = image.imageId;
                         currentImage.style = 'max-width: 200px;';
 
                         const imageUpload = document.createElement('input');
                         imageUpload.type = 'file';
                         imageUpload.accept = 'image/*';
-                        imageUpload.id = 'img' + row.imageId;
+                        imageUpload.id = 'img' + image.imageId;
                         imageUpload.addEventListener('change', function(event) {
                             var file = event.target.files[0];
                             // Get the uploaded file
@@ -88,8 +91,7 @@ if(isset($_SESSION['username'])) {
                         const imageEditor = document.createElement("form");
                         imageEditor.appendChild(currentImage);
                         imageEditor.appendChild(imageUpload);
-                        document.querySelector('.modal-body').appendChild(imageEditor);
-                    }
+                        document.querySelector('#image-div').appendChild(imageEditor);
                 });
                 tinyMCE.activeEditor.setContent(htmlContent);
                 myModal.show();

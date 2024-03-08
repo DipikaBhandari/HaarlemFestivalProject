@@ -14,11 +14,7 @@
                     <div class="modal-body">
                         <textarea id="editor">
                         </textarea>
-                        <!--<form action="">
-                            <h4 class="form-label mt-3"><label for="img">Change image:</label></h4>
-                            <img id="currentImage" src="" alt="" style="max-width:200px;">
-                            <input class="form-control mt-3" type="file" id="img" name="img" accept="image.*">
-                        </form>-->
+                        <div id="image-div"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
