@@ -51,7 +51,7 @@
                     <li><a class="dropdown-item admin hide" href="#">Manage Users</a></li>
                     <li><a class="dropdown-item admin hide" href="#">Manage History Events</a></li>
                     <li><a class="dropdown-item admin hide" href="#">Manage Yummy Events</a></li>
-                    <li><a class="dropdown-item admin hide" href="#">Manage Contents</a></li>
+                    <li><a class="dropdown-item admin hide" href="/pageManagement">Manage Contents</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
                 </ul>
