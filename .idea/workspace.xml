@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="first draft editing pages, TODO: save changes">
+    <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="editing pages display current content working, TODO: save changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/pageManagementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/pageManagementController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/repositories/pageManagementRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/pageManagementRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/pageManagementService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/pageManagementService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/editorModal.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/editorModal.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/sectionEditor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/sectionEditor.php" afterDir="false" />
     </list>
@@ -155,7 +157,7 @@
       <workItem from="1709311932723" duration="17445000" />
       <workItem from="1709373262369" duration="4506000" />
       <workItem from="1709649118521" duration="189000" />
-      <workItem from="1709886373711" duration="20942000" />
+      <workItem from="1709886373711" duration="32546000" />
     </task>
     <task id="LOCAL-00001" summary="first draft editing pages, TODO: save changes">
       <option name="closed" value="true" />
@@ -165,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709906221361</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="editing pages display current content working, TODO: save changes">
+      <option name="closed" value="true" />
+      <created>1709924176941</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1709924176941</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +196,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="manage account done. yummy home page 80per, in progress" />
     <MESSAGE value="first draft editing pages, TODO: save changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="first draft editing pages, TODO: save changes" />
+    <MESSAGE value="editing pages display current content working, TODO: save changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="editing pages display current content working, TODO: save changes" />
   </component>
 </project>

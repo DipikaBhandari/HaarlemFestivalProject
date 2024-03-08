@@ -42,7 +42,9 @@ if(isset($_SESSION['username'])) {
 </div>
 <?php include __DIR__ . '/editorModal.php'; ?>
 <script>
+    let currentSectionId;
     function openEditorModal(sectionId) {
+        currentSectionId = sectionId;
         var myModal = new bootstrap.Modal(document.getElementById('sectionEditorModal'));
         fetch('/pageManagement/getSectionContent?sectionId=' + sectionId)
             .then(response => {
@@ -53,7 +55,6 @@ if(isset($_SESSION['username'])) {
                 }
             })
             .then(data =>{
-                console.log(data);
                 var htmlContent = '';
                 document.querySelector('#image-div').innerHTML= '';
                 if (data.section.heading) {
@@ -100,10 +101,42 @@ if(isset($_SESSION['username'])) {
                 console.error('Error fetching section content:', error);
             });
     }
+
     function updateCurrentImage(imageId, imagePath) {
         const currentImage = document.getElementById(imageId);
         if (currentImage) {
             currentImage.src = imagePath;
         }
+    }
+
+    function saveContent(){
+        const newContent = tinyMCE.activeEditor.getContent("editor");
+        const formData = new FormData();
+
+        formData.append('sectionId', currentSectionId);
+        formData.append('content', newContent);
+
+        const imageFiles = document.querySelectorAll('input[type="file"]');
+        imageFiles.forEach(fileInput => {
+            const file = fileInput.files[0];
+            if (file) {
+                formData.append('images[]', file);
+            }
+        });
+
+        fetch('/pageManagement/saveNewContent', {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Content saved successfully');
+                } else {
+                    throw new Error('Failed to save content');
+                }
+            })
+            .catch(error => {
+                console.error('Error saving content:', error);
+            });
     }
 </script>
