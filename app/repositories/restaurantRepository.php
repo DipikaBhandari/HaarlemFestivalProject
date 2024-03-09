@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+use App\model\restaurant;
 use PDO;
 
 class restaurantRepository extends Repository
@@ -86,5 +87,35 @@ class restaurantRepository extends Repository
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllYummyInfo()
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM RestaurantSection");
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function findDetail(int $restaurantId): ?Restaurant
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM RestaurantSection WHERE restaurantId = :restaurantId");
+        $stmt->bindParam(':restaurantId', $restaurantId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$data) {
+            return null;
+        }
+
+        $restaurant = new Restaurant();
+        $restaurant->setEmail($data['email'] ?? '');
+        $restaurant->setLocation($data['location']);
+        $restaurant->setRestaurantName($data['restaurantName']);
+        $restaurant->setPhoneNumber($data['phonenumber']);
+        $restaurant->setNumberOfSeats($data['numberOfSeats'] ?? 0); // assuming 'numberOfSeats' is a valid column in your table
+        $restaurant->setKidPrice($data['kidPrice']);
+        $restaurant->setAdultPrice($data['adultPrice']);
+
+        return $restaurant;
     }
 }

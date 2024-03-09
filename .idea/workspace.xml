@@ -4,10 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="manage account done. yummy home page 80per, in progress">
+    <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="small fix on manage account">
+      <change afterPath="$PROJECT_DIR$/app/controllers/CreateRestaurantController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/ManageUsersController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/ManageYummyController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/578cf5af84273227f7ca4072ee0a6b11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/769c004d8343628087a50fe5953f6eca.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/e46642614c21993f784b473faa340f9e.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/createRestaurant.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/manageRestaurant.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/manageUsers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/manageYummy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ManageAccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ManageAccountController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/restaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/restaurant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/public/javascript/manageAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/javascript/manageAccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/Repository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/Repository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/restaurantRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/restaurantRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/userRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/userRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/restaurantService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/restaurantService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/userService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/userService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/afterlogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/afterlogin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/manageAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageAccount.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/yummy/details.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/yummy/details.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,42 +73,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Docker.PHP.Dockerfile.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Ador",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Inholland/Documents/GitHub/HaarlemFestivalProject/app/public/img",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "actions.on.save",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Docker.PHP.Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Ador&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Inholland/Documents/GitHub/HaarlemFestivalProject/app/public/img&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Inholland\Documents\GitHub\HaarlemFestivalProject\app\public\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\adord\Documents\GitHub\HaarlemFestivalProject\app\views" />
       <recent name="C:\Users\adord\Documents\GitHub\HaarlemFestivalProject\app\public\javascript" />
       <recent name="C:\Users\Inholland\Documents\GitHub\HaarlemFestivalProject\app\public\javascript" />
       <recent name="C:\Users\Inholland\Documents\GitHub\HaarlemFestivalProject\app\views" />
       <recent name="C:\Users\Inholland\Documents\GitHub\HaarlemFestivalProject\app\public\img" />
     </key>
   </component>
-  <component name="RunManager" selected="PHP Script.historyController.php">
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration name="historyController.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/app/controllers/historyController.php">
       <method v="2" />
     </configuration>
@@ -119,9 +144,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="PHP Script.historyController.php" />
         <item itemvalue="Docker.PHP.Dockerfile" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -142,7 +167,19 @@
       <workItem from="1709151583194" duration="230000" />
       <workItem from="1709213516179" duration="20928000" />
       <workItem from="1709283857425" duration="5549000" />
+      <workItem from="1709554373345" duration="20926000" />
+      <workItem from="1709766508979" duration="4293000" />
+      <workItem from="1709835843630" duration="56202000" />
     </task>
+    <task id="LOCAL-00001" summary="small fix on manage account">
+      <option name="closed" value="true" />
+      <created>1709382029234</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1709382029234</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +188,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="manage account done. yummy home page 80per, in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="manage account done. yummy home page 80per, in progress" />
+    <MESSAGE value="small fix on manage account" />
+    <option name="LAST_COMMIT_MESSAGE" value="small fix on manage account" />
   </component>
 </project>

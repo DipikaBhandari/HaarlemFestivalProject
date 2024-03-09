@@ -43,4 +43,12 @@ class restaurantService
     public function getAllYummyLocations() {
         return $this->restaurantRepository->getAllYummyLocations();
     }
+
+    public function getAllYummyInfo() {
+        return $this->restaurantRepository->getAllYummyInfo();
+    }
+    public function findDetail(int $restaurantId)
+    {
+        return $this->restaurantRepository->findDetail($restaurantId);
+    }
 }

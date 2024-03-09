@@ -2,7 +2,7 @@
 
 namespace App\model;
 
-class User
+class user
 {
     private string $email;
     private $address;
@@ -10,7 +10,26 @@ class User
     private string $username;
     private $phoneNumber;
     private $profilePicture;
+    private $registeredAt;
 
+    /**
+     * @return mixed
+     */
+    public function getRegisteredAt()
+    {
+        return $this->registeredAt;
+    }
+
+    /**
+     * @param mixed $registeredAt
+     */
+    public function setRegisteredAt($registeredAt): void
+    {
+        $this->registeredAt = $registeredAt;
+    }
+    public function __construct()
+    {
+    }
     /**
      * @return mixed
      */
@@ -22,7 +41,7 @@ class User
     /**
      * @param mixed $username
      */
-    public function setName($username)
+    public function setName($username): void
     {
         $this->username = $username;
     }
@@ -147,6 +166,23 @@ class User
     public function jsonSerialize():mixed
     {
         return get_object_vars($this);
+    }
+    private $id;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
     }
 
 }

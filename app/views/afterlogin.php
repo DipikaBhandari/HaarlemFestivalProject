@@ -14,6 +14,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/headerStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
     <script defer>
         document.addEventListener('DOMContentLoaded', function () {
             const currentPage = window.location.pathname;
@@ -30,7 +32,7 @@
 <body>
 <header>
     <div>
-        <img id="logo" src="../img/festivalLogo.svg" >
+        <img id="logo" src="/img/festivalLogo.svg" >
     </div>
     <nav class="navbar navbar-expand-lg bg-body-primary d-flex justify-content-between px-2">
         <div class="navbar-nav flex-row flex-lg">
@@ -48,9 +50,9 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
                     <li><a class="dropdown-item" href="/manageAccount/showAccount">Profile</a></li>
-                    <li><a class="dropdown-item admin hide" href="#">Manage Users</a></li>
+                    <li><a class="dropdown-item admin hide" href="/ManageUsers/manageuser">Manage Users</a></li>
                     <li><a class="dropdown-item admin hide" href="#">Manage History Events</a></li>
-                    <li><a class="dropdown-item admin hide" href="#">Manage Yummy Events</a></li>
+                    <li><a class="dropdown-item admin hide" href="/ManageYummy/manageYummy">Manage Yummy Events</a></li>
                     <li><a class="dropdown-item admin hide" href="#">Manage Contents</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
@@ -58,7 +60,7 @@
             </div>
 
             <a id="personalProgramLink" class="nav-link ps-5" href="/personalProgram">
-                <img src="../img/heartbutton.svg" alt="personal program button" width="30" height="30" class="d-inline-block">
+                <img src="/img/heartbutton.svg" alt="personal program button" width="30" height="30" class="d-inline-block">
             </a>
         </div>
     </nav>
@@ -78,10 +80,10 @@
              item.classList.add("hide");
          })
      }
-
 </script>
-    <style>
-        .hide{
-            display:none;
-        }
-    </style>
+<style>
+  .hide{
+      display:none;
+  }
+</style>
+
