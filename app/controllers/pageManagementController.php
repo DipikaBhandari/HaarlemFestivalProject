@@ -97,4 +97,14 @@ class pageManagementController
             }
         }
     }
+
+    public function addPage(){
+        require __DIR__ . '/../views/addPage.php';
+    }
+
+    public function getSectionTypes(){
+        $sectionTypes = $this->pageManagementService->getSectionTypes();
+        //var_dump($sectionTypes);
+        echo json_encode($sectionTypes);
+    }
 }

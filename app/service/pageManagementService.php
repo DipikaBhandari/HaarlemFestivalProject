@@ -75,4 +75,9 @@ class pageManagementService
     {
         return $this->pageManagementRepository->getImageById($imageId);
     }
+
+    public function getSectionTypes()
+    {
+        return $this->pageManagementRepository->getSectionTypes();
+    }
 }

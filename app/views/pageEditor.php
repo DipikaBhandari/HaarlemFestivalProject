@@ -33,4 +33,5 @@ if(isset($_SESSION['username'])) {
         ?>
         </tbody>
     </table>
+    <a class="btn btn-primary float-end" href="/pageManagement/addPage">Add page</a>
 </div>

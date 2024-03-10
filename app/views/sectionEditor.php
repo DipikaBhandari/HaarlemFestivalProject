@@ -21,7 +21,7 @@ if(isset($_SESSION['username'])) {
         <tbody>
         <?php
         foreach ($sections as $section) {
-            // Check if the section type is not "crossnavigation"
+            // Check if the section type is not section that shouldn't be edited
             if ($section['type'] !== 'crossnavigation' && $section['type'] !== 'marketing' && $section['type'] !== 'card' && $section['type'] !== 'timetable') {
                 ?>
                 <tr>
@@ -85,7 +85,7 @@ if(isset($_SESSION['username'])) {
                             var imageId = event.target.dataset.imageId;
                             // Get the uploaded file
                             if (file) {
-                                updateCurrentImage(imageId, URL.createObjectURL(file)); // Update image preview
+                                updateCurrentImage(imageId, URL.createObjectURL(file));
                             }
                         })
                         const imageEditor = document.createElement("form");
@@ -133,9 +133,9 @@ if(isset($_SESSION['username'])) {
                     const messageContainer = document.getElementById('message-container');
                     messageContainer.innerHTML = '<div class="alert alert-success mt-3">Changes were saved successfully.</div>';
                     setTimeout(() => {
-                        const activeModal = document.querySelector('.modal.show'); // Get the active modal
+                        const activeModal = document.querySelector('.modal.show');
                         if (activeModal) {
-                            const modalInstance = bootstrap.Modal.getInstance(activeModal); // Get Bootstrap modal instance
+                            const modalInstance = bootstrap.Modal.getInstance(activeModal);
                             modalInstance.hide();
                         }
                         messageContainer.innerHTML='';

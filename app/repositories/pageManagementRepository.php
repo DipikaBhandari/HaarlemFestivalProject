@@ -125,4 +125,11 @@ class pageManagementRepository extends Repository
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getSectionTypes()
+    {
+        $stmt = $this->connection->prepare("SELECT DISTINCT type FROM Sections WHERE type NOT IN ('card', 'crossnavigation','marketing', 'timetable')");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
