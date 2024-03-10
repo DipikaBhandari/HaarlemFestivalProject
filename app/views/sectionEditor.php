@@ -73,21 +73,20 @@ if(isset($_SESSION['username'])) {
                 data.images.forEach(image => {
                         const currentImage = document.createElement('img');
                         currentImage.src = image.imagePath;
-                        currentImage.id = image.imageId;
+                        currentImage.id = 'img_' + image.imageId;
                         currentImage.style = 'max-width: 200px;';
 
                         const imageUpload = document.createElement('input');
                         imageUpload.type = 'file';
                         imageUpload.accept = 'image/*';
-                        imageUpload.id = 'img' + image.imageId;
+                        imageUpload.dataset.imageId = image.imageId;
                         imageUpload.addEventListener('change', function(event) {
                             var file = event.target.files[0];
+                            var imageId = event.target.dataset.imageId;
                             // Get the uploaded file
-                            var reader = new FileReader();
-                            reader.onload = function(event) {
-                                updateCurrentImage(currentImage.id, event.target.result);
-                            };
-                            reader.readAsDataURL(file); // Read the uploaded file as a data URL
+                            if (file) {
+                                updateCurrentImage(imageId, URL.createObjectURL(file)); // Update image preview
+                            }
                         })
                         const imageEditor = document.createElement("form");
                         imageEditor.appendChild(currentImage);
@@ -119,8 +118,9 @@ if(isset($_SESSION['username'])) {
         const imageFiles = document.querySelectorAll('input[type="file"]');
         imageFiles.forEach(fileInput => {
             const file = fileInput.files[0];
+            const imageId = fileInput.dataset.imageId;
             if (file) {
-                formData.append('images[]', file);
+                formData.append('images[' + imageId + ']', file);
             }
         });
 
@@ -130,13 +130,28 @@ if(isset($_SESSION['username'])) {
         })
             .then(response => {
                 if (response.ok) {
-                    console.log('Content saved successfully');
+                    const messageContainer = document.getElementById('message-container');
+                    messageContainer.innerHTML = '<div class="alert alert-success mt-3">Changes were saved successfully.</div>';
+                    setTimeout(() => {
+                        const activeModal = document.querySelector('.modal.show'); // Get the active modal
+                        if (activeModal) {
+                            const modalInstance = bootstrap.Modal.getInstance(activeModal); // Get Bootstrap modal instance
+                            modalInstance.hide();
+                        }
+                        messageContainer.innerHTML='';
+                    }, 1000);
+
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500);
                 } else {
-                    throw new Error('Failed to save content');
+                    const messageContainer = document.getElementById('message-container');
+                    messageContainer.innerHTML = '<div class="alert alert-danger mt-3">Failed to save changes. Please try again.</div>';
                 }
             })
             .catch(error => {
-                console.error('Error saving content:', error);
+                const messageContainer = document.getElementById('message-container');
+                messageContainer.innerHTML = '<div class="alert alert-danger mt-3">Failed to save changes. Please try again.</div>';
             });
     }
 </script>

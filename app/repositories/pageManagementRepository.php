@@ -44,7 +44,7 @@ class pageManagementRepository extends Repository
 
         $paragraphs = $this->getParagraphsBySection($sectionId);
 
-        $images = $this->getImageBySection($sectionId);
+        $images = $this->getImagesBySection($sectionId);
 
         return [
             'section' => $section,
@@ -110,10 +110,18 @@ class pageManagementRepository extends Repository
         $stmt->execute();
     }
 
-    public function getImageBySection($sectionId)
+    public function getImagesBySection($sectionId)
     {
         $stmt = $this->connection->prepare("SELECT * FROM Images WHERE sectionId = :sectionId");
         $stmt->bindParam(':sectionId', $sectionId);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getImageById($imageId)
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM Images WHERE imageId = :imageId");
+        $stmt->bindParam(':imageId', $imageId);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

@@ -73,22 +73,25 @@ class pageManagementController
             foreach ($uploadedImages['tmp_name'] as $key => $tmp_name) {
                 $imageTmpName = $tmp_name;
                 $imageName = $uploadedImages['name'][$key];
+                $imageId = $key;
 
                 // Check if there are existing images associated with the section
-                $existingImages = $this->pageManagementService->getImagesBySection($sectionId);
+                $existingImages = $this->pageManagementService->getImageById($imageId);
 
                 if ($existingImages) {
                     // If existing images are found, update their paths
                     foreach ($existingImages as $existingImage) {
                         $imageId = $existingImage['imageId'];
-                        $imagePath = "../img/" . $imageName; // Assuming the path remains the same
-                    move_uploaded_file($imageTmpName, __DIR__ . "/../public/" . $imageName);
+                        $imagePath = "/img/" . $imageName; // Assuming the path remains the same
+                        $uploadPath = $_SERVER['DOCUMENT_ROOT'] . $imagePath;
+                    move_uploaded_file($imageTmpName, $uploadPath);
                         $this->pageManagementService->updateImage($imageId, $imagePath);
                     }
                 } else {
                     // If no existing images are found, upload the new image
                     $imagePath = "/img/" . $imageName;
-                    move_uploaded_file($imageTmpName, __DIR__ . "/../public/" . $imageName);
+                    $uploadPath = $_SERVER['DOCUMENT_ROOT'] . $imagePath;
+                    move_uploaded_file($imageTmpName, $uploadPath);
                     $this->pageManagementService->addImage($sectionId, $imageName, $imagePath);
                 }
             }

@@ -69,6 +69,10 @@ class pageManagementService
 
     public function getImagesBySection($sectionId)
     {
-        return $this->pageManagementRepository->getImageBySection($sectionId);
+        return $this->pageManagementRepository->getImagesBySection($sectionId);
+    }
+    public function getImageById($imageId)
+    {
+        return $this->pageManagementRepository->getImageById($imageId);
     }
 }
