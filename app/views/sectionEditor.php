@@ -30,7 +30,7 @@ if(isset($_SESSION['username'])) {
                     <td><?php echo !empty($section['heading']) ? strip_tags($section['heading']) : '' ?></td>
                     <td>
                         <a href="#" onclick="openEditorModal(<?php echo $section['sectionId']; ?>)"><i class="fa-solid fa-pen"></i></a>
-                        <a class="ms-3" href="/pageManagement/deleteSection?sectionId=<?php echo $section['sectionId']; ?>"><i class="fa-solid fa-trash-can" style="color: red"></i></a>
+                        <a class="ms-3" href="/pageManagement/deleteSection?pageId=<?php echo $_GET['pageId']; ?>&sectionId=<?php echo $section['sectionId']; ?>"><i class="fa-solid fa-trash-can" style="color: red"></i></a>
                     </td>
                 </tr>
                 <?php

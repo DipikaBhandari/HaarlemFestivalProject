@@ -25,7 +25,7 @@ if(isset($_SESSION['username'])) {
                    <td><?php echo $page['pageTitle'] ?></td>
                    <td>
                        <a href="/pageManagement/sections?pageId=<?php echo $page['pageId']; ?>"><i class="fa-solid fa-pen"></i></a>
-                       <a class="ms-3" href="/pageManagement/delete?pageId=<?php echo $page['pageId']; ?>"><i class="fa-solid fa-trash-can" style="color: red"></i></a>
+                       <a class="ms-3" href="/pageManagement/deletePage?pageId=<?php echo $page['pageId']; ?>"><i class="fa-solid fa-trash-can" style="color: red"></i></a>
                    </td>
                </tr>
             <?php

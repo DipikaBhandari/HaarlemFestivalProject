@@ -132,4 +132,69 @@ class pageManagementRepository extends Repository
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function addPage($pageTitle)
+    {
+        $stmt = $this->connection->prepare("INSERT INTO Pages (pageTitle) VALUES (:pageTitle)");
+        $stmt->bindParam(':pageTitle', $pageTitle);
+        $stmt->execute();
+        return $this->connection->lastInsertId();
+    }
+
+    public function addSection($pageId, $sectionType, $heading, $subTitle)
+    {
+        $stmt = $this->connection->prepare("INSERT INTO Sections (pageId, type, heading, subTitle) VALUES (:pageId, :sectionType, :heading, :subTitle)");
+        $stmt->bindParam(':pageId', $pageId);
+        $stmt->bindParam(':sectionType', $sectionType);
+        $stmt->bindParam(':heading', $heading);
+        $stmt->bindParam(':subTitle', $subTitle);
+        $stmt->execute();
+        return $this->connection->lastInsertId();
+    }
+
+    public function deleteSection($sectionId)
+    {
+        try {
+            $this->deleteParagraphsBySection($sectionId);
+            $this->deleteImagesBySection($sectionId);
+            $this->deleteSectionById($sectionId);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    private function deleteParagraphsBySection($sectionId)
+    {
+        $stmt = $this->connection->prepare("DELETE FROM Paragraph WHERE sectionId = :sectionId");
+        $stmt->bindParam(':sectionId', $sectionId);
+        $stmt->execute();
+    }
+
+    private function deleteImagesBySection($sectionId)
+    {
+        $stmt = $this->connection->prepare("DELETE FROM Images WHERE sectionId = :sectionId");
+        $stmt->bindParam(':sectionId', $sectionId);
+        $stmt->execute();
+    }
+
+    private function deleteSectionById($sectionId)
+    {
+        $stmt = $this->connection->prepare("DELETE FROM Sections WHERE sectionId = :sectionId");
+        $stmt->bindParam(':sectionId', $sectionId);
+        $stmt->execute();
+    }
+
+    public function deletePage($pageId)
+    {
+        try {
+            $stmt = $this->connection->prepare("DELETE FROM Pages WHERE pageId = :pageId");
+            $stmt->bindParam(':pageId', $pageId);
+            $stmt->execute();
+            return true;
+        } catch(\Exception $e){
+            return false;
+        }
+
+    }
 }
