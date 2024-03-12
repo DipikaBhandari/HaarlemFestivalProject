@@ -1,3 +1,7 @@
+<?php
+$role = $_SESSION["role"];
+$isAdmin = $role === "Administrator";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,18 +18,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/headerStyle.css">
-    <script defer>
-        document.addEventListener('DOMContentLoaded', function () {
-            const currentPage = window.location.pathname;
-            const links = document.querySelectorAll('.navbar-nav a');
-
-            links.forEach(function (link) {
-                if (link.getAttribute('href').includes(currentPage)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
 </head>
 <body>
 <header>
@@ -33,10 +25,7 @@
         <img id="logo" src="../img/festivalLogo.svg" >
     </div>
     <nav class="navbar navbar-expand-lg bg-body-primary d-flex justify-content-between px-2">
-        <div class="navbar-nav flex-row flex-lg">
-            <a id="homeLink" class="nav-link pe-5 text-white" aria-current="page" href="/home">The Festival</a>
-            <a id="yummyLink" class="nav-link pe-5 text-white" href="/restaurant/yummyHome">Yummy</a>
-            <a id="historyLink" class="nav-link pe-5 text-white" href="/history">History</a>
+        <div class="navbar-nav flex-row flex-lg" id="dynamicNavLinks">
         </div>
         <div class="navbar-nav flex-row flex-lg">
             <div class="dropdown">
@@ -44,15 +33,16 @@
                     Manage Account
                 </a>
 
-
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-
                     <li><a class="dropdown-item" href="/manageaccount/showAccount">Profile</a></li>
-                    <li><a class="dropdown-item admin hide" href="#">Manage Users</a></li>
-                    <li><a class="dropdown-item admin hide" href="#">Manage History Events</a></li>
-                    <li><a class="dropdown-item admin hide" href="#">Manage Yummy Events</a></li>
-                    <li><a class="dropdown-item admin hide" href="/pageManagement">Manage Content</a></li>
-                    <li><hr class="dropdown-divider"></li>
+                    <?php if ($isAdmin): ?>
+                        <li><a class="dropdown-item" href="#">Manage Users</a></li>
+                        <li><a class="dropdown-item" href="#">Manage History Events</a></li>
+                        <li><a class="dropdown-item" href="#">Manage Yummy Events</a></li>
+                        <li><a class="dropdown-item" href="/pageManagement">Manage Content</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                    <?php endif; ?>
+
                     <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
                 </ul>
             </div>
@@ -66,22 +56,20 @@
 <main>
 
 <script>
-     const role = "<?php echo $_SESSION["role"]?>";
-     const items = document.querySelectorAll('.admin');
-
-     if(role === "Administrator"){
-         items.forEach(item =>{
-             item.classList.remove("hide");
-         })
-     } else{
-         items.forEach(item =>{
-             item.classList.add("hide");
-         })
-     }
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('/pageManagement/nav')
+            .then(response => response.json())
+            .then(data => {
+                const navLinksContainer = document.getElementById('dynamicNavLinks');
+                data.forEach(page => {
+                    const navLink = document.createElement('a');
+                    navLink.classList.add('nav-link', 'pe-5', 'text-white');
+                    navLink.href = `${page.pageLink}?pageId=${page.pageId}`;
+                    navLink.textContent = page.pageTitle;
+                    navLinksContainer.appendChild(navLink);
+                });
+            })
+            .catch(error => console.error('Error fetching pages:', error));
+    });
 
 </script>
-    <style>
-        .hide{
-            display:none;
-        }
-    </style>

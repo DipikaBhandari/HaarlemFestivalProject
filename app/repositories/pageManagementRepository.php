@@ -133,10 +133,11 @@ class pageManagementRepository extends Repository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function addPage($pageTitle)
+    public function addPage($pageTitle, $pageLink)
     {
-        $stmt = $this->connection->prepare("INSERT INTO Pages (pageTitle) VALUES (:pageTitle)");
+        $stmt = $this->connection->prepare("INSERT INTO Pages (pageTitle, pageLink) VALUES (:pageTitle, :pageLink)");
         $stmt->bindParam(':pageTitle', $pageTitle);
+        $stmt->bindParam(':pageLink', $pageLink);
         $stmt->execute();
         return $this->connection->lastInsertId();
     }
@@ -196,5 +197,25 @@ class pageManagementRepository extends Repository
             return false;
         }
 
+    }
+
+    public function getPageByLink($pageLink)
+    {
+        $stmt = $this->connection->prepare("SELECT pageId FROM Pages WHERE pageLink = :pageLink");
+        $stmt->bindParam(':pageLink', $pageLink);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            return $result['pageId'];
+        } else {
+            return null;
+        }
+    }
+
+    public function nav()
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM Pages WHERE pageLink IS NOT NULL");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

@@ -8,10 +8,12 @@
     <?php endif; ?>
 
     <div class="row">
-        <?php foreach ($section['images'] as $image): ?>
-            <div class="col-4 g-0">
-                <img class="img-fluid" src="<?php echo $image['imagePath']; ?> " alt="<?php echo $image['imageName']; ?>">
-            </div>
-        <?php endforeach; ?>
+        <?php if (!empty($section['images'])):
+            foreach ($section['images'] as $image):?>
+                <div class="col-4 g-0">
+                    <img class="img-fluid" src="<?php echo $image['imagePath']; ?> " alt="<?php echo $image['imageName']; ?>">
+                </div>
+        <?php endforeach;
+        endif; ?>
     </div>
 </div>

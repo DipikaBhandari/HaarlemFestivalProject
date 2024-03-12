@@ -16,18 +16,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Aleo:wght@400&family=Architects+Daughter&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="/css/headerStyle.css">
-    <script defer>
-        document.addEventListener('DOMContentLoaded', function () {
-            const currentPage = window.location.pathname;
-            const links = document.querySelectorAll('.navbar-nav a');
-
-            links.forEach(function (link) {
-                if (link.getAttribute('href').includes(currentPage)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
 </head>
 <body>
 <header>
@@ -35,12 +23,9 @@
         <img id="logo" src="/img/festivalLogo.svg" >
     </div>
     <nav class="navbar navbar-expand-lg bg-body-primary d-flex justify-content-between px-2">
-        <div class="navbar-nav flex-row flex-lg">
-            <a id="homeLink" class="nav-link pe-5 text-white" aria-current="page" href="/home/index">The Festival</a>
-            <a id="yummyLink" class="nav-link pe-5 text-white" href="/restaurant/yummyHome">Yummy</a>
-            <a id="historyLink" class="nav-link pe-5 text-white" href="/history">History</a>
+        <div class="navbar-nav flex-row flex-lg" id="dynamicNavLinks">
         </div>
-        <div class="navbar-nav flex-row flex-lg">
+        <div class="navbar-nav flex-row flex-lg" >
             <a id="loginLink" class="nav-link text-white pt-0 pb-0" href="/login/login">Login</a>
             <a id="personalProgramLink" class="nav-link ps-5" href="/personalProgram">
                 <img src="/img/heartbutton.svg" alt="personal program button" width="30" height="30" class="d-inline-block">
@@ -49,4 +34,20 @@
     </nav>
 </header>
 <main>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/pageManagement/nav')
+                .then(response => response.json())
+                .then(data => {
+                    const navLinksContainer = document.getElementById('dynamicNavLinks');
+                    data.forEach(page => {
+                        const navLink = document.createElement('a');
+                        navLink.classList.add('nav-link', 'pe-5', 'text-white');
+                        navLink.href = `${page.pageLink}?pageId=${page.pageId}`;
+                        navLink.textContent = page.pageTitle;
+                        navLinksContainer.appendChild(navLink);
+                    });
+                })
+                .catch(error => console.error('Error fetching pages:', error));
+        });
+    </script>

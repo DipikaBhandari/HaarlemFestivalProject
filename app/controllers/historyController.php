@@ -16,7 +16,7 @@ class historyController
 
     public function index(): void
     {
-        $sections = $this->historyService->getSectionsByPage(1);
+        $sections = $this->historyService->getSectionsByPage(2);
 
         foreach ($sections as $key => $section) {
             if ($section['type'] === 'marketing') {

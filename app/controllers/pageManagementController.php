@@ -129,7 +129,8 @@ class pageManagementController
     public function savePage(){
         if (isset($_POST['pageTitle'])){
             $pageTitle = $_POST['pageTitle'];
-            $pageId = $this->pageManagementService->addPage($pageTitle);
+            $pageLink = '/pageManagement/' . 'showPage';
+            $pageId = $this->pageManagementService->addPage($pageTitle, $pageLink);
 
             if (isset($_POST['sections']) && is_array($_POST['sections'])) {
                 foreach ($_POST['sections'] as $index => $section) {
@@ -152,6 +153,7 @@ class pageManagementController
                     }
                 }
             }
+            //$this->addMethodToController($pageTitle);
         } else{
             echo json_encode('An error occurred while saving the page. Please try again.');
         }
@@ -207,4 +209,20 @@ class pageManagementController
         }
     }
 
+    public function showPage(){
+        session_start();
+        if (isset($_GET['pageId'])) {
+            $pageId = $_GET['pageId'];
+            $sections = $this->pageManagementService->getSectionsByPage($pageId);
+            require __DIR__ . '/../views/pageTemplate.php';
+        }
+    }
+    public function nav(){
+        try {
+            $pages = $this->pageManagementService->nav();
+            echo json_encode($pages);
+        } catch (\Exception $e){
+            echo json_encode($e->getMessage());
+        }
+    }
 }

@@ -81,9 +81,9 @@ class pageManagementService
         return $this->pageManagementRepository->getSectionTypes();
     }
 
-    public function addPage($pageTitle)
+    public function addPage($pageTitle, $pageLink)
     {
-        return $this->pageManagementRepository->addPage($pageTitle);
+        return $this->pageManagementRepository->addPage($pageTitle, $pageLink);
     }
 
     public function addSection($pageId, $sectionType, $heading, $subTitle)
@@ -99,5 +99,15 @@ class pageManagementService
     public function deletePage($pageId)
     {
         return $this->pageManagementRepository->deletePage($pageId);
+    }
+
+    public function getPageByLink($pageLink)
+    {
+        return $this->pageManagementRepository->getPageByLink($pageLink);
+    }
+
+    public function nav()
+    {
+        return $this->pageManagementRepository->nav();
     }
 }

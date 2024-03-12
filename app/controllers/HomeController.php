@@ -13,7 +13,7 @@ class HomeController
 
     public function index()
     {
-        $sections = $this->homeService->getSectionsByPage(2);
+        $sections = $this->homeService->getSectionsByPage(1);
 
         foreach ($sections as $key => $section) {
             if ($section['type'] === 'crossnavigation') {
