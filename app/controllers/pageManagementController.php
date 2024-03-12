@@ -143,7 +143,6 @@ class pageManagementController
                     foreach ($paragraphs as $paragraph){
                         $this->pageManagementService->addParagraph($paragraph, $sectionId);
                     }
-
                     if (isset($_FILES['sections']['tmp_name'][$index]['images'])) {
                         $tmpName = $_FILES['sections']['tmp_name'][$index]['images'];
                         $imageName = $_FILES['sections']['name'][$index]['images'];
@@ -153,6 +152,8 @@ class pageManagementController
                     }
                 }
             }
+        } else{
+            echo json_encode('An error occurred while saving the page. Please try again.');
         }
     }
 

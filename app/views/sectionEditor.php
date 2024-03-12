@@ -8,6 +8,7 @@ if(isset($_SESSION['username'])) {
 }
 ?>
 <div class="container mt-5">
+    <a class="text-dark" href="/pageManagement"><i class="fa-solid fa-angles-left text-dark"></i> Back</a>
     <h1><?php echo $pageTitle ?> Sections</h1>
     <table class="table">
         <thead>

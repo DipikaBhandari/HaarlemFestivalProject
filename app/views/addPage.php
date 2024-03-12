@@ -11,6 +11,7 @@ if(isset($_SESSION['username'])) {
     <script src="https://cdn.tiny.cloud/1/wcaebmg2hnz1n48ydoubfiw8d26z3lhx7oph8dis8t11gokx/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <div class="container mt-5">
+    <a class="text-dark" href="/pageManagement"><i class="fa-solid fa-angles-left text-dark"></i> Back</a>
     <h1>Create a new page</h1>
     <label class="form-label mt-3" for="pageTitleInput">Enter page title</label>
     <input class="form-control mt-1" type="text" name="pageTitleInput" id="pageTitleInput" required>
@@ -30,6 +31,7 @@ if(isset($_SESSION['username'])) {
     </div>
     <button class="btn btn-primary mt-3 float-end" onclick="savePage()">Save page</button>
     <button class="btn btn-secondary m-3 float-end" onclick="addAnotherSection()">Add another section</button>
+    <div id="message-container"></div>
 </div>
 
 <script>
@@ -124,13 +126,17 @@ if(isset($_SESSION['username'])) {
         })
             .then(response => {
                 if(!response.ok) {
-                    throw new Error('Failed to save page');
+                    document.getElementById('message-container').innerHTML = '<div class="alert alert-danger mt-3">Failed to save changes. Please try again.</div>';
                 } else{
                     console.log('Page saved successfully');
+                    document.getElementById('message-container'). innerHTML = '<div class="alert alert-success mt-3">Changes were saved successfully.</div>';
+                    setTimeout(()=>{
+                        window.location.href = '/pageManagement';
+                    },3000);
                 }
             })
             .catch(error => {
-                console.error('Error saving page:', error);
+                document.getElementById('message-container').innerHTML = '<div class="alert alert-danger mt-3">Failed to save changes. Please try again.</div>';
             })
     }
 </script>
