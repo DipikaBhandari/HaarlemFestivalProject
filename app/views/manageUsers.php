@@ -32,7 +32,9 @@ if (!isset($user) || !$user instanceof user) {
                         <option value="Customer">Customer</option>
                     </select>
                 </div>
-                    <h2 class="page-title">Manage Users</h2>
+                <div id="spinner" class="spinner" style="display:none;"></div>
+
+                <h2 class="page-title">Manage Users</h2>
                 </div>
                     <!-- Zero Configuration Table -->
                     <div class="panel panel-default">
@@ -110,6 +112,8 @@ if (!isset($user) || !$user instanceof user) {
             </div>
             <div class="modal-body">
                 <!-- Add User Form -->
+                <div id="spinner" class="spinner" style="display:none;"></div>
+
                 <form id="addUserForm">
                     <div class="form-group">
                         <label for="username">Username</label>
@@ -146,6 +150,26 @@ if (!isset($user) || !$user instanceof user) {
         </div>
     </div>
     </div>
+<style>
+    .spinner {
+        border: 5px solid #f3f3f3; /* Light grey */
+        border-top: 5px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 2s linear infinite;
+        margin: auto;
+        position: fixed; /* or absolute */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+</style>
 
 <!-- Edit User Modal -->
 <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
@@ -158,6 +182,7 @@ if (!isset($user) || !$user instanceof user) {
                 </button>
             </div>
             <div class="modal-body">
+                <div id="spinner" class="spinner" style="display:none;"></div>
                 <form id="editUserForm">
                     <input type="hidden" id="editUserId">
                     <!-- Include other fields as necessary -->
@@ -294,6 +319,8 @@ if (!isset($user) || !$user instanceof user) {
 <script>
     function deleteUser(username) {
         if(confirm('Do you want to delete this user?')) {
+            const spinner = document.getElementById('spinner');
+            spinner.style.display = 'block';
             fetch('/ManageUsers/deleteUser', {
                 method: 'POST',
                 headers: {
@@ -305,12 +332,17 @@ if (!isset($user) || !$user instanceof user) {
                 .then(data => {
                     if(data.success) {
                         alert('User deleted successfully');
-                        location.reload();
+                        setTimeout(() => {
+                            spinner.style.display = 'none';
+                            location.reload();
+                        }, 1500);
                     } else {
+                        spinner.style.display = 'none';
                         throw new Error(data.message || 'Failed to update user.');
                     }
                 })
                 .catch((error) => {
+                    spinner.style.display = 'none';
                     console.error('Error:', error);
                     alert('Error deleting user');
                 });
@@ -321,9 +353,11 @@ if (!isset($user) || !$user instanceof user) {
 <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const addUserForm = document.getElementById('addUserForm');
+                const spinner = document.getElementById('spinner');
 
                 addUserForm.addEventListener('submit', function (event) {
                     event.preventDefault();
+                    spinner.style.display = 'block';
                     const formData = new FormData(addUserForm);
                     const userData = {
                         username: formData.get('username'),
@@ -346,12 +380,17 @@ if (!isset($user) || !$user instanceof user) {
                             if (data.success) {
                                 alert('User added successfully');
                                 $('#addUserModal').modal('hide');
-                                location.reload(); // Reload the page or redirect as needed
+                                setTimeout(() => {
+                                    spinner.style.display = 'none';
+                                    location.reload(); // Redirect
+                                }, 1500);
                             } else {
+                                spinner.style.display = 'none';
                                 alert('Failed to add user: ' + data.message);
                             }
                         })
                         .catch((error) => {
+                            spinner.style.display = 'none';
                             alert('Error: ' + error);
                         });
                 });

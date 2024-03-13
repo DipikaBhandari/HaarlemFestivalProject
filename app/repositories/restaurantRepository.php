@@ -43,7 +43,7 @@ class restaurantRepository extends Repository
     }
     public function getCardItemsBySection($sectionId)
     {
-        $stmt = $this->connection->prepare("SELECT * FROM Yummy WHERE sectionId = :sectionId");
+        $stmt = $this->connection->prepare("SELECT * FROM Yummyyy WHERE sectionId = :sectionId");
         $stmt->bindParam(':sectionId', $sectionId);
         $stmt->execute();
 
@@ -51,7 +51,7 @@ class restaurantRepository extends Repository
     }
     public function find($restaurantId)
     {
-        $stmt = $this->connection->prepare("SELECT * FROM Yummy WHERE restaurantId = :restaurantId");
+        $stmt = $this->connection->prepare("SELECT * FROM Yummyyy WHERE restaurantId = :restaurantId");
         $stmt->bindParam(':restaurantId', $restaurantId);
         $stmt->execute();
 
@@ -91,14 +91,14 @@ class restaurantRepository extends Repository
 
     public function getAllYummyInfo()
     {
-        $stmt = $this->connection->prepare("SELECT * FROM RestaurantSection");
+        $stmt = $this->connection->prepare("SELECT * FROM Yummyyy");
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function findDetail(int $restaurantId): ?Restaurant
     {
-        $stmt = $this->connection->prepare("SELECT * FROM RestaurantSection WHERE restaurantId = :restaurantId");
+        $stmt = $this->connection->prepare("SELECT * FROM Yummyyy WHERE restaurantId = :restaurantId");
         $stmt->bindParam(':restaurantId', $restaurantId, PDO::PARAM_INT);
         $stmt->execute();
 
@@ -117,5 +117,58 @@ class restaurantRepository extends Repository
         $restaurant->setAdultPrice($data['adultPrice']);
 
         return $restaurant;
+    }
+    public function updateRestaurantDetails($restaurantDetails)
+    {
+        $sql = "UPDATE RestaurantSection SET 
+                    location = :location, 
+                    email = :email, 
+                    phonenumber = :phonenumber, 
+                    kidPrice = :kidPrice, 
+                    adultPrice = :adultPrice, 
+                    restaurantName = :restaurantName, 
+                    numberOfSeats = :numberOfSeats
+                WHERE restaurantId = :restaurantId";
+
+            $stmt = $this->connection->prepare($sql);
+
+            // Convert prices to float and trim any whitespace
+            $kidPrice = floatval(str_replace(' ', '', $restaurantDetails['kidPrice']));
+            $adultPrice = floatval(str_replace(' ', '', $restaurantDetails['adultPrice']));
+
+            // Bind values to the statement
+            $stmt->bindValue(':location', $restaurantDetails['location'], PDO::PARAM_STR);
+            $stmt->bindValue(':email', $restaurantDetails['email'], PDO::PARAM_STR);
+            $stmt->bindValue(':phonenumber', $restaurantDetails['phoneNumber'] ?? null, $restaurantDetails['phoneNumber'] ? PDO::PARAM_STR : PDO::PARAM_NULL);
+            $stmt->bindValue(':kidPrice', $kidPrice);
+            $stmt->bindValue(':adultPrice', $adultPrice);
+            $stmt->bindValue(':restaurantName', $restaurantDetails['restaurantName'], PDO::PARAM_STR);
+            $stmt->bindValue(':numberOfSeats', $restaurantDetails['numberOfSeats'], PDO::PARAM_INT);
+            $stmt->bindValue(':restaurantId', $restaurantDetails['restaurantId'], PDO::PARAM_INT);
+
+            $stmt->execute();
+            return true;
+    }
+    public function create($restaurantData)
+    {
+        try {
+            $sql = "INSERT INTO [Yummyyy] (sectionId,restaurantName, location, email, kidPrice, adultPrice, numberOfSeats) VALUES (:sectionId, :restaurantName, :location, :email, :kidPrice, :adultPrice, :numberOfSeats)";
+            $stmt = $this->connection->prepare($sql);
+
+            $stmt->bindValue(':sectionId', $restaurantData['sectionId'], PDO::PARAM_INT);
+            $stmt->bindParam(':restaurantName', $restaurantData['restaurantName']);
+            $stmt->bindParam(':location', $restaurantData['location']);
+            $stmt->bindParam(':email', $restaurantData['email']);
+            $stmt->bindValue(':kidPrice', number_format((float)$restaurantData['kidPrice'], 2, '.', ''));
+            $stmt->bindValue(':adultPrice', number_format((float)$restaurantData['adultPrice'], 2, '.', ''));
+            $stmt->bindParam(':numberOfSeats', $restaurantData['numberOfSeats']);
+
+            $stmt->execute();
+            return ['success' => true];// Returns the ID of the last inserted row
+        } catch (\PDOException $e) {
+            // Handle error appropriately
+            error_log('SQL error: ' . $e->getMessage(), 0);
+            return  ['success' => false, 'message' => $e->getMessage()];
+        }
     }
 }

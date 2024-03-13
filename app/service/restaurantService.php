@@ -51,4 +51,15 @@ class restaurantService
     {
         return $this->restaurantRepository->findDetail($restaurantId);
     }
+
+    public function updateRestaurantDetails($restaurantDetails)
+    {
+        return $this->restaurantRepository->updateRestaurantDetails($restaurantDetails);
+    }
+    public function createNewRestaurant($restaurantData)
+    {
+
+        return $this->restaurantRepository->create($restaurantData);
+
+    }
 }

@@ -23,6 +23,8 @@ if (!isset($restaurantArray) || !is_array($restaurantArray)) {
     <br>
     <br>
 
+    <div id="spinner" class="spinner" style="display:none;"></div>
+
     <!-- User Information Form -->
     <form id="restaurantInfoForm" action="/ManageYummy/updateRestaurant/<?php echo htmlspecialchars($restaurantArray['restaurantId']); ?>" method="post" enctype="multipart/form-data">
         <!-- Name -->
@@ -60,54 +62,75 @@ if (!isset($restaurantArray) || !is_array($restaurantArray)) {
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
 
-        <div class="modal-footer">
-            <button type="button" id="savePassword" class="btn btn-primary">Save</button>
-
-        </div>
     </form>
 </div>
-
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         const form = document.getElementById('restaurantInfoForm');
+        const spinner = document.getElementById('spinner');
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
 
+            spinner.style.display = 'block';
+            const restaurantId = form.action.split('/').pop();
             const formData = new FormData(this);
-            const jsonObject = {};
+            const jsonObject = {restaurantId: restaurantId };
 
             for (const [key, value] of formData.entries()) {
                 jsonObject[key] = value;
             }
 
-            // Set up the fetch options
-            fetch('/manageYummy/updateRestaurant', {
+
+            fetch(form.action, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                 },
                 body: JSON.stringify(jsonObject),
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
-                    console.log(data); // Handle the success response here
-                    // If you want to do a redirect:
-                    // window.location.href = '/path-to-redirect';
+                    if(data.success) {
+                        setTimeout(() => {
+                            spinner.style.display = 'none';
+                            window.location.href = '/ManageYummy/manageYummy'; // Redirect
+                        }, 3000); // 3000 milliseconds = 3 seconds
+                    } else {
+                        spinner.style.display = 'none';
+                        console.error(data.message);
+                        alert('Failed to update restaurant details: ' + data.message);
+                    }
                 })
                 .catch((error) => {
+                    spinner.style.display = 'none';
                     console.error('There has been a problem with your fetch operation:', error);
                 });
         });
     });
 </script>
+<style>
+    .spinner {
+        border: 5px solid #f3f3f3; /* Light grey */
+        border-top: 5px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 2s linear infinite;
+        margin: auto;
+        position: fixed; /* or absolute */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
+    @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+</style>
 
 <?php
 include __DIR__ . '/footer.php';

@@ -5,32 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="small fix on manage account">
-      <change afterPath="$PROJECT_DIR$/app/controllers/CreateRestaurantController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/ManageUsersController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/ManageYummyController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/578cf5af84273227f7ca4072ee0a6b11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/769c004d8343628087a50fe5953f6eca.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/e46642614c21993f784b473faa340f9e.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/createRestaurant.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/manageRestaurant.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/manageUsers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/manageYummy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ManageAccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ManageAccountController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/model/restaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/restaurant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/model/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/javascript/manageAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/javascript/manageAccount.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/Repository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/Repository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/CreateRestaurantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/CreateRestaurantController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ManageUsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ManageUsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ManageYummyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ManageYummyController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/repositories/restaurantRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/restaurantRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/userRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/userRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/service/restaurantService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/restaurantService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/userService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/userService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/afterlogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/afterlogin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manageAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageAccount.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/yummy/details.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/yummy/details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/createRestaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/createRestaurant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/manageRestaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageRestaurant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/manageUsers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageUsers.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +153,7 @@
       <workItem from="1709283857425" duration="5549000" />
       <workItem from="1709554373345" duration="20926000" />
       <workItem from="1709766508979" duration="4293000" />
-      <workItem from="1709835843630" duration="56202000" />
+      <workItem from="1709835843630" duration="97838000" />
     </task>
     <task id="LOCAL-00001" summary="small fix on manage account">
       <option name="closed" value="true" />
@@ -179,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709382029234</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="small fix on manage account">
+      <option name="closed" value="true" />
+      <created>1710000301693</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1710000301693</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

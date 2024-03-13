@@ -26,7 +26,7 @@ if (!isset($user) || !$user instanceof user) {
             </a>
         </div>
         <?php foreach ($restaurants as $index => $restaurant): ?>
-        <a href="/ManageYummy/manageRestaurant/<?php echo $restaurant['restaurantSectionId']; ?>" class="restaurant-tile-link">
+        <a href="/ManageYummy/manageRestaurant/<?php echo $restaurant['restaurantId']; ?>" class="restaurant-tile-link">
             <!-- Assign a "featured" class to every third tile for a different color -->
             <div class="restaurant-tile<?php echo ($index + 1) % 3 == 0 ? ' featured' : ''; ?>">
                 <div class="restaurant-tile-number"><?php echo $index + 1; ?></div>

@@ -72,6 +72,53 @@ class ManageYummyController
             echo json_encode(['error' => 'An error occurred while fetching user details: ' . $e->getMessage()]);
         }
     }
+    public function updateRestaurant()
+    {
+        ob_start();
+        ini_set('display_errors', 1);
+        error_reporting(E_ALL);
+        try {
+            // Check if the content type is JSON
+            $contentType = isset($_SERVER['CONTENT_TYPE']) ? trim($_SERVER['CONTENT_TYPE']) : '';
+            if (stripos($contentType, 'application/json') === false) {
+                throw new Exception('Content-Type is not set to JSON');
+            }
+
+            $rawData = file_get_contents('php://input');
+            $data = json_decode($rawData, true);
+            //echo 'Received the following data: ' . print_r($data, true);
+
+            if (is_null($data)) {
+                throw new Exception('JSON is null');
+            }
+
+            // Assuming $data is your decoded JSON data
+            $sanitizedData = [
+                'restaurantId' => filter_var($data['restaurantId'], FILTER_VALIDATE_INT),
+                'restaurantName' => filter_var($data['restaurantName'], FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'location' => filter_var($data['location'], FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'email' => filter_var($data['email'], FILTER_SANITIZE_EMAIL),
+                'kidPrice' => filter_var(trim(str_replace('€', '', $data['kidPrice'])), FILTER_VALIDATE_FLOAT),
+                'adultPrice' => filter_var(trim(str_replace('€', '', $data['adultPrice'])), FILTER_VALIDATE_FLOAT),
+                'phoneNumber' => isset($data['phoneNumber']) ? filter_var($data['phoneNumber'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : null,
+                'numberOfSeats'=> filter_var($data['numberOfSeats'], FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+            ];
+
+
+            $result = $this->restaurantService->updateRestaurantDetails($sanitizedData);
+            header('Content-Type: application/json');
+            if(!$result) {
+                throw new Exception('Failed to update restaurant details');
+            }
+            http_response_code(200); // Success response code
+           echo json_encode(['success' => true, 'message' => 'Restaurant updated successfully.']);
+        }catch (Exception $e) {
+           // echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+            http_response_code(400);
+        }
+        ob_end_flush();
+    }
+
 
 }
 

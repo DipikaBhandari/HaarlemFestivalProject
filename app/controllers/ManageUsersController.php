@@ -22,7 +22,9 @@ class ManageUsersController
         $this->userModel = new \App\model\user();
 
     }
-    public function manageuser() {
+
+    public function manageuser()
+    {
 
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
@@ -39,6 +41,7 @@ class ManageUsersController
         // Pass the user data to the view
         require __DIR__ . '/../views/manageUsers.php';
     }
+
     public function addUser()
     {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -71,12 +74,13 @@ class ManageUsersController
                     echo json_encode(['success' => false, 'message' => 'Exception occurred']);
                 }
                 exit;
-            }catch (Exception $e) {
+            } catch (Exception $e) {
                 error_log("Error during registration: " . $e->getMessage());
                 return false;
             }
         }
     }
+
     public function deleteUser()
     {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -94,58 +98,27 @@ class ManageUsersController
         }
     }
 
-    public function getUserDetails() {
+    public function getUserDetails()
+    {
         $username = $_GET['username'] ?? '';
         if (!$username) {
             http_response_code(400);
             echo json_encode(['error' => 'Username is required']);
             return;
         }
-        try{
+        try {
             $userDetails = $this->userService->getUserDetailsForEditing($username);
 
             if ($userDetails) {
                 echo json_encode($userDetails);
                 return;
-            }else {
+            } else {
                 http_response_code(404);
                 echo json_encode(['error' => 'User not found']);
             }
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             http_response_code(500);
             echo json_encode(['error' => 'An error occurred while fetching user details: ' . $e->getMessage()]);
-        }
-    }
-
-    public function updateRestaurant()
-    {
-        try {
-            // Check if the content type is JSON
-            if ($_SERVER['CONTENT_TYPE'] !== 'application/json') {
-                throw new Exception('Content-Type is not set to JSON');
-            }
-
-            // Get the raw POST data from the input stream
-            $rawData = file_get_contents('php://input');
-            $data = json_decode($rawData, true);
-
-            if (is_null($data)) {
-                throw new Exception('JSON is null');
-            }
-
-            // Assuming you validate the data here and check required fields
-
-            // Perform the update, assuming $data contains restaurantId and other necessary fields
-            $result = $this->restaurantService->updateRestaurantDetails($data);
-
-            // Send a success response back
-            header('Content-Type: application/json');
-            echo json_encode(['success' => true, 'message' => 'Restaurant updated successfully.']);
-        } catch (Exception $e) {
-            // Handle exceptions and errors
-            header('Content-Type: application/json');
-            http_response_code(400); // Bad Request
-            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 }
