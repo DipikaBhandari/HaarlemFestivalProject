@@ -25,8 +25,16 @@ class historyService
     public function getLocationBySection($sectionId){
         return $this->historyRepository->getLocationBySection($sectionId);
     }
+    public function getHistoryDetailsBySection($sectionId){
+        return $this->historyRepository->getHistoryDetailsBySection($sectionId);
+    }
     public function getCarouselItemsBySection($sectionId)
     {
         return $this->historyRepository->getCarouselItemsBySection($sectionId);
+    }
+
+    public function getGuideName()
+    {
+        return $this->historyRepository->getGuideName();
     }
 }

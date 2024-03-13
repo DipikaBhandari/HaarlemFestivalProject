@@ -56,7 +56,7 @@
                 </ul>
             </div>
 
-            <a id="personalProgramLink" class="nav-link ps-5" href="/personalProgram">
+            <a id="personalProgramLink" class="nav-link ps-5" href="/personalprogram/index">
                 <img src="../img/heartbutton.svg" alt="personal program button" width="30" height="30" class="d-inline-block">
             </a>
         </div>
