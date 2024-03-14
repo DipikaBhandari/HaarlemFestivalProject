@@ -139,7 +139,7 @@ if(isset($_SESSION['username'])) {
             .then(response => {
                 if (response.ok) {
                     console.log(formData);
-                    const messageContainer = document.getElementById('message-container');
+                    const messageContainer = document.getElementById('message-container-edit');
                     messageContainer.innerHTML = '<div class="alert alert-success mt-3">Changes were saved successfully.</div>';
                     setTimeout(() => {
                         const activeModal = document.querySelector('.modal.show');
@@ -154,12 +154,12 @@ if(isset($_SESSION['username'])) {
                         window.location.reload();
                     }, 1500);
                 } else {
-                    const messageContainer = document.getElementById('message-container');
+                    const messageContainer = document.getElementById('message-container-edit');
                     messageContainer.innerHTML = '<div class="alert alert-danger mt-3">Failed to save changes. Please try again.</div>';
                 }
             })
             .catch(error => {
-                const messageContainer = document.getElementById('message-container');
+                const messageContainer = document.getElementById('message-container-edit');
                 messageContainer.innerHTML = '<div class="alert alert-danger mt-3">Failed to save changes. Please try again.</div>';
             });
     }
@@ -206,9 +206,9 @@ if(isset($_SESSION['username'])) {
                 } else{
                     console.log('Page saved successfully');
                     document.getElementById('message-container'). innerHTML = '<div class="alert alert-success mt-3">Changes were saved successfully.</div>';
-                   /* setTimeout(()=>{
+                    setTimeout(()=>{
                         window.location.href = '/pageManagement/sections?pageId=<?php echo $_GET['pageId']; ?>';
-                    },3000);*/
+                    },3000);
                 }
             })
             .catch(error => {
