@@ -13,8 +13,8 @@ class ticketRepository extends Repository
             $stmt = $this->connection->prepare("SELECT * FROM `order` WHERE userId = :userId;");
             $stmt->bindValue(':userId', $userId);
             $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-//            return $result['orderId'];
+            $stmt->fetch(PDO::FETCH_ASSOC);
+
 
 
         } catch (PDOException $e) {

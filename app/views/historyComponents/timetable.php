@@ -21,7 +21,7 @@
 
         .item {
 
-            margin-right: 30%; /* Adjust as needed */
+            margin-right: 10%; /* Adjust as needed */
         }
     </style>
 </head>
@@ -86,7 +86,9 @@
         <div class="container">
             <div class="item">Language: <img class="language-image" src="" alt=""></div>
             <div class="item">Date:</div>
-            <div class="item">Time:</div>
+            <div class="item">Start Time:</div>
+            <div class="item">End Time:</div>
+
         </div>
 
     <div class="container">
@@ -123,7 +125,7 @@
     </div>
         <div class="row mt-3">
             <div class="col-md-12">
-                <button class="btn btn-primary" >Add to Personal Program <img src="/img/heartbutton.svg" width="20" height="20" alt=""> </button>
+                <button type="submit" class="btn btn-primary" name="addToPersonalProgram">Add to Personal Program <img src="/img/heartbutton.svg" width="20" height="20" alt=""> </button>
             </div>
         </div>
     </div>
@@ -138,12 +140,16 @@
 
         if (popUp.style.display === "block") {
             var popUpDate = popUp.querySelector('.pop-up .container .item:nth-child(2)');
-            var popUpTime = popUp.querySelector('.pop-up .container .item:nth-child(3)');
+            var popUpStartTime = popUp.querySelector('.pop-up .container .item:nth-child(3)');
+            var popUpEndTime = popUp.querySelector('.pop-up .container .item:nth-child(4)');
+
             var popUpLanguageImage = popUp.querySelector('.pop-up .container .item:nth-child(1) .language-image'); // Correct selection of the image
 
             popUpLanguageImage.src = imagePath; // Set the src attribute to display the image
             popUpDate.textContent = "Date: " + date;
-            popUpTime.textContent = "Time: " + startTime + endTime;
+            popUpStartTime.textContent = "Start Time: " + startTime;
+            popUpEndTime.textContent = "End Time: " + endTime;
+
         }
 
 
@@ -198,27 +204,36 @@
     // Add event listener to the "Add to Personal Program" button
     document.querySelector('.btn-primary').addEventListener('click', function() {
         // Retrieve ticket information from the page
+        // Retrieve ticket information from the page
         var eventName = 'Event Name'; // Replace with actual value
         var dateElement = document.querySelector('.pop-up .container .item:nth-child(2)');
-        var timeElement = document.querySelector('.pop-up .container .item:nth-child(3)');
-        var date = dateElement.textContent.replace('Date: ', ''); // Extract date from the element
-        var time = timeElement.textContent.replace('Time: ', ''); // Extract time from the element
+        var startTimeElement = document.querySelector('.pop-up .container .item:nth-child(3)');
+        var endTimeElement = document.querySelector('.pop-up .container .item:nth-child(4)');
+        var amountElement = document.querySelector('.amount');
 
-        // Extract start time and end time from the time string
-        console.log('Time Element Text Content:', timeElement.textContent);
+        // Check if elements are retrieved correctly
+        console.log('Date:', dateElement.textContent);
+        console.log('Start Time:', startTimeElement.textContent);
+        console.log('End Time:', endTimeElement.textContent);
+        console.log('Amount Element:', amountElement);
 
-// Extract start time and end time from the time string
-        // Extract start time and end time from the time string
-        var timeParts = timeElement.textContent.split('-');
-        var startTime = timeParts[0] ? timeParts[0].trim() : '';
-        var endTime = timeParts[1] ? timeParts[1].trim() : '';
+        // Extract data from elements
+        var date = dateElement.textContent.replace('Date: ', '');
+        var startTime = startTimeElement.textContent.replace('Start Time: ', '');
+        var endTime = endTimeElement.textContent.replace('End Time: ', '');
 
-        var numberOfTickets = parseInt(document.querySelector('.amount').textContent); // Get the number of regular tickets
+        // Check if data extraction is correct
+        console.log('Extracted Date:', date);
+        console.log('Extracted Start Time:', startTime);
+        console.log('Extracted End Time:', endTime);
 
+        // Get the number of tickets
+        var numberOfTickets = parseInt(amountElement.textContent);
+        console.log('Number of Tickets:', numberOfTickets);
         // Create an AJAX request
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/ticket/addOrder.php');
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.open('POST', '/ticket/addOrder');
+        xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = function() {
             if (xhr.status === 200) {
                 var response = JSON.parse(xhr.responseText);

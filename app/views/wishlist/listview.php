@@ -1,5 +1,10 @@
 <?php
-include __DIR__ . '/../header.php';
+
+session_start();
+
+
+    include __DIR__ . '/../header.php'; // Include default header for non-logged-in users
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,30 +21,30 @@ include __DIR__ . '/../header.php';
             });
 
             // Assume you have retrieved events from the database and stored them in $events array
-           <?php
-// Assume you have retrieved events from the database and stored them in $events array
-$events = [
-    ['title' => 'Event 1', 'date' => '23 July', 'start' => '10:00:00', 'end' => '12:00:00'],
-    ['title' => 'Event 2', 'date' => '25 July', 'start' => '16:00:00', 'end' => '19:00:00'],
-    // Add more events as needed
-];
-            foreach ($events as &$event) {
-                // Assuming the year is the current year, you may need to change this logic if the year is not available
-                $year = date('Y');
-                $event['date'] = date('Y-m-d', strtotime($event['date'] . " $year"));
-            }
-// Concatenate date with start and end times
-foreach ($events as &$event) {
-    $year = date('Y');
-    $event['date'] = date('Y-m-d', strtotime($event['date'] . " $year"));
-    $event['start'] = $event['date'] . ' ' . $event['start'];
-    $event['end'] = $event['date'] . ' ' . $event['end'];
-    // Remove the 'date' key since it's no longer needed
-    unset($event['date']);
-}
-
-// Pass $events array to JavaScript
-?>
+<!--           --><?php
+//// Assume you have retrieved events from the database and stored them in $events array
+//$events = [
+//    ['title' => 'Event 1', 'date' => '23 July', 'start' => '10:00:00', 'end' => '12:00:00'],
+//    ['title' => 'Event 2', 'date' => '25 July', 'start' => '16:00:00', 'end' => '19:00:00'],
+//    // Add more events as needed
+//];
+//            foreach ($events as &$event) {
+//                // Assuming the year is the current year, you may need to change this logic if the year is not available
+//                $year = date('Y');
+//                $event['date'] = date('Y-m-d', strtotime($event['date'] . " $year"));
+//            }
+//// Concatenate date with start and end times
+//foreach ($events as &$event) {
+//    $year = date('Y');
+//    $event['date'] = date('Y-m-d', strtotime($event['date'] . " $year"));
+//    $event['start'] = $event['date'] . ' ' . $event['start'];
+//    $event['end'] = $event['date'] . ' ' . $event['end'];
+//    // Remove the 'date' key since it's no longer needed
+//    unset($event['date']);
+//}
+//
+//// Pass $events array to JavaScript
+//?>
 
 
             // Pass PHP events data to JavaScript

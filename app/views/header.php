@@ -42,7 +42,7 @@
         </div>
         <div class="navbar-nav flex-row flex-lg">
             <a id="loginLink" class="nav-link text-white pt-0 pb-0" href="/login/login">Login</a>
-            <a id="personalProgramLink" class="nav-link ps-5" href="/personalprogram/index">
+            <a id="personalProgramLink" class="nav-link ps-5" href="/ticket/index">
                 <img src="/img/heartbutton.svg" alt="personal program button" width="30" height="30" class="d-inline-block">
             </a>
         </div>

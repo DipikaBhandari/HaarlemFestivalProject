@@ -5,28 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="minor changes to frontend">
-      <change afterPath="$PROJECT_DIR$/app/model/ticket.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/repositories/ticketRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/service/ticketService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/historyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/historyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/logincontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/logincontroller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/model/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/css/register.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/historyRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/historyRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/userRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/userRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/historyService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/historyService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/userService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/userService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/Login/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Login/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/Login/registeruser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Login/registeruser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ticketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ticketController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/ticketRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/ticketRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/afterlogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/afterlogin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/history/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/history/homepage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/historyComponents/timetable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/historyComponents/timetable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/wishlist/listview.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/wishlist/listview.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +156,7 @@
       <workItem from="1709555561005" duration="21005000" />
       <workItem from="1709887751685" duration="18634000" />
       <workItem from="1710157741802" duration="24314000" />
-      <workItem from="1710331604134" duration="10211000" />
+      <workItem from="1710331604134" duration="14168000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes to frontend">
       <option name="closed" value="true" />
