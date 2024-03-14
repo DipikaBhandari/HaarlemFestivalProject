@@ -102,7 +102,6 @@ if(isset($_SESSION['username'])) {
         sections.forEach((section, index) => {
             const sectionType = section.querySelector('select').value;
             const textEditorId = `textEditor${index + 1}`;
-            console.log("Textarea ID:", textEditorId);
             const sectionContent = tinymce.get(textEditorId).getContent();
             formData.append(`sections[${index}][sectionType]`, sectionType);
             formData.append(`sections[${index}][content]`, sectionContent);
@@ -116,7 +115,6 @@ if(isset($_SESSION['username'])) {
         })
         formData.append('pageTitle', pageTitle);
         saveToDatabase(formData);
-
     }
 
     function saveToDatabase(formData){

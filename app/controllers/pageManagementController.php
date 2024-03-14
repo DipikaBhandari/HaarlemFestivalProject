@@ -42,9 +42,7 @@ class pageManagementController
             $this->pageManagementService->updateSection($sectionId, $heading, $subTitle);
 
             $paragraphs = $this->extractParagraphs($content);
-            $this->updateOrCreateParagraphs($paragraphs, $sectionId);
-
-            $this->deleteUnusedParagraphs($sectionId);
+            $this->updateParagraphs($paragraphs, $sectionId);
         }
 
         $this->uploadImages($_FILES['images'] ?? [], $sectionId);
@@ -64,32 +62,43 @@ class pageManagementController
     }
 
     private function extractParagraphs($content) {
-        $paragraphs = explode('<p>', $content);
-        array_shift($paragraphs);
+        // Extract paragraphs using a regular expression
+        preg_match_all('/<p>(.*?)<\/p>/', $content, $matches);
+
+        // Filter out paragraphs containing only whitespace characters
+        $filteredParagraphs = array_filter($matches[1], function($paragraph) {
+            // Trim the paragraph and check if it's empty after trimming
+            return trim($paragraph) !== '';
+        });
+
+        // Wrap the filtered paragraphs with <p> tags
+        $paragraphs = array_map(function($paragraph) {
+            return "<p>$paragraph</p>";
+        }, $filteredParagraphs);
+
         return $paragraphs;
     }
 
-    private function updateOrCreateParagraphs($paragraphs, $sectionId) {
+    private function updateParagraphs($paragraphs, $sectionId) {
         $existingParagraphs = $this->pageManagementService->getParagraphsBySection($sectionId);
+        if (!empty($existingParagraphs)){
+            $this->pageManagementService->deleteParagraphsBySection($sectionId);
+        }
         foreach ($paragraphs as $key => $paragraph) {
-            if (!empty($existingParagraphs)) {
-                $paragraphId = array_shift($existingParagraphs);
-                $this->pageManagementService->updateParagraph($paragraph, $paragraphId);
-            } else {
-                $this->pageManagementService->addParagraph($paragraph, $sectionId);
-            }
+            $this->pageManagementService->addParagraph($paragraph, $sectionId);
         }
     }
 
-    private function deleteUnusedParagraphs($sectionId) {
+    private function deleteUnusedParagraphs($paragraphs, $sectionId) {
         $existingParagraphs = $this->pageManagementService->getParagraphsBySection($sectionId);
-        if (!empty($existingParagraphs)) {
+        if (count($existingParagraphs) > count($paragraphs)) {
             $placeholders = rtrim(str_repeat('?,', count($existingParagraphs)), ',');
             $this->pageManagementService->deleteUnusedParagraphs($placeholders);
         }
     }
 
     private function uploadImages($uploadedImages, $sectionId) {
+        var_dump($uploadedImages);
         foreach ($uploadedImages['tmp_name'] as $key => $tmp_name) {
             $imageTmpName = $tmp_name;
             $imageName = $uploadedImages['name'][$key];
@@ -153,7 +162,6 @@ class pageManagementController
                     }
                 }
             }
-            //$this->addMethodToController($pageTitle);
         } else{
             echo json_encode('An error occurred while saving the page. Please try again.');
         }
@@ -214,6 +222,10 @@ class pageManagementController
         if (isset($_GET['pageId'])) {
             $pageId = $_GET['pageId'];
             $sections = $this->pageManagementService->getSectionsByPage($pageId);
+            foreach ($sections as $key => $section) {
+                $sections[$key]['images'] = $this->pageManagementService->getImagesBySection($section['sectionId']);
+                $sections[$key]['paragraphs'] = $this->pageManagementService->getParagraphsBySection($section['sectionId']);
+            }
             require __DIR__ . '/../views/pageTemplate.php';
         }
     }
@@ -223,6 +235,31 @@ class pageManagementController
             echo json_encode($pages);
         } catch (\Exception $e){
             echo json_encode($e->getMessage());
+        }
+    }
+
+    public function saveSection(){
+
+        if (isset($_POST['section']) && isset($_POST['section']['pageId'])) {
+            $section = $_POST['section'];
+            $pageId = $section['pageId'];
+            $sectionType = $section['sectionType'];
+            $content = $section['content'];
+
+            list($heading, $subTitle) = $this->extractHeadingAndSubTitle($content);
+            $sectionId = $this->pageManagementService->addSection($pageId, $sectionType, $heading, $subTitle);
+
+            $paragraphs = $this->extractParagraphs($content);
+            foreach ($paragraphs as $paragraph){
+                $this->pageManagementService->addParagraph($paragraph, $sectionId);
+            }
+            if (isset($_FILES['section']['tmp_name']['images']) && is_array($_FILES['section']['tmp_name']['images'])) {
+                $tmpName = $_FILES['section']['tmp_name']['images'];
+                $imageName = $_FILES['section']['name']['images'];
+                $this->uploadImagesForSection($imageName, $tmpName, $sectionId);
+            } else {
+                echo json_encode('No image uploaded.');
+            }
         }
     }
 }

@@ -78,12 +78,6 @@ class pageManagementRepository extends Repository
         $stmt->execute();
     }
 
-    public function deleteUnusedParagraphs($placeholders)
-    {
-        $stmt = $this->connection->prepare("DELETE FROM Paragraph WHERE paragraphId IN ($placeholders)");
-        $stmt->execute();
-    }
-
     public function updateSection($sectionId, $heading, $subTitle)
     {
         $stmt = $this->connection->prepare("UPDATE Sections SET heading = :heading, subTitle = :subTitle WHERE sectionId = :sectionId");
@@ -165,7 +159,7 @@ class pageManagementRepository extends Repository
         }
     }
 
-    private function deleteParagraphsBySection($sectionId)
+    public function deleteParagraphsBySection($sectionId)
     {
         $stmt = $this->connection->prepare("DELETE FROM Paragraph WHERE sectionId = :sectionId");
         $stmt->bindParam(':sectionId', $sectionId);

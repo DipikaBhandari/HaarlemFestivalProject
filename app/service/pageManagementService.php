@@ -47,11 +47,6 @@ class pageManagementService
         $this->pageManagementRepository->addParagraph($paragraph, $sectionId);
     }
 
-    public function deleteUnusedParagraphs($placeholders)
-    {
-        $this->pageManagementRepository->deleteUnusedParagraphs($placeholders);
-    }
-
     public function updateSection($sectionId, $heading, $subTitle)
     {
         $this->pageManagementRepository->updateSection($sectionId, $heading, $subTitle);
@@ -109,5 +104,10 @@ class pageManagementService
     public function nav()
     {
         return $this->pageManagementRepository->nav();
+    }
+
+    public function deleteParagraphsBySection($sectionId)
+    {
+        $this->pageManagementRepository->deleteParagraphsBySection($sectionId);
     }
 }

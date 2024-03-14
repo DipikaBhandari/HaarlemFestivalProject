@@ -1,10 +1,12 @@
 <div class="container introduction col-10">
     <?php if (!empty($section['heading'])): ?>
         <h1>
-            <?php echo $section['heading']; ?>
-            <?php foreach ($section['images'] as $image): ?>
+            <?php echo $section['heading'];
+            if (!empty($section['images'])):
+                foreach ($section['images'] as $image): ?>
                 <img src="<?php echo $image['imagePath']; ?>" alt="<?php echo $image['imageName']; ?>">
-            <?php endforeach; ?>
+            <?php endforeach;
+            endif; ?>
         </h1>
     <?php endif; ?>
 

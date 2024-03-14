@@ -11,6 +11,7 @@ if(isset($_SESSION['username'])) {
     </head>
 <div>
     <?php
+
     foreach ($sections as $section) {
         if ($section['type'] === 'header') {
             include __DIR__ . '/components/' . $section['type'] . '.php';

@@ -40,13 +40,20 @@ if(isset($_SESSION['username'])) {
         ?>
         </tbody>
     </table>
+    <button class="btn btn-primary float-end" onclick="openSectionModal()">Add Section</button>
 </div>
 <?php include __DIR__ . '/editorModal.php'; ?>
+<?php include __DIR__ . '/sectionModal.php'; ?>
 <script>
     let currentSectionId;
     function openEditorModal(sectionId) {
         currentSectionId = sectionId;
         var myModal = new bootstrap.Modal(document.getElementById('sectionEditorModal'));
+        tinymce.init({
+            selector: 'textarea#editor',
+            plugins: 'lists searchreplace wordcount formatpainter a11ychecker tinymcespellchecker powerpaste autocorrect typography',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | spellcheckdialog a11ycheck typography | align lineheight | numlist bullist indent outdent | removeformat',
+        });
         fetch('/pageManagement/getSectionContent?sectionId=' + sectionId)
             .then(response => {
                 if (response.ok) {
@@ -56,7 +63,7 @@ if(isset($_SESSION['username'])) {
                 }
             })
             .then(data =>{
-                var htmlContent = '';
+                let htmlContent = '';
                 document.querySelector('#image-div').innerHTML= '';
                 if (data.section.heading) {
                     htmlContent += data.section.heading;
@@ -74,7 +81,7 @@ if(isset($_SESSION['username'])) {
                 data.images.forEach(image => {
                         const currentImage = document.createElement('img');
                         currentImage.src = image.imagePath;
-                        currentImage.id = 'img_' + image.imageId;
+                        currentImage.id = image.imageId;
                         currentImage.style = 'max-width: 200px;';
 
                         const imageUpload = document.createElement('input');
@@ -131,6 +138,7 @@ if(isset($_SESSION['username'])) {
         })
             .then(response => {
                 if (response.ok) {
+                    console.log(formData);
                     const messageContainer = document.getElementById('message-container');
                     messageContainer.innerHTML = '<div class="alert alert-success mt-3">Changes were saved successfully.</div>';
                     setTimeout(() => {
@@ -154,5 +162,57 @@ if(isset($_SESSION['username'])) {
                 const messageContainer = document.getElementById('message-container');
                 messageContainer.innerHTML = '<div class="alert alert-danger mt-3">Failed to save changes. Please try again.</div>';
             });
+    }
+
+    function openSectionModal(){
+        const myModal = new bootstrap.Modal(document.getElementById('sectionModal'));
+        tinymce.init({
+            selector: 'textarea#editorNewSection',
+            plugins: 'lists searchreplace wordcount formatpainter a11ychecker tinymcespellchecker powerpaste autocorrect typography',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | spellcheckdialog a11ycheck typography | align lineheight | numlist bullist indent outdent | removeformat',
+        });
+        myModal.show();
+    }
+
+    function addSection(){
+        const formData = new FormData();
+        const pageId = <?php echo $_GET['pageId']; ?>;
+        const sectionType = document.querySelector('select').value;
+        const textEditorId = 'sectionModal';
+        const sectionContent = tinyMCE.activeEditor.getContent("editorNewSection");
+        formData.append(`section[pageId]`, pageId);
+        formData.append(`section[sectionType]`, sectionType);
+        formData.append(`section[content]`, sectionContent);
+
+        const filesInput = document.querySelector('input[type="file"]');
+        const files = filesInput.files;
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            formData.append(`section[images][${i}]`, file);
+        }
+        const formDataObject = Object.fromEntries(formData);
+        console.log(formDataObject);
+        saveSection(formData);
+    }
+
+    function saveSection(formData){
+        fetch('/pageManagement/saveSection', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                if(!response.ok) {
+                    document.getElementById('message-container').innerHTML = '<div class="alert alert-danger mt-3">Failed to save changes. Please try again.</div>';
+                } else{
+                    console.log('Page saved successfully');
+                    document.getElementById('message-container'). innerHTML = '<div class="alert alert-success mt-3">Changes were saved successfully.</div>';
+                   /* setTimeout(()=>{
+                        window.location.href = '/pageManagement/sections?pageId=<?php echo $_GET['pageId']; ?>';
+                    },3000);*/
+                }
+            })
+            .catch(error => {
+                document.getElementById('message-container').innerHTML = '<div class="alert alert-danger mt-3">Failed to save changes. Please try again.</div>';
+            })
     }
 </script>

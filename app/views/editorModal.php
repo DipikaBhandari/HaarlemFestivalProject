@@ -26,10 +26,3 @@
         </div>
     </body>
 </html>
-<script>
-    tinymce.init({
-        selector: 'textarea#editor',
-        plugins: 'lists searchreplace wordcount formatpainter a11ychecker tinymcespellchecker powerpaste autocorrect typography',
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | spellcheckdialog a11ycheck typography | align lineheight | numlist bullist indent outdent | removeformat',
-    });
-</script>
