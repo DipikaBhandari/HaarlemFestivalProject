@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use DOMDocument;
 
 class pageManagementController
 {
@@ -49,34 +50,47 @@ class pageManagementController
     }
 
     private function extractHeadingAndSubTitle($content) {
-        $heading = '';
-        $subTitle = '';
-        preg_match_all('/<h(\d)>(.*?)<\/h\1>/', $content, $matches, PREG_SET_ORDER);
-        if (isset($matches[0])) {
-            $heading = $matches[0][0]; // First match is considered as heading
-            if (isset($matches[1])) {
-                $subTitle = $matches[1][0]; // Second match (if exists) is considered as subtitle
+        $dom = new DOMDocument();
+        @$dom->loadHTML($content);
+        $heading="";
+        $subTitle = "";
+
+        for ($i = 1; $i <= 6; $i++) {
+            // Get all elements of current header tag
+            $currentHeadings = $dom->getElementsByTagName("h$i");
+
+            // Iterate over each header tag element and append it to $headings
+            foreach ($currentHeadings as $currentHeading) {
+                $headings[] = $currentHeading;
+            }
+        }
+
+        if (!empty($headings)) {
+            // Get the first element as heading
+            $heading = $dom->saveHTML($headings[0]);
+
+            // If more than one element found, get the second element as subtitle
+            if (count($headings) > 1) {
+                $subTitle = $dom->saveHTML($headings[1]);
             }
         }
         return [$heading, $subTitle];
     }
 
     private function extractParagraphs($content) {
-        // Extract paragraphs using a regular expression
-        preg_match_all('/<p>(.*?)<\/p>/', $content, $matches);
+        $dom = new DOMDocument();
+        @$dom->loadHTML($content);
+        $paragraphs = $dom->getElementsByTagName('p');
 
-        // Filter out paragraphs containing only whitespace characters
-        $filteredParagraphs = array_filter($matches[1], function($paragraph) {
-            // Trim the paragraph and check if it's empty after trimming
-            return trim($paragraph) !== '';
-        });
+        $filteredParagraphs = [];
 
-        // Wrap the filtered paragraphs with <p> tags
-        $paragraphs = array_map(function($paragraph) {
-            return "<p>$paragraph</p>";
-        }, $filteredParagraphs);
-
-        return $paragraphs;
+        foreach ($paragraphs as $paragraph) {
+            $paragraphContent = $dom->saveHTML($paragraph);
+            if(trim(strip_tags($paragraphContent)) !== ''){
+                $filteredParagraphs[] = $paragraphContent;
+            }
+        }
+        return $filteredParagraphs;
     }
 
     private function updateParagraphs($paragraphs, $sectionId) {

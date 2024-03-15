@@ -150,9 +150,9 @@ if(isset($_SESSION['username'])) {
                         messageContainer.innerHTML='';
                     }, 1000);
 
-                    setTimeout(() => {
+                   /* setTimeout(() => {
                         window.location.reload();
-                    }, 1500);
+                    }, 1500);*/
                 } else {
                     const messageContainer = document.getElementById('message-container-edit');
                     messageContainer.innerHTML = '<div class="alert alert-danger mt-3">Failed to save changes. Please try again.</div>';
