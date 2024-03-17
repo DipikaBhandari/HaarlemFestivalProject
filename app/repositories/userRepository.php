@@ -25,9 +25,9 @@ class userRepository extends Repository
                 $user->setPassword($userArray['password']);
                 $user->setEmail($userArray['email']);
                 $user->setRole($userArray['role']);
+                $user->setId($userArray['id']);
                 return $user;
             }
-
         }
         catch (PDOException $e) {
             error_log($e->getMessage());
@@ -111,6 +111,7 @@ class userRepository extends Repository
                 $user->getEmail(),
 
 
+
             ]);
 
             return true;
@@ -134,6 +135,7 @@ class userRepository extends Repository
             $user->setPhoneNumber($userData['phonenumber']);
             $user->setPassword($userData['password']);
             $user->setProfilePicture($userData['picture']);
+            $user->setId($userData['id']);
             return $user;
         }
         return null;

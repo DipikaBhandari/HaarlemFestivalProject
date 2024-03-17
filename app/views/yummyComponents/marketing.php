@@ -11,7 +11,7 @@
                         <?php if (!empty($section['paragraphs'])): ?>
                             <div style="font-family: 'Aleo', serif; padding: 10px;  font-size: 50px; font-weight: 400; line-height: 77px; text-align: left; color: white;">
                                 <?php foreach ($section['paragraphs'] as $paragraph): ?>
-                                    <p><?= htmlspecialchars($paragraph['text']); ?></p>
+                                    <p><?= ($paragraph['text']); ?></p>
                                 <?php endforeach; ?>
                             </div>
                         <?php endif; ?>

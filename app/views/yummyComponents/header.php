@@ -1,29 +1,86 @@
 <?php if (!empty($section) && $section['type'] === 'header'): ?>
-    <div class="container-fluid text-white py-5 my-0" style="background: url('/img/yummyHeaderBackground.png') no-repeat center center; background-size: cover;">
-        <div class="row align-items-center" style="min-height: 42vh;">
-            <div class="col-md-6">
-                <h1 style="font-family: 'Aleo'; font-size: 96px; font-weight: 400; line-height: 90px; color: #FFD700; text-align: center; padding-left: 30px;" class="display-3"><?= htmlspecialchars($section['heading']); ?></h1>
-                <div style="height: 50px; margin-top: 20px;">
-                    <img src="../img/yummyHeaderLine.png" alt="yummy Header Line" width="546" height="156" style="padding-left: 200px; padding-top: 20px; padding-bottom: 100px;">
+    <div class="header-section position-relative">
+        <div class="container-fluid text-white">
+            <div class="row align-items-center custom-height">
+                <div class="col-md-6">
+                    <div class="text-warning custom-heading">
+                      <h1><?php echo $section['heading']; ?></h1>
+                    </div>
+                    <div class="yummy-header-line">
+                        <img src="../img/yummyHeaderLine.png" alt="yummy Header Line" class="img-fluid">
+                    </div>
+                    <div class="paragraphs">
+                        <?php foreach ($section['paragraphs'] as $paragraph): ?>
+                            <p class="lead"><?php echo $paragraph['text']; ?></p>
+                        <?php endforeach; ?>
+                    </div>
+                    <button id="reserveButton" class="btn btn-primary">Reserve Now</button>
                 </div>
-                <div>
-                    <?php foreach ($section['paragraphs'] as $paragraph): ?>
-                        <p style="font-family: 'Aleo'; font-size: 20px; font-weight: 400; line-height: 45px; padding-left: 80px;" class="lead"><?= htmlspecialchars($paragraph['text']); ?></p>
+                <div class="col-md-6 d-none d-md-block">
+                    <?php foreach ($section['images'] as $images): ?>
+                        <div class="cropped-image-container">
+                            <div class="cropped-image">
+                                <img class="img-fluid" src="<?php echo $images['imagePath']; ?>" alt="<?php echo $images['imageName']; ?>">
+                            </div>
+                            <?php if (!empty($section['heading']) || !empty($section['subTitle'])): ?>
+                                <div class="overlay-text position-absolute bottom-0 start-0 p-3 text-white">
+                                    <?php if (!empty($section['subTitle'])): ?>
+                                        <h2><?php echo $section['subTitle']; ?></h2>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
                     <?php endforeach; ?>
                 </div>
-                <button id="reserveButton" class="btn btn-primary">Reserve Now</button>
-            </div>
-            <div class="col-md-6 d-none d-md-block">
-                <?php foreach ($section['images'] as $images): ?>
-                    <img src="<?= htmlspecialchars($images['imagePath']); ?>" alt="<?= htmlspecialchars($images['imageName']); ?>" style="width:  92vh; height:100%; max-height: 76.5vh; object-fit: cover; position: absolute; top: 120px; right: 0;">
-                    <h2 style="font-family: 'Playfair Display'; font-size: 32px; font-weight: 700; position: absolute; top: 200px; left: 65%; transform: translateX(-50%);" class="fs-3 text-center"><?= htmlspecialchars($section['subTitle']); ?></h2>
-                <?php endforeach; ?>
             </div>
         </div>
     </div>
+    <style>
+        .header-section {
+            background: url('/img/yummyHeaderBackground.png') no-repeat center center;
+            background-size: cover;
+
+        }
+
+        .custom-height {
+            min-height: 42vh;
+        }
+
+        .custom-heading h1 {
+            width: 745px; height: 142.06px; text-align: center; color: #FFD700; font-size: 96px; font-family: Aleo; font-weight: 400; line-height: 90px; word-wrap: break-word
+        }
+
+        .yummy-header-line .img-fluid {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        .paragraphs p {
+            font-family: 'Aleo';
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 45px;
+        }
+
+        .cropped-image-container {
+            background-size: cover;
+        }
+
+        .cropped-image {
+            width: 1000px; height: 656px
+        }
+
+        .overlay-text {
+            /* Additional styles if needed */
+        }
+    </style>
+
+
+
 
     <!-- Reservation Popup Trigger -->
-    <button id="reserveButton" class="btn btn-primary">Reserve Now</button>
+
 
     <!-- Reservation Popup Modal -->
     <div id="reservationPopup" class="reservation-popup">
@@ -32,6 +89,15 @@
             <h2>Reserve Your Table</h2>
             <!-- Reservation Form -->
             <form id="reservationForm">
+
+                <label for="restaurant">Choose a restaurant:</label>
+                <select id="restaurant" name="restaurant" required>
+                    <!-- Assuming you will populate this list server-side -->
+                    <?php foreach ($restaurantName as $restaurant): ?>
+                        <option value="<?= htmlspecialchars($restaurant['restaurantId']); ?>"><?= htmlspecialchars($restaurant['restaurantName']); ?></option>
+                    <?php endforeach; ?>
+                </select>
+
                 <label for="numAdults">Number of Adults:</label>
                 <input type="number" id="numAdults" name="numAdults" min="1" required>
 
@@ -58,6 +124,37 @@
 
 <?php endif; ?>
 <script>
+    document.getElementById('restaurant').addEventListener('change', function() {
+        var restaurantId = this.value;
+        var sessionDropdown = document.getElementById('session');
+        sessionDropdown.innerHTML = '';
+
+        if(restaurantId) {
+            fetch('/restaurant/getSessionsForRestaurant/' + restaurantId)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(sessions => {
+                    // Populate the session dropdown with new options
+                    sessions.forEach(session => {
+                        // Assuming session.startTime and session.endTime are in "HH:MM:SS" format
+                        var startTime = new Date('1970-01-01T' + session.startTime + 'Z').toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                        var endTime = new Date('1970-01-01T' + session.endTime + 'Z').toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+                        var option = new Option(`${startTime} - ${endTime}`, session.sessionId);
+                        sessionDropdown.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching sessions:', error);
+                    alert('Error fetching session times for the selected restaurant.');
+                });
+        }
+    });
+
     document.addEventListener('DOMContentLoaded', function() {
         var reserveButton = document.getElementById('reserveButton');
         var reservationPopup = document.getElementById('reservationPopup');
@@ -82,25 +179,23 @@
         }
 
         // Handle form submission
-        reservationForm.onsubmit = function(event) {
+        reservationForm.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the default form submission
 
-            const formData = {
-                numAdults: document.getElementById('numAdults').value,
-                numChildren: document.getElementById('numChildren').value,
-                date: document.getElementById('date').value,
-                session: document.getElementById('session').value,
-                specialRequests: document.getElementById('specialRequests').value,
-                // Add other form fields here
-            };
+            var formData= new FormData(reservationForm);
+           /* const formData = {
+                restaurant: document.getElementById('restaurant').value.trim(),
+                numAdults: parseInt(document.getElementById('numAdults').value.trim(), 10),
+                numChildren: parseInt(document.getElementById('numChildren').value.trim(), 10),
+                date: document.getElementById('date').value.trim(),
+                session: document.getElementById('session').value.trim(),
+                specialRequests: document.getElementById('specialRequests').value.trim(),
+            };*/
 
             // Perform the fetch call to send the data to the server
             fetch('/CreateReservation/create', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+                body: formData,
             })
                 .then(response => {
                     if (!response.ok) {
@@ -125,9 +220,9 @@
                 .finally(() => {
                     // You might want to hide spinner here if you have one
                 });
-        }
-    });
 
+        })
+    });
 </script>
 
 <style>

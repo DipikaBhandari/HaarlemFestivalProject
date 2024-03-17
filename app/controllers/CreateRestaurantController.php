@@ -78,4 +78,5 @@ class CreateRestaurantController
         $price = filter_var($price, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         return $price;
     }
+
 }

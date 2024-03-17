@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 use App\model\restaurant;
+use Exception;
 use PDO;
 
 class restaurantRepository extends Repository
@@ -91,7 +92,7 @@ class restaurantRepository extends Repository
 
     public function getAllYummyInfo()
     {
-        $stmt = $this->connection->prepare("SELECT * FROM Yummyyy");
+        $stmt = $this->connection->prepare("SELECT * FROM RestaurantSection");
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -170,5 +171,47 @@ class restaurantRepository extends Repository
             error_log('SQL error: ' . $e->getMessage(), 0);
             return  ['success' => false, 'message' => $e->getMessage()];
         }
+    }
+    public function getSessionById($sessionId) {
+        $stmt = $this->connection->prepare("SELECT * FROM Session WHERE sessionId = :sessionId");
+        $stmt->bindParam(':sessionId', $sessionId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+    public function updateSessionSeats($sessionId, $seatsToDeduct) {
+        $session = $this->getSessionById($sessionId);
+        if(!$session) {
+            throw new Exception('Session not found.');
+        }
+
+        $numberOfSeats = $session['numberOfSeats'] - $seatsToDeduct;
+        if($session['numberOfSeats'] < $seatsToDeduct) {
+            throw new Exception('Not enough seats available.');
+        }
+
+        $stmt = $this->connection->prepare("UPDATE Session SET numberOfSeats = :numberOfSeats WHERE sessionId = :sessionId");
+        $stmt->bindParam(':numberOfSeats', $numberOfSeats, PDO::PARAM_INT);
+        $stmt->bindParam(':sessionId', $sessionId, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+    public function createReservation($orderData) {
+        $stmt = $this->connection->prepare("INSERT INTO orderItem (userId, sessionId,date, numberOfTickets, price, specialRequest, restaurantSectionId) VALUES (:userId, :sessionId,:date, :numberOfTickets, :price, :specialRequest, :restaurantSectionId)");
+        $stmt->bindValue(':userId', $orderData['userId']);
+        $stmt->bindValue(':sessionId', $orderData['session']);
+        $stmt->bindValue(':date', $orderData['date']);
+        $stmt->bindValue(':numberOfTickets', $orderData['num_adults'] + $orderData['num_children']);
+        $stmt->bindValue(':price', $orderData['price']);
+        $stmt->bindValue(':specialRequest', $orderData['special_requests']);
+        $stmt->bindValue(':restaurantSectionId', $orderData['restaurantSectionId']);
+        $stmt->execute();
+        return $this->connection->lastInsertId();
+    }
+    public function getSessionsForRestaurantId($restaurantId) {
+        $stmt = $this->connection->prepare("SELECT sessionId, startTime, endTime FROM Session WHERE restaurantSectionId = :restaurantId");
+        $stmt->bindParam(':restaurantId', $restaurantId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

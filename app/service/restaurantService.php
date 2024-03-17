@@ -60,6 +60,19 @@ class restaurantService
     {
 
         return $this->restaurantRepository->create($restaurantData);
+    }
+    Public function getSessionById($sessionId) {
+        return $this->restaurantRepository->getSessionById($sessionId);
+    }
 
+    public function updateSessionSeats($sessionId, $newCapacity) {
+        return $this->restaurantRepository->updateSessionSeats($sessionId, $newCapacity);
+    }
+
+    public function createReservation($reservationData) {
+        return $this->restaurantRepository->createReservation($reservationData);
+    }
+    public function getSessionsForRestaurantId($restaurantId) {
+        return $this->restaurantRepository->getSessionsForRestaurantId($restaurantId);
     }
 }

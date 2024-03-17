@@ -48,6 +48,12 @@ class Router
             $controller->manageRestaurant($restaurantId);
             return;
         }
+        if ($explodedUri[0] === 'restaurant' && $methodName === 'getSessionsForRestaurant' && isset($explodedUri[2])) {
+            $restaurantId = $explodedUri[2];
+            $controller = new \App\Controllers\RestaurantController();
+            $controller->getSessionsForRestaurant($restaurantId);
+            return;
+        }
         try {
             $controllerObj = new $controllerName();
             $controllerObj->$methodName();

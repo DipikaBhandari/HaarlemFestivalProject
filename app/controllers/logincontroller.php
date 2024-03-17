@@ -91,7 +91,7 @@ class logincontroller
                 $_SESSION['username'] = $loggedUser->getUsername();
                 $_SESSION['email'] = $loggedUser->getEmail();
                 $_SESSION['role'] = $loggedUser->getRole();
-
+                $_SESSION['id'] = $loggedUser->getId();
 
                 // Redirect to the festival index page
                 header("Location: /home");

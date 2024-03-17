@@ -11,6 +11,7 @@ class user
     private $phoneNumber;
     private $profilePicture;
     private $registeredAt;
+    private $id;
 
     /**
      * @return mixed
@@ -162,27 +163,26 @@ class user
     {
         $this->password=$password;
     }
-
-    public function jsonSerialize():mixed
-    {
-        return get_object_vars($this);
-    }
-    private $id;
-
-    /**
-     * @return mixed
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
+
+    public function setId($id)
     {
         $this->id = $id;
     }
+
+    public function jsonSerialize():mixed
+    {
+        return get_object_vars($this);
+    }
+
+
+    /**
+     * @return mixed
+     */
+
 
 }

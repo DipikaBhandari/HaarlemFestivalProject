@@ -4,17 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="small fix on manage account">
+    <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="fixed restaurant management">
+      <change afterPath="$PROJECT_DIR$/app/controllers/CreateReservationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Router.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/CreateRestaurantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/CreateRestaurantController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ManageUsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ManageUsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ManageYummyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ManageYummyController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/logincontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/logincontroller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/restaurantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/restaurantController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/model/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/model/user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/public/img/yummyHomeHeader.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/repositories/restaurantRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/restaurantRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/userRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/userRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/service/restaurantService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/restaurantService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/createRestaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/createRestaurant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manageRestaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageRestaurant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manageUsers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageUsers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/yummyComponents/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/yummyComponents/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/yummyComponents/introduction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/yummyComponents/introduction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/yummyComponents/marketing.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/yummyComponents/marketing.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,6 +158,7 @@
       <workItem from="1709554373345" duration="20926000" />
       <workItem from="1709766508979" duration="4293000" />
       <workItem from="1709835843630" duration="97838000" />
+      <workItem from="1710293903121" duration="69716000" />
     </task>
     <task id="LOCAL-00001" summary="small fix on manage account">
       <option name="closed" value="true" />
@@ -171,7 +176,23 @@
       <option name="project" value="LOCAL" />
       <updated>1710000301693</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fixed restaurant management">
+      <option name="closed" value="true" />
+      <created>1710371629803</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1710371629804</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fixed restaurant management">
+      <option name="closed" value="true" />
+      <created>1710379832176</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710379832176</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +202,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="manage account done. yummy home page 80per, in progress" />
     <MESSAGE value="small fix on manage account" />
-    <option name="LAST_COMMIT_MESSAGE" value="small fix on manage account" />
+    <MESSAGE value="fixed restaurant management" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed restaurant management" />
   </component>
 </project>
