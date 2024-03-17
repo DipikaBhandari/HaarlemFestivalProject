@@ -17,7 +17,7 @@ class pageManagementController
     }
 
     public function sections(){
-        $pageId = $_GET['pageId'];
+        $pageId = filter_var($_GET['pageId'],FILTER_SANITIZE_NUMBER_INT);
         $pageTitle = $this->pageManagementService->getPageTitle($pageId);
         $sections = $this->pageManagementService->getSectionsByPage($pageId);
         require __DIR__ . '/../views/sectionEditor.php';
@@ -25,7 +25,7 @@ class pageManagementController
 
     public function getSectionContent(){
         if(isset($_GET['sectionId'])) {
-            $sectionId = $_GET['sectionId'];
+            $sectionId = filter_var($_GET['sectionId'],FILTER_SANITIZE_NUMBER_INT);
             $sectionContent = $this->pageManagementService->getSectionContent($sectionId);
             echo json_encode($sectionContent);
         }
@@ -36,7 +36,7 @@ class pageManagementController
 
     public function saveNewContent(){
         if (isset($_POST['sectionId']) && isset($_POST['content'])){
-            $sectionId = $_POST['sectionId'];
+            $sectionId = filter_var($_POST['sectionId'],FILTER_SANITIZE_NUMBER_INT);
             $content = $_POST['content'];
 
             list($heading, $subTitle) = $this->extractHeadingAndSubTitle($content);
@@ -151,13 +151,13 @@ class pageManagementController
 
     public function savePage(){
         if (isset($_POST['pageTitle'])){
-            $pageTitle = $_POST['pageTitle'];
+            $pageTitle = filter_var($_POST['pageTitle'],FILTER_SANITIZE_STRING);
             $pageLink = '/pageManagement/' . 'showPage';
             $pageId = $this->pageManagementService->addPage($pageTitle, $pageLink);
 
             if (isset($_POST['sections']) && is_array($_POST['sections'])) {
                 foreach ($_POST['sections'] as $index => $section) {
-                    $sectionType = $section['sectionType'];
+                    $sectionType = filter_var($section['sectionType'], FILTER_SANITIZE_STRING);
                     $content = $section['content'];
 
                     list($heading, $subTitle) = $this->extractHeadingAndSubTitle($content);
@@ -195,7 +195,7 @@ class pageManagementController
 
     public function deleteSection(){
         if (isset($_GET['sectionId'])) {
-            $sectionId = $_GET['sectionId'];
+            $sectionId = filter_var($_GET['sectionId'], FILTER_SANITIZE_NUMBER_INT);
             $success = $this->pageManagementService->deleteSection($sectionId);
             if($success) {
                 // Redirect to the page where the section was deleted from
@@ -212,10 +212,10 @@ class pageManagementController
 
     public function deletePage(){
         if (isset($_GET['pageId'])) {
-            $pageId = $_GET['pageId'];
+            $pageId = filter_var($_GET['pageId'], FILTER_SANITIZE_NUMBER_INT);
             $sections = $this->pageManagementService->getSectionsByPage($pageId);
             foreach ($sections as $section) {
-                $this->pageManagementService->deleteSection($section['sectionId']);
+                $this->pageManagementService->deleteSection(filter_var($section['sectionId'], FILTER_SANITIZE_NUMBER_INT));
             }
             $success = $this->pageManagementService->deletePage($pageId);
             if($success) {
@@ -234,11 +234,11 @@ class pageManagementController
     public function showPage(){
         session_start();
         if (isset($_GET['pageId'])) {
-            $pageId = $_GET['pageId'];
+            $pageId = filter_var($_GET['pageId'], FILTER_SANITIZE_NUMBER_INT);
             $sections = $this->pageManagementService->getSectionsByPage($pageId);
             foreach ($sections as $key => $section) {
-                $sections[$key]['images'] = $this->pageManagementService->getImagesBySection($section['sectionId']);
-                $sections[$key]['paragraphs'] = $this->pageManagementService->getParagraphsBySection($section['sectionId']);
+                $sections[$key]['images'] = $this->pageManagementService->getImagesBySection(filter_var($section['sectionId'], FILTER_SANITIZE_NUMBER_INT));
+                $sections[$key]['paragraphs'] = $this->pageManagementService->getParagraphsBySection(filter_var($section['sectionId'], FILTER_SANITIZE_NUMBER_INT));
             }
             require __DIR__ . '/../views/pageTemplate.php';
         }
@@ -256,18 +256,23 @@ class pageManagementController
 
         if (isset($_POST['section']) && isset($_POST['section']['pageId'])) {
             $section = $_POST['section'];
-            $pageId = $section['pageId'];
-            $sectionType = $section['sectionType'];
-            $content = $section['content'];
+            $pageId = filter_var($section['pageId'], FILTER_SANITIZE_NUMBER_INT);
+            $sectionType = filter_var($section['sectionType'], FILTER_SANITIZE_STRING);
 
-            list($heading, $subTitle) = $this->extractHeadingAndSubTitle($content);
-            $sectionId = $this->pageManagementService->addSection($pageId, $sectionType, $heading, $subTitle);
+            if (isset($section['content']) && !empty($section['content'])){
+                $content = $section['content'];
 
-            $paragraphs = $this->extractParagraphs($content);
-            foreach ($paragraphs as $paragraph){
-                $this->pageManagementService->addParagraph($paragraph, $sectionId);
+                list($heading, $subTitle) = $this->extractHeadingAndSubTitle($content);
+                $sectionId = $this->pageManagementService->addSection($pageId, $sectionType, $heading, $subTitle);
+
+                $paragraphs = $this->extractParagraphs($content);
+                foreach ($paragraphs as $paragraph){
+                    $this->pageManagementService->addParagraph($paragraph, $sectionId);
+                }
             }
+
             if (isset($_FILES['section']['tmp_name']['images']) && is_array($_FILES['section']['tmp_name']['images'])) {
+                $sectionId = $this->pageManagementService->addSection($pageId, $sectionType, "", "");
                 $tmpName = $_FILES['section']['tmp_name']['images'];
                 $imageName = $_FILES['section']['name']['images'];
                 $this->uploadImagesForSection($imageName, $tmpName, $sectionId);

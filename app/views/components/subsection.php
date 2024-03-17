@@ -1,11 +1,11 @@
 <div class="container subsection col-10">
     <?php if (!empty($section['heading'])): ?>
-        <h2><?php echo $section['heading']; ?></h2>
+        <?php echo $section['heading']; ?>
     <?php endif; ?>
 
     <?php if (!empty($section['paragraphs'])): ?>
         <?php foreach ($section['paragraphs'] as $paragraph): ?>
-            <p><?php echo $paragraph['text']; ?></p>
+            <?php echo $paragraph['text']; ?>
         <?php endforeach; ?>
     <?php endif; ?>
 

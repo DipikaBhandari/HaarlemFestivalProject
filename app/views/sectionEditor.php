@@ -51,8 +51,8 @@ if(isset($_SESSION['username'])) {
         var myModal = new bootstrap.Modal(document.getElementById('sectionEditorModal'));
         tinymce.init({
             selector: 'textarea#editor',
-            plugins: 'lists searchreplace wordcount formatpainter a11ychecker tinymcespellchecker powerpaste autocorrect typography',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | spellcheckdialog a11ycheck typography | align lineheight | numlist bullist indent outdent | removeformat',
+            plugins: 'lists',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | removeformat',
         });
         fetch('/pageManagement/getSectionContent?sectionId=' + sectionId)
             .then(response => {
@@ -168,8 +168,8 @@ if(isset($_SESSION['username'])) {
         const myModal = new bootstrap.Modal(document.getElementById('sectionModal'));
         tinymce.init({
             selector: 'textarea#editorNewSection',
-            plugins: 'lists searchreplace wordcount formatpainter a11ychecker tinymcespellchecker powerpaste autocorrect typography',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | spellcheckdialog a11ycheck typography | align lineheight | numlist bullist indent outdent | removeformat',
+            plugins: 'lists',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | removeformat',
         });
         myModal.show();
     }
@@ -204,7 +204,6 @@ if(isset($_SESSION['username'])) {
                 if(!response.ok) {
                     document.getElementById('message-container').innerHTML = '<div class="alert alert-danger mt-3">Failed to save changes. Please try again.</div>';
                 } else{
-                    console.log('Page saved successfully');
                     document.getElementById('message-container'). innerHTML = '<div class="alert alert-success mt-3">Changes were saved successfully.</div>';
                     setTimeout(()=>{
                         window.location.href = '/pageManagement/sections?pageId=<?php echo $_GET['pageId']; ?>';
