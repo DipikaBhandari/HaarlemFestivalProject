@@ -2,62 +2,122 @@
 <?php if (!empty($section) && $section['type'] === 'card'): ?>
     <div class="container-fluid text-white py-5 my-0" style="background: url('/img/yummyHeaderBackground.png') no-repeat center center; background-size: cover;">
         <div class="row">
-            <div style="height: 96px; display: flex; align-items: center; justify-content: center;">
-                 <h2  style="font-size: 64px; font-weight: 400; line-height: 88.94px; color: #FFD700; margin: 0;"><?= htmlspecialchars($section['heading']); ?> <br>
-                 <br></h2>
+            <div class="col-12 card-title-container text-center mb-4">
+                 <h2 class="card-title"><?php echo($section['heading']); ?> </h2>
             </div>
+
+
+
+
         <!-- Loop through each card and display its content -->
         <?php foreach ($section['card'] as $card): ?>
             <div class="col-md-4 mb-3">
-                <div class="card h-100" style="width: 100% ;position: relative;">
+                <div class="card custom-card">
+                    <img src="<?= ($card['restaurantPicture']); ?>" alt="<?= ($card['restaurantName']); ?>" class="card-img-top">
                     <div class="card-body">
-                        <a href="/restaurant/details/<?= $card['restaurantId']; ?>" class="stretched-link"></a>
-                        <?php if (isset($card['restaurantName'])): ?>
-                            <h5 class="card-title"><?= htmlspecialchars($card['restaurantName']); ?></h5>
-                        <?php endif; ?>
-                        <!-- Display service options -->
+                        <h5 class="card-name"><?= ($card['restaurantName']); ?></h5>
+                        <!-- Service options and offerings here -->
+                        <p class="card-description"><?= nl2br(($card['description'])); ?></p>
                         <?php if (isset($card['service'])): ?>
                             <ul class="list-unstyled">
                                 <!-- Assuming service is a comma-separated list -->
                                 <?php foreach (explode(',', $card['service']) as $service): ?>
-                                    <li><?= trim(htmlspecialchars($service)); ?></li>
+                                    <li><?= trim(($service)); ?></li>
                                 <?php endforeach; ?>
                             </ul>
                         <?php endif; ?>
                         <?php if (isset($card['foodOfferings'])): ?>
-                            <p><?= htmlspecialchars($card['foodOfferings']); ?></p>
-                        <?php endif; ?>
-
-                        <?php if (isset($card['restaurantPicture'])): ?>
-                            <img src="<?= htmlspecialchars($card['restaurantPicture']); ?>" alt="<?= htmlspecialchars($card['restaurantName']); ?>" class="card-img-top">
-                        <?php endif; ?>
-                        <?php if (isset($card['description'])): ?>
-                            <p class="card-text"><?= nl2br(htmlspecialchars($card['description'])); ?></p>
+                            <p><?= ($card['foodOfferings']); ?></p>
                         <?php endif; ?>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer ">
                         <?php if (isset($card['phoneNumber'])): ?>
-                            <a href="tel:<?= htmlspecialchars($card['phoneNumber']); ?>" class="card-link">Call</a>
+                            <a href="tel:<?= ($card['phoneNumber']); ?>" class="card-link">Call</a>
                         <?php endif; ?>
                     </div>
                     <br>
                     <br>
-                    <div style="text-align: center; position: absolute; bottom: -30px; left: 50%; border-radius: 30px;
-    text-align: center;
-    line-height: 61px; /* Center the text vertically */
-    text-decoration: none;
-    transform: translateX(-50%); background-color: #A3AF1E; width: 266px; height: 61px; line-height: 61px; margin: 20px auto; border-radius: 5px;">
-                        <a href="http://yourlink.com" style="font-size: 24px;   font-family: Arial, sans-serif;   color: #ffffff; text-decoration: none;border-radius: 30px; display: block;">
-                            MORE INFO
-                        </a>
+                    <a href="/restaurant/details/<?= $card['restaurantId']; ?>" class="stretched-link"></a>
+                    <div class="more-info-button text-center">
+                        <a href="/restaurant/details/<?= $card['restaurantId']; ?>">MORE INFO</a>
                     </div>
                 </div>
-
             </div>
         <?php endforeach; ?>
+            <h3 class="map-title">Yummy Location</h3>
             <div id="map" style=" height: 400px;"></div>
         </div>
 </div>
+
+
+
+
+<style>
+
+    .map-title{
+        font-size: 64px;
+        color: #FFD700;
+        margin: 0 auto;
+        font-weight: 400;
+        line-height: 88.94px;
+        padding-top: 3rem;
+        padding-bottom: 1rem;
+        padding-left: 2rem;
+    }
+    .card-title-container {
+        /* Center title container */
+    }
+
+    .card-title {
+        font-size: 64px;
+        color: #FFD700;
+        margin: 0 auto;
+        font-weight: 400;
+        line-height: 88.94px;
+    }
+
+    .custom-card {
+        padding-bottom: 0rem;
+    }
+
+    .card-name {
+        /* Style for the restaurant name */
+    }
+
+    .card-description {
+        /* Style for the restaurant description */
+    }
+
+    .more-info-button {
+        /* Style the 'MORE INFO' button */
+        position: absolute;
+        bottom: -10px; /* Adjust this value */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #A3AF1E;
+        width: 266px;
+        height: 61px;
+        line-height: 61px;
+        border-radius: 30px;
+        margin-top: 20px;
+
+    }
+
+    .more-info-button a {
+        display: block;
+        font-size: 24px;
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+
+    }
+
+    .map-container {
+        height: 400px; /* Set the height of the map */
+    }
+
+</style>
+
 <?php endif; ?>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCymxT75KkPHAA7LcaoUfPrFD4p0SdtGF4&callback=initMap" async defer></script>
 <?php

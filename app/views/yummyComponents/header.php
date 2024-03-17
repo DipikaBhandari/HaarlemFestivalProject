@@ -1,128 +1,310 @@
 <?php if (!empty($section) && $section['type'] === 'header'): ?>
-    <div class="header-section position-relative">
-        <div class="container-fluid text-white">
-            <div class="row align-items-center custom-height">
-                <div class="col-md-6">
-                    <div class="text-warning custom-heading">
-                      <h1><?php echo $section['heading']; ?></h1>
-                    </div>
-                    <div class="yummy-header-line">
-                        <img src="../img/yummyHeaderLine.png" alt="yummy Header Line" class="img-fluid">
-                    </div>
-                    <div class="paragraphs">
-                        <?php foreach ($section['paragraphs'] as $paragraph): ?>
-                            <p class="lead"><?php echo $paragraph['text']; ?></p>
-                        <?php endforeach; ?>
-                    </div>
-                    <button id="reserveButton" class="btn btn-primary">Reserve Now</button>
-                </div>
-                <div class="col-md-6 d-none d-md-block">
-                    <?php foreach ($section['images'] as $images): ?>
-                        <div class="cropped-image-container">
-                            <div class="cropped-image">
-                                <img class="img-fluid" src="<?php echo $images['imagePath']; ?>" alt="<?php echo $images['imageName']; ?>">
-                            </div>
-                            <?php if (!empty($section['heading']) || !empty($section['subTitle'])): ?>
-                                <div class="overlay-text position-absolute bottom-0 start-0 p-3 text-white">
-                                    <?php if (!empty($section['subTitle'])): ?>
-                                        <h2><?php echo $section['subTitle']; ?></h2>
-                                    <?php endif; ?>
-                                </div>
-                            <?php endif; ?>
+    <div class="header-section">
+        <div class="container-fluid p-0">
+            <div class="row no-gutters">
+                <div class="col-md-8 text-container">
+                    <div class="header-content">
+                        <div class="event-dates">
+                            <span><?php echo $section['subTitle']; ?></span>
                         </div>
+                        <div class="header-title">
+                             <h1><?php echo $section['heading']; ?></h1>
+                        </div>
+                        <div class="header-paragraphs">
+                            <?php foreach ($section['paragraphs'] as $paragraph): ?>
+                                <p class="header-paragraph"><?php echo $paragraph['text']; ?></p>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php if (!empty($section['linkText'])): ?>
+                            <button id="reserveButton" class="btn btn-primary"><?php echo($section['linkText']); ?></button>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="col-md-4 image-container">
+                    <?php foreach ($section['images'] as $images): ?>
+                        <img class="header-image img-fluid" src="<?php echo $images['imagePath']; ?>" alt="<?php echo $images['imageName']; ?>">
                     <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
-    <style>
-        .header-section {
-            background: url('/img/yummyHeaderBackground.png') no-repeat center center;
-            background-size: cover;
+<style>
+    .header-section {
+    background: url('/img/yummyHeaderBackground.png') no-repeat center center / cover;
+    color: #fff;
+    font-family: 'Aleo', serif;
+    position: relative;
+    display: flex; /* Added to use flexbox for layout */
+    }
 
-        }
+    .text-container {
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1; /* Added to allow container to grow */
+    }
 
-        .custom-height {
-            min-height: 42vh;
-        }
+    .event-dates {
+    color: white;
+    font-size: 32px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    position: absolute;
+    right: 20%; /* Adjusted to accommodate different screen sizes */
+    top: 2rem; /* Adjusted to better match the provided design */
+    z-index: 2; /* Make sure it's above the image */
+    }
 
-        .custom-heading h1 {
-            width: 745px; height: 142.06px; text-align: center; color: #FFD700; font-size: 96px; font-family: Aleo; font-weight: 400; line-height: 90px; word-wrap: break-word
-        }
+    .header-title h1 {
+    color: #FFD700;
+    font-size: 80px;
+    font-weight: 200;
+    line-height: 90px;
+    margin-bottom: 1rem;
+    }
 
-        .yummy-header-line .img-fluid {
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-        }
+    .header-paragraphs {
+    max-width: 700px; /* Adjust the width as per the design */
+    }
 
-        .paragraphs p {
-            font-family: 'Aleo';
-            font-size: 20px;
-            font-weight: 400;
-            line-height: 45px;
-        }
+    .header-paragraph {
+    font-size: 24px;
+    font-family: 'Aleo', serif;
+    font-weight: 400;
+    line-height: 45px;
+    margin-bottom: 2rem;
+    }
 
-        .cropped-image-container {
-            background-size: cover;
-        }
+    .btn-primary {
+        background-image: linear-gradient(120deg, #00b09b 40%, #55968f 60%);
+    border: none;
+    font-size: 24px;
+    padding: 0.5rem 1rem;
+    }
 
-        .cropped-image {
-            width: 1000px; height: 656px
-        }
+    .image-container {
+    position: relative;
+    flex-basis: 400px; /* Fixed basis for the image */
+    flex-shrink: 0; /* Prevent shrinking */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
 
-        .overlay-text {
-            /* Additional styles if needed */
-        }
-    </style>
+    .header-image {
+    height: auto;
+    max-width: 100%;
+    max-height: 100vh; /* Set max height to be viewport height */
+    object-fit: contain; /* Maintain aspect ratio */
+        object-position: center;
 
+    }
 
+    @media (max-width: 1200px) {
+    .event-dates {
+    right: 10%; /* Adjust position for medium screens */
+    }
+    }
 
+    @media (max-width: 991px) {
+    .header-section {
+    flex-direction: column;
+    }
 
-    <!-- Reservation Popup Trigger -->
+    .text-container, .image-container {
+    padding: 1rem;
+    width: 100%; /* Full width */
+    box-sizing: border-box; /* Adjust box model for padding */
+    align-items: center;
+    text-align: center;
+    }
 
+    .event-dates {
+    position: relative;
+    right: auto;
+    top: auto;
+    order: -1; /* Move it above the title */
+    }
+
+    .btn-primary {
+    position: relative;
+    margin: 1rem auto;
+    left: auto;
+    bottom: auto;
+    }
+
+    }
+</style>
 
     <!-- Reservation Popup Modal -->
     <div id="reservationPopup" class="reservation-popup">
         <div class="reservation-content">
-            <span id="closePopup" class="close">&times;</span>
-            <h2>Reserve Your Table</h2>
+              <span id="closePopup" class="close"> &times; </span>
+            <div class="form-header">
+                <h1>Reserve Your Table</h1>
+            </div>
             <!-- Reservation Form -->
-            <form id="reservationForm">
+            <form id="reservationForm" class="reservation-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="restaurant">Choose a restaurant:</label>
+                        <select id="restaurant" name="restaurant" required>
+                            <!-- Assuming you will populate this list server-side -->
+                            <?php foreach ($restaurantName as $restaurant): ?>
+                                <option value="<?= htmlspecialchars($restaurant['restaurantId']); ?>"><?= htmlspecialchars($restaurant['restaurantName']); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="numAdults">Number of Adults:</label>
+                        <input type="number" id="numAdults" name="numAdults" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="numChildren">Number of Children:</label>
+                        <input type="number" id="numChildren" name="numChildren" min="0" required>
+                    </div>
+                    <div class="form-group inlined">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="session">Time:</label>
 
-                <label for="restaurant">Choose a restaurant:</label>
-                <select id="restaurant" name="restaurant" required>
-                    <!-- Assuming you will populate this list server-side -->
-                    <?php foreach ($restaurantName as $restaurant): ?>
-                        <option value="<?= htmlspecialchars($restaurant['restaurantId']); ?>"><?= htmlspecialchars($restaurant['restaurantName']); ?></option>
-                    <?php endforeach; ?>
-                </select>
-
-                <label for="numAdults">Number of Adults:</label>
-                <input type="number" id="numAdults" name="numAdults" min="1" required>
-
-                <label for="numChildren">Number of Children:</label>
-                <input type="number" id="numChildren" name="numChildren" min="0" required>
-
-                <label for="date">Date:</label>
-                <input type="date" id="date" name="date" required>
-
-                <label for="session">Time:</label>
-                <select id="session" name="session" required>
-                    <option value="session1">17:00 - 19:00</option>
-                    <option value="session2">19:00 - 21:00</option>
-                    <option value="session3">21:00 - 23:00</option>
-                </select>
-
-                <label for="specialRequests">Special Requests:</label>
-                <textarea id="specialRequests" name="specialRequests"></textarea>
-
-                <input type="submit" value="Submit Reservation">
+                            <select id="session" name="session" required>
+                            <option value="session1">17:00 - 19:00</option>
+                            <option value="session2">19:00 - 21:00</option>
+                            <option value="session3">21:00 - 23:00</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="specialRequests">Special Requests:</label>
+                        <textarea id="specialRequests" name="specialRequests"></textarea>
+                    </div>
+                <button class="book" type="submit" value="Submit Reservation">Submit Reservation
+                </button>
             </form>
         </div>
     </div>
+    <style>
+        .reservation-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+       .reservation-content{
+           background: url('/img/yummyHeaderBackground.png') no-repeat center center / cover;
+           position: relative;
+           max-width: 642px;
+           width: 100%;
+           margin: auto;
+           padding: 40px;
+           overflow: hidden;
+           background-size: cover;
+           border-radius: 5px;
+           z-index: 20;
+       }
+       .reservation-content::before{
+           content: '';
+           position: absolute;
+           left: 0;
+           right: 0;
+           bottom: 0;
+           top: 0;
+           background: rgb(0,0,0,0.7);
+           z-index: -1;
+       }
+       .reservation-content .form-header{
+           text-align: center;
+           position: relative;
+           margin-bottom: 30px;
+       }
+       .reservation-content .form-header h1{
+           font-weight:700;
+           text-transform: capitalize;
+           font-size: 42px;
+           color: #fff;
+           margin: 0px;
+       }
+       .form-group{
+           margin: 20px 0;
+       }
+       .form-group.inlined{
+            width: 49%;
+           display: inline-block;
+           float: left;
+           margin-left: 1%;
+       }
+       label{
+           color: #fff;
+           display: block;
+           padding-bottom: 10px;
+           font-family: 'Nova Round', cursive;
+           font-size: 1.25em;
+
+       }
+       input,select,textarea{
+           width: 100%;
+           padding: 15px;
+           border-radius: 25px;
+           box-sizing: border-box;
+           border:2px solid #777;
+           font-size: 1.25em;
+           font-family: 'Nova Round', cursive;
+
+       }
+       .form-group.inlined input{
+           width: 95%;
+           display: inline-block;
+       }
+       textarea{
+           height: 200px;
+       }
+       hr{
+           border: 1px dashed #ccc;
+       }
+       .book{
+           width:200px;
+           height:50px;
+           color: #fff;
+           background-image: linear-gradient(120deg, #00b09b 40%, #55968f 60%);
+           border: none;
+           font-size: 1.25em;
+           font-family: 'Nova Round', cursive;
+           border-radius: 4px;
+           cursor: pointer;
+       }
+       .book:hover{
+           border: 2px solid black;
+       }
+       .close{
+           position: absolute;
+           right: 34px;
+           top: 32px;
+           background-image: linear-gradient(120deg, #00b09b 40%, #55968f 60%);
+
+       }
+       .close {
+           color: #aaa;
+           float: right;
+           font-size: 28px;
+           font-weight: bold;
+       }
+
+       .close:hover,
+       .close:focus {
+           color: black;
+           text-decoration: none;
+           cursor: pointer;
+       }
+
+    </style>
 
 <?php endif; ?>
+
 <script>
     document.getElementById('restaurant').addEventListener('change', function() {
         var restaurantId = this.value;
@@ -161,24 +343,18 @@
         var closePopup = document.getElementById('closePopup');
         var reservationForm = document.getElementById('reservationForm');
 
-        // Display the popup
         reserveButton.onclick = function() {
             reservationPopup.style.display = 'block';
         }
-
-        // Close the popup
         closePopup.onclick = function() {
             reservationPopup.style.display = 'none';
         }
-
         // Close the popup if user clicks outside of it
         window.onclick = function(event) {
             if (event.target == reservationPopup) {
                 reservationPopup.style.display = 'none';
             }
         }
-
-        // Handle form submission
         reservationForm.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the default form submission
 
@@ -191,8 +367,6 @@
                 session: document.getElementById('session').value.trim(),
                 specialRequests: document.getElementById('specialRequests').value.trim(),
             };*/
-
-            // Perform the fetch call to send the data to the server
             fetch('/CreateReservation/create', {
                 method: 'POST',
                 body: formData,
@@ -241,28 +415,7 @@
     }
 
     /* Modal Content/Box */
-    .reservation-content {
-        background-color: #fefefe;
-        margin: 15% auto; /* 15% from the top and centered */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%; /* Could be more or less, depending on screen size */
-    }
 
-    /* The Close Button */
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
 
 </style>
 

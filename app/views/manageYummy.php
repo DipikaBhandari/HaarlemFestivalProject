@@ -88,7 +88,6 @@ if (!isset($user) || !$user instanceof user) {
     .text-center {
         text-align: center;
     }
-
     .add-new {
         background-color: #fff;
         color: #333;
@@ -98,7 +97,6 @@ if (!isset($user) || !$user instanceof user) {
         align-items: center;
         cursor: pointer;
     }
-
     .add-new-content {
         text-decoration: none;
         color: #333;

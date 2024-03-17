@@ -73,26 +73,24 @@ class restaurantController
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
-
-var_dump($_POST);
         if (!isset($_POST['restaurant'], $_POST['numAdults'], $_POST['numChildren'], $_POST['date'], $_POST['session'])) {
             //http_response_code(400); // Bad Request
             echo json_encode(['success' => false, 'message' => 'Missing fields.']);
             return;
         }
-
         try{
             $sessionDetails = $this->restaurantService->getSessionById($_POST['session']);
             if (!$sessionDetails) {
                 throw new Exception('Session does not exist.');
             }
-
             $totalPeople = $_POST['numAdults'] + $_POST['numChildren'];
             $this->restaurantService->updateSessionSeats($_POST['session'], $totalPeople);
 
             $reservationData = [
                 'userId' => $_SESSION['id'],
                 'session' => $_POST['session'],
+                'startTime' => $sessionDetails['startTime'], // Saving the start time
+                'endTime' => $sessionDetails['endTime'],
                 'num_adults' => $_POST['numAdults'],
                 'num_children' => $_POST['numChildren'],
                 'date' => $_POST['date'],

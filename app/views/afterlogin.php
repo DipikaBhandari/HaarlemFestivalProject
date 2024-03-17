@@ -51,7 +51,7 @@
 
                     <li><a class="dropdown-item" href="/manageAccount/showAccount">Profile</a></li>
                     <li><a class="dropdown-item admin hide" href="/ManageUsers/manageuser">Manage Users</a></li>
-                    <li><a class="dropdown-item admin hide" href="#">Manage History Events</a></li>
+                    <li><a class="dropdown-item admin hide" href="/ManageHistory/manageHistory">Manage History Events</a></li>
                     <li><a class="dropdown-item admin hide" href="/ManageYummy/manageYummy">Manage Yummy Events</a></li>
                     <li><a class="dropdown-item admin hide" href="#">Manage Contents</a></li>
                     <li><hr class="dropdown-divider"></li>

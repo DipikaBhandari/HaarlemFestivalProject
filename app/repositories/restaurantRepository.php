@@ -197,14 +197,25 @@ class restaurantRepository extends Repository
         $stmt->execute();
     }
     public function createReservation($orderData) {
-        $stmt = $this->connection->prepare("INSERT INTO orderItem (userId, sessionId,date, numberOfTickets, price, specialRequest, restaurantSectionId) VALUES (:userId, :sessionId,:date, :numberOfTickets, :price, :specialRequest, :restaurantSectionId)");
+        $sessionDetails = $this->getSessionById($orderData['session']);
+        if (!$sessionDetails) {
+            throw new Exception('Session does not exist.');
+        }
+        $startTime = $sessionDetails['startTime'];
+        $endTime = $sessionDetails['endTime'];
+        $stuts= "unpaid";
+        $stmt = $this->connection->prepare("INSERT INTO orderItem (userId, sessionId, startTime,endTime,date, numberOfTickets, price, specialRequest, restaurantSectionId, status) VALUES (:userId, :sessionId,:startTime,:endTime, :date, :numberOfTickets, :price, :specialRequest, :restaurantSectionId, : status)");
         $stmt->bindValue(':userId', $orderData['userId']);
         $stmt->bindValue(':sessionId', $orderData['session']);
+        $stmt->bindValue(':startTime', $startTime);
+        $stmt->bindValue(':endTime',$endTime);
         $stmt->bindValue(':date', $orderData['date']);
         $stmt->bindValue(':numberOfTickets', $orderData['num_adults'] + $orderData['num_children']);
         $stmt->bindValue(':price', $orderData['price']);
         $stmt->bindValue(':specialRequest', $orderData['special_requests']);
         $stmt->bindValue(':restaurantSectionId', $orderData['restaurantSectionId']);
+        $stmt->bindValue(':status', $stuts);
+
         $stmt->execute();
         return $this->connection->lastInsertId();
     }
