@@ -1,6 +1,3 @@
-*{
-    font-family: 'Aleo', sans-serif;
-}
 .bg-body-primary {
     background-color: #006D77;
 }
@@ -12,6 +9,7 @@
 }
 
 .nav-link {
+    font-family: 'Aleo', sans-serif;
     font-size: 25px;
     min-width: 10%;
     color:white;
@@ -29,7 +27,7 @@
     font-size: 20px;
     background-color: #2E294E;
     padding: 0px 5px 0px 5px;
-
+    font-family: 'Aleo', sans-serif;
     float: right;
 }
 
