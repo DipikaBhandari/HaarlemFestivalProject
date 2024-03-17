@@ -2,11 +2,12 @@
     width: 100%;
     padding: 0;
     margin: 0;
+    font-family: 'Aleo', sans-serif;
 }
 h1{
     margin-top: 50px;
+    font-family: 'Aleo', sans-serif;
 }
-
 
 .container.subsection{
     display: none;
@@ -32,9 +33,11 @@ h1{
 .crossNavigation h1{
     padding-top: 5%;
     padding-left: 5%;
+    font-family: 'Aleo', sans-serif;
 }
 .crossNavigation h4{
     padding-left: 5%;
+    font-family: 'Aleo', sans-serif;
 }
 .carousel{
     width: 80%;

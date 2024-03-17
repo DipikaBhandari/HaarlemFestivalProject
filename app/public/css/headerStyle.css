@@ -1,9 +1,12 @@
+*{
+    font-family: 'Aleo', sans-serif;
+}
 .bg-body-primary {
     background-color: #006D77;
 }
 
 .navbar-brand {
-    font-family: "Lato", sans-serif;
+    font-family: "Aleo", serif;
     font-weight: 300;
     font-size: 40px;
 }
