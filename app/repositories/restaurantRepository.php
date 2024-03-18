@@ -42,7 +42,7 @@ class restaurantRepository extends Repository
     }
     public function getCardItemsBySection($sectionId)
     {
-        $stmt = $this->connection->prepare("SELECT * FROM Yummy WHERE sectionId = :sectionId");
+        $stmt = $this->connection->prepare("SELECT * FROM Yummyyy WHERE sectionId = :sectionId");
         $stmt->bindParam(':sectionId', $sectionId);
         $stmt->execute();
 
@@ -50,7 +50,7 @@ class restaurantRepository extends Repository
     }
     public function find($restaurantId)
     {
-        $stmt = $this->connection->prepare("SELECT * FROM Yummy WHERE restaurantId = :restaurantId");
+        $stmt = $this->connection->prepare("SELECT * FROM Yummyyy WHERE restaurantId = :restaurantId");
         $stmt->bindParam(':restaurantId', $restaurantId);
         $stmt->execute();
 

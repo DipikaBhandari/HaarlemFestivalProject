@@ -7,9 +7,9 @@
     <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="minor changes to frontend">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/ticketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ticketController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/restaurantRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/restaurantRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/repositories/ticketRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/ticketRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/afterlogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/afterlogin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/ticketService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/ticketService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/historyComponents/timetable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/historyComponents/timetable.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/wishlist/listview.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/wishlist/listview.php" afterDir="false" />
     </list>
@@ -72,7 +72,7 @@
     &quot;git-widget-placeholder&quot;: &quot;Dipika&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Inholland/Documents/GitHub/HaarlemFestivalProject/app/public/img&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Inholland/Documents/RecipeBookWebsite&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -157,6 +157,10 @@
       <workItem from="1709887751685" duration="18634000" />
       <workItem from="1710157741802" duration="24314000" />
       <workItem from="1710331604134" duration="14168000" />
+      <workItem from="1710448190202" duration="5775000" />
+      <workItem from="1710493220113" duration="21384000" />
+      <workItem from="1710532237326" duration="2705000" />
+      <workItem from="1710761693590" duration="10902000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes to frontend">
       <option name="closed" value="true" />
