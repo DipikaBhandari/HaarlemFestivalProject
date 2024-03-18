@@ -1,6 +1,7 @@
 <?php
 $role = $_SESSION["role"];
 $isAdmin = $role === "Administrator";
+$isEmployee = $role === "Employee";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +36,9 @@ $isAdmin = $role === "Administrator";
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li><a class="dropdown-item" href="/manageaccount/showAccount">Profile</a></li>
+                    <?php if($isEmployee): ?>
+                    <li><a class="dropdown-item" href="/order/scanTicket">Scan tickets</a></li>
+                    <?php endif; ?>
                     <?php if ($isAdmin): ?>
                         <li><a class="dropdown-item" href="#">Manage Users</a></li>
                         <li><a class="dropdown-item" href="#">Manage History Events</a></li>
