@@ -394,7 +394,6 @@
                 .finally(() => {
                     // You might want to hide spinner here if you have one
                 });
-
         })
     });
 </script>
@@ -415,8 +414,6 @@
     }
 
     /* Modal Content/Box */
-
-
 </style>
 
 

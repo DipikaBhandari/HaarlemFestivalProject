@@ -5,20 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="fixed restaurant management">
-      <change afterPath="$PROJECT_DIR$/app/controllers/ManageHistoryController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/yummyHomeHeaderrr.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/manageHistory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/chinese.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/dutch.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/english.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/languages/chinese.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/languages/dutch.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/languages/english.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/restaurantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/restaurantController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/img/yummyHomeHeader.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/CreateReservationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/CreateReservationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ManageHistoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ManageHistoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/historyRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/historyRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/repositories/restaurantRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/restaurantRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/afterlogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/afterlogin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manageYummy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageYummy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/yummyComponents/card.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/yummyComponents/card.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/historyService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/historyService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/manageHistory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageHistory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/yummyComponents/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/yummyComponents/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/yummyComponents/introduction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/yummyComponents/introduction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/yummyComponents/marketing.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/yummyComponents/marketing.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,7 @@
     "git-widget-placeholder": "Ador",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/adord/Documents/GitHub/HaarlemFestivalProject/app/public/img",
+    "last_opened_file_path": "C:/Users/adord/Documents/GitHub/HaarlemFestivalProject/app/public/img/languages",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -88,6 +88,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\adord\Documents\GitHub\HaarlemFestivalProject\app\public\img\languages" />
       <recent name="C:\Users\adord\Documents\GitHub\HaarlemFestivalProject\app\public\img" />
       <recent name="C:\Users\Inholland\Documents\GitHub\HaarlemFestivalProject\app\public\img" />
     </key>
@@ -159,7 +160,7 @@
       <workItem from="1709554373345" duration="20926000" />
       <workItem from="1709766508979" duration="4293000" />
       <workItem from="1709835843630" duration="97838000" />
-      <workItem from="1710293903121" duration="99875000" />
+      <workItem from="1710293903121" duration="126390000" />
     </task>
     <task id="LOCAL-00001" summary="small fix on manage account">
       <option name="closed" value="true" />
@@ -201,7 +202,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710672220897</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fixed restaurant management">
+      <option name="closed" value="true" />
+      <created>1710717075897</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1710717075897</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

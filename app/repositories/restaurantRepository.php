@@ -204,7 +204,7 @@ class restaurantRepository extends Repository
         $startTime = $sessionDetails['startTime'];
         $endTime = $sessionDetails['endTime'];
         $stuts= "unpaid";
-        $stmt = $this->connection->prepare("INSERT INTO orderItem (userId, sessionId, startTime,endTime,date, numberOfTickets, price, specialRequest, restaurantSectionId, status) VALUES (:userId, :sessionId,:startTime,:endTime, :date, :numberOfTickets, :price, :specialRequest, :restaurantSectionId, : status)");
+        $stmt = $this->connection->prepare("INSERT INTO orderItem (userId, sessionId, startTime,endTime,date, numberOfTickets, price, specialRequest, restaurantSectionId, status) VALUES (:userId, :sessionId,:startTime,:endTime, :date, :numberOfTickets, :price, :specialRequest, :restaurantSectionId, :status)");
         $stmt->bindValue(':userId', $orderData['userId']);
         $stmt->bindValue(':sessionId', $orderData['session']);
         $stmt->bindValue(':startTime', $startTime);
@@ -225,4 +225,5 @@ class restaurantRepository extends Repository
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 }
