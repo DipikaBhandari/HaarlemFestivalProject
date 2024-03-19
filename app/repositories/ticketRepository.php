@@ -62,4 +62,26 @@ class ticketRepository extends Repository
             return null;
         }
     }
+
+    public function getOrderIdByUserId($userId)
+    {
+        try {
+            $stmt = $this->connection->prepare("SELECT orderItemId FROM [orderItem] WHERE userId = :userId and status = 'unpaid';");
+            $stmt->bindValue(':userId', $userId);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+//            return $result['orderId'];
+            if ($result !== false) {
+                return $result['orderItemId'];
+            } else {
+                return null;
+            }
+
+        } catch (PDOException $e) {
+            // Handle the exception here
+            // For example, you could log the error message and return null
+            error_log("Error fetching order for user ID $userId: " . $e->getMessage());
+            return null;
+        }
+    }
 }

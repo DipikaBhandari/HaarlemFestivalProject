@@ -21,10 +21,15 @@ class ticketController
             // Fetch orders for the logged-in user
             $orders = $this->ticketService->getOrderByUserId($_SESSION['id']);
 
-            // Debugging statement to inspect the contents of $orders array
-           var_dump($orders);
+            // Fetch orderItemId if it's not already fetched
 
-            // Transform orders into events compatible with FullCalendar
+            if( !empty($_SESSION['id'])) {
+                $orderItemId = $this->ticketService->getOrderIdByUserId($_SESSION['id']);
+            }
+
+            // Debugging statement to inspect the contents of $orders array
+            var_dump($orders);
+
             // Transform orders into events compatible with FullCalendar
             $events = [];
             if (!empty($orders)) {
@@ -46,12 +51,25 @@ class ticketController
                 echo "No order items found.";
             }
 
-            // Pass events to the view
+            // Generate the sharing URL
+            $sharingUrl = $this->getSharingUrl($orderItemId);
+
+            // Pass events and sharing URL to the view
             require __DIR__ . '/../views/wishlist/listview.php';
         } else {
             echo "User is not logged in or session data is not set.";
         }
     }
+
+    private function getSharingUrl($orderItemId)
+    {
+        if ($orderItemId !== null) {
+            return "http://localhost/ticket?orderItemId=$orderItemId&readOnly=true";
+                } else {
+            return null;
+        }
+    }
+
 
     public function addOrder()
     {
@@ -121,4 +139,6 @@ class ticketController
 
         require __DIR__ . '/../views/wishlist/listview.php';
     }
+
+
 }

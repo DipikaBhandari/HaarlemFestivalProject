@@ -28,4 +28,9 @@ class ticketService
     {
          $this->ticketRepository->deleteOrderbyOrderId($orderItemId);
     }
+
+    public function getOrderIdByUserId($userId)
+    {
+        return $this->ticketRepository->getOrderIdByUserId($userId);
+    }
 }
