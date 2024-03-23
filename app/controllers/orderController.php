@@ -7,17 +7,27 @@ use App\service\qrCodeService;
 class orderController
 {
     private $orderService;
-    private $qrCodeService;
-
+    private $emailService;
+    public function index(){
+        $this->sendTicket(63);
+    }
     public function __construct()
     {
         $this->orderService = new \App\Service\orderService();
-        $this->qrCodeService = new \App\Service\qrCodeService();
+        $this->emailService = new \App\service\emailService();
     }
 
     public function createOrder()
     {
-        //create qrhash
+        //after order is paid
+        //get all details
+        //verify and sanitize
+        //create Order with orderId, dateOfOrder, totalPrice, vat, customerId
+        $orderId = $this->orderService->insertOrder();
+        //update orderItems status, orderId and add qrHash
+        //foreach orderItem that belongs to that order:
+        $this->orderService->finalizeOrder($orderId, $orderItem);
+
     }
 
     public function scanTicket(){
@@ -42,5 +52,10 @@ class orderController
         } else{
             echo json_encode('This is not a valid ticket.');
         }
+    }
+
+    public function sendTicket($orderItemId){
+        $ticketData = $this->orderService->createTicket($orderItemId);
+        $this->emailService->sendTicketEmail($ticketData);
     }
 }
