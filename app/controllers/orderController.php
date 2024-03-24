@@ -54,7 +54,7 @@ class orderController
                     if ($success){
                         $response = array(
                             'success' => true,
-                            'message' => 'Ticket is valid.'
+                            'message' => 'Ticket is valid for ' . $ticketExists['numberOfTickets'] . ' people.'
                         );
                         echo json_encode($response);
                     } else{
