@@ -30,7 +30,8 @@
             <a id="personalProgramLink" class="nav-link ps-5" href="/personalProgram">
                 <img src="/img/heartbutton.svg" alt="personal program button" width="30" height="30" class="d-inline-block">
             </a>
-            <a href="/order">ticket email</a>
+            <!--remove this when all code is combined-->
+            <a href="/order">invoice email</a>
         </div>
     </nav>
 </header>

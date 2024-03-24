@@ -40,8 +40,22 @@ class orderService
         $ticketData = $this->orderRepository->getTicketById($orderItemId);
         //generate pdf with ticketData
         $ticketData['pdfPath'] =  $this->pdfService->createTicket($ticketData);
-        var_dump($ticketData['pdfPath']);
         return $ticketData;
     }
 
+    public function createInvoice($orderId)
+    {
+        $invoiceData = $this->orderRepository->getInvoiceData($orderId);
+        //extract orderDetails and orderItems
+        $order = $invoiceData;
+        $orderItems = $invoiceData['orderItems'];
+
+        // Generate PDF using the order details and order items
+        $pdfPath = $this->pdfService->createInvoice($order, $orderItems);
+
+        // Add the PDF path to the $order array
+        $order['pdfPath'] = $pdfPath;
+
+        return $order;
+    }
 }

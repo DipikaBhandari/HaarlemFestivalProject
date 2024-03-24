@@ -63,4 +63,35 @@ class emailService
             throw new Exception($e);
         }
     }
+
+    public function sendInvoiceEmail($invoiceData)
+    {
+        $emailAddress = $invoiceData['email'];
+        $pdfPath = $invoiceData['pdfPath'];
+
+        $mail = new PHPMailer(true);
+
+        try{
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'haarlem.festival2024@gmail.com';
+            $mail->Password = 'olineyaoabmzziuj';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            $mail->setFrom('haarlem.festival2024@gmail.com', 'Haarlem Festival');
+            $mail->addAddress($emailAddress);
+            $mail->isHTML(true);
+            $mail->Subject = 'Your Haarlem Festival Invoice';
+            $mail->Body = 'Dear ' . $invoiceData['firstName'] . ', <br><br>Thank you for buying tickets for the Haarlem Festival. In this email you can find the invoice for you order.<br> <br><br>We hope you enjoy the event.<br><br>Kind regards,<br>Your Festival Team';
+
+            $mail->addAttachment($pdfPath);
+
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            throw new Exception($e);
+        }
+    }
 }

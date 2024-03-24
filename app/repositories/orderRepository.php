@@ -48,4 +48,41 @@ class orderRepository extends Repository
 
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function getInvoiceData($orderId)
+    {
+        $stmt = $this->connection->prepare("SELECT
+                o.invoiceNr,
+                o.dateOfOrder,
+                o.totalPrice,
+                o.vatAmount,
+                u.firstName,
+                u.lastName,
+                u.phonenumber,
+                u.address,
+                u.email
+            FROM
+                [Order] o
+            JOIN
+                [User] u ON o.customerId = u.id
+            WHERE
+                o.orderId = :orderId");
+        $stmt->bindParam(':orderId', $orderId);
+        $stmt->execute();
+
+        $invoiceData = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $orderItems = $this->getOrderItems($orderId);
+        $invoiceData['orderItems'] = $orderItems;
+
+        return $invoiceData;
+    }
+
+    private function getOrderItems($orderId)
+    {
+        $stmt = $this->connection->prepare('SELECT eventName, numberOfTickets, price FROM orderItem WHERE orderId = :orderId');
+        $stmt->bindParam(':orderId', $orderId);
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

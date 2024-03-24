@@ -108,7 +108,6 @@ if(isset($_SESSION['username'])) {
 
     #alert-message {
         position: relative;
-
         left: 50%;
         transform: translateX(-50%);
         padding: 10px 20px;

@@ -9,7 +9,8 @@ class orderController
     private $orderService;
     private $emailService;
     public function index(){
-        $this->sendTicket(63);
+        //remove when code combined
+        $this->sendInvoice(1);
     }
     public function __construct()
     {
@@ -22,12 +23,17 @@ class orderController
         //after order is paid
         //get all details
         //verify and sanitize
-        //create Order with orderId, dateOfOrder, totalPrice, vat, customerId
+        //create Order with orderId, dateOfOrder, totalPrice, vat, customerId, invoiceNr
+        //invoiceNr should be something like: 'INV-date-orderId' so for example 'INV-2024-03-25-1'
         $orderId = $this->orderService->insertOrder();
-        //update orderItems status, orderId and add qrHash
         //foreach orderItem that belongs to that order:
-        $this->orderService->finalizeOrder($orderId, $orderItem);
+            //update orderItems status, orderId and add qrHash
+            $this->orderService->finalizeOrder($orderId, $orderItem);
+            //send tickets
+            $this->sendTicket($orderItem);
 
+        //send invoice
+        $this->sendInvoice($orderId);
     }
 
     public function scanTicket(){
@@ -77,5 +83,10 @@ class orderController
     public function sendTicket($orderItemId){
         $ticketData = $this->orderService->createTicket($orderItemId);
         $this->emailService->sendTicketEmail($ticketData);
+    }
+
+    public function sendInvoice($orderId){
+        $invoiceData = $this->orderService->createInvoice($orderId);
+        $this->emailService->sendInvoiceEmail($invoiceData);
     }
 }
