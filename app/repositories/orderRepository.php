@@ -42,7 +42,7 @@ class orderRepository extends Repository
 
     public function getTicketById($orderItemId)
     {
-        $stmt = $this->connection->prepare('SELECT oi.eventName, oi.date, oi.startTime, oi.endTime, oi.qrHash, u.email, u.firstName, u.lastName FROM orderItem oi JOIN [User] u ON oi.userId = u.id WHERE oi.orderItemId = :orderItemId');
+        $stmt = $this->connection->prepare('SELECT oi.eventName, oi.date, oi.startTime, oi.endTime, oi.numberOfTickets, oi.qrHash, u.email, u.firstName, u.lastName FROM orderItem oi JOIN [User] u ON oi.userId = u.id WHERE oi.orderItemId = :orderItemId');
         $stmt->bindParam(':orderItemId', $orderItemId);
         $stmt->execute();
 

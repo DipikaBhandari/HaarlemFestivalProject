@@ -19,20 +19,30 @@ class pdfService
 
             $pdf->SetFont('Arial', 'B', 16);
             $pdf->Cell(0, 10, 'Ticket Information', 0, 1, 'C');
+            $pdf->Ln(15);
+            $textY = $pdf->GetY();
+            $pdf->SetFillColor(0, 109, 119);
+            $pdf->Rect(5, ($textY-5), 140, 60, 'F');
+            $pdf->SetFont('Courier', 'BI', 32);
+            $pdf->SetTextColor(255, 255, 255);
+
+            //name of event
+            $pdf->Cell(0, 10, $ticket['eventName'], 0, 1, 'L');
+            $pdf->Ln(5);
+            $pdf->SetFont('Arial', '', 12);
             //name of customer
             $pdf->Cell(0, 10, 'Customer Name: ' . $ticket['firstName'] . " " . $ticket['lastName'], 0, 1, 'L');
-            //name of event
-            $pdf->Cell(0, 10, 'Event Name: ' . $ticket['eventName'], 0, 1, 'L');
             //date and time of event
-            $pdf->Cell(0, 10, 'Date: ' . $ticket['date'] . $ticket['startTime'], 0, 1, 'L');
+            $pdf->Cell(0, 10, 'Date and time: ' . date('d-m-Y', strtotime($ticket['date'])) . ' ' . date('H:i', strtotime($ticket['startTime'])), 0, 1, 'L');
+            $pdf->Cell(0, 10, 'Valid for: ' . $ticket['numberOfTickets'] . ' People', 0, 1, 'L');
             //QR code
             $qrCodeBuilder = Builder::create()
                 ->writer(new PngWriter())
                 ->data($ticket['qrHash'])
                 ->encoding(new Encoding('UTF-8'))
                 ->errorCorrectionLevel(ErrorCorrectionLevel::High)
-                ->size(100) // Adjust size as needed
-                ->margin(5) // Adjust margin as needed
+                ->size(100)
+                ->margin(0)
                 ->roundBlockSizeMode(RoundBlockSizeMode::Margin);
 
             // Generate QR code image in PNG format
@@ -42,8 +52,16 @@ class pdfService
             $qrCodeImagePath = '../qrCodes/' . uniqid() . '.png';
             file_put_contents($qrCodeImagePath, $qrCodeImage->getString());
 
+            $qrCodeX = $pdf->GetPageWidth() - 60; // Right margin
+
             // Embed the QR code image into the PDF
-            $pdf->Image($qrCodeImagePath, null, null, 50);
+            $pdf->Image($qrCodeImagePath, $qrCodeX, $textY, 50);
+
+            $pdf->SetDrawColor(0, 109, 119);
+            $pdf->SetLineWidth(0.5);
+            $pdf->Rect(5, ($textY-5), 200, 60);
+
+
 
             $fileName = 'ticket_' . uniqid() . '.pdf';
             $pdfPath = '../tickets/' . $fileName;

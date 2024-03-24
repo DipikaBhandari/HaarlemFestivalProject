@@ -10,7 +10,7 @@ class orderController
     private $emailService;
     public function index(){
         //remove when code combined
-        $this->sendInvoice(1);
+        $this->sendTicket(63);
     }
     public function __construct()
     {
