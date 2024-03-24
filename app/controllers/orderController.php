@@ -34,23 +34,43 @@ class orderController
         require __DIR__ . '/../views/ScanTicket.php';
     }
     public function verifyTicket() {
+        // Get the raw POST data
+        $postData = file_get_contents('php://input');
+        // Decode the JSON data
+        $postDataArray = json_decode($postData, true);
 
-        if (isset($_POST['code.data'])){
-            $qrHash = $_POST['code.data'];
+        if (isset($postDataArray['code'])){
+            $qrHash = $postDataArray['code'];
             $ticketExists = $this->orderService->getTicketWithQrCode($qrHash);
 
             if ($ticketExists['status'] == 'paid'){
                     $success = $this->orderService->updateTicketStatus($qrHash, 'scanned');
                     if ($success){
-                        echo json_encode('Ticket is valid.');
+                        $response = array(
+                            'success' => true,
+                            'message' => 'Ticket is valid.'
+                        );
+                        echo json_encode($response);
                     } else{
-                        echo json_encode('There was a problem with updating the ticket status. Please try again.');
+                        $response = array(
+                            'success' => false,
+                            'message' => 'There was a problem with updating the ticket status. Please try again.'
+                        );
+                        echo json_encode($response);
                     }
             }else {
-                echo json_encode('This ticket has already been used.');
+                $response = array(
+                    'success' => false,
+                    'message' => 'This ticket has already been used.'
+                );
+                echo json_encode($response);
             }
         } else{
-            echo json_encode('This is not a valid ticket.');
+            $response = array(
+                'success' => false,
+                'message' => 'This is not a valid ticket.'
+            );
+            echo json_encode($response);
         }
     }
 

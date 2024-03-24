@@ -10,10 +10,10 @@ if(isset($_SESSION['username'])) {
     <head>
         <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.min.js"></script>
     </head>
-    <div class="conainer text-center m-5">
+    <div class="container text-center m-5">
         <h1>Scan ticket</h1>
         <video id="camera-feed" width="320" height="240" autoplay></video>
-        <p id="result"></p>
+        <div id="alert-message" class="hidden"></div>
     </div>
 
     <?php include __DIR__ . '/footer.php'; ?>
@@ -42,27 +42,57 @@ if(isset($_SESSION['username'])) {
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
         if (code) {
-            result.innerText = 'QR Code detected: ' + code.data;
+            console.log('QR Code detected:', code.data); // Log the QR code data
+            console.log('Request body:', JSON.stringify({ code: code.data }));
+            video.srcObject.getTracks().forEach(track => track.stop());
             fetch('/order/verifyTicket',{
                 method: 'POST',
-                body: code.data
+                headers: {
+                    'Content-Type': 'application/json' // Ensure JSON content type
+                },
+                body: JSON.stringify({ code: code.data })
             })
-                .then(response => {
-                    if(!response.ok){
-                        document.getElementById('result').innerHTML = '<div class="alert alert-danger mt-3">Failed to verify QR code. Please try again.</div>';
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
-                document.getElementById('result').innerHTML = '<div class="alert alert-success mt-3">' + data + '</div>';
-            })
-            .catch(error => {
-                console.error(error);
-            })
+                    showAlert(data.message, data.success);
+                    setTimeout(() => {
+                        requestAnimationFrame(() => detectQRCode(video));
+                    }, 3000);
+                })
+                .catch(error => {
+                    showAlert('Failed to verify QR code. Please try again.', false);
+                });
         } else{
-            result.innerText = 'No QR Code detected';
+            requestAnimationFrame(() => detectQRCode(video));
         }
-        requestAnimationFrame(() => detectQRCode(video));
+    }
+    function showAlert(message, success) {
+            const alertMessage = document.getElementById('alert-message');
+            alertMessage.innerText = message;
+
+            if (success) {
+                alertMessage.classList.remove('error');
+                alertMessage.classList.add('success');
+            } else {
+                alertMessage.classList.remove('success');
+                alertMessage.classList.add('error');
+            }
+
+            alertMessage.classList.remove('hidden');
+            setTimeout(() => {
+                alertMessage.classList.add('hidden');
+                // Restart the video
+                const videoElement = document.getElementById('camera-feed');
+                navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }})
+                    .then(stream => {
+                        videoElement.srcObject = stream;
+                        videoElement.onloadedmetadata = () => {
+                            videoElement.play();
+                            detectQRCode(videoElement);
+                        };
+                    })
+                    .catch(error => console.error('Error accessing camera:', error));
+            }, 3000);
     }
 </script>
 
@@ -71,5 +101,26 @@ if(isset($_SESSION['username'])) {
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+    }
+    .hidden {
+        display: none;
+    }
+
+    #alert-message {
+        position: relative;
+
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        border-radius: 5px;
+        z-index: 999;
+    }
+
+    .success {
+        background-color: #4CAF50;
+    }
+
+    .error {
+        background-color: #f44336;
     }
 </style>
