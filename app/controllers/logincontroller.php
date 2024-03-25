@@ -93,6 +93,7 @@ class logincontroller
                 $_SESSION['role'] = $loggedUser->getRole();
                 $_SESSION['id'] = $loggedUser->getUserId();
 
+
                 // Redirect to the festival index page
                 header("Location: /home");
                                // require __DIR__ . '/../views/home/index.php';
@@ -150,7 +151,11 @@ class logincontroller
                     "picture" => $picture,
                     "role" => $role
                 );
-
+                if (empty($_SESSION['orderId'])) {
+                    $orderId = null;
+                } else {
+                    $orderId = $_SESSION['orderId'];
+                }
                 $registrationSuccess = $this->userService->registered($newUser);
 
                 if ($registrationSuccess) {

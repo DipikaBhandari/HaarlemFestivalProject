@@ -16,13 +16,13 @@ class ticketService
     {
         return $this->ticketRepository->getOrderByUserId($userId);
     }
-    public function createOrder($newOrderItem)
+    public function createOrderItem($newOrderItem, $orderId)
     {
-         return $this->ticketRepository->createOrder($newOrderItem);
+         return $this->ticketRepository->createOrderItem($newOrderItem, $orderId);
     }
-    public function getOrderByOrderId($orderId): void
+    public function getOrderIdByCustomerId($userId)
     {
-        $this->ticketRepository->getOrderByOrderId($orderId);
+        return $this->ticketRepository->getOrderIdByCustomerId($userId);
     }
     public function deleteOrderbyOrderId($orderItemId): void
     {
@@ -31,6 +31,6 @@ class ticketService
 
     public function getOrderIdByUserId($userId)
     {
-        return $this->ticketRepository->getOrderIdByUserId($userId);
+        return $this->ticketRepository->getOrderItemIdByUserId($userId);
     }
 }

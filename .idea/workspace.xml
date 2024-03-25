@@ -5,18 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="minor changes to frontend">
-      <change afterPath="$PROJECT_DIR$/app/controllers/cartController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/cart/shoppingCart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/HaarlemFestivalProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HaarlemFestivalProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/model/order.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/model/orderItem.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PHP.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/PHP.Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/logincontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/logincontroller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/ticketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ticketController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/javascript/personalprogram.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/javascript/personalprogram.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/repositories/ticketRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/ticketRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/userRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/userRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/service/ticketService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/ticketService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/userService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/userService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/afterlogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/afterlogin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/wishlist/listview.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/wishlist/listview.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +100,7 @@
       <recent name="C:\Users\Inholland\Documents\GitHub\HaarlemFestivalProject\app\public\img" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+  <component name="RunManager" selected="Docker.PHP.Dockerfile">
     <configuration name="historyController.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/app/controllers/historyController.php">
       <method v="2" />
     </configuration>
@@ -134,9 +134,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.PHP.Dockerfile" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="PHP Script.historyController.php" />
-        <item itemvalue="Docker.PHP.Dockerfile" />
       </list>
     </recent_temporary>
   </component>
@@ -166,7 +166,11 @@
       <workItem from="1710493220113" duration="21384000" />
       <workItem from="1710532237326" duration="2705000" />
       <workItem from="1710761693590" duration="14769000" />
-      <workItem from="1710847942186" duration="16959000" />
+      <workItem from="1710847942186" duration="17181000" />
+      <workItem from="1710941690740" duration="1439000" />
+      <workItem from="1711025190943" duration="7182000" />
+      <workItem from="1711040797657" duration="105000" />
+      <workItem from="1711191176483" duration="13475000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes to frontend">
       <option name="closed" value="true" />

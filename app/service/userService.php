@@ -56,6 +56,11 @@ class userService
     {
         return $this->userRepository->updateUser($user);
     }
+
+    public function createNewOrder($userId)
+    {
+        return $this->userRepository->createNewOrder($userId);
+    }
     public function verifyPassword($email, $currentPassword): bool
     {
         // Fetch the user's hashed password from the database using their email
@@ -85,6 +90,8 @@ class userService
      return  $this->userRepository->registerUser($newUser);
 
     }
+
+
     public function userImage($image)
     {
         $ext = pathinfo($image['name'], PATHINFO_EXTENSION);

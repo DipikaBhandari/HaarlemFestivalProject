@@ -6,9 +6,12 @@ class ticketController
 {
     private $ticketService;
 
+    private $userService;
+
     public function __construct()
     {
         $this->ticketService = new \App\Service\ticketService();
+        $this->userService = new \App\Service\userService();
     }
 
     public function index()
@@ -20,8 +23,6 @@ class ticketController
 
             // Fetch orders for the logged-in user
             $orders = $this->ticketService->getOrderByUserId($_SESSION['id']);
-
-            // Fetch orderItemId if it's not already fetched
 
             if( !empty($_SESSION['id'])) {
                 $orderItemId = $this->ticketService->getOrderIdByUserId($_SESSION['id']);
@@ -78,67 +79,76 @@ class ticketController
         // Check if it's a POST request and required fields are set
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id'])) {
 
-            if (isset($_POST["tourFamilyTicket"])) {
-//                $tourType = "family";
-                $numberOfTickets = 4;
-            } else {
-//                $tourType = "single";
-                $numberOfTickets = $_POST["tourSingleTicket"];
-            }
+            $regularTicket = $_POST["tourSingleTicket"] ?? 0;
+            $familyTicket = isset($_POST["tourFamilyTicket"]) ? 4 : 0;
 
-            // Retrieve ticket information from the AJAX request
-            $event= "History Tour Event";
+            $price = $regularTicket * 17.50 + $familyTicket * 15.00;
+
+            $numberOfTickets = $regularTicket + $familyTicket;
+
+            $event = "History Tour Event";
             $userId = $_SESSION['id'];
-            $date = htmlspecialchars($_POST['date']);
-            $startTime = htmlspecialchars($_POST['startTime']);
-            $endTime = htmlspecialchars($_POST['endTime']);
-          //  $numberOfTickets = htmlspecialchars($_POST['numberOfTickets']);
 
-            // Check if required fields are not empty
-            if (!empty($date) && !empty($startTime) && !empty($endTime) && !empty($numberOfTickets)) {
-                $newOrderItem = array(
-                    'userId' =>  $userId, // Include the userId in the order data
-                    'date' => $date,
-                    'startTime' => $startTime,
-                    'endTime' => $endTime,
-                    'eventName' => $event,
-                    'numberOfTickets' => $numberOfTickets
-                );
+            $orderIdArray = $this->ticketService->getOrderIdByCustomerId($userId);
+            if ($orderIdArray) {
+                $orderId = intval($orderIdArray[0]['orderId']); // Assuming the query returns only one orderId
+                $date = htmlspecialchars($_POST['date']);
+                $startTime = htmlspecialchars($_POST['startTime']);
+                $endTime = htmlspecialchars($_POST['endTime']);
 
-                // Attempt to create the order
-                $order = $this->ticketService->createOrder($newOrderItem);
+                // Check if required fields are not empty
+                if (!empty($date) && !empty($startTime) && !empty($endTime) && !empty($numberOfTickets)) {
+                    // Prepare ticket data
+                    $ticketData = array(
+                        'regularTickets' => $regularTicket,
+                        'familyTickets' => $familyTicket
+                    );
 
-                // Check if order creation was successful
-                if ($order) {
-                    // Redirect to home page after successful order creation
-                    echo json_encode(['success' => true, 'message' => 'Order created successfully']);
+                    // Encode ticket data as JSON
+                    $ticketDataJson = json_encode($ticketData);
+
+                    $newOrderItem = array(
+                        'userId' => $userId,
+                        'orderId' => $orderId,
+                        'date' => $date,
+                        'startTime' => $startTime,
+                        'endTime' => $endTime,
+                        'eventName' => $event,
+                        'numberOfTickets' => $numberOfTickets,
+                        'price' => $price,
+                        'ticketData' => $ticketDataJson // Store ticket data as JSON string
+                    );
+
+                    // Attempt to create the order
+                    $order = $this->ticketService->createOrderItem($newOrderItem, $orderId);
+
+                    // Check if order creation was successful
+                    if ($order) {
+                        // Return JSON response
+                        echo json_encode(['success' => true, 'message' => 'Order created successfully', 'order' => $newOrderItem]);
+                    } else {
+                        // Return error response if order creation failed
+                        echo json_encode(['error' => 'Failed to create order. Please try again.']);
+                    }
                 } else {
-                    // Return error response if order creation failed
-                    echo json_encode(['error' => 'Failed to create order. Please try again.']);
+                    // Return error response if required fields are empty
+                    echo json_encode(['error' => 'Missing or empty required fields']);
                 }
             } else {
-                // Return error response if required fields are empty
-                echo json_encode(['error' => 'Missing or empty required fields']);
+                // Return error response if orderIdArray is empty
+                echo json_encode(['error' => 'No orderId found']);
             }
-        } else {
-            // Return error response if userId is not set in session
-            echo json_encode(['error' => 'User not authenticated']);
         }
         exit;
     }
 
-
     public function deleteOrder(): void
     {
         $data = json_decode(file_get_contents('php://input'), true);
-//        var_dump($data);
-//        die();
 
         // Delete the order from the database
         $this->ticketService->deleteOrderbyOrderId($data['orderItemId']);
 
         require __DIR__ . '/../views/wishlist/listview.php';
     }
-
-
 }

@@ -25,19 +25,33 @@ class ticketRepository extends Repository
         }
     }
 
-    public function createOrder($newOrderItem)
+    public function createOrderItem($newOrderItem, $orderId)
     {
-            $stmt =  $this->connection->prepare("INSERT INTO [orderItem] (userId, eventName, date, startTime, endTime, numberOfTickets, status) 
-                VALUES (:userId, :eventName, :date, :startTime,:endTime, :numberOfTickets, 'unpaid');");
+        try
+        {
+        $stmt = $this->connection->prepare("INSERT INTO [orderItem] (orderId, userId, eventName, date, startTime, endTime, numberOfTickets, price, status) 
+            VALUES (:orderId, :userId, :eventName, :date, :startTime, :endTime, :numberOfTickets, :price, 'unpaid')");
 
-            $stmt->bindValue(':userId', $newOrderItem["userId"]);
-            $stmt->bindValue(':eventName', $newOrderItem["eventName"]);
-            $stmt->bindValue(':date', $newOrderItem["date"]);
-            $stmt->bindValue(':startTime', $newOrderItem["startTime"]);
-            $stmt->bindValue(':endTime', $newOrderItem['endTime']);
-            $stmt->bindValue(':numberOfTickets', $newOrderItem['numberOfTickets']);
-            $stmt->execute();
-          return  $this->connection->lastInsertId();
+        // Bind parameters
+//        $stmt->bindValue(':orderId', $newOrderItem["orderId"]);
+        $stmt->bindParam(':orderId', $orderId);
+        $stmt->bindValue(':userId', $newOrderItem["userId"]);
+        $stmt->bindValue(':eventName', $newOrderItem["eventName"]);
+        $stmt->bindValue(':date', $newOrderItem["date"]);
+        $stmt->bindValue(':startTime', $newOrderItem["startTime"]);
+        $stmt->bindValue(':endTime', $newOrderItem['endTime']);
+        $stmt->bindValue(':numberOfTickets', $newOrderItem['numberOfTickets']);
+        $stmt->bindValue(':price', $newOrderItem['price']);
+
+        $stmt->execute();
+
+        // Return the ID of the newly created order item if needed
+        return $this->connection->lastInsertId();
+    } catch (PDOException $e) {
+        // Handle database errors
+        echo $e->getMessage();
+        return false;
+    }
     }
 
     public function deleteOrderbyOrderId($orderItemId)
@@ -47,11 +61,11 @@ class ticketRepository extends Repository
         $stmt->execute();
     }
 
-    public function getOrderByOrderId($orderId): bool|array|null
+    public function getOrderIdByCustomerId($userId): bool|array|null
     {
         try {
-            $stmt = $this->connection->prepare("SELECT * FROM [order] WHERE orderId = :orderId;");
-            $stmt->bindValue(':orderId', $orderId);
+            $stmt = $this->connection->prepare("SELECT orderId FROM [Order] WHERE customerId = :customerId;");
+            $stmt->bindValue(':customerId', $userId);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return the fetched orders
 
@@ -63,7 +77,7 @@ class ticketRepository extends Repository
         }
     }
 
-    public function getOrderIdByUserId($userId)
+    public function getOrderItemIdByUserId($userId)
     {
         try {
             $stmt = $this->connection->prepare("SELECT orderItemId FROM [orderItem] WHERE userId = :userId and status = 'unpaid';");
