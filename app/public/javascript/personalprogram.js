@@ -29,6 +29,8 @@ function generatePDF() {
             // Save the PDF
             doc.save('HaarlemFestivalPersonalProgram.pdf');
         }});
+
+    
 }
 
 

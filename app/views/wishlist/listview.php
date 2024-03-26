@@ -83,13 +83,17 @@ if(isset($_SESSION['username'])) {
 <body>
 <div>
 <button class="btn btn-primary btn-lg" onclick="generatePDF()">Download Personal Program</button>
-<?php
+
+    <?php
 if (!empty($sharingUrl)) {
     // Render the "Share" button
     echo '<a href="#" onclick="showShareModal(\'' . $sharingUrl . '\')" class="btn btn-primary btn-lg">Share</a>';
 }
 ?>
+    <button id="toggleButton" class="btn btn-primary" style="position: absolute; top: 140px; right: 10px;">Toggle View</button>
+
 </div>
+
 
 <div id="calendarContainer">
     <h1>Your Personal Program</h1>
@@ -111,9 +115,57 @@ if (!empty($sharingUrl)) {
     </div>
 </div>
 
+<?php if (!empty($orderItems)): ?>
+    <div id="agendacontainer" class="agenda" style="display: none">
+        <h1>Your Personal Program</h1>
+        <?php foreach ($orderItems as $order): ?>
+            <div class="mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <h6 class="card-subtitle mb-2 text-muted"><?= $order->getDate() ?></h6>
+                            <h6 class="card-subtitle mb-2 text-muted"><?= $order->getStartTime()?> till <?= $order->getEndTime()?> </h6>
+                        </div>
+
+                        <div>
+                            <h5 class="card-title">Event: <?= $order->getEventName() ?></h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Participants: <?= $order->getNumberOfTickets() ?></h6>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-danger delete-btn" data-id="<?= $order->getOrderItemId() ?>">Delete</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php else: ?>
+    <p>No items found in the order list.</p>
+<?php endif; ?>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
 <script src="/javascript/personalprogram.js"></script>
+<script>
+    // Function to toggle between calendar and agenda views
+    function toggleView() {
+        var calendarContainer = document.getElementById('calendarContainer');
+        var agendaContainer = document.querySelector('.agenda');
+
+        if (calendarContainer.style.display === 'block') {
+            calendarContainer.style.display = 'none';
+            agendaContainer.style.display = 'block';
+        } else {
+            calendarContainer.style.display = 'block';
+            agendaContainer.style.display = 'none';
+        }
+    }
+
+    // Add event listener to the toggle button
+    document.getElementById('toggleButton').addEventListener('click', toggleView);
+</script>
+
 
 </body>
 </html>

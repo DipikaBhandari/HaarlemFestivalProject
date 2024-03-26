@@ -12,6 +12,7 @@
       <sourceFolder url="file://$MODULE_DIR$/app/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/phpmailer/phpmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/mollie/mollie-api-php" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

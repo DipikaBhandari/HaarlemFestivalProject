@@ -37,6 +37,8 @@
             <a id="homeLink" class="nav-link pe-5 text-white" aria-current="page" href="/home">The Festival</a>
             <a id="yummyLink" class="nav-link pe-5 text-white" href="/restaurant/yummyHome">Yummy</a>
             <a id="historyLink" class="nav-link pe-5 text-white" href="/history">History</a>
+            <a id="historyLink" class="nav-link pe-5 text-white" href="/shoppingCart/index">Cart</a>
+
         </div>
         <div class="navbar-nav flex-row flex-lg">
             <div class="dropdown">

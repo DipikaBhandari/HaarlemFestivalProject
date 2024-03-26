@@ -5,18 +5,232 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="minor changes to frontend">
-      <change afterPath="$PROJECT_DIR$/app/model/order.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/model/orderItem.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/captures/create-capture.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/captures/get-capture.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/captures/list-captures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/client-links/create-client-link.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/customers/create-customer-first-payment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/customers/create-customer-payment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/customers/create-customer-recurring-payment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/customers/create-customer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/customers/delete-customer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/customers/list-customer-payments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/customers/update-customer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/functions.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/initialize.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/initialize_with_oauth.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/invoices/list-invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/mandates/create-mandate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/mandates/list-mandates.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/mandates/revoke-mandate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/orders/cancel-order-lines.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/orders/cancel-order.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/orders/create-order.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/orders/list-methods.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/orders/list-orders.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/orders/refund-order-completely.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/orders/refund-order-partially.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/orders/update-order-line.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/orders/update-order-lines-multiple.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/orders/update-order.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/orders/webhook.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/pagination/backwards.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/pagination/basic_usage.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/payment-links/create-payment-link.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/payment-links/list-payment-links.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/payments/create-capturable-payment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/payments/create-ideal-payment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/payments/create-payment-oauth.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/payments/create-payment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/payments/create-routed-payment-with-future-release-date.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/payments/create-routed-payment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/payments/list-methods.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/payments/list-payments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/payments/refund-payment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/payments/return.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/payments/update-payment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/payments/webhook.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/profiles/create-profile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/profiles/delete-profile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/profiles/list-profiles.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/profiles/update-profile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/settlements/list-settlements.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/shipments/create-shipment-all.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/shipments/create-shipment-partial.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/shipments/get-shipment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/shipments/list-shipments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/shipments/update-shipment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/subscriptions/cancel-subscription.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/subscriptions/create-subscription.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/examples/subscriptions/update-subscription.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/CompatibilityChecker.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/BalanceEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/BalanceReportEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/BalanceTransactionEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/ChargebackEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/ClientEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/ClientLinkEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/CollectionEndpointAbstract.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/CustomerEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/CustomerPaymentsEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/EndpointAbstract.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/InvoiceEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/MandateEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/MethodEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/OnboardingEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/OrderEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/OrderLineEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/OrderPaymentEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/OrderRefundEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/OrganizationEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/OrganizationPartnerEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/PaymentCaptureEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/PaymentChargebackEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/PaymentEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/PaymentLinkEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/PaymentRefundEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/PaymentRouteEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/PermissionEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/ProfileEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/ProfileMethodEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/RefundEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/SettlementCaptureEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/SettlementChargebackEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/SettlementPaymentEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/SettlementRefundEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/SettlementsEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/ShipmentEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/SubscriptionEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/TerminalEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Endpoints/WalletEndpoint.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Exceptions/ApiException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Exceptions/CurlConnectTimeoutException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Exceptions/HttpAdapterDoesNotSupportDebuggingException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Exceptions/IncompatiblePlatform.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Exceptions/UnrecognizedClientException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/HttpAdapter/CurlMollieHttpAdapter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/HttpAdapter/Guzzle6And7MollieHttpAdapter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/HttpAdapter/Guzzle6And7RetryMiddlewareFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/HttpAdapter/MollieHttpAdapterInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/HttpAdapter/MollieHttpAdapterPicker.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/HttpAdapter/MollieHttpAdapterPickerInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Idempotency/DefaultIdempotencyKeyGenerator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Idempotency/FakeIdempotencyKeyGenerator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Idempotency/IdempotencyKeyGeneratorContract.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/MollieApiClient.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Balance.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/BalanceCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/BalanceReport.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/BalanceTransaction.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/BalanceTransactionCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/BaseCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/BaseResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Capture.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/CaptureCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Chargeback.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/ChargebackCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Client.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/ClientCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/ClientLink.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/CurrentProfile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/CursorCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Customer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/CustomerCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Invoice.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/InvoiceCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Issuer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/IssuerCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/LazyCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Mandate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/MandateCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Method.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/MethodCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/MethodPrice.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/MethodPriceCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Onboarding.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Order.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/OrderCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/OrderLine.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/OrderLineCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Organization.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/OrganizationCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Partner.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Payment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/PaymentCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/PaymentLink.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/PaymentLinkCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Permission.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/PermissionCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Profile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/ProfileCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Refund.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/RefundCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/ResourceFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Route.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/RouteCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Settlement.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/SettlementCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Shipment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/ShipmentCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Subscription.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/SubscriptionCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/Terminal.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Resources/TerminalCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/ApprovalPrompt.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/BalanceTransferFrequency.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/InvoiceStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/MandateMethod.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/MandateStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/OnboardingStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/OrderLineStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/OrderLineType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/OrderLineUpdateOperationType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/OrderStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/PaymentMethod.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/PaymentMethodStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/PaymentStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/ProfileStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/RefundStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/SequenceType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/SettlementStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/SubscriptionStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/src/Types/TerminalStatus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/autoload.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer-autoload.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/ClassLoader.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/InstalledVersions.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/autoload_namespaces.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/autoload_real.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/autoload_static.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/ca-bundle/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/ca-bundle/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/ca-bundle/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/ca-bundle/res/cacert.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/ca-bundle/src/CaBundle.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/installed.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/installed.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/composer/platform_check.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php/vendor/scoper-autoload.php.bak" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/cart/paymentSuccessful.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/HaarlemFestivalProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HaarlemFestivalProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PHP.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/PHP.Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/logincontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/logincontroller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/ticketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ticketController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/public/javascript/personalprogram.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/javascript/personalprogram.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/repositories/ticketRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/ticketRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/userRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/userRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/service/ticketService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/ticketService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/userService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/userService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/afterlogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/afterlogin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/wishlist/agendaview.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/wishlist/agendaview.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/wishlist/events.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/wishlist/listview.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/wishlist/listview.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +267,7 @@
     <include_path>
       <path value="$PROJECT_DIR$/app/vendor/composer" />
       <path value="$PROJECT_DIR$/app/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -66,30 +281,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Docker.PHP.Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Dipika&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Inholland/Documents/RecipeBookWebsite&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Docker.PHP.Dockerfile.executor": "Run",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Dipika",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Inholland/Documents/RecipeBookWebsite",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "php.add.doc.comment.for.fields.panel.add.php.doc.for.all.properties": "true",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Inholland\Documents\GitHub\HaarlemFestivalProject\app\public\img" />
@@ -170,7 +386,7 @@
       <workItem from="1710941690740" duration="1439000" />
       <workItem from="1711025190943" duration="7182000" />
       <workItem from="1711040797657" duration="105000" />
-      <workItem from="1711191176483" duration="13475000" />
+      <workItem from="1711191176483" duration="39276000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes to frontend">
       <option name="closed" value="true" />

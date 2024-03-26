@@ -19,17 +19,17 @@ class ticketController
         session_start(); // Start the session
         if (isset($_SESSION['id'])) {
             // Debugging statement to check the value of $_SESSION['id']
-            var_dump($_SESSION['id']);
+
 
             // Fetch orders for the logged-in user
-            $orders = $this->ticketService->getOrderByUserId($_SESSION['id']);
+            $orders = $this->ticketService->getOrderItemByUserId($_SESSION['id']);
 
             if( !empty($_SESSION['id'])) {
                 $orderItemId = $this->ticketService->getOrderIdByUserId($_SESSION['id']);
             }
 
             // Debugging statement to inspect the contents of $orders array
-            var_dump($orders);
+
 
             // Transform orders into events compatible with FullCalendar
             $events = [];
@@ -55,8 +55,17 @@ class ticketController
             // Generate the sharing URL
             $sharingUrl = $this->getSharingUrl($orderItemId);
 
+                if ($_SERVER['REQUEST_METHOD'] == "GET") {
+                    $orderItems =$this->ticketService->DisplayEventsByUser($_SESSION['id']);
+                }
             // Pass events and sharing URL to the view
             require __DIR__ . '/../views/wishlist/listview.php';
+
+
+
+
+
+
         } else {
             echo "User is not logged in or session data is not set.";
         }
@@ -76,22 +85,18 @@ class ticketController
     {
         session_start();
 
-        // Check if it's a POST request and required fields are set
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id'])) {
 
             $regularTicket = $_POST["tourSingleTicket"] ?? 0;
             $familyTicket = isset($_POST["tourFamilyTicket"]) ? 4 : 0;
-
             $price = $regularTicket * 17.50 + $familyTicket * 15.00;
-
             $numberOfTickets = $regularTicket + $familyTicket;
 
             $event = "History Tour Event";
             $userId = $_SESSION['id'];
 
-            $orderIdArray = $this->ticketService->getOrderIdByCustomerId($userId);
-            if ($orderIdArray) {
-                $orderId = intval($orderIdArray[0]['orderId']); // Assuming the query returns only one orderId
+            $orderId = $this->ticketService->getOrderIdByCustomerId($userId);
+            if ($orderId) {
                 $date = htmlspecialchars($_POST['date']);
                 $startTime = htmlspecialchars($_POST['startTime']);
                 $endTime = htmlspecialchars($_POST['endTime']);
@@ -121,9 +126,13 @@ class ticketController
 
                     // Attempt to create the order
                     $order = $this->ticketService->createOrderItem($newOrderItem, $orderId);
-
-                    // Check if order creation was successful
                     if ($order) {
+                        // Fetch the total price of all order items with the same order ID
+//                        $totalPrice = $this->ticketService->getTotalOrderPrice($orderId);
+
+                        // Update the order table with the total price
+                        $this->ticketService->updateTotalPrice($orderId);
+
                         // Return JSON response
                         echo json_encode(['success' => true, 'message' => 'Order created successfully', 'order' => $newOrderItem]);
                     } else {
