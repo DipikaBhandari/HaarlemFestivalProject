@@ -12,9 +12,9 @@ if(isset($_SESSION['username'])) {
     <head>
         <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.min.js"></script>
     </head>
-    <div class="container text-center m-5">
+    <div class="text-center m-5">
         <h1>Scan ticket</h1>
-        <video id="camera-feed" width="320" height="240" autoplay></video>
+        <video id="camera-feed" autoplay></video>
         <div id="alert-message" class="hidden"></div>
     </div>
 
@@ -103,9 +103,17 @@ if(isset($_SESSION['username'])) {
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+        width: 100%;
     }
     .hidden {
         display: none;
+    }
+
+    #camera-feed {
+        max-width: 100%;
+        height: auto;
+        margin: auto;
+        display: block;
     }
 
     #alert-message {
