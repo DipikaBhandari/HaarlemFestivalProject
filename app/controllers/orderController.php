@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\service\qrCodeService;
 
 class orderController
 {
@@ -35,12 +34,15 @@ class orderController
 
         //send invoice
         $this->sendInvoice($orderId);
+
+        //redirect to success page or similar
     }
 
     public function scanTicket(){
         require __DIR__ . '/../views/ScanTicket.php';
     }
     public function verifyTicket() {
+
         // Get the raw POST data
         $postData = file_get_contents('php://input');
         // Decode the JSON data
@@ -81,13 +83,21 @@ class orderController
         }
     }
 
-    public function sendTicket($orderItemId){
-        $ticketData = $this->orderService->createTicket($orderItemId);
-        $this->emailService->sendTicketEmail($ticketData);
+    private function sendTicket($orderItemId){
+        try{
+            $ticketData = $this->orderService->createTicket($orderItemId);
+            $this->emailService->sendTicketEmail($ticketData);
+        } catch (\Exception $e) {
+            error_log("An error occurred when sending the tickets: " . $e->getMessage());
+        }
     }
 
-    public function sendInvoice($orderId){
-        $invoiceData = $this->orderService->createInvoice($orderId);
-        $this->emailService->sendInvoiceEmail($invoiceData);
+    private function sendInvoice($orderId){
+        try{
+            $invoiceData = $this->orderService->createInvoice($orderId);
+            $this->emailService->sendInvoiceEmail($invoiceData);
+        } catch (\Exception $e) {
+            error_log("An error occurred when sending the tickets: " . $e->getMessage());
+        }
     }
 }

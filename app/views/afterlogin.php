@@ -54,6 +54,8 @@ $isEmployee = $role === "Employee";
             <a id="personalProgramLink" class="nav-link ps-5" href="/personalProgram">
                 <i class="fa-regular fa-heart fa-xl" style="color: #c80e0e;"></i>
             </a>
+            <!--remove this when all code is combined-->
+            <a href="/order">invoice email</a>
         </div>
     </nav>
 </header>

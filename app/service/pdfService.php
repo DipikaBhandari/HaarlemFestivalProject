@@ -70,8 +70,7 @@ class pdfService
 
             return $pdfPath;
         } catch (Exception $e) {
-            echo $e->getMessage();
-            die();
+            throw new Exception($e->getMessage());
         }
     }
 
@@ -143,8 +142,7 @@ class pdfService
 
             return $pdfPath;
         } catch (Exception $e) {
-            echo $e->getMessage();
-            die();
+            throw new Exception($e->getMessage());
         }
     }
 }

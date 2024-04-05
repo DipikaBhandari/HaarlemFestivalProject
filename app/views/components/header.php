@@ -32,6 +32,11 @@
             <?php if(!empty($section['subTitle'])): ?>
                 <?php echo($section['subTitle']); ?>
             <?php endif; ?>
+
+            <?php if(!empty($section['paragraphs'])):
+                foreach ($section['paragraphs'] as $paragraph):?>
+                <?php echo($paragraph['text']); ?>
+            <?php endforeach; endif; ?>
         </div>
     </div>
 </div>

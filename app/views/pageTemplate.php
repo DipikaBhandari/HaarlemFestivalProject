@@ -47,7 +47,9 @@ include __DIR__ . '/footer.php';
 ?>
 
 <script>
-    document.getElementById('photo-col').style.display = "block";
+    if(document.getElementById('photo-col')){
+        document.getElementById('photo-col').style.display = "block";
+    }
 </script>
 
 <style>

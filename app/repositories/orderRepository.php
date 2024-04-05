@@ -1,16 +1,21 @@
 <?php
 
 namespace App\Repositories;
-
+use PDOException;
 class orderRepository extends Repository
 {
     public function getTicketWithQRCode($qrHash)
     {
-        $stmt = $this->connection->prepare('SELECT * FROM orderItem WHERE qrHash = :qrHash');
-        $stmt->bindParam(':qrHash', $qrHash);
-        $stmt->execute();
+        try{
+            $stmt = $this->connection->prepare('SELECT * FROM orderItem WHERE qrHash = :qrHash');
+            $stmt->bindParam(':qrHash', $qrHash);
+            $stmt->execute();
 
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+            return $stmt->fetch(\PDO::FETCH_ASSOC);
+        } catch (PDOException $e){
+            error_log("An error occurred while retrieving the ticket status" . $e->getMessage());
+            return false;
+        }
     }
 
     public function updateTicketStatus($qrHash, $status) {
@@ -20,7 +25,8 @@ class orderRepository extends Repository
             $stmt->bindParam(':status', $status);
             $stmt->execute();
             return true;
-        } catch (\PDOException $e){
+        } catch (PDOException $e){
+            error_log("An error occurred while updating the ticket status" . $e->getMessage());
             return false;
         }
     }
@@ -35,23 +41,30 @@ class orderRepository extends Repository
             $stmt->bindParam(':orderItemId', $orderItem['orderItemId']);
             $stmt->execute();
             return true;
-        } catch (\PDOException $e){
+        } catch (PDOException $e){
+            error_log("An error occurred while updating the order" . $e->getMessage());
             return false;
         }
     }
 
     public function getTicketById($orderItemId)
     {
-        $stmt = $this->connection->prepare('SELECT oi.eventName, oi.date, oi.startTime, oi.endTime, oi.numberOfTickets, oi.qrHash, u.email, u.firstName, u.lastName FROM orderItem oi JOIN [User] u ON oi.userId = u.id WHERE oi.orderItemId = :orderItemId');
-        $stmt->bindParam(':orderItemId', $orderItemId);
-        $stmt->execute();
+        try{
+            $stmt = $this->connection->prepare('SELECT oi.eventName, oi.date, oi.startTime, oi.endTime, oi.numberOfTickets, oi.qrHash, u.email, u.firstName, u.lastName FROM orderItem oi JOIN [User] u ON oi.userId = u.id WHERE oi.orderItemId = :orderItemId');
+            $stmt->bindParam(':orderItemId', $orderItemId);
+            $stmt->execute();
 
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+            return $stmt->fetch(\PDO::FETCH_ASSOC);
+        } catch (PDOException $e){
+            error_log("An error occurred while retrieving the ticket" . $e->getMessage());
+            return null;
+        }
     }
 
     public function getInvoiceData($orderId)
     {
-        $stmt = $this->connection->prepare("SELECT
+        try{
+            $stmt = $this->connection->prepare("SELECT
                 o.invoiceNr,
                 o.dateOfOrder,
                 o.totalPrice,
@@ -67,22 +80,31 @@ class orderRepository extends Repository
                 [User] u ON o.customerId = u.id
             WHERE
                 o.orderId = :orderId");
-        $stmt->bindParam(':orderId', $orderId);
-        $stmt->execute();
+            $stmt->bindParam(':orderId', $orderId);
+            $stmt->execute();
 
-        $invoiceData = $stmt->fetch(\PDO::FETCH_ASSOC);
-        $orderItems = $this->getOrderItems($orderId);
-        $invoiceData['orderItems'] = $orderItems;
+            $invoiceData = $stmt->fetch(\PDO::FETCH_ASSOC);
+            $orderItems = $this->getOrderItems($orderId);
+            $invoiceData['orderItems'] = $orderItems;
 
-        return $invoiceData;
+            return $invoiceData;
+        } catch (PDOException $e){
+            error_log("An error occurred while retrieving the invoice data: " . $e->getMessage());
+            return null;
+        }
     }
 
     private function getOrderItems($orderId)
     {
-        $stmt = $this->connection->prepare('SELECT eventName, numberOfTickets, price FROM orderItem WHERE orderId = :orderId');
-        $stmt->bindParam(':orderId', $orderId);
-        $stmt->execute();
+        try{
+            $stmt = $this->connection->prepare('SELECT eventName, numberOfTickets, price FROM orderItem WHERE orderId = :orderId');
+            $stmt->bindParam(':orderId', $orderId);
+            $stmt->execute();
 
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (PDOException $e){
+            error_log("An error occurred while retrieving the orderItems: " . $e->getMessage());
+            return null;
+        }
     }
 }
