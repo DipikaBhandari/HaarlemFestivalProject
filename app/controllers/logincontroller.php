@@ -25,53 +25,68 @@ class logincontroller
     }
 
     public function sendResetLink(){
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $email = isset($_POST["email"]) ? htmlspecialchars($_POST["email"]) : '';
-            $success = $this->userService->sendResetLink($email);
-            $response = [];
-            if ($success){
-                $response['success'] = true;
-                $response['message'] = "We have sent a reset link to your email address.";
+        try{
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $email = isset($_POST["email"]) ? htmlspecialchars($_POST["email"]) : '';
+                $success = $this->userService->sendResetLink($email);
+                $response = [];
+                if ($success) {
+                    $response['success'] = true;
+                    $response['message'] = "We have sent a reset link to your email address.";
+                } else {
+                    $response['success'] = false;
+                    $response['message'] = "There has been a problem with sending your reset link. Please try again later.";
+                }
             }
-            else{
-                $response['success'] = false;
-                $response['message'] = "There has been a problem with sending your reset link. Please try again later.";
-            }
+        } catch (\Exception $e) {
+            error_log('Error sending reset link: ' . $e->getMessage());
+            $response['success'] = false;
+            $response['message'] = "An error occurred while sending the reset link.";
         }
         header('Content-Type: application/json');
         echo json_encode($response);
     }
 
     public function resetPassword(){
-        $token = $_GET['token'];
-        $email = $_GET['email'];
-        $tokenIsValid = $this->userService->validateToken($token, $email);
-        if ($tokenIsValid){
-            require '../views/login/resetPassword.php';
-        } else{
-            require '../views/login/timedOutResetLink.php';
+        $token = isset($_GET['token']) ? htmlspecialchars($_GET['token']) : '';
+        $email = isset($_GET['email']) ? htmlspecialchars($_GET['email']) : '';
+        try{
+            $tokenIsValid = $this->userService->validateToken($token, $email);
+            if ($tokenIsValid){
+                require '../views/login/resetPassword.php';
+            } else{
+                require '../views/login/timedOutResetLink.php';
+            }
+        } catch(\Exception $e){
+            error_log('Error validating password reset token: ' . $e->getMessage());
         }
     }
 
     public function updatePassword()
     {
-        $password = isset($_POST["newPassword"]) ? htmlspecialchars($_POST["newPassword"]) : '';
-        $confirmPassword = isset($_POST["confirmPassword"]) ? htmlspecialchars($_POST["confirmPassword"]) : '';
-        $email = isset($_POST["email"]) ? htmlspecialchars($_POST["email"]) : '';
         $response = [];
-        if ($password === $confirmPassword) {
-            if ($this->userService->updatePassword($email, $password)) {
-                $response['success'] = true;
-                $response['message'] = "Password updated successfully";
+        try{
+            $password = isset($_POST["newPassword"]) ? htmlspecialchars($_POST["newPassword"]) : '';
+            $confirmPassword = isset($_POST["confirmPassword"]) ? htmlspecialchars($_POST["confirmPassword"]) : '';
+            $email = isset($_POST["email"]) ? htmlspecialchars($_POST["email"]) : '';
+
+            if ($password === $confirmPassword) {
+                if ($this->userService->updatePassword($email, $password)) {
+                    $response['success'] = true;
+                    $response['message'] = "Password updated successfully";
+                } else {
+                    $response['success'] = false;
+                    $response['message'] = "Error updating password";
+                }
             } else {
                 $response['success'] = false;
-                $response['message'] = "Error updating password";
+                $response['message'] = "The passwords don't match";
             }
-        } else {
+        } catch(\Exception $e) {
+            error_log('Error updating password: ' . $e->getMessage());
             $response['success'] = false;
-            $response['message'] = "The passwords don't match";
+            $response['message'] = "An error occurred while updating the password.";
         }
-
         header('Content-Type: application/json');
         echo json_encode($response);
     }
@@ -170,7 +185,6 @@ class logincontroller
 
     }
     public function logout(){
-        session_start();
         $_SESSION = array();
         session_destroy();
 
