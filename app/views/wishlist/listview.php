@@ -5,6 +5,7 @@ if(isset($_SESSION['username'])) {
 } else {
     include __DIR__ . '/../header.php'; // Include default header for non-logged-in users
 }
+
 ?>
 
 <!DOCTYPE html>

@@ -62,16 +62,16 @@ class ticketRepository extends Repository
         }
     }
 
-    public function createOrderItem($newOrderItem, $orderId)
+    public function createOrderItem($newOrderItem)
     {
         try
         {
-        $stmt = $this->connection->prepare("INSERT INTO [orderItem] (orderId, userId, eventName, date, startTime, endTime, numberOfTickets, price, status) 
-            VALUES (:orderId, :userId, :eventName, :date, :startTime, :endTime, :numberOfTickets, :price, 'unpaid')");
+        $stmt = $this->connection->prepare("INSERT INTO [orderItem] (userId, eventName, date, startTime, endTime, numberOfTickets, price, status) 
+            VALUES (:userId, :eventName, :date, :startTime, :endTime, :numberOfTickets, :price, 'unpaid')");
 
         // Bind parameters
 //        $stmt->bindValue(':orderId', $newOrderItem["orderId"]);
-        $stmt->bindParam(':orderId', $orderId);
+//        $stmt->bindParam(':orderId', $orderId);
         $stmt->bindValue(':userId', $newOrderItem["userId"]);
         $stmt->bindValue(':eventName', $newOrderItem["eventName"]);
         $stmt->bindValue(':date', $newOrderItem["date"]);
@@ -90,23 +90,23 @@ class ticketRepository extends Repository
         return false;
     }
     }
-    public function updateTotalPrice($orderId)
+    public function updateTotalPrice($userId)
     {
-        $stmt = $this->connection->prepare("SELECT SUM(price) AS totalPrice FROM [orderItem] WHERE orderId = :orderId");
-        $stmt->bindParam(':orderId', $orderId);
+        $stmt = $this->connection->prepare("SELECT SUM(price) AS totalPrice FROM [orderItem] WHERE userId = :userId AND status ='unpaid'");
+        $stmt->bindParam(':userId', $userId);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Update the total price in the Order table
         if ($result && isset($result['totalPrice'])) {
             $totalPrice = $result['totalPrice'];
-            $updateStmt = $this->connection->prepare("UPDATE [Order] SET totalPrice = :totalPrice WHERE orderId = :orderId");
+            $updateStmt = $this->connection->prepare("UPDATE [Order] SET totalPrice = :totalPrice WHERE customerId = :customerId");
             $updateStmt->bindParam(':totalPrice', $totalPrice);
-            $updateStmt->bindParam(':orderId', $orderId);
+            $updateStmt->bindParam(':customerId', $userId);
             $updateStmt->execute();
 
         } else {
-            echo "No order items found for orderId: $orderId";
+            echo "No order items found for orderId: $userId";
         }
     }
 
@@ -183,7 +183,6 @@ class ticketRepository extends Repository
     public function getPaymentIdByOrderId($orderId)
     {
 
-
         try {
             // Cast $orderId to an integer to ensure it's handled correctly
             $orderId = (int)$orderId;
@@ -258,6 +257,24 @@ class ticketRepository extends Repository
         $stmt->execute();
     }
 
+    public function updateOrderItemStatus($status, $orderId, $userId)
+    {
+        $stmt = $this->connection->prepare('UPDATE [orderItem] SET status = :status AND orderId = :orderId WHERE  userId = :userId');
+        $stmt->bindParam(':status', $status);
+        $stmt->bindParam(':orderId', $orderId);
+        $stmt->bindParam(':userId', $userId);
+        $stmt->execute();
+    }
+
+    public function updateOrderId($userId, $orderId)
+    {
+        $stmt = $this->connection->prepare('UPDATE [orderItem] SET orderId = :orderId WHERE  userId = :userId');
+        $stmt->bindParam(':userId', $userId);
+        $stmt->bindParam(':orderId', $orderId);
+
+        $stmt->execute();
+    }
+
     public function getPaymentCode($orderId)
     {
         try {
@@ -272,6 +289,18 @@ class ticketRepository extends Repository
             }
         } catch (PDOException $e) {
             throw new Exception('Error: ' . $e->getMessage());
+        }
+    }
+
+    public function closeOrder($orderId){
+        try {
+            $stmt = $this->connection->prepare("UPDATE [orderItem] SET status = 'paid' WHERE orderId = :orderId");
+            $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
         }
     }
 }

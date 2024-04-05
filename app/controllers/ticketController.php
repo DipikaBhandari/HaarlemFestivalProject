@@ -95,8 +95,8 @@ class ticketController
             $event = "History Tour Event";
             $userId = $_SESSION['id'];
 
-            $orderId = $this->ticketService->getOrderIdByCustomerId($userId);
-            if ($orderId) {
+//            $orderId = $this->ticketService->getOrderIdByCustomerId($userId);
+
                 $date = htmlspecialchars($_POST['date']);
                 $startTime = htmlspecialchars($_POST['startTime']);
                 $endTime = htmlspecialchars($_POST['endTime']);
@@ -114,7 +114,6 @@ class ticketController
 
                     $newOrderItem = array(
                         'userId' => $userId,
-                        'orderId' => $orderId,
                         'date' => $date,
                         'startTime' => $startTime,
                         'endTime' => $endTime,
@@ -125,13 +124,14 @@ class ticketController
                     );
 
                     // Attempt to create the order
-                    $order = $this->ticketService->createOrderItem($newOrderItem, $orderId);
+                    $order = $this->ticketService->createOrderItem($newOrderItem);
+                    var_dump($order);
                     if ($order) {
                         // Fetch the total price of all order items with the same order ID
 //                        $totalPrice = $this->ticketService->getTotalOrderPrice($orderId);
 
                         // Update the order table with the total price
-                        $this->ticketService->updateTotalPrice($orderId);
+                       $this->ticketService->updateTotalPrice($userId);
 
                         // Return JSON response
                         echo json_encode(['success' => true, 'message' => 'Order created successfully', 'order' => $newOrderItem]);
@@ -143,10 +143,7 @@ class ticketController
                     // Return error response if required fields are empty
                     echo json_encode(['error' => 'Missing or empty required fields']);
                 }
-            } else {
-                // Return error response if orderIdArray is empty
-                echo json_encode(['error' => 'No orderId found']);
-            }
+
         }
         exit;
     }

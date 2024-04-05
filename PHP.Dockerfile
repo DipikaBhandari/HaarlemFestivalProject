@@ -28,4 +28,6 @@ RUN apt-get update && ACCEPT_EULA=Y apt-get install -y \
         unixodbc \
     && pecl install pdo_sqlsrv sqlsrv \
     && docker-php-ext-enable pdo_sqlsrv sqlsrv \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt-get clean && rm -rf /var/lib/apt/lists/* \
+
+RUN composer require mollie/mollie-api-php

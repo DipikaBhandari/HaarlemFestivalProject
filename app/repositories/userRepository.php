@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+
 use App\model\Roles;
 use App\Model\User;
 use PDO;
@@ -176,8 +177,6 @@ class userRepository extends Repository
     public function registerUser($newUser): bool
     {
         try {
-            // Move uploaded file to permanent location
-
             // Insert user data into the database
             $sql = "INSERT INTO [User] (username, email, address, phonenumber, password, picture, role) 
             VALUES (:username, :email, :address, :phonenumber, :password, :picture, :role)";
@@ -194,11 +193,11 @@ class userRepository extends Repository
             $userId=$this->connection->lastInsertId(); // Get the newly inserted user ID
 
 //             Create a new order for the user
-            $orderId = $this->createNewOrder($userId);
-
-            // Store order ID and user ID in session
-            $_SESSION['userId'] = $userId;
-            $_SESSION['orderId'] = $orderId;
+//            $orderId = $this->createNewOrder($userId);
+//
+//            // Store order ID and user ID in session
+//            $_SESSION['userId'] = $userId;
+//            $_SESSION['orderId'] = $orderId;
 
             return true;
         } catch (PDOException $e) {
@@ -207,6 +206,7 @@ class userRepository extends Repository
         }
     }
 
+    //
     public function createNewOrder($userId): int
     {
         // Insert new order into the database

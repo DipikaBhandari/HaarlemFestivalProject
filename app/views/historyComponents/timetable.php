@@ -83,79 +83,75 @@
 
 
 </div>
-    <div class="pop-up" id="pop-up">
-        <form id="ticketform" method="post">
-            <h2>A Stroll Through History Ticket</h2>
-            <div class="container">
-<!--                <div class="item">-->
-<!--                    <label for="language">Language:</label>-->
-<!--                    <img class="language-image" src="" alt="" id="language-image">-->
-<!--                    <input type="hidden" id="language" name="language" class="language-input">-->
-<!--                </div>-->
+<div class="pop-up" id="pop-up">
+    <form id="ticketform" method="post">
+        <h2>A Stroll Through History Ticket</h2>
+        <div class="container">
 
-                <div class="item">
-                    <label for="date">Date:</label>
-                    <input type="text" id="date" name="date" class="date-input">
-                </div>
-                <div class="item">
-                    <label for="start-time">Start Time:</label>
-                    <input type="text" id="start-time" name="startTime" class="start-time-input">
-                </div>
-                <div class="item">
-                    <label for="end-time">End Time:</label>
-                    <input type="text" id="end-time" name="endTime" class="end-time-input">
-                </div>
+
+            <div class="item">
+                <label for="date">Date:</label>
+                <input type="text" id="date" name="date" class="date-input">
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="card mb-2">
-                            <div class="card-body">
-                                <span class="text-primary fs-4 fw-bold">Regular Participant:</span>
-                                <span class="me-4 fs-9">€17.50 each</span>
-                                <span class="text-primary fs-4 fw-bold">Family Ticket:</span>
-                                <span class="fs-9">€60 each</span>
-                                <small class="text-muted"> (max. 4 participants)</small>
-                            </div>
+            <div class="item">
+                <label for="start-time">Start Time:</label>
+                <input type="text" id="start-time" name="startTime" class="start-time-input">
+            </div>
+            <div class="item">
+                <label for="end-time">End Time:</label>
+                <input type="text" id="end-time" name="endTime" class="end-time-input">
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <span class="text-primary fs-4 fw-bold">Regular Participant:</span>
+                            <span class="me-4 fs-9">€17.50 each</span>
+                            <span class="text-primary fs-4 fw-bold">Family Ticket:</span>
+                            <span class="fs-9">€60 each</span>
+                            <small class="text-muted"> (max. 4 participants)</small>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-8">
             <span class="input-group-btn">
                 <button type="button" class="btn btn-default btn-number"  data-type="minus">
                     <span class="glyphicon glyphicon-minus"></span>
                 </button>
             </span>
-                        <input type="number" class="form-control input-number" id="tourSingleTicket" name="tourSingleTicket" placeholder="Enter custom language" min="0" max="100" value="0">
-                        <span class="input-group-btn">
+                    <input type="number" class="form-control input-number" id="tourSingleTicket" name="tourSingleTicket" placeholder="Enter custom language" min="0" max="100" value="0">
+                    <span class="input-group-btn">
                 <button type="button" class="btn btn-default btn-number" data-type="plus">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
             </span>
-                    </div>
+                </div>
 
-                    <div class="col-md-11">
-                        <div class="d-flex align-items-center mb-9">
-                            <input type="checkbox" class="btn-check" name="tourFamilyTicket" id="btn-check-outlined" autocomplete="off">
-                            <label class="btn btn-outline-danger" for="btn-check-outlined">Family Ticket</label><br>
-                        </div>
+                <div class="col-md-11">
+                    <div class="d-flex align-items-center mb-9">
+                        <input type="checkbox" class="btn-check" name="tourFamilyTicket" id="btn-check-outlined" autocomplete="off">
+                        <label class="btn btn-outline-danger" for="btn-check-outlined">Family Ticket</label><br>
                     </div>
                 </div>
             </div>
+        </div>
 
 
-            <div class="row">
-                <div class="col-md-6">
-                    <button type="submit" class="btn btn-primary" name="addToPersonalProgram">Add to Personal Program <img src="/img/heartbutton.svg" width="20" height="20" alt=""></button>
-                </div>
-                <div class="col-md-6">
-                    <button type="button" class="btn btn-danger" onclick="cancelPopUp()">Cancel</button>
-                </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary" name="addToPersonalProgram">Add to Personal Program<img src="/img/heartbutton.svg" width="20" height="20" alt=""></button>
             </div>
-        </form>
-    </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-danger" onclick="cancelPopUp()">Close</button>
+            </div>
+        </div>
+    </form>
+</div>
 
 
 
@@ -171,9 +167,9 @@
             const popUpStartTime = popUp.querySelector('.start-time-input');
             const popUpEndTime = popUp.querySelector('.end-time-input');
 
-           // var popUpLanguageImage = popUp.querySelector('.language-image');
+            // var popUpLanguageImage = popUp.querySelector('.language-image');
 
-          //  popUpLanguageImage.src = imagePath; // Set the src attribute to display the image
+            //  popUpLanguageImage.src = imagePath; // Set the src attribute to display the image
             popUpDate.value = date; // Set the date input value
             popUpStartTime.value = formatTime(startTime); // Set the formatted start time input value
             popUpEndTime.value = formatTime(endTime); // Set the formatted end time input value
@@ -243,5 +239,3 @@
 </script>
 </body>
 </html>
-
-
