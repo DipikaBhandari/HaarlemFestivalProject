@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if(!isset($_SESSION)){
+    session_start();
+}
 
 if(isset($_SESSION['username'])) {
     include __DIR__ . '/../afterlogin.php'; // Include afterlogin.php for logged-in users

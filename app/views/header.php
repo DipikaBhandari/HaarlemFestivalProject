@@ -26,9 +26,9 @@
         <div class="navbar-nav flex-row flex-lg" id="dynamicNavLinks">
         </div>
         <div class="navbar-nav flex-row flex-lg" >
-            <a id="loginLink" class="nav-link text-white pt-0 pb-0" href="/login/login">Login</a>
+            <a id="loginLink" class="nav-link text-white pt-0 pb-0" style=" text-align: center; height: 100%; line-height: 2.5em;" href="/login/login">Login</a>
             <a id="personalProgramLink" class="nav-link ps-5" href="/personalProgram">
-                <img src="/img/heartbutton.svg" alt="personal program button" width="30" height="30" class="d-inline-block">
+                <i class="fa-regular fa-heart fa-xl" style="color: #c80e0e;"></i>
             </a>
             <!--remove this when all code is combined-->
             <a href="/order">invoice email</a>

@@ -52,7 +52,7 @@ $isEmployee = $role === "Employee";
             </div>
 
             <a id="personalProgramLink" class="nav-link ps-5" href="/personalProgram">
-                <img src="../img/heartbutton.svg" alt="personal program button" width="30" height="30" class="d-inline-block">
+                <i class="fa-regular fa-heart fa-xl" style="color: #c80e0e;"></i>
             </a>
         </div>
     </nav>

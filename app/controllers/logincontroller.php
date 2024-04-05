@@ -78,8 +78,9 @@ class logincontroller
 
     public function login()
     {
-        // Start session
-        session_start();
+        if(!isset($_SESSION)){
+            session_start();
+        }
 
         if (isset($_POST["btnLogin"]) && isset($_POST["username"]) && isset($_POST["password"])) {
             $username = htmlspecialchars($_POST["username"]);
