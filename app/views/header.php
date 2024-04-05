@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>Haarlem Festival</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -23,15 +24,21 @@
         <img id="logo" src="/img/festivalLogo.svg" >
     </div>
     <nav class="navbar navbar-expand-lg bg-body-primary d-flex justify-content-between px-2">
-        <div class="navbar-nav flex-row flex-lg" id="dynamicNavLinks">
-        </div>
-        <div class="navbar-nav flex-row flex-lg" >
-            <a id="loginLink" class="nav-link text-white pt-0 pb-0" style=" text-align: center; height: 100%; line-height: 2.5em;" href="/login/login">Login</a>
-            <a id="personalProgramLink" class="nav-link ps-5" href="/personalProgram">
-                <i class="fa-regular fa-heart fa-xl" style="color: #c80e0e;"></i>
-            </a>
-            <!--remove this when all code is combined-->
-            <a href="/order">invoice email</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav flex-row flex-lg" id="dynamicNavLinks">
+            </div>
+            <div class="navbar-nav flex-row flex-lg" >
+                <a id="loginLink" class="nav-link text-white pt-0 pb-0" style=" text-align: center; height: 100%; line-height: 2.5em;" href="/login/login">Login</a>
+                <a id="personalProgramLink" class="nav-link ps-5" href="/personalProgram">
+                    <i class="fa-regular fa-heart fa-xl" style="color: #c80e0e;"></i>
+                </a>
+                <!--remove this when all code is combined-->
+                <a href="/order">invoice email</a>
+            </div>
         </div>
     </nav>
 </header>

@@ -23,7 +23,7 @@ if(isset($_SESSION['username'])) {
     }
     ?>
 </div>
-    <div class="row">
+    <div class="row g-0">
         <div class="col-8">
             <?php
             foreach ($sections as $section) {
