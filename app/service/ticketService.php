@@ -28,6 +28,11 @@ class ticketService
         return $this->ticketRepository->getOrderByUserId($userId);
     }
 
+    public function PaidOrders($userId)
+    {
+        return $this->ticketRepository->PaidOrders($userId);
+    }
+
     public function DisplayEventsByUser($userId)
     {
         return $this->ticketRepository->DisplayEventsByUser($userId);
@@ -58,6 +63,26 @@ class ticketService
     public function updateTotalPrice($userId)
     {
        $this->ticketRepository->updateTotalPrice($userId);
+    }
+
+    public function updateQuantity($orderItemId, $numberOfTickets)
+    {
+        $this->ticketRepository->updateQuantity($orderItemId, $numberOfTickets);
+    }
+    public function getOrderPriceById($orderItemId)
+    {
+        $this->ticketRepository->getOrderPriceById($orderItemId);
+    }
+
+
+    public function updatePrice($orderItemId, $price)
+    {
+       return $this->ticketRepository->updatePrice($orderItemId, $price);
+    }
+
+    public function updateOrderPrice($totalPrice, $userId)
+    {
+        return $this->ticketRepository->updateOrderPrice($totalPrice, $userId);
     }
 
     public function getTotalPrice($userId)
@@ -106,6 +131,11 @@ class ticketService
         $this->ticketRepository->updatePaymentStatus($paymentCode, $newPaymentStatus);
     }
 
+    public function closeOrder($orderId, $status)
+    {
+        $this->ticketRepository->closeOrder($orderId, $status);
+    }
+
     public function updateOrderItemStatus($status, $orderId, $userId)
     {
         $this->ticketRepository->updateOrderItemStatus($status, $orderId, $userId);
@@ -115,14 +145,19 @@ class ticketService
     {
         $this->ticketRepository->updateOrderId($userId, $orderId);
     }
-
+    public function createNewOrderId($userId)
+    {
+        return $this->ticketRepository->createNewOrder($userId);
+    }
     public function changePaymentToPaid($paymentCode, $orderId)
     {
-        $this->updatePaymentStatus($paymentCode, "Paid");
+        $this->updatePaymentStatus($paymentCode, "paid");
+        $this->closeOrder($orderId, "paid");
+
         $paymentMethod = $this->getPaymentMethod($paymentCode);
 
 //        $this->ticketRepository->updatePaymentMethod($orderId, $paymentMethod); //TODO IT here
-        $this->ticketRepository->closeOrder($orderId);
+
 //        $this->ticketRepository->decreasePerformanceTicketQuantityByOrderId($orderId);
 //        $this->ticketRepository->decreaseHistoryTourTicketQuantityByOrderId($orderId);
     }

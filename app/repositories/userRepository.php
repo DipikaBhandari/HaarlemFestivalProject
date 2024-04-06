@@ -206,23 +206,7 @@ class userRepository extends Repository
         }
     }
 
-    //
-    public function createNewOrder($userId): int
-    {
-        // Insert new order into the database
-        $sql = "INSERT INTO [Order] (customerId) VALUES (:customerId)";
-        $stmt = $this->connection->prepare($sql);
-        $stmt->bindValue(':customerId', $userId);
-        $stmt->execute();
 
-        // Return the ID of the newly created order
-        $orderId = $this->connection->lastInsertId();
-
-        // Set $_SESSION['orderId'] to the retrieved orderId
-        $_SESSION['orderId'] = $orderId;
-
-        return $orderId;
-    }
     public function updateOrderTableWithNewUserId($customerId, $orderId)
     {
         try {

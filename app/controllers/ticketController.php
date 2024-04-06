@@ -127,9 +127,6 @@ class ticketController
                     $order = $this->ticketService->createOrderItem($newOrderItem);
                     var_dump($order);
                     if ($order) {
-                        // Fetch the total price of all order items with the same order ID
-//                        $totalPrice = $this->ticketService->getTotalOrderPrice($orderId);
-
                         // Update the order table with the total price
                        $this->ticketService->updateTotalPrice($userId);
 
@@ -146,6 +143,20 @@ class ticketController
 
         }
         exit;
+    }
+    public function updateQuantitsy()
+    {
+        session_start();
+        if (isset($_SESSION['id'])) {
+            $userId = $_SESSION['id'];// Start the session
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $orderItemId = $_POST['orderItemId'];
+                $orderId = $this->ticketService->getOrderIdByCustomerId($userId);
+                $numberOfTickets = $_POST['numberOfTickets'];
+                $this->ticketService->updateQuantity($orderItemId, $numberOfTickets);
+                $this->ticketService->updateTotalPrice($orderId);
+            }
+        }
     }
 
     public function deleteOrder(): void

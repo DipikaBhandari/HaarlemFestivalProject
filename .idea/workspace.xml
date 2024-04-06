@@ -5,20 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="minor changes to frontend">
+      <change afterPath="$PROJECT_DIR$/app/views/cart/listOfPaidOrders.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHP.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/PHP.Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/shoppingCartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/shoppingCartController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/ticketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ticketController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/repositories/ticketRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/ticketRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/repositories/userRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/userRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/service/ticketService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/ticketService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/userService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/userService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/afterlogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/afterlogin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/cart/paymentSuccessful.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cart/paymentSuccessful.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/cart/shoppingCart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cart/shoppingCart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/historyComponents/timetable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/historyComponents/timetable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/wishlist/agendaview.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/wishlist/agendaview.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/wishlist/listview.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/wishlist/listview.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +177,9 @@
       <workItem from="1711634219183" duration="10649000" />
       <workItem from="1712144123460" duration="11092000" />
       <workItem from="1712334087941" duration="1930000" />
-      <workItem from="1712341402244" duration="8220000" />
+      <workItem from="1712341402244" duration="8299000" />
+      <workItem from="1712395862768" duration="15403000" />
+      <workItem from="1712418475026" duration="10162000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes to frontend">
       <option name="closed" value="true" />

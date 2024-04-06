@@ -35,7 +35,7 @@
                                                     <div>
                                                         <h5 class="card-title"><?= $order->getEventName() ?></h5>
                                                         <h6 class="card-subtitle mb-2 text-muted">Participants: <?= $order->getNumberOfTickets() ?></h6>
-                                                        <h6 class="card-subtitle mb-2 text-muted">Price: $<?= $order->getPrice() ?></h6>
+                                                        <h6 id="participants<?= $order->getOrderItemId() ?>" class="card-subtitle mb-2 text-muted">Price: $<?= $order->getPrice() ?></h6>
                                                     </div>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
                                                         <button type="button" class="btn btn-secondary btn-sm decrease-btn" data-id="<?= $order->getOrderItemId() ?>">-</button>
@@ -67,107 +67,106 @@
         </div>
     </div>
 </section>
+
+
 <script>
     // Add event listeners for increase, decrease, and delete buttons
-    document.querySelectorAll('.increase-btn').forEach(item => {
-        item.addEventListener('click', event => {
-            const orderId = event.target.dataset.id;
-            const participantsCountElem = document.getElementById(`participants-count-${orderId}`);
-            let count = parseInt(participantsCountElem.textContent);
-            count++;
-            participantsCountElem.textContent = count;
-            // Update price accordingly (You may need to implement this logic)
-        });
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.increase-btn').forEach(item => {
+            item.addEventListener('click', event => {
+                const orderId = event.target.dataset.id;
+                const participantsCountElem = document.getElementById(`participants-count-${orderId}`);
+                let count = parseInt(participantsCountElem.textContent);
 
-    document.querySelectorAll('.decrease-btn').forEach(item => {
-        item.addEventListener('click', event => {
-            const orderId = event.target.dataset.id;
-            const participantsCountElem = document.getElementById(`participants-count-${orderId}`);
-            let count = parseInt(participantsCountElem.textContent);
-            if (count > 0) {
-                count--;
+                count++;
                 participantsCountElem.textContent = count;
-                // Update price accordingly (You may need to implement this logic)
-            }
-        });
-    });
 
-    document.querySelectorAll('.delete-btn').forEach(item => {
-        item.addEventListener('click', event => {
-            const orderId = event.target.dataset.id;
-            deleteOrder(orderId); // Call deleteOrder function with orderId
-            // Optionally, remove the card or update the UI
-            event.target.closest('.mb-3').remove(); // Remove the card element from the DOM
-        });
-    });
+                // Send AJAX request to update quantity and retrieve updated price
+                updateQuantity(orderId, count);
 
-    function deleteOrder(orderItemId) {
-        fetch('/ticket/deleteOrder', {
-            method: 'POST',
-            body: JSON.stringify({ orderItemId: orderItemId }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => {
-                if (response.ok) {
-                    console.log('Order item deleted successfully');
-                    // Optionally, remove the card or update the UI
-                } else {
-                    console.error('Failed to delete order item');
+            });
+        });
+
+        document.querySelectorAll('.decrease-btn').forEach(item => {
+            item.addEventListener('click', event => {
+                const orderId = event.target.dataset.id;
+                const participantsCountElem = document.getElementById(`participants-count-${orderId}`);
+                let count = parseInt(participantsCountElem.textContent);
+                if (count > 0) {
+                    count--;
+                    participantsCountElem.textContent = count;
+
+                    // Calculate total price
+                    const priceElement = document.getElementById(`participants${orderId}`);
+                    const currentPrice = parseFloat(priceElement.textContent.replace('Price: $', '').trim());
+                    const totalPrice = currentPrice - 17.5; // Decrease by the price of one ticket
+
+                    // Send AJAX request to update quantity and price
+                    updateQuantity(orderId, count, totalPrice);
+
+                }
+            });
+        });
+
+        document.querySelectorAll('.delete-btn').forEach(item => {
+            item.addEventListener('click', event => {
+                const orderId = event.target.dataset.id;
+                deleteOrder(orderId); // Call deleteOrder function with orderId
+                // Optionally, remove the card or update the UI
+                event.target.closest('.mb-3').remove(); // Remove the card element from the DOM
+                window.location.reload();
+            });
+        });
+
+        function deleteOrder(orderItemId) {
+            fetch('/shoppingcart/deleteOrder', {
+                method: 'POST',
+                body: JSON.stringify({orderItemId: orderItemId}),
+                headers: {
+                    'Content-Type': 'application/json'
                 }
             })
-            .catch(error => {
-                console.error('Error deleting order item:', error);
-            });
-    }
-</script>
-<!-- JavaScript to calculate total price -->
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Order item deleted successfully');
+                        // Optionally, remove the card or update the UI
+                    } else {
+                        console.error('Failed to delete order item');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error deleting order item:', error);
+                });
+        }
 
+        function updateQuantity(orderItemId, count) {
+            fetch('/shoppingcart/updateQuantity', {
+                method: 'POST',
+                body: JSON.stringify({orderItemId: orderItemId, numberOfTickets: count}),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.reload();
+                        console.log('Quantity updated successfully');
+
+                        // Optionally, update the total price or UI
+                    } else {
+                        console.error('Failed to update quantity');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error updating quantity:', error);
+                });
+        }
+    });
+
+</script>
 </body>
 </html>
 
-<?php
-//// Include Mollie API library
-//require_once 'app/vendor/mollie-api-php/vendor/composer-autoload.php';
-//
-//// Initialize Mollie API client with your API key
-//$mollie = new \Mollie\Api\MollieApiClient();
-//$mollie->setApiKey('your_mollie_api_key');
-//
-//// Process form submission
-//if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//    // Retrieve customer details from the form
-//    $customerName = $_POST['customer_name'];
-//    $customerEmail = $_POST['customer_email'];
-//    $totalAmount = 50; // Example total amount in cents or euros (depends on your currency)
-//
-//    try {
-//        // Create a payment using Mollie API
-//        $payment = $mollie->payments->create([
-//            "amount" => [
-//                "currency" => "EUR",
-//                "value" => sprintf("%.2f", $totalAmount),
-//            ],
-//            "description" => "Order payment",
-//            "redirectUrl" => "http://example.com/thank-you", // URL to redirect after payment
-//            // Additional metadata if needed
-//            "metadata" => [
-//                "customer_name" => $customerName,
-//                "customer_email" => $customerEmail,
-//            ],
-//        ]);
-//
-//        // Redirect the user to the payment URL
-//        header("Location: " . $payment->getCheckoutUrl());
-//        exit;
-//    } catch (\Mollie\Api\Exceptions\ApiException $e) {
-//        // Handle API errors
-//        echo "API Error: " . htmlspecialchars($e->getMessage());
-//    }
-//}
-//?>
 
 
 

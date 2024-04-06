@@ -54,6 +54,8 @@
         <p>Thank you for the payment! You will receive your tickets and invoice in your mail. </p>
 
         <a id="homeLink" class="nav-link pe-5" aria-current="page" href="/home">Go back to Homepage</a>
+        <a id="homeLink" class="nav-link pe-5" aria-current="page" href="/shoppingCart/showPaidOrders">Orders</a>
+
     </div>
 </div>
 

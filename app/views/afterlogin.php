@@ -60,9 +60,13 @@
                 <a class="nav-link ps-4 align-items-center" href="/shoppingCart/index">
                     <i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffffff;"></i>
                 </a>
+                <a class="nav-link ps-4 align-items-center" href="/shoppingCart/showPaidOrders">
+                    <i class="fa-solid fa-check-to-slot fa-xl" style="color: #ffffff;"></i>
+                </a>
                 <a id="personalProgramLink" class="nav-link ps-4 align-items-center" href="/ticket/index">
                     <i class="fa-regular fa-heart fa-xl" style="color: #c80e0e;"></i>
                 </a>
+
             </div>
         </div>
     </nav>
