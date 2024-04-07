@@ -34,6 +34,9 @@
             'reference' => '0cc00f0626b73bc71a1ea17af01387d0ac75e046',
             'type' => 'library',
             'install_path' => __DIR__ . '/../endroid/qr-code',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'maennchen/zipstream-php' => array(
             'pretty_version' => '3.1.0',
             'version' => '3.1.0.0',
@@ -130,6 +133,9 @@
             'reference' => '0838e0ee4925716fcbbc50ad9e1799b5edfae0a0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../setasign/fpdf',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'symfony/polyfill-iconv' => array(
             'pretty_version' => 'v1.29.0',
             'version' => '1.29.0.0',

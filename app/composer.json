@@ -5,7 +5,7 @@
     "ext-json": "*",
     "phpmailer/phpmailer": "^6.9",
     "endroid/qr-code": "^5.0",
-    "setasign/fpdf": "^1.8"
+    "setasign/fpdf": "^1.8",
     "phpoffice/phpspreadsheet": "^2.0"
   },
   "autoload": {
