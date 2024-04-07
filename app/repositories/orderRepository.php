@@ -32,18 +32,38 @@ class orderRepository extends Repository
         }
     }
 
-    public function finalizeOrder($orderId, $orderItem)
+
+    public function finalizeOrder($orderId)
     {
+        error_log("finalizeOrder is being called");
         try {
-            $stmt = $this->connection->prepare('UPDATE orderItem SET status = :status, orderId = :orderId, qrHash = :qrHash WHERE orderItemId = :orderItemId');
-            $stmt->bindParam(':qrHash', $orderItem['qrHash']);
-            $stmt->bindParam(':status', $orderItem['status']);
-            $stmt->bindParam(':orderId', $orderItem['orderId']);
-            $stmt->bindParam(':orderItemId', $orderItem['orderItemId']);
+            $currentDateTime = date('Y-m-d H:i:s');
+            $invoiceNr = $this->generateInvoiceNr($orderId, $currentDateTime);
+            $vatAmount = $this->calculateVatAmount($orderId);
+
+            // Prepare the SQL query
+            $stmt = $this->connection->prepare('UPDATE [Order] SET dateOfOrder = :dateOfOrder, vatAmount = :vatAmount, invoiceNr = :invoiceNr WHERE orderId = :orderId');
+
+            // Bind parameters
+            $stmt->bindParam(':orderId', $orderId);
+            $stmt->bindParam(':dateOfOrder', $currentDateTime);
+            $stmt->bindParam(':vatAmount', $vatAmount);
+            $stmt->bindParam(':invoiceNr', $invoiceNr);
+
+            // Execute the query
             $stmt->execute();
-            return true;
-        } catch (PDOException $e){
-            error_log("An error occurred while updating the order" . $e->getMessage());
+
+            // Check if any rows were affected
+            if ($stmt->rowCount() > 0) {
+                return true; // Order finalized successfully
+            } else {
+                // No rows were affected, handle this case
+                error_log("No rows were affected while finalizing the order");
+                return false;
+            }
+        } catch (PDOException $e) {
+            // Handle any exceptions or errors that occurred
+            error_log("An error occurred while finalizing the order: " . $e->getMessage());
             return false;
         }
     }
@@ -98,7 +118,7 @@ class orderRepository extends Repository
     private function getOrderItems($orderId)
     {
         try {
-            $stmt = $this->connection->prepare('SELECT eventName, numberOfTickets, price FROM orderItem WHERE orderId = :orderId');
+            $stmt = $this->connection->prepare('SELECT eventName, numberOfTickets, price, vatPercentage FROM orderItem WHERE orderId = :orderId');
             $stmt->bindParam(':orderId', $orderId);
             $stmt->execute();
 
@@ -123,5 +143,88 @@ class orderRepository extends Repository
     ");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getOrderItemsIdByOrder($orderId)
+    {
+        try {
+            $stmt = $this->connection->prepare('SELECT orderItemId FROM orderItem WHERE orderId = :orderId');
+            $stmt->bindParam(':orderId', $orderId);
+            $stmt->execute();
+
+            return $stmt->fetchAll(\PDO::FETCH_COLUMN);
+        } catch (PDOException $e) {
+            error_log("An error occurred while retrieving the orderItems: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    public function addQRHash($orderId)
+    {
+        try {
+            $orderItems = $this->getOrderItemsIdByOrder($orderId);
+            foreach ($orderItems as $orderItemId) {
+                $orderItem = $this->getHashData($orderItemId);
+                $dataToHash = $orderItemId . $orderItem['userId'] . $orderItem['eventName'];
+                $qrHash = hash('sha256', $dataToHash);
+
+                $stmt = $this->connection->prepare('UPDATE orderItem SET qrHash = :qrHash WHERE orderItemId = :orderItemId');
+                $stmt->bindParam(':qrHash', $qrHash);
+                $stmt->bindParam(':orderItemId', $orderItemId);
+                $stmt->execute();
+            }
+        }catch (PDOException $e) {
+            error_log("An error occurred while adding hash to orderItems: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    private function getHashData($orderItemId)
+    {
+        try {
+            $stmt = $this->connection->prepare('SELECT userId, eventName FROM orderItem WHERE orderItemId = :orderItemId');
+            $stmt->bindParam(':orderItemId', $orderItemId);
+            $stmt->execute();
+
+           return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("An error occurred while retrieving the orderItems: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    private function generateInvoiceNr($orderId, $orderDate)
+    {
+        // Format the order date as required (e.g., YYYYMMDD)
+        $formattedOrderDate = date('Ymd', strtotime($orderDate));
+
+        // Generate the invoice number using the formatted date and orderId
+        $invoiceNumber = "INV-$formattedOrderDate-$orderId";
+        return $invoiceNumber;
+    }
+
+    private function calculateVatAmount($orderId)
+    {
+        try {
+            // Initialize total VAT amount
+            $totalVatAmount = 0;
+
+            // Get order items for the given order
+            $orderItems = $this->getOrderItems($orderId);
+
+            // Loop through each order item and calculate VAT amount
+            foreach ($orderItems as $orderItem) {
+                // Calculate VAT amount for the current order item
+                $vatAmount = ($orderItem['price'] * $orderItem['vatPercentage']) / 100;
+
+                // Add the VAT amount to the total
+                $totalVatAmount += $vatAmount;
+            }
+
+            return $totalVatAmount;
+        } catch (PDOException $e) {
+            error_log("An error occurred while calculating VAT amount: " . $e->getMessage());
+            return 0;
+        }
     }
 }

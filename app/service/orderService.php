@@ -22,19 +22,6 @@ class orderService
         return $this->orderRepository->updateTicketStatus($qrHash, $status);
     }
 
-    //needs to happen at payment
-    /*public function finalizeOrder($orderId, $orderItem)
-    {
-        $orderItemId = $orderItem['orderItemId'];
-        $userId = $orderItem['userId'];
-        $eventName = $orderItem['eventName'];
-        $dataToHash = $orderItemId . $userId . $eventName;
-        $qrHash = hash('sha256', $dataToHash);
-        $orderItem['qrHash'] = $qrHash;
-        $orderItem['status'] = 'paid';
-        return $this->orderRepository->finalizeOrder($orderId, $orderItem);
-    }*/
-
     public function createTicket($orderItemId)
     {
         try{
@@ -74,4 +61,19 @@ class orderService
         return $this->orderRepository->getOrderDetails();
     }
 
+    public function getOrderItemsIdByOrder($orderId)
+    {
+        return $this->orderRepository->getOrderItemsIdByOrder($orderId);
+    }
+
+    private function addQRHash($orderId)
+    {
+        $this->orderRepository->addQRHash($orderId);
+    }
+
+    public function finalizeOrder($orderId)
+    {
+        $this->addQRHash($orderId);
+        $this->orderRepository->finalizeOrder($orderId);
+    }
 }

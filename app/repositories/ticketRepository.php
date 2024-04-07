@@ -199,7 +199,7 @@ class ticketRepository extends Repository
             // Insert new order into the database
             $sql = "INSERT INTO [Order] (customerId, orderStatus) VALUES (:customerId, 'open') ";
             $stmt = $this->connection->prepare($sql);
-            $stmt->bindValue(':customerId', $userId);
+            $stmt->bindParam(':customerId', $userId);
             $stmt->execute();
 
             // Get the ID of the newly created order
@@ -386,9 +386,10 @@ class ticketRepository extends Repository
 
     public function updateOrderId($userId, $orderId)
     {
-        $stmt = $this->connection->prepare('UPDATE [orderItem] SET orderId = :orderId WHERE  userId = :userId');
+        $stmt = $this->connection->prepare('UPDATE [orderItem] SET orderId = :orderId WHERE  userId = :userId AND status = :status');
         $stmt->bindParam(':userId', $userId);
         $stmt->bindParam(':orderId', $orderId);
+        $stmt->bindValue(':status', 'unpaid');
         $stmt->execute();
     }
 

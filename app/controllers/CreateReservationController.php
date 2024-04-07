@@ -12,9 +12,10 @@ class CreateReservationController
         $this->restaurantService = new restaurantService();
     }
     public function create(){
-        session_start();
+        if(!isset($_SESSION)){
+            session_start();
+        }
 
-        var_dump($_POST);
         if (!isset($_POST['restaurant'], $_POST['numAdults'], $_POST['numChildren'], $_POST['date'], $_POST['session'])) {
             //http_response_code(400); // Bad Request
             echo json_encode(['success' => false, 'message' => 'Missing fields.']);

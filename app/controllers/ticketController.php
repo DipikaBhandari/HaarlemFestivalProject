@@ -87,7 +87,9 @@ class ticketController
 
     public function addOrder()
     {
-        session_start();
+        if(!isset($_SESSION)){
+            session_start();
+        }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id'])) {
 
@@ -129,7 +131,6 @@ class ticketController
 
                     // Attempt to create the order
                     $order = $this->ticketService->createOrderItem($newOrderItem);
-                    var_dump($order);
                     if ($order) {
                         // Update the order table with the total price
                        $this->ticketService->updateTotalPrice($userId);

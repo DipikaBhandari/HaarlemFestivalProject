@@ -20,13 +20,14 @@ class shoppingCartController
 
     public function index()
     {
-        session_start();
+        if (!isset($_SESSION)){
+            session_start();
+        }
         if (isset($_SESSION['id'])) {
             $userId = $_SESSION['id'];// Start the session
 
             if ($_SERVER['REQUEST_METHOD'] == "GET") {
                 $orders = $this->ticketService->getOrderByUserId($userId);
-                var_dump($orders);
 
                 $totalPrice = $this->ticketService->getTotalPrice($userId);
 
@@ -35,8 +36,9 @@ class shoppingCartController
             if (isset($_POST['payNow']) && !empty($_SESSION['id'])) {
 
                 if (!empty($_POST["amount"])) {
-                    $this->ticketService->createNewOrderId($userId);
-                    $orderId = $this->ticketService->getOrderIdByCustomerId($userId);
+                    $orderId = $this->ticketService->createNewOrderId($userId);
+                    var_dump($orderId);
+                    //$orderId = $this->ticketService->getOrderIdByCustomerId($userId);
                     $this->ticketService->updateOrderId($userId, $orderId);
                     // Get payment parameters from form submission
                     $amount = number_format($_POST["amount"], 2, '.', '');
@@ -118,7 +120,8 @@ class shoppingCartController
                 $paymentStatus = $this->ticketService->getPaymentStatusFromMollie($paymentCode);
                 if ($paymentStatus == "paid") {
                     $this->ticketService->changePaymentToPaid($paymentCode, $orderId);
-                    $this->sendTicket();
+                    $this->orderService->finalizeOrder($orderId);
+                    $this->sendTicket($orderId);
                     $this->sendInvoice($orderId);
                     include __DIR__ . '/../views/cart/paymentSuccessful.php';
                 } else {
@@ -146,8 +149,14 @@ class shoppingCartController
 
     private function sendTicket($orderId){
         try{
-            $ticketData = $this->orderService->createTicket($orderItemId);
-            $this->emailService->sendTicketEmail($ticketData);
+            $orderItems = $this->orderService->getOrderItemsIdByOrder($orderId);
+            $ticketsData = [];
+            foreach ($orderItems as $orderItemId) {
+                $ticketData = $this->orderService->createTicket($orderItemId);
+                $ticketsData[] = $ticketData;
+            }
+
+            $this->emailService->sendTicketEmail($ticketsData);
         } catch (\Exception $e) {
             error_log("An error occurred when sending the tickets: " . $e->getMessage());
         }

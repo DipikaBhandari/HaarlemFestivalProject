@@ -7,7 +7,6 @@
     <title>Shopping Cart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/Admin/AdminPanelSideBar.css">
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -114,12 +113,12 @@
                 deleteOrder(orderId); // Call deleteOrder function with orderId
                 // Optionally, remove the card or update the UI
                 event.target.closest('.mb-3').remove(); // Remove the card element from the DOM
-                window.location.reload();
+                //window.location.reload();
             });
         });
 
         function deleteOrder(orderItemId) {
-            fetch('/shoppingcart/deleteOrder', {
+            fetch('/ticket/deleteOrder', {
                 method: 'POST',
                 body: JSON.stringify({orderItemId: orderItemId}),
                 headers: {
