@@ -9,3 +9,9 @@
 </footer>
 </body>
 </html>
+
+<style>
+    .footer{
+        margin-top: auto;
+    }
+</style>

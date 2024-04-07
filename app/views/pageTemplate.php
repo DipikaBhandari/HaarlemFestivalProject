@@ -45,3 +45,17 @@ if(isset($_SESSION['username'])) {
 <?php
 include __DIR__ . '/footer.php';
 ?>
+
+<script>
+    if(document.getElementById('photo-col')){
+        document.getElementById('photo-col').style.display = "block";
+    }
+</script>
+
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+</style>

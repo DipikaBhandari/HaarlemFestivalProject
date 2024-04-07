@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(!isset($_SESSION)){
+    session_start();
+}
 
 if(isset($_SESSION['username'])) {
     include __DIR__ . '/afterlogin.php';
@@ -69,8 +71,8 @@ if(isset($_SESSION['username'])) {
 
         tinymce.init({
             selector: 'textarea',
-            plugins: 'lists searchreplace wordcount formatpainter a11ychecker tinymcespellchecker powerpaste autocorrect typography',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | spellcheckdialog a11ycheck typography | align lineheight | numlist bullist indent outdent | removeformat',
+            plugins: 'lists',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | removeformat',
         });
     }
     window.addEventListener('DOMContentLoaded', initializeSection);

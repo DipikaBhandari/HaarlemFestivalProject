@@ -1,10 +1,10 @@
 <div class="crossNavigation">
     <?php if(!empty($section['heading'])): ?>
-        <h1><?php echo($section['heading']); ?></h1>
+        <h1 class="text-center"><?php echo strip_tags($section['heading']); ?></h1>
     <?php endif; ?>
 
     <?php if(!empty($section['subTitle'])): ?>
-        <h4><?php echo($section['subTitle']); ?></h4>
+        <h4 class="text-center"><?php echo strip_tags($section['subTitle']); ?></h4>
     <?php endif; ?>
 
     <div id="myCarousel" class="carousel" >
@@ -27,8 +27,8 @@
                                 <?php endif;
                             endif; ?>
                             <div class="card-body" style="background-color: #006D77">
-                                <h3 class="card-title"><?php echo $item['title']; ?></h3>
-                                <p class="card-text"><?php echo $item['subtitle']; ?></p>
+                                <h3 class="card-title"><?php echo strip_tags($item['title']); ?></h3>
+                                <p class="card-text"><?php echo strip_tags($item['subtitle']); ?></p>
                                 <a href="<?php echo $item['linkPath']; ?>" class="btn btn-light"><?php echo $item['linkText']; ?></a>
                             </div>
                         </div>

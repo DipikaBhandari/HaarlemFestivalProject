@@ -3,12 +3,13 @@
 }
 
 .navbar-brand {
-    font-family: "Lato", sans-serif;
+    font-family: "Aleo", serif;
     font-weight: 300;
     font-size: 40px;
 }
 
 .nav-link {
+    font-family: 'Aleo', sans-serif;
     font-size: 25px;
     min-width: 10%;
     color:white;
@@ -23,10 +24,9 @@
 
 #loginLink{
     border-radius: 10px;
-    font-size: 20px;
-    background-color: #2E294E;
+    font-size: 25px;
     padding: 0px 5px 0px 5px;
-
+    font-family: 'Aleo', sans-serif;
     float: right;
 }
 

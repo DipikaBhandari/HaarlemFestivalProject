@@ -1,11 +1,13 @@
 <?php
 $role = $_SESSION["role"];
 $isAdmin = $role === "Administrator";
+$isEmployee = $role === "Employee";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Haarlem Festival</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -25,6 +27,11 @@ $isAdmin = $role === "Administrator";
         <img id="logo" src="../img/festivalLogo.svg" >
     </div>
     <nav class="navbar navbar-expand-lg bg-body-primary d-flex justify-content-between px-2">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav flex-row flex-lg" id="dynamicNavLinks">
         </div>
         <div class="navbar-nav flex-row flex-lg">
@@ -35,6 +42,9 @@ $isAdmin = $role === "Administrator";
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li><a class="dropdown-item" href="/manageaccount/showAccount">Profile</a></li>
+                    <?php if($isEmployee): ?>
+                    <li><a class="dropdown-item" href="/order/scanTicket">Scan tickets</a></li>
+                    <?php endif; ?>
                     <?php if ($isAdmin): ?>
                         <li><a class="dropdown-item" href="#">Manage Users</a></li>
                         <li><a class="dropdown-item" href="#">Manage History Events</a></li>
@@ -48,8 +58,11 @@ $isAdmin = $role === "Administrator";
             </div>
 
             <a id="personalProgramLink" class="nav-link ps-5" href="/personalProgram">
-                <img src="../img/heartbutton.svg" alt="personal program button" width="30" height="30" class="d-inline-block">
+                <i class="fa-regular fa-heart fa-xl" style="color: #c80e0e;"></i>
             </a>
+            <!--remove this when all code is combined-->
+            <a href="/order">invoice email</a>
+        </div>
         </div>
     </nav>
 </header>

@@ -19,33 +19,48 @@ class userService
 
     public function authenticateUser($username, $password)
     {
-
-        $user = $this->userRepository->verifyUser($username, $password);
-        if ($user) {
-
+        try{
+            $user = $this->userRepository->verifyUser($username, $password);
             return $user;
+        } catch (\Exception $e){
+            error_log("Error authenticating user: " . $e->getMessage());
+            return null;
         }
-        return null;
     }
 
     public function sendResetLink($email){
-        $resetToken = $this->userRepository->sendResetLink($email);
-        if ($resetToken){
-            $result = $this->emailService->sendPasswordResetEmail($email, $resetToken);
-            return $result;
-        } else{
+        try{
+            $resetToken = $this->userRepository->sendResetLink($email);
+            if ($resetToken){
+                $result = $this->emailService->sendPasswordResetEmail($email, $resetToken);
+                return $result;
+            } else{
+                return false;
+            }
+        } catch (\Exception $e) {
+            error_log('Error sending reset link: ' . $e->getMessage());
             return false;
         }
     }
 
     public function validateToken($token, $email)
     {
-        return $this->userRepository->validateToken($token, $email);
+        try {
+            return $this->userRepository->validateToken($token, $email);
+        } catch(\Exception $e) {
+            error_log('Error validating password reset token: ' . $e->getMessage());
+            return false;
+        }
     }
 
     public function updatePassword($email, $password)
     {
-        return $this->userRepository->updatePassword($email, $password);
+        try{
+            return $this->userRepository->updatePassword($email, $password);
+        } catch(\Exception $e) {
+            error_log('Error updating password: ' . $e->getMessage());
+            return false;
+        }
     }
 
     public function getUserByEmail($email)
