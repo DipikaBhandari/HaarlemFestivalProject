@@ -180,7 +180,7 @@ class ticketRepository extends Repository
     public function isNewOrderCreated($userId): bool
     {
         // Query the database to check if there are any existing orders for the user
-        $sql = "SELECT COUNT(*) FROM [Order] WHERE customerId = :customerId";
+        $sql = "SELECT COUNT(*) FROM [Order] WHERE customerId = :customerId AND orderStatus = 'open'";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindValue(':customerId', $userId);
         $stmt->execute();
@@ -192,17 +192,17 @@ class ticketRepository extends Repository
         return ($orderCount > 0);
     }
 
-    public function createNewOrder($userId): int
+    public function createNewOrder($userId)
     {
         // Check if an order already exists for the user
         if (!$this->isNewOrderCreated($userId)) {
             // Insert new order into the database
-            $sql = "INSERT INTO [Order] (customerId) VALUES (:customerId)";
+            $sql = "INSERT INTO [Order] (customerId, orderStatus) VALUES (:customerId, 'open') ";
             $stmt = $this->connection->prepare($sql);
             $stmt->bindValue(':customerId', $userId);
             $stmt->execute();
 
-            // Return the ID of the newly created order
+            // Get the ID of the newly created order
             $orderId = $this->connection->lastInsertId();
 
             // Set $_SESSION['orderId'] to the retrieved orderId
@@ -214,6 +214,7 @@ class ticketRepository extends Repository
             return $_SESSION['orderId'];
         }
     }
+
     public function updateOrderPrice($totalPrice, $userId)
     {
         try {
@@ -240,7 +241,7 @@ class ticketRepository extends Repository
     public function getOrderIdByCustomerId($userId)
     {
         try {
-            $stmt = $this->connection->prepare("SELECT orderId FROM [Order] WHERE customerId = :customerId;");
+            $stmt = $this->connection->prepare("SELECT orderId FROM [Order] WHERE customerId = :customerId AND orderStatus = 'open';");
             $stmt->bindValue(':customerId', $userId);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch a single row
@@ -373,15 +374,15 @@ class ticketRepository extends Repository
         $stmt->execute();
     }
 
-    public function updateOrderItemStatus($status, $orderId, $userId)
-    {
-        $stmt = $this->connection->prepare('UPDATE [orderItem] SET status = :status, orderId = :orderId WHERE  userId = :userId');
-        $stmt->bindParam(':status', $status);
-        $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
-        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
-        $stmt->execute();
-        return true;
-    }
+//    public function updateOrderItemStatus($status, $orderId, $userId)
+//    {
+//        $stmt = $this->connection->prepare('UPDATE [orderItem] SET status = :status, orderId = :orderId WHERE  userId = :userId');
+//        $stmt->bindParam(':status', $status);
+//        $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
+//        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+//        $stmt->execute();
+//        return true;
+//    }
 
     public function updateOrderId($userId, $orderId)
     {
@@ -407,12 +408,22 @@ class ticketRepository extends Repository
             throw new Exception('Error: ' . $e->getMessage());
         }
     }
+    public function closeOrder($orderId, $status) {
+        try {
+            $stmt = $this->connection->prepare("UPDATE [Order] SET orderStatus = :orderStatus WHERE orderId = :orderId");
+            $stmt->bindParam(':orderStatus', $status, PDO::PARAM_STR); // Explicitly specify the parameter type as string
+            $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 
-    public function closeOrder($orderId, $status){
+    public function updateOrderItemStatus($orderId, $status){
         try {
             $stmt = $this->connection->prepare("UPDATE [orderItem] SET status = :status WHERE orderId = :orderId");
             $stmt->bindParam(':status', $status);
-
             $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
             $stmt->execute();
 

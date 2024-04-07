@@ -13,6 +13,7 @@ if(isset($_SESSION['username'])) {
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
         <title>Strolling Through History</title>
     </head>
+<div>
     <div>
         <?php
         foreach ($sections as $section) {
@@ -62,12 +63,12 @@ if(isset($_SESSION['username'])) {
         ?>
     </div>
 <div class="shape"
-     style="margin-top:0; float: right; font-family: Aleo,serif; font-size: 64px;
-     width: 25%; height: 60px; background-color: #2E294E;; border: 1px solid black; color: white; text-align: center; border-radius: 0;">
+     style="margin-top:0; float: right; margin-right:10%; font-family: Aleo,serif; font-size: 64px;
+     width: 20%; height: 70px; background-color: #2E294E;; border: 1px solid black; color: white; text-align: center; border-radius: 0;">
     <h1>Book your tickets here</h1>
 </div>
-<div class="shape"
-     style="width: 94%; margin-left: 75px;
+<div class="shape-second"
+     style="width: 70%; margin-left: 8%;
              height: 60px;
               border-radius: 20px 20px 0 0;
 background: #582F0E; color: #FFFFFF; ">
@@ -93,7 +94,7 @@ background: #582F0E; color: #FFFFFF; ">
         ?>
 </div>
 
-
+</div>
 <?php
 include __DIR__ . '/../footer.php';
 ?>

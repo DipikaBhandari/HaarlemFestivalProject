@@ -8,7 +8,7 @@
         <div class="col-md-10">
             <?php if (!empty($section['paragraphs'])): ?>
                 <?php foreach ($section['paragraphs'] as $paragraph): ?>
-                    <p style="font-size: 26px;"><?php echo $paragraph['text']; ?></p>
+                    <p style="font-size: 24px;"><?php echo htmlspecialchars(strip_tags($paragraph['text']));?></p>
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>

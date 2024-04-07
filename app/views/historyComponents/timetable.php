@@ -7,7 +7,6 @@
             position: fixed;
             top: 10%;
             left: 20%;
-            /*transform: translate(-50%, -50%);*/
             background: #582F0E;
             color: #FFFFFF;
             border-radius: 20px;
@@ -20,69 +19,129 @@
         }
 
         .item {
-
             margin-right: 5%; /* Adjust as needed */
+        }
+        tbody tr {
+            border-bottom: 1px solid black; /* Add bottom border to each row */
+        }
+        /* Apply styling to both tables */
+        table {
+            border: 1px solid black;
+            font-family: Inter, serif;
+        }
+        th {
+            height: 50px;
+            background: #582F0E;
+            color: #FFFFFF;
+            font-size: 24px;
+            border: 1px solid #FFFFFF;
+        }
+        td {
+            padding: 10px;
+
         }
     </style>
 </head>
 <body>
-<div class="time-container" style="text-align: center; margin-left: 4%; margin-bottom: 50px;">
-    <table style="border: 1px solid black; font-family: Inter, serif;">
-        <thead>
-        <tr style="height: 50px; background: #582F0E; color: #FFFFFF; font-size: 24px;">
-            <th colspan="4" style="border: 1px solid #FFFFFF;">Date</th>
-            <th colspan="3" style="border: 1px solid #FFFFFF;">10:00</th>
-            <th colspan="3" style="border: 1px solid #FFFFFF;">13:00</th>
-            <th colspan="3" style="border: 1px solid #FFFFFF;">16:00</th>
-            <th style="border: 1px solid #FFFFFF;">Guides Name</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php if (!empty($section['historyDetails']) && !empty($guides)): ?>
-            <?php
-            // Group history details by date
-            $groupedDetails = [];
-            foreach ($section['historyDetails'] as $detail) {
-                $groupedDetails[$detail['date']][] = $detail;
-            }
-            ?>
-            <?php foreach ($groupedDetails as $date => $details): ?>
-                <tr>
-                    <td colspan="4" style="border-left:  1px solid #000; border-right: 1px solid #000; padding: 20px; color: #006D77; font-size: 26px; font-weight: bold;"><?php echo $date; ?></td>
-                    <?php foreach ($details as $detail): ?>
-                        <?php
-                        // Split the image paths into an array
-                        $imagePaths = explode(", ", $detail['languageIndicator']);
-                        ?>
-                        <?php for ($i = 0; $i < 3; $i++): ?>
-                            <td colspan="1" style="border-bottom: 1px solid #000; padding: 10px;">
-                                <?php if (isset($imagePaths[$i])): ?>
-                                    <button onclick="togglePopUp('<?php echo $date; ?>', '<?php echo $detail['startTime']; ?>', '<?php echo $detail['endTime']; ?>', '<?php echo $imagePaths[$i]; ?>')" style="border: none; background: none;"><img src="<?php echo $imagePaths[$i]; ?>" alt=""></button>
-                                <?php endif; ?>
-                            </td>
-                        <?php endfor; ?>
-                    <?php endforeach; ?>
-                    <td style="border: 1px solid #582F0E;">
-                        <?php
-                        // Find the guide name for this date
-                        $guideName = '';
-                        foreach ($guides as $guide) {
-                            if ($guide['guideId'] == $details[0]['guideId']) { // Use the guideId of the first detail in the loop
-                                $guideName = $guide['guideName'];
-                                break;
-                            }
-                        }
-                        echo $guideName;
-                        ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        <?php endif; ?>
-        </tbody>
-    </table>
+<div class="container" style="display: flex;">
+    <!-- First table -->
+    <div class="time-container" style="text-align: center; margin-left: 10%; margin-bottom: 50px;">
+        <table>
+            <thead>
+            <tr>
+                <th rowspan="10">Date</th>
+                <th colspan="24">TimeSlots and Language</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php if (!empty($section['historyDetails']) && !empty($guides)): ?>
+                <?php
+                // Group history details by date
+                $groupedDetails = [];
+                foreach ($section['historyDetails'] as $detail) {
+                    $groupedDetails[$detail['date']][] = $detail;
+                    // Sort dates in ascending order
+                    ksort($groupedDetails);
+                }
+                ?>
+                <?php foreach ($groupedDetails as $date => $details): ?>
+                    <tr>
+                        <td colspan="5" style="color: #006D77;  border-left: 1px solid #000; border-right: 1px solid #000;font-size: 26px; font-weight: bold;"><?php echo $date; ?></td>
 
+                        <?php
+                        usort($details, function($a, $b) {
+                            return strtotime($a['time']) - strtotime($b['time']);
+                        });
+                        foreach ($details as $detail): ?>
+                            <td colspan="2"><?php echo $detail['time']; ?></td>
+                            <?php
+                            // Determine the maximum number of images in a time slot
+                            $maxImages = 3; // Maximum number of images in each block of columns
+                            // Split the image paths into an array
+                            $imagePaths = explode(", ", $detail['languageIndicator']);
+                            // Calculate the remaining columns without images
+                            $remainingColumns = max(0, $maxImages - count($imagePaths));
+                            ?>
+                            <?php for ($i = 0; $i < $maxImages; $i++): ?>
+                                <td colspan="1">
+                                    <?php if (isset($imagePaths[$i])): ?>
+                                        <button onclick="togglePopUp('<?php echo $date; ?>', '<?php echo $detail['startTime']; ?>', '<?php echo $detail['endTime']; ?>', '<?php echo $imagePaths[$i]; ?>')" style="border: none; background: none;"><img src="<?php echo $imagePaths[$i]; ?>" alt=""></button>
+                                    <?php else: ?>
+                                        <!-- Empty image placeholder -->
+                                        <div style="width: 100px; height: 80px;"></div>
+                                    <?php endif; ?>
+                                </td>
+                            <?php endfor; ?>
+                        <?php endforeach; ?>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Second table for guide names -->
+    <div class="guide-names" style="margin-left: 0;">
+        <table>
+            <thead>
+            <tr>
+                <th>Guide Names</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php if (!empty($groupedDetails)): ?>
+                <?php foreach ($groupedDetails as $date => $details): ?>
+                    <tr>
+                        <td style="height: 101px;"> <!-- Set the height here -->
+                            <?php
+                            // Initialize an array to store unique guide names for the current date
+                            $uniqueGuideNames = [];
+
+                            foreach ($details as $detail) {
+                                foreach ($guides as $guide) {
+                                    if ($guide['guideId'] == $detail['guideId']) {
+                                        // Check if the guide name is already added for the current date
+                                        if (!in_array($guide['guideName'], $uniqueGuideNames)) {
+                                            $uniqueGuideNames[] = $guide['guideName'];
+                                        }
+                                    }
+                                }
+                            }
+                            echo implode(', ', $uniqueGuideNames);
+                            ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
 
 </div>
+</body>
+</html>
+
+
 <div class="pop-up" id="pop-up">
     <form id="ticketform" method="post">
         <h2>A Stroll Through History Ticket</h2>
@@ -237,5 +296,3 @@
         form.reset();
     }
 </script>
-</body>
-</html>

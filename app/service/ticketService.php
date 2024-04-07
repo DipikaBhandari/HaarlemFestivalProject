@@ -131,15 +131,16 @@ class ticketService
         $this->ticketRepository->updatePaymentStatus($paymentCode, $newPaymentStatus);
     }
 
+    public function updateOrderItemStatus($orderId, $status)
+    {
+        $this->ticketRepository->updateOrderItemStatus($orderId, $status);
+    }
+
     public function closeOrder($orderId, $status)
     {
         $this->ticketRepository->closeOrder($orderId, $status);
     }
 
-    public function updateOrderItemStatus($status, $orderId, $userId)
-    {
-        $this->ticketRepository->updateOrderItemStatus($status, $orderId, $userId);
-    }
 
     public function updateOrderId($userId, $orderId)
     {
@@ -152,6 +153,7 @@ class ticketService
     public function changePaymentToPaid($paymentCode, $orderId)
     {
         $this->updatePaymentStatus($paymentCode, "paid");
+        $this->updateOrderItemStatus($orderId, "paid");
         $this->closeOrder($orderId, "paid");
 
         $paymentMethod = $this->getPaymentMethod($paymentCode);

@@ -120,7 +120,12 @@ if (!empty($sharingUrl)) {
     <div id="agendacontainer" class="agenda" style="display: none">
         <h1>Your Personal Program</h1>
         <?php foreach ($orderItems as $order): ?>
-            <div class="mb-3">
+            <?php
+            // Check the status of the order
+            $status = $order->getStatus();
+            $backgroundColor = ($status === 'paid') ? '#dff0d8' : '#f2dede'; // Green for paid, Red for unpaid
+            ?>
+            <div class="mb-3" style="background-color: <?= $backgroundColor; ?>">
                 <div class="card">
                     <div class="card-body">
                         <div>
