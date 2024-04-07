@@ -2,7 +2,8 @@
 
 namespace App\service;
 use App\Repositories\userRepository;
-use App\Model\User;
+use App\Model\user;
+use DateTime;
 
 class userService
 {
@@ -67,7 +68,7 @@ class userService
     {
         return $this->userRepository->findByEmail($email);
     }
-    public function updateUser(User $user)
+    public function updateUser(user $user)
     {
         return $this->userRepository->updateUser($user);
     }
@@ -135,5 +136,44 @@ class userService
         }
     }
 
+    public function fetchAllUsers()
+    {
+        try {
+            return $this->userRepository->fetchAllUsers();
+        } catch (Exception $e) {
+            error_log("Error fetching all users: " . $e->getMessage());
+            return [];
+        }
+    }
+    public function createUser(user $user): bool
+    {
+        try {
+            $currentDateTime = new DateTime();
+            $formattedDateTime = $currentDateTime->format('Y-m-d H:i:s');
+            return $this->userRepository->createUser(
+                $user->getUsername(),
+                $user->getEmail(),
+                $user->getPassword(),
+                $user->getAddress(),
+                $user->getPhoneNumber(),
+                $user->getRole(),
+                $formattedDateTime
+            );
+        } catch (Exception $e) {
+            error_log("Error during registration: " . $e->getMessage());
+            return false;
+        }
+    }
+    public function deleteUser($identifier)
+    {
+        return $this->userRepository->deleteUser($identifier);
+    }
+    public function getUserDetailsForEditing($identifier) {
+        return $this->userRepository->getUserByUserName($identifier);
+    }
+
+    public function submitUserEdit(user $editedUser) {
+        return $this->userRepository->updateUsers($editedUser);
+    }
 }
 

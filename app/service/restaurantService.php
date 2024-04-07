@@ -37,10 +37,51 @@ class restaurantService
     public function getYummyParagraphsBySection($restaurantSectionId){
         return $this->restaurantRepository->getYummyParagraphsBySection($restaurantSectionId);
     }
+
+    public function getYummyImageBySection($restaurantSectionId){
+        return $this->restaurantRepository->getYummyImageBySection($restaurantSectionId);
+    }
     public function getYummyOpeningBySection($restaurantSectionId){
         return $this->restaurantRepository->getYummyOpeningBySection($restaurantSectionId);
     }
     public function getAllYummyLocations() {
         return $this->restaurantRepository->getAllYummyLocations();
+    }
+
+    public function getAllYummyInfo() {
+        return $this->restaurantRepository->getAllYummyInfo();
+    }
+    public function findDetail(int $restaurantId)
+    {
+        return $this->restaurantRepository->findDetail($restaurantId);
+    }
+
+    public function updateRestaurantDetails($restaurantDetails)
+    {
+        return $this->restaurantRepository->updateRestaurantDetails($restaurantDetails);
+    }
+    public function createNewRestaurant($restaurantData)
+    {
+
+        return $this->restaurantRepository->create($restaurantData);
+    }
+    Public function getSessionById($sessionId) {
+        return $this->restaurantRepository->getSessionById($sessionId);
+    }
+
+    public function updateSessionSeats($sessionId, $newCapacity) {
+        return $this->restaurantRepository->updateSessionSeats($sessionId, $newCapacity);
+    }
+
+    public function createReservation($reservationData) {
+        return $this->restaurantRepository->createReservation($reservationData);
+    }
+    public function getSessionsForRestaurantId($restaurantId) {
+        return $this->restaurantRepository->getSessionsForRestaurantId($restaurantId);
+    }
+
+    public function deleteRestaurant($restaurantId)
+    {
+        return $this->restaurantRepository->deleteRestaurant($restaurantId);
     }
 }

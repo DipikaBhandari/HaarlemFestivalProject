@@ -39,8 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const formData= new FormData(form);
 
-        // Add here the validation logic and form submission via fetch API
-        fetch('/manageAccount/updateAccount' ,{ // Replace with your actual endpoint
+        fetch('/manageAccount/updateAccount' ,{
             method: 'POST',
             body: formData, // FormData will correctly handle file input
 

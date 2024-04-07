@@ -2,7 +2,7 @@
 namespace App\Controllers;
 
 
-use App\model\User;
+use App\model\user;
 use App\service\emailProfileChangeConfirmationService;
 
 require_once __DIR__ . '/../config/dbconfig.php';
@@ -19,7 +19,7 @@ class ManageAccountController
     public function __construct()
     {
         $this->userService = new \App\Service\userService();
-        $this->userModel = new \App\model\User();
+        $this->userModel = new \App\model\user();
          $this->emailProfileChange = new emailProfileChangeConfirmationService();
     }
 
@@ -52,7 +52,7 @@ class ManageAccountController
                 echo json_encode(['success' => false, 'message' => 'User not logged in']);
                 exit;
             }
-            $user = new User();
+            $user = new user();
             $user->setEmail(htmlspecialchars($_POST['email']));
             $user->setName($_SESSION['username']);
             $user->setEmail(htmlspecialchars($_POST['email']));
@@ -99,7 +99,7 @@ class ManageAccountController
             $safeFilename = bin2hex(random_bytes(16)) . '.' . pathinfo($_FILES['profilePictureInput']['name'], PATHINFO_EXTENSION);
             $targetFile = $targetDir . $safeFilename;
             if (move_uploaded_file($_FILES['profilePictureInput']['tmp_name'], $targetFile)) {
-                return '/img/' . $safeFilename;
+                return '../img/' . $safeFilename;
             }
         }
         return null;

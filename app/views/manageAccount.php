@@ -1,5 +1,5 @@
 <?php
-use App\model\User;
+use App\model\user;
 
  if(isset($_SESSION['username'])) {
     include __DIR__ . '/afterlogin.php'; // Include afterlogin.php for logged-in users
@@ -9,14 +9,14 @@ use App\model\User;
     include __DIR__ . '/header.php'; // Include default header for non-logged-in users
 }
 
-if (!isset($user) || !$user instanceof User) {
+if (!isset($user) || !$user instanceof user) {
     exit('User data is not available.');
 }
 ?>
 <div class="container mt-4">
 
     <!-- User Information Form -->
-    <form id="userInfoForm" action="/manageAccount/show" method="post" enctype="multipart/form-data">
+    <form id="userInfoForm" action="/ManageAccount/showAccount" method="post" enctype="multipart/form-data">
         <div class="profile-pic-container text-center mb-4">
             <input type="file" id="profilePictureInput" name="profilePictureInput"  accept="image/*" class="d-none"/>
             <label for="profilePictureInput" class="profile-pic-label">
@@ -106,8 +106,8 @@ if (!isset($user) || !$user instanceof User) {
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="../public/javascript/manageAccountPasswordUpdate.js"></script>
-<script src="../public/javascript/manageAccount.js"></script>
+<script src="/javascript/manageAccountPasswordUpdate.js"></script>
+<script src="/javascript/manageAccount.js"></script>
 <?php
 include __DIR__ . '/footer.php';
 ?>

@@ -69,4 +69,9 @@ class orderService
             return null;
         }
     }
+	
+    public function getOrderDetails(){
+        return $this->orderRepository->getOrderDetails();
+    }
+
 }

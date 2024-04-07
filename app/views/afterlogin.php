@@ -20,11 +20,25 @@ $isEmployee = $role === "Employee";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/headerStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentPage = window.location.pathname;
+            const links = document.querySelectorAll('.navbar-nav a');
+
+            links.forEach(function (link) {
+                if (link.getAttribute('href').includes(currentPage)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 <header>
     <div>
-        <img id="logo" src="../img/festivalLogo.svg" >
+        <img id="logo" src="/img/festivalLogo.svg" >
     </div>
     <nav class="navbar navbar-expand-lg bg-body-primary d-flex justify-content-between px-2">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -53,12 +67,22 @@ $isEmployee = $role === "Employee";
                         <li><hr class="dropdown-divider"></li>
                     <?php endif; ?>
 
+                    <li><a class="dropdown-item" href="/manageAccount/showAccount">Profile</a></li>
+                    <li><a class="dropdown-item admin hide" href="/ManageUsers/manageuser">Manage Users</a></li>
+                    <li><a class="dropdown-item admin hide" href="/ManageHistory/manageHistory">Manage History Events</a></li>
+                    <li><a class="dropdown-item admin hide" href="/ManageYummy/manageYummy">Manage Yummy Events</a></li>
+                    <li><a class="dropdown-item admin hide" href="#">Manage Contents</a></li>
+                    <li><a class="dropdown-item admin hide" href="/ManageReservation/manageReservation">Manage Reservation</a></li>
+                    <li><a class="dropdown-item admin hide" href="/ManageOrder/manageOrder">Manage Order</a></li>
+
+                    <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
                 </ul>
             </div>
 
             <a id="personalProgramLink" class="nav-link ps-5" href="/personalProgram">
                 <i class="fa-regular fa-heart fa-xl" style="color: #c80e0e;"></i>
+                <img src="/img/heartbutton.svg" alt="personal program button" width="30" height="30" class="d-inline-block">
             </a>
             <!--remove this when all code is combined-->
             <a href="/order">invoice email</a>
@@ -97,4 +121,22 @@ $isEmployee = $role === "Employee";
             .catch(error => console.error('Error fetching pages:', error));
     });
 
+     const role = "<?php echo $_SESSION["role"]?>";
+     const items = document.querySelectorAll('.admin');
+
+     if(role === "Administrator"){
+         items.forEach(item =>{
+             item.classList.remove("hide");
+         })
+     } else{
+         items.forEach(item =>{
+             item.classList.add("hide");
+         })
+     }
 </script>
+<style>
+  .hide{
+      display:none;
+  }
+</style>
+

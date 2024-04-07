@@ -53,6 +53,18 @@ class Router
             $controller->details($restaurantId);
             return;
         }
+        if ($explodedUri[0] === 'ManageYummy' && $explodedUri[1] === 'manageRestaurant' && isset($explodedUri[2])) {
+            $restaurantId = $explodedUri[2];
+            $controller = new \App\Controllers\ManageYummyController();
+            $controller->manageRestaurant($restaurantId);
+            return;
+        }
+        if ($explodedUri[0] === 'restaurant' && $methodName === 'getSessionsForRestaurant' && isset($explodedUri[2])) {
+            $restaurantId = $explodedUri[2];
+            $controller = new \App\Controllers\RestaurantController();
+            $controller->getSessionsForRestaurant($restaurantId);
+            return;
+        }
         try {
             $controllerObj = new $controllerName();
             $controllerObj->$methodName();

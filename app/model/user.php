@@ -2,7 +2,7 @@
 
 namespace App\model;
 
-class User
+class user
 {
     private string $email;
 
@@ -12,7 +12,27 @@ class User
     private string $username;
     private $phoneNumber;
     private $profilePicture;
+    private $registeredAt;
+    private $id;
 
+    /**
+     * @return mixed
+     */
+    public function getRegisteredAt()
+    {
+        return $this->registeredAt;
+    }
+
+    /**
+     * @param mixed $registeredAt
+     */
+    public function setRegisteredAt($registeredAt): void
+    {
+        $this->registeredAt = $registeredAt;
+    }
+    public function __construct()
+    {
+    }
     /**
      * @return mixed
      */
@@ -24,7 +44,7 @@ class User
     /**
      * @param mixed $username
      */
-    public function setName($username)
+    public function setName($username): void
     {
         $this->username = $username;
     }
@@ -145,6 +165,16 @@ class User
     {
         $this->password=$password;
     }
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     public function getUserId(): int
     {
@@ -159,5 +189,11 @@ class User
     {
         return get_object_vars($this);
     }
+
+
+    /**
+     * @return mixed
+     */
+
 
 }

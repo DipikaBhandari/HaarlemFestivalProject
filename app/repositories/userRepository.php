@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\model\Roles;
-use App\Model\User;
+use App\Model\user;
 use PDO;
 use PDOException;
 
@@ -114,9 +114,7 @@ class userRepository extends Repository
         }
     }
 
-
-
-    public function updateUser(User $user)
+    public function updateUser(user $user)
     {
         $sql = "UPDATE [dbo].[User] SET username = ?, address = ?, phonenumber = ?, picture = COALESCE(?, picture) WHERE email = ?";
         try {
@@ -127,6 +125,8 @@ class userRepository extends Repository
                 $user->getPhoneNumber(),
                 $user->getProfilePicture(),
                 $user->getEmail(),
+
+
 
             ]);
 
@@ -144,18 +144,19 @@ class userRepository extends Repository
 
         if ($userData) {
             // Convert the array to a User object and return it
-            $user = new User();
+            $user = new user();
             $user->setName($userData['username']);
             $user->setEmail($userData['email']);
             $user->setAddress($userData['address']);
             $user->setPhoneNumber($userData['phonenumber']);
             $user->setPassword($userData['password']);
             $user->setProfilePicture($userData['picture']);
+            $user->setId($userData['id']);
             return $user;
         }
         return null;
     }
-    public function getUserByEmail($email): ?User {
+    public function getUserByEmail($email): ?user {
         try {
             $sql = "SELECT * FROM [User] WHERE email = :email";
             $stmt = $this->connection->prepare($sql);
@@ -164,7 +165,7 @@ class userRepository extends Repository
 
             $userArray = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($userArray) {
-                $user = new User();
+                $user = new user();
                 // Set other required attributes of the User model
                 $user->setPassword($userArray['password']);
                 return $user;
@@ -175,6 +176,20 @@ class userRepository extends Repository
             // Depending on your error handling strategy, you might want to show an error or log it.
         }
         return null;
+    }
+    public function getUserByUserName($username)
+    {
+        try {
+            $sql = "SELECT * FROM [User] WHERE username = :username";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindValue(':username', $username);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }catch (PDOException $e) {
+            // Handle the error properly
+            error_log($e->getMessage());
+        }
     }
     public function updateUserPasswordByEmail($email, $hashedPassword): bool {
         $sql = "UPDATE [dbo].[User] SET password = ? WHERE email = ?";
@@ -217,6 +232,7 @@ class userRepository extends Repository
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
+
         }
     }
 
@@ -239,9 +255,76 @@ class userRepository extends Repository
             }
         } catch (PDOException $e) {
             echo $e->getMessage();
+		}
+	}
+
+    public function fetchAllUsers()
+    {
+        try {
+            $sql = "SELECT * FROM [dbo].[User]";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute();
+
+            // Fetch all users as an associative array
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Error fetching all users: " . $e->getMessage());
+            return [];
+        }
+    }
+    public function createUser($username, $email, $password, $address, $phoneNumber, $role, $formattedDateTime): bool
+    {
+        try {
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO [User] (username, email, address, phonenumber, password, role, registered_at) VALUES (:username, :email, :address, :phonenumber, :password, :role , :registered_at)";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindValue(':username', $username);
+            $stmt->bindValue(':email', $email);
+            $stmt->bindValue(':address', $address);
+            $stmt->bindValue(':phonenumber', $phoneNumber);
+            $stmt->bindValue(':password', $hashedPassword);
+            $stmt->bindValue(':role', $role);
+            $stmt->bindValue(':registered_at', $formattedDateTime);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            error_log("Error creating user: " . $e->getMessage());
             return false;
         }
     }
+    public function deleteUser($identifier)
+    {
+        try {
+            $sql = "DELETE FROM [User] WHERE username = :username OR email = :email";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindParam(':username', $identifier);
+            $stmt->bindParam(':email', $identifier);
+            $stmt->execute();
 
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+            error_log("Error deleting user: " . $e->getMessage());
+            return false;
+        }
+    }
+    public function updateUsers(User $user): bool {
+        try {
+            $sql = "UPDATE [User] SET username = :username, email = :email, address = :address, 
+            phonenumber = :phoneNumber, role = :role WHERE id = :id";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindValue(':id', $user->getId(), PDO::PARAM_INT);
+            $stmt->bindValue(':username', $user->getUsername());
+            $stmt->bindValue(':email', $user->getEmail());
+            $stmt->bindValue(':address', $user->getAddress());
+            $stmt->bindValue(':phoneNumber', $user->getPhoneNumber());
+            $stmt->bindValue(':role', $user->getRole());
+            $stmt->execute();
+
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+            error_log("Error updating user: " . $e->getMessage());
+            return false;
+        }
+    }
 }
 
