@@ -70,7 +70,7 @@ class CreateRestaurantController
             'kidPrice' => isset($data['kidPrice']) ? $this->sanitizePrice($data['kidPrice']) : null,
             'adultPrice' => isset($data['adultPrice']) ? $this->sanitizePrice($data['adultPrice']) : null,
             'numberOfSeats' => isset($data['numberOfSeats']) ? filter_var($data['numberOfSeats'], FILTER_SANITIZE_NUMBER_INT) : null,
-        ];
+            ];
     }
 
     private function sanitizePrice($price) {

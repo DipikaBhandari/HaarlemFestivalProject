@@ -31,7 +31,7 @@ class CreateReservationController
             $this->restaurantService->updateSessionSeats($_POST['session'], $totalPeople);
 
             $reservationData = [
-                'userId' => $_SESSION['id'] ,
+                'userId' => $_SESSION['id'],
                 'session' => $_POST['session'],
                 'num_adults' => $_POST['numAdults'],
                 'num_children' => $_POST['numChildren'],

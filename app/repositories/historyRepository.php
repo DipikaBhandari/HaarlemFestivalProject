@@ -124,4 +124,43 @@ class historyRepository extends Repository
             return false;
         }
     }
+
+    public function getHistoryDetail($historyId)
+    {
+        try {
+            $sql ="SELECT * FROM historyDetails WHERE historyId = :historyId";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindValue('historyId', $historyId);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }catch (PDOException $e) {
+            // Handle the error properly
+            error_log($e->getMessage());
+        }
+    }
+
+    public function updateHistory($data)
+    {
+        // SQL query to update the history record
+        // Ensure your SQL parameters are named correctly according to your database schema
+        $sql = "UPDATE historyDetails SET date = :date, time = :time, languageIndicator = :languageIndicator, guideId = :guideId, startTime = :startTime, endTime = :endTime WHERE historyId = :historyId";
+
+        $stmt = $this->connection->prepare($sql);
+
+        // Bind values from $data array to the statement
+        $stmt->bindValue(':historyId', $data['historyId'], PDO::PARAM_INT);
+        $stmt->bindValue(':date', $data['date']);
+        $stmt->bindValue(':time', $data['time']);
+        $stmt->bindValue(':languageIndicator', $data['languageIndicator']);
+        $stmt->bindValue(':guideId', $data['guideId'], PDO::PARAM_INT);
+        $stmt->bindValue(':startTime', $data['startTime']);
+        $stmt->bindValue(':endTime', $data['endTime']);
+
+        // Execute the update
+        if ($stmt->execute()) {
+            return true; // Update succeeded
+        } else {
+            return false; // Update failed
+        }
+    }
 }

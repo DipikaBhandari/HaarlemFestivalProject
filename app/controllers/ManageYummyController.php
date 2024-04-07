@@ -118,7 +118,28 @@ class ManageYummyController
         }
         ob_end_flush();
     }
+    public function delete(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Get the raw POST data
+            $rawData = file_get_contents('php://input');
+            $data = json_decode($rawData, true);
 
+            $restaurantId = $data['restaurantId'] ?? null;
+
+            if ($restaurantId) {
+                $result = $this->restaurantService->deleteRestaurant($restaurantId);
+
+                if ($result) {
+                    echo json_encode(['success' => true, 'message' => 'Restaurant deleted successfully']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Failed to delete restaurant']);
+                }
+            } else {
+                http_response_code(400); // Bad Request
+                echo json_encode(['success' => false, 'message' => 'Restaurant ID is missing']);
+            }
+        }
+    }
 
 }
 

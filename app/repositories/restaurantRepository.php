@@ -74,6 +74,14 @@ class restaurantRepository extends Repository
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getYummyImageBySection($restaurantSectionId)
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM YummyImage WHERE restaurantSectionId = :restaurantSectionId");
+        $stmt->bindParam(':restaurantSectionId', $restaurantSectionId);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function getYummyOpeningBySection($restaurantSectionId)
     {
         $stmt = $this->connection->prepare("SELECT * FROM OpeningTime WHERE restaurantSectionId = :restaurantSectionId");
@@ -92,7 +100,7 @@ class restaurantRepository extends Repository
 
     public function getAllYummyInfo()
     {
-        $stmt = $this->connection->prepare("SELECT * FROM RestaurantSection");
+        $stmt = $this->connection->prepare("SELECT * FROM Yummyyy");
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -163,7 +171,7 @@ class restaurantRepository extends Repository
             $stmt->bindValue(':kidPrice', number_format((float)$restaurantData['kidPrice'], 2, '.', ''));
             $stmt->bindValue(':adultPrice', number_format((float)$restaurantData['adultPrice'], 2, '.', ''));
             $stmt->bindParam(':numberOfSeats', $restaurantData['numberOfSeats']);
-
+            //$stmt->bindParam(':eventName', $restaurantData['']);
             $stmt->execute();
             return ['success' => true];// Returns the ID of the last inserted row
         } catch (\PDOException $e) {
@@ -196,15 +204,16 @@ class restaurantRepository extends Repository
         $stmt->bindParam(':sessionId', $sessionId, PDO::PARAM_INT);
         $stmt->execute();
     }
-    public function createReservation($orderData) {
+    public function createReservation($orderData, ) {
         $sessionDetails = $this->getSessionById($orderData['session']);
         if (!$sessionDetails) {
             throw new Exception('Session does not exist.');
         }
         $startTime = $sessionDetails['startTime'];
         $endTime = $sessionDetails['endTime'];
-        $stuts= "unpaid";
-        $stmt = $this->connection->prepare("INSERT INTO orderItem (userId, sessionId, startTime,endTime,date, numberOfTickets, price, specialRequest, restaurantSectionId, status) VALUES (:userId, :sessionId,:startTime,:endTime, :date, :numberOfTickets, :price, :specialRequest, :restaurantSectionId, :status)");
+        $status= "unpaid";
+        $eventName ="Yummy";
+        $stmt = $this->connection->prepare("INSERT INTO orderItem (userId, sessionId, startTime,endTime,date, numberOfTickets, price, specialRequest, restaurantSectionId, status, eventName) VALUES (:userId, :sessionId,:startTime,:endTime, :date, :numberOfTickets, :price, :specialRequest, :restaurantSectionId, :status, :eventName)");
         $stmt->bindValue(':userId', $orderData['userId']);
         $stmt->bindValue(':sessionId', $orderData['session']);
         $stmt->bindValue(':startTime', $startTime);
@@ -214,7 +223,9 @@ class restaurantRepository extends Repository
         $stmt->bindValue(':price', $orderData['price']);
         $stmt->bindValue(':specialRequest', $orderData['special_requests']);
         $stmt->bindValue(':restaurantSectionId', $orderData['restaurantSectionId']);
-        $stmt->bindValue(':status', $stuts);
+        $stmt->bindValue(':status', $status);
+        $stmt->bindValue(':eventName', $eventName);
+
 
         $stmt->execute();
         return $this->connection->lastInsertId();
@@ -226,4 +237,22 @@ class restaurantRepository extends Repository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+
+
+    public function deleteRestaurant($restaurantId)
+    {
+        $sql = "DELETE FROM Yummyyy WHERE restaurantId = :restaurantId";
+
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindParam(':restaurantId', $restaurantId, PDO::PARAM_INT);
+            $stmt->execute();
+
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+            error_log("Error deleting restaurant: " . $e->getMessage());
+            return false;
+        }
+    }
 }

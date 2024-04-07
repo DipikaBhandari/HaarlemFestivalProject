@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 
 use App\model\user;
+use Exception;
 
 
 require_once __DIR__ . '/../config/dbconfig.php';
@@ -42,6 +43,40 @@ class ManageHistoryController
 
 
         require __DIR__ . '/../views/manageHistory.php';
+    }
+    public function updateHistory(){
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+
+        // Check if the user is logged in
+        if (!isset($_SESSION['email'])) {
+            header('Location: /login');
+            exit;
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            $languageIndicators = isset($data['languageIndicators']) ? $data['languageIndicators'] : '';
+
+            $result = $this->historyService->updateHistory([
+                'historyId' => $data['historyId'],
+                'date' => $data['date'],
+                'startTime' => $data['startTime'],
+                'endTime' => $data['endTime'],
+                'guideId' => $data['guideId'],
+                'languageIndicators' => $languageIndicators,
+            ]);
+            if ($result) {
+                echo json_encode(['success' => true, 'message' => 'History updated successfully.']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Failed to update history.']);
+            }
+        } else {
+            // Handle invalid request method
+            http_response_code(405); // Method Not Allowed
+            echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
+        }
     }
     public function addHistory() {
         if (session_status() !== PHP_SESSION_ACTIVE) {
@@ -138,7 +173,26 @@ class ManageHistoryController
             echo json_encode(['success' => false, 'message' => 'Error: Invalid request method.']);
         }
     }
-
-
+    public function getHistoryDetails(){
+        $historyId = $_GET['historyId'] ?? '';
+        if(!$historyId){
+            http_response_code(400);
+            echo json_encode(['error' => 'history Id is required']);
+            return;
+        }
+        try{
+            $historyDetails= $this->historyService->getHistoryDetailsForEditing($historyId);
+            if($historyDetails){
+                echo json_encode($historyDetails);
+                return;
+            } else {
+                http_response_code(404);
+                echo json_encode(['error' => 'History detail not found']);
+            }
+        }catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(['error' => 'An error occurred while fetching history details: ' . $e->getMessage()]);
+        }
+    }
 }
 

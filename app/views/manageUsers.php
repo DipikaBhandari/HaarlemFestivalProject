@@ -79,13 +79,11 @@ if (!isset($user) || !$user instanceof user) {
                                                 }
                                                 ?></td>
 
-
                                             <td><?php echo htmlentities($user['role']);?></td>
                                             <td>
                                                 <a onclick="openEditModal('<?php echo htmlentities($user['username']);?>')" >&nbsp; <i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
                                                 <a onclick="deleteUser('<?php echo htmlentities($user['username']); ?>')" ><i class="fa fa-trash" style="color:red"></i></a>&nbsp;&nbsp;
                                             </td>
-
                                         </tr>
                                 <?php endforeach; ?>
                                 </tbody>

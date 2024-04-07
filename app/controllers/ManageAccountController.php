@@ -99,7 +99,7 @@ class ManageAccountController
             $safeFilename = bin2hex(random_bytes(16)) . '.' . pathinfo($_FILES['profilePictureInput']['name'], PATHINFO_EXTENSION);
             $targetFile = $targetDir . $safeFilename;
             if (move_uploaded_file($_FILES['profilePictureInput']['tmp_name'], $targetFile)) {
-                return '/img/' . $safeFilename;
+                return '../img/' . $safeFilename;
             }
         }
         return null;

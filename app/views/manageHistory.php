@@ -5,13 +5,23 @@ if(isset($_SESSION['username'])) {
     include __DIR__ . '/afterlogin.php'; // Include afterlogin.php for logged-in users
 } else {
     session_start();
-
     include __DIR__ . '/header.php'; // Include default header for non-logged-in users
 }
 
 if (!isset($user) || !$user instanceof user) {
     exit('User data is not available.');
 }
+
+// Load Bootstrap CSS
+echo '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">';
+
+// Your custom styles
+echo '<style>
+        .table-hover tbody tr:hover {
+            color: #212529;
+            background-color: #f8f9fa;
+        }
+      </style>';
 ?>
 
 <head>
@@ -21,11 +31,8 @@ if (!isset($user) || !$user instanceof user) {
 <div class="ts-main-content">
     <div class="content-wrapper">
         <div class="container-fluid">
-
             <div class="row">
-
                 <div id="spinner" class="spinner" style="display:none;"></div>
-
                 <h2 class="page-title">Manage History</h2>
             </div>
             <!-- Zero Configuration Table -->
@@ -34,7 +41,6 @@ if (!isset($user) || !$user instanceof user) {
                 <div class="panel-body">
                     <table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                         <thead>
-
                         <tr>
                             <th>Date</th>
                             <th>Time</th>
@@ -187,12 +193,32 @@ if (!isset($user) || !$user instanceof user) {
                         <div class="form-group">
                             <label for="editHistoryGuide">Guide</label>
                             <select class="form-control" id="editHistoryGuide" name="guideId" required>
-                                <!-- Guide options will be populated dynamically -->
+                                <?php foreach ($guides as $guide): ?>
+                                    <option value="<?= htmlspecialchars($guide['guideId']); ?>"><?= htmlspecialchars($guide['guideName']); ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <!-- Language Indicators -->
                         <div class="form-group">
-                            <!-- Language indicator checkboxes will be populated dynamically -->
+                            <?php
+                            $languageImagesDirectory = '/img/languages/';
+
+                            // Generate URLs for images. Assuming the images are directly accessible under the web root.
+                            $languageImageFiles = glob($_SERVER['DOCUMENT_ROOT'] . $languageImagesDirectory . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
+
+                            // Loop through files and adjust how you display them
+                            foreach ($languageImageFiles as $index => $filePath) {
+                                // Convert file system path to URL
+                                $relativePath = str_replace($_SERVER['DOCUMENT_ROOT'], '', $filePath);
+                                $imageUrl = $relativePath; // Now correctly use $imageUrl for the image source
+                                ?>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="languageIndicators[]" id="languageIndicator<?php echo $index; ?>" value="<?php echo htmlspecialchars($imageUrl); ?>">
+                                    <label class="form-check-label" for="languageIndicator<?php echo $index; ?>">
+                                        <img src="<?php echo htmlspecialchars($imageUrl); ?>" alt="Language Image" style="max-width: 30px; margin-right: 5px;">
+                                    </label>
+                                </div>
+                            <?php } ?>
                         </div>
                         <input type="hidden" id="editHistoryId" name="historyId">
                         <div class="modal-footer" style="border-top: none; background-color: #006D77;">
@@ -231,6 +257,56 @@ if (!isset($user) || !$user instanceof user) {
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const editHistoryForm = document.getElementById('editHistoryForm');
+
+        editHistoryForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const spinner = document.getElementById('spinner');
+            spinner.style.display = 'block';
+
+            const historyId = document.getElementById('editHistoryId').value;
+            const formData = new FormData(editHistoryForm);
+            const languageIndicators = formData.getAll('languageIndicators[]').join(',');
+
+            // Prepare the data to be sent in a format your backend expects
+            const dataToSend = {
+                historyId: historyId,
+                date: formData.get('date'),
+                startTime: formData.get('startTime'),
+                endTime: formData.get('endTime'),
+                guideId: formData.get('guideId'),
+                languageIndicators: languageIndicators,
+            };
+
+            fetch('/ManageHistory/updateHistory', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataToSend)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    spinner.style.display = 'none';
+                    if (data.success) {
+                        alert(data.message); // Alert the success message
+                        $('#editHistoryModal').modal('hide');
+                        setTimeout(() => {
+                            location.reload(); // Reload the page to see the updated history entry
+                        }, 1500);
+                    } else {
+                        alert('Failed to update history: ' + data.message); // Alert the error message
+                    }
+                })
+                .catch((error) => {
+                    spinner.style.display = 'none';
+                    alert('Error: ' + error.message);
+                });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
         const addHistoryForm = document.getElementById('addHistoryForm');
 
         addHistoryForm.addEventListener('submit', function(event) {
@@ -267,6 +343,34 @@ if (!isset($user) || !$user instanceof user) {
                 });
         });
     });
+    function openEditModal(historyId) {
+        const spinner = document.getElementById('spinner');
+        spinner.style.display = 'block';
+
+        fetch(`/ManageHistory/getHistoryDetails?historyId=${historyId}`)
+            .then(response => response.json())
+            .then(data => {
+                spinner.style.display = 'none';
+                // Assuming the first element of the array is the history details
+                if (data && data.length > 0) {
+                    const historyDetails = data[0];
+                    document.getElementById('editHistoryDate').value = historyDetails.date;
+                    document.getElementById('editHistoryStartTime').value = historyDetails.startTime.slice(0, 5);
+                    document.getElementById('editHistoryEndTime').value = historyDetails.endTime.slice(0, 5);
+                    // Populate the guide dropdown and language checkboxes as necessary
+                    document.getElementById('editHistoryId').value = historyId;
+                    $('#editHistoryModal').modal('show');
+                } else {
+                    alert('Failed to fetch history details.');
+                }
+            })
+            .catch(error => {
+                spinner.style.display = 'none';
+                alert('Error: ' + error.message);
+            });
+    }
+
+
 
     // function to delete history by ID
     function deleteUser(historyId) {
@@ -309,6 +413,14 @@ if (!isset($user) || !$user instanceof user) {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <?php
+
+// Load Bootstrap JS and other libraries
+echo '<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>';
+echo '<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>';
+echo '<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>';
+echo '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>';
+
 include __DIR__ . '/footer.php';
 ?>
+
 

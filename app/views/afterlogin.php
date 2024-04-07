@@ -54,6 +54,9 @@
                     <li><a class="dropdown-item admin hide" href="/ManageHistory/manageHistory">Manage History Events</a></li>
                     <li><a class="dropdown-item admin hide" href="/ManageYummy/manageYummy">Manage Yummy Events</a></li>
                     <li><a class="dropdown-item admin hide" href="#">Manage Contents</a></li>
+                    <li><a class="dropdown-item admin hide" href="/ManageReservation/manageReservation">Manage Reservation</a></li>
+                    <li><a class="dropdown-item admin hide" href="/ManageOrder/manageOrder">Manage Order</a></li>
+
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
                 </ul>

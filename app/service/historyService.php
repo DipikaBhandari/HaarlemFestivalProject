@@ -62,5 +62,35 @@ class historyService
         return $this->historyRepository->deleteHistory($historyId);
     }
 
+    public function getHistoryDetailsForEditing($historyId){
+        return $this->historyRepository->getHistoryDetail($historyId);
+    }
+    public function updateHistory($historyData)
+    {
+        // Validation and preparation of data for update
+        // For example, ensure $historyData contains all necessary fields
+        // and they are sanitized for security reasons
+
+        // Convert the start and end time into the time format expected by the database, if necessary
+        $timeString = $historyData['startTime'] . '-' . $historyData['endTime'];
+        $languageIndicator = isset($historyData['languageIndicator']) ? $historyData['languageIndicator'] : '';
+
+        // Prepare the data array for updating
+        $dataToUpdate = [
+            'historyId' => $historyData['historyId'], // Make sure this is included for identifying the record to update
+            'date' => $historyData['date'],
+            'time' => $timeString,
+            'languageIndicator' =>  $languageIndicator,
+            'guideId' => $historyData['guideId'],
+            // Include any other fields that are part of the update
+            'startTime' => $historyData['startTime'],
+            'endTime' => $historyData['endTime']
+        ];
+
+        // Call the repository method to update the history
+        // Assuming your historyRepository has a method named `updateHistory` for updating the data
+        return $this->historyRepository->updateHistory($dataToUpdate);
+    }
+
 
 }

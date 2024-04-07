@@ -42,7 +42,7 @@ class restaurantController
             $sections = $this->restaurantService->getSectionsForRestaurant($restaurantId);
             foreach ($sections as $key => $section) {
 
-                //$sections[$key]['Yummy'] = $this->restaurantService->getRestaurantDetails($section['restaurantSectionId']);
+                $sections[$key]['image'] = $this->restaurantService->getYummyImageBySection($section['restaurantSectionId']);
                 $sections[$key]['paragraphs'] = $this->restaurantService->getYummyParagraphsBySection($section['restaurantSectionId']);
                 $sections[$key]['OpeningTime'] = $this->restaurantService->getYummyOpeningBySection($section['restaurantSectionId']);
 

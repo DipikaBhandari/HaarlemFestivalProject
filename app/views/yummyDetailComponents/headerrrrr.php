@@ -1,37 +1,42 @@
 <?php if (!empty($section) && $section['type'] === 'headerrrrr'): ?>
-        <div class="container-fluid text-white py-5 my-0" style="background: url('/img/yummyHeaderBackground.png') no-repeat center center; background-size: cover;">
-            <div class="row align-items-center" style="min-height: 50vh;">
-                <div class="col-md-6">
-                    <h1 style="color: #FFD700; margin-bottom: -20px;" class="display-3 text-center"><?= htmlspecialchars($section['restaurantName']); ?></h1>
-
-                    <div class="text-left" style="position: relative; height: 50px; margin-top: 20px;">
-                        <img src="/img/yummyHeaderLine.png" alt="yummy Header Line" width="500" height="50" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                    </div>
-                    <div class="text-left pl-md-1000">
-                        <?php foreach ($section['paragraphs'] as $paragraph): ?>
-                            <p style="padding-left: 80px; padding-top: 10px" class="lead"><?= htmlspecialchars($paragraph['text']); ?></p>
-                        <?php endforeach; ?>
-                    </div>
+    <div class="container-fluid text-white py-5 my-0" style="background: url('/img/yummyHeaderBackground.png') no-repeat center center; background-size: cover;">
+        <div class="row align-items-center" style="min-height: 50vh;">
+            <div class="col-md-6 text-left">
+                <!-- Placeholder for the logo -->
+                <h1 style="padding-left: 240px; padding-bottom: 5px; margin: auto;" class="display-3"><?= htmlspecialchars($section['restaurantName']); ?></h1>
+                <!-- Placeholder for the line under the restaurant name -->
+                <div style="padding-left: 78px; height: 6px; background-color: white; width: 25%; margin: auto;"></div>
+                <div style="padding-left: 35px; padding-top: 30px;">
+                    <?php foreach ($section['paragraphs'] as $paragraph): ?>
+                        <p style="font-size: 24px;
+                        padding-top: 35px;font-family: 'Aleo', serif;font-weight: 400;line-height: 35px;margin-bottom: 2rem;padding-left: 2rem;"><?= htmlspecialchars($paragraph['text']); ?></p>
+                    <?php endforeach; ?>
                 </div>
-
+            </div>
+            <div class="col-md-6 d-flex justify-content-center position-relative">
+                <!-- Placeholder or real image -->
+                <div class="image-opening-hours-container" style="position: absolute; top: -300px; right: 50px;">
+                    <?php foreach ($section['image'] as $images): ?>
+                        <img class="header-image img-fluid" src="<?php echo $images['imagePath']; ?>" alt="<?php echo $images['imageName']; ?>" style="width: 490px; ">
+                    <?php endforeach; ?>
+                </div>
                 <div class="opening-hours-container" style="
-    width: 430px;
-    height: 224px;
-    padding: 20px 0px;
-    border-radius: 25px;
-    background-color: white;
-    color: black;
-    font-family: 'Roboto Slab', serif;
-    position: absolute;
-    top: 610px;
-    left: 1000px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;">
+                width: 430px;
+                height: 200px;
+                padding: 20px 0px;
+                border-radius: 25px;
+                background-color: white;
+                color: black;
+                font-family: 'Roboto Slab', serif;
+                position: absolute;
+                top: 250px;
+                right: 30px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+                justify-content: center;">
                     <h2 style="margin: 0; font-size: 25px; font-weight: 700; line-height: 33px; text-align: center;">Opening hours</h2>
-
                     <?php
                     // Group opening times into sessions
                     $sessions = [
@@ -49,24 +54,20 @@
                     $sessionNames = ['First session', 'Second session', 'Third session'];
                     foreach ($sessions as $sessionId => $times) {
                         echo '<div class="session" style="
-            background-color: #205e71;
-            border-radius: 25px;
-            width: 376px;
-            height: 41px;
-            padding: 10px 22px;
-            margin-bottom: 10px;
-            text-align: center;
-            color: white;">
-            <strong>' . $sessionNames[$sessionId - 1] . '</strong> ' . htmlspecialchars(implode(' | ', $times)) . '
-            </div>';
+                        background-color: #205e71;
+                        border-radius: 25px;
+                        width: 376px;
+                        height: 38px;
+                        padding: 10px 22px;
+                        margin-bottom: 10px;
+                        text-align: center;
+                        color: white;">
+                        <strong>' . $sessionNames[$sessionId - 1] . '</strong> ' . htmlspecialchars(implode(' | ', $times)) . '
+                    </div>';
                     }
                     ?>
                 </div>
-                <div class="col-md-6 d-none d-md-block">
-                    <!-- Future image -->
-                </div>
             </div>
         </div>
+    </div>
 <?php endif; ?>
-
-

@@ -25,7 +25,6 @@ class ManageUsersController
 
     public function manageuser()
     {
-
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
@@ -41,6 +40,43 @@ class ManageUsersController
         // Pass the user data to the view
         require __DIR__ . '/../views/manageUsers.php';
     }
+
+    public function updateUser()
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            // Validate data or ensure it's sanitized
+            $userId = $data['id'] ?? null;
+            $username = $data['username'] ?? '';
+            $email = $data['email'] ?? '';
+            $address = $data['address'] ?? '';
+            $phoneNumber = $data['phonenumber'] ?? '';
+            $role = $data['role'] ?? '';
+
+            // Create a new User object and set its properties
+            $user = new \App\model\user();
+            $user->setId($userId);
+            $user->setUsername($username);
+            $user->setEmail($email);
+            $user->setAddress($address);
+            $user->setPhoneNumber($phoneNumber);
+            $user->setRole($role);
+
+            // Call the service method to update the user
+            $result = $this->userService->updateUser($user);
+
+            if ($result) {
+                echo json_encode(['success' => true, 'message' => 'User updated successfully']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Failed to update user']);
+            }
+        } else {
+            http_response_code(405); // Method Not Allowed
+            echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+        }
+    }
+
 
     public function addUser()
     {

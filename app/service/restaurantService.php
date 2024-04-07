@@ -37,6 +37,10 @@ class restaurantService
     public function getYummyParagraphsBySection($restaurantSectionId){
         return $this->restaurantRepository->getYummyParagraphsBySection($restaurantSectionId);
     }
+
+    public function getYummyImageBySection($restaurantSectionId){
+        return $this->restaurantRepository->getYummyImageBySection($restaurantSectionId);
+    }
     public function getYummyOpeningBySection($restaurantSectionId){
         return $this->restaurantRepository->getYummyOpeningBySection($restaurantSectionId);
     }
@@ -74,5 +78,10 @@ class restaurantService
     }
     public function getSessionsForRestaurantId($restaurantId) {
         return $this->restaurantRepository->getSessionsForRestaurantId($restaurantId);
+    }
+
+    public function deleteRestaurant($restaurantId)
+    {
+        return $this->restaurantRepository->deleteRestaurant($restaurantId);
     }
 }
