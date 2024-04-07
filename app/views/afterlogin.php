@@ -45,49 +45,31 @@ $isEmployee = $role === "Employee";
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="navbar-nav flex-row flex-lg" id="dynamicNavLinks">
-        </div>
-        <div class="navbar-nav flex-row flex-lg">
-            <div class="dropdown">
-                <a class="nav-link dropdown-toggle text-white pt-0 pb-0" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    Manage Account
-                </a>
-
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="/manageaccount/showAccount">Profile</a></li>
-                    <?php if($isEmployee): ?>
-                    <li><a class="dropdown-item" href="/order/scanTicket">Scan tickets</a></li>
-                    <?php endif; ?>
-                    <?php if ($isAdmin): ?>
-                        <li><a class="dropdown-item" href="#">Manage Users</a></li>
-                        <li><a class="dropdown-item" href="#">Manage History Events</a></li>
-                        <li><a class="dropdown-item" href="#">Manage Yummy Events</a></li>
-                        <li><a class="dropdown-item" href="/pageManagement">Manage Content</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                    <?php endif; ?>
-
-                    <li><a class="dropdown-item" href="/manageAccount/showAccount">Profile</a></li>
-                    <li><a class="dropdown-item admin hide" href="/ManageUsers/manageuser">Manage Users</a></li>
-                    <li><a class="dropdown-item admin hide" href="/ManageHistory/manageHistory">Manage History Events</a></li>
-                    <li><a class="dropdown-item admin hide" href="/ManageYummy/manageYummy">Manage Yummy Events</a></li>
-                    <li><a class="dropdown-item admin hide" href="#">Manage Contents</a></li>
-                    <li><a class="dropdown-item admin hide" href="/ManageReservation/manageReservation">Manage Reservation</a></li>
-                    <li><a class="dropdown-item admin hide" href="/ManageOrder/manageOrder">Manage Order</a></li>
-
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
-                </ul>
+        <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+            <div class="navbar-nav flex-row flex-lg" id="dynamicNavLinks">
             </div>
-
-            <a id="personalProgramLink" class="nav-link ps-5" href="/personalProgram">
-                <i class="fa-regular fa-heart fa-xl" style="color: #c80e0e;"></i>
-                <img src="/img/heartbutton.svg" alt="personal program button" width="30" height="30" class="d-inline-block">
-            </a>
-            <!--remove this when all code is combined-->
-            <a href="/order">invoice email</a>
-        </div>
             <div class="navbar-nav flex-row flex-lg">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle text-white pt-2 pb-0" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        Manage Account
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="/manageaccount/showAccount">Profile</a></li>
+                        <?php if($isEmployee): ?>
+                        <li><a class="dropdown-item" href="/order/scanTicket">Scan tickets</a></li>
+                        <?php endif; ?>
+                        <?php if ($isAdmin): ?>
+                            <li><a class="dropdown-item" href="/ManageUsers/manageuser">Manage Users</a></li>
+                            <li><a class="dropdown-item" href="/ManageHistory/manageHistory">Manage History Events</a></li>
+                            <li><a class="dropdown-item" href="/ManageYummy/manageYummy">Manage Yummy Events</a></li>
+                            <li><a class="dropdown-item" href="/pageManagement">Manage Content</a></li>
+                            <li><a class="dropdown-item admin hide" href="/ManageReservation/manageReservation">Manage Reservation</a></li>
+                            <li><a class="dropdown-item admin hide" href="/ManageOrder/manageOrder">Manage Order</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                        <?php endif; ?>
+                        <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
+                    </ul>
+                </div>
                 <a class="nav-link ps-4 align-items-center" href="/shoppingCart/index">
                     <i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffffff;"></i>
                 </a>
@@ -97,7 +79,6 @@ $isEmployee = $role === "Employee";
                 <a id="personalProgramLink" class="nav-link ps-4 align-items-center" href="/ticket/index">
                     <i class="fa-regular fa-heart fa-xl" style="color: #c80e0e;"></i>
                 </a>
-
             </div>
         </div>
     </nav>

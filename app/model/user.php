@@ -5,7 +5,6 @@ namespace App\model;
 class user
 {
     private string $email;
-
     private int $id;
     private $address;
     private string $password;
@@ -13,7 +12,6 @@ class user
     private $phoneNumber;
     private $profilePicture;
     private $registeredAt;
-    private $id;
 
     /**
      * @return mixed
@@ -164,16 +162,6 @@ class user
     public function setPassword(string $password): void
     {
         $this->password=$password;
-    }
-    public function getId()
-    {
-        return $this->id;
-    }
-
-
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     public function getUserId(): int

@@ -89,6 +89,18 @@ class Router
 
         // Check authorization based on controller/method
         switch ($controller) {
+            case 'App\Controllers\ManageUsersController':
+                return $isAdmin;
+            case 'App\Controllers\ManageYummyController':
+                return $isAdmin;
+            case 'App\Controllers\ManageOrderController':
+                return $isAdmin;
+            case 'App\Controllers\ManageReservationControllerController':
+                return $isAdmin;
+            case 'App\Controllers\ManageHistoryController':
+                return $isAdmin;
+            case 'App\Controllers\CreateRestaurantController':
+                return $isAdmin;
             case 'App\Controllers\pageManagementController':
                 if ($method === 'showPage' || $method === 'nav') {
                     //everyone can see these pages

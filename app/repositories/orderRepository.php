@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+use PDO;
 use PDOException;
 class orderRepository extends Repository
 {
@@ -96,16 +97,17 @@ class orderRepository extends Repository
 
     private function getOrderItems($orderId)
     {
-        try{
+        try {
             $stmt = $this->connection->prepare('SELECT eventName, numberOfTickets, price FROM orderItem WHERE orderId = :orderId');
             $stmt->bindParam(':orderId', $orderId);
             $stmt->execute();
 
             return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             error_log("An error occurred while retrieving the orderItems: " . $e->getMessage());
             return null;
         }
+    }
 
     public function getOrderDetails() {
         $stmt = $this->connection->prepare("

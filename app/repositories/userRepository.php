@@ -151,7 +151,7 @@ class userRepository extends Repository
             $user->setPhoneNumber($userData['phonenumber']);
             $user->setPassword($userData['password']);
             $user->setProfilePicture($userData['picture']);
-            $user->setId($userData['id']);
+            $user->setUserId($userData['id']);
             return $user;
         }
         return null;

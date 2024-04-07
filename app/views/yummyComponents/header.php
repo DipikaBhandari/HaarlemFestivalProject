@@ -1,11 +1,5 @@
 <?php if (!empty($section) && $section['type'] === 'header'): ?>
-    <div class="container-fluid text-white py-5 my-0" style="background: url('/img/yummyHeaderBackground.png') no-repeat center center; background-size: cover;">
-        <div class="row align-items-center" style="min-height: 42vh;">
-            <div class="col-md-6">
-                <h1 class="display-3"><?= $section['heading']; ?></h1>
-                <div style="height: 50px; margin-top: 20px;">
-                    <img src="../img/yummyHeaderLine.png" alt="yummy Header Line" width="546" height="156" style="padding-left: 200px; padding-top: 20px; padding-bottom: 100px;">
-    <div class="header-section">
+      <div class="header-section">
         <div class="container-fluid p-0">
             <div class="row no-gutters">
                 <div class="col-md-8 text-container">

@@ -16,7 +16,10 @@ class ticketController
 
     public function index()
     {
+    if(!isset($_SESSION)) {
         session_start(); // Start the session
+    }
+
         if (isset($_SESSION['id'])) {
             // Debugging statement to check the value of $_SESSION['id']
 
@@ -67,7 +70,8 @@ class ticketController
 
 
         } else {
-            echo "User is not logged in or session data is not set.";
+            require __DIR__ . '/../views/wishlist/listview.php';
+            //echo "User is not logged in or session data is not set.";
         }
     }
 

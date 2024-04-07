@@ -7,11 +7,15 @@ class shoppingCartController
 
     private $ticketService;
     private $userService;
+    private $orderService;
+    private $emailService;
 
     public function __construct()
     {
         $this->ticketService = new \App\Service\ticketService();
         $this->userService = new \App\Service\userService();
+        $this->orderService = new \App\Service\orderService();
+        $this->emailService = new \App\Service\emailService();
     }
 
     public function index()
@@ -114,6 +118,8 @@ class shoppingCartController
                 $paymentStatus = $this->ticketService->getPaymentStatusFromMollie($paymentCode);
                 if ($paymentStatus == "paid") {
                     $this->ticketService->changePaymentToPaid($paymentCode, $orderId);
+                    $this->sendTicket();
+                    $this->sendInvoice($orderId);
                     include __DIR__ . '/../views/cart/paymentSuccessful.php';
                 } else {
                     include __DIR__ . '/../../views/ShoppingCart/paymentError.php.php';
@@ -138,4 +144,21 @@ class shoppingCartController
         }
     }
 
+    private function sendTicket($orderId){
+        try{
+            $ticketData = $this->orderService->createTicket($orderItemId);
+            $this->emailService->sendTicketEmail($ticketData);
+        } catch (\Exception $e) {
+            error_log("An error occurred when sending the tickets: " . $e->getMessage());
+        }
+    }
+
+    private function sendInvoice($orderId){
+        try{
+            $invoiceData = $this->orderService->createInvoice($orderId);
+            $this->emailService->sendInvoiceEmail($invoiceData);
+        } catch (\Exception $e) {
+            error_log("An error occurred when sending the tickets: " . $e->getMessage());
+        }
+    }
 }
