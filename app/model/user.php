@@ -5,6 +5,8 @@ namespace App\model;
 class User
 {
     private string $email;
+
+    private int $id;
     private $address;
     private string $password;
     private string $username;
@@ -144,6 +146,15 @@ class User
         $this->password=$password;
     }
 
+    public function getUserId(): int
+    {
+        return $this->id;
+    }
+
+    public function setUserId(int $id): void
+    {
+        $this->id=$id;
+    }
     public function jsonSerialize():mixed
     {
         return get_object_vars($this);

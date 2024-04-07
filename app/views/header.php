@@ -39,7 +39,23 @@
                 <!--remove this when all code is combined-->
                 <a href="/order">invoice email</a>
             </div>
+        <div class="navbar-nav flex-row flex-lg">
+            <a id="homeLink" class="nav-link pe-5 text-white" aria-current="page" href="/home/index">The Festival</a>
+            <a id="yummyLink" class="nav-link pe-5 text-white" href="/restaurant/yummyHome">Yummy</a>
+            <a id="historyLink" class="nav-link pe-5 text-white" href="/history">History</a>
+<!--            <a id="historyLink" class="nav-link pe-5 text-white" href="/shoppingCart/index">Cart</a>-->
         </div>
+        <div class="navbar-nav flex-row flex-lg">
+            <a id="loginLink" class="nav-link text-white pt-0 pb-0" href="/login/login">Login</a>
+            <a class="nav-link ps-4 align-items-center" href="/shoppingCart/index">
+                <i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffffff;"></i>
+            </a>
+            <a id="personalProgramLink" class="nav-link ps-4 align-items-center" href="/ticket/index">
+                <i class="fa-regular fa-heart fa-xl" style="color: #c80e0e;"></i>
+            </a>
+        </div>
+
+
     </nav>
 </header>
 <main>
@@ -60,3 +76,10 @@
                 .catch(error => console.error('Error fetching pages:', error));
         });
     </script>
+
+<style>
+    .navbar{
+
+        z-index: 1000;
+    }
+</style>

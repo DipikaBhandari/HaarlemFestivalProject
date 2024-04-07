@@ -15,6 +15,7 @@ if(isset($_SESSION['username'])) {
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
         <title>Strolling Through History</title>
     </head>
+<div>
     <div>
         <?php
         foreach ($sections as $section) {
@@ -42,6 +43,7 @@ if(isset($_SESSION['username'])) {
     <h1>Before We Begin</h1>
 </div>
 
+
     <div>
         <?php
         foreach ($sections as $section) {
@@ -52,16 +54,37 @@ if(isset($_SESSION['username'])) {
         ?>
     </div>
 
-<div>
+
     <div>
         <?php
         foreach ($sections as $section) {
-            if ($section['type'] === 'timetable') {
+            if ($section['type'] === 'card') {
                 include __DIR__ . '/../historyComponents/' . $section['type'] . '.php';
             }
         }
         ?>
     </div>
+<div class="shape"
+     style="margin-top:0; float: right; margin-right:10%; font-family: Aleo,serif; font-size: 64px;
+     width: 20%; height: 70px; background-color: #2E294E;; border: 1px solid black; color: white; text-align: center; border-radius: 0;">
+    <h1>Book your tickets here</h1>
+</div>
+<div class="shape-second"
+     style="width: 70%; margin-left: 8%;
+             height: 60px;
+              border-radius: 20px 20px 0 0;
+background: #582F0E; color: #FFFFFF; ">
+    <h2>Click on flag to select language, date and time. </h2>
+</div>
+<div>
+    <?php
+    foreach ($sections as $section) {
+        if ($section['type'] === 'timetable') {
+            include __DIR__ . '/../historyComponents/' . $section['type'] . '.php';
+        }
+    }
+    ?>
+</div>
 
 <div>
     <?php
@@ -73,7 +96,7 @@ if(isset($_SESSION['username'])) {
         ?>
 </div>
 
-
+</div>
 <?php
 include __DIR__ . '/../footer.php';
 ?>

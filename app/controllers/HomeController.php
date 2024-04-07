@@ -30,4 +30,6 @@ class HomeController
             echo 'Error retrieving the page content. Please try again later.';
         }
     }
+
+
 }

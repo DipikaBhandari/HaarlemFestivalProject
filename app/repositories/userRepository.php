@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+
 use App\model\Roles;
 use App\Model\User;
 use PDO;
@@ -25,6 +26,7 @@ class userRepository extends Repository
                 $user->setPassword($userArray['password']);
                 $user->setEmail($userArray['email']);
                 $user->setRole($userArray['role']);
+                $user->setUserId($userArray['id']);
                 return $user;
             }
             return false;
@@ -189,11 +191,9 @@ class userRepository extends Repository
     public function registerUser($newUser): bool
     {
         try {
-            // Move uploaded file to permanent location
-
             // Insert user data into the database
             $sql = "INSERT INTO [User] (username, email, address, phonenumber, password, picture, role) 
-                VALUES (:username, :email, :address, :phonenumber, :password, :picture, :role)";
+            VALUES (:username, :email, :address, :phonenumber, :password, :picture, :role)";
             $stmt = $this->connection->prepare($sql);
             $stmt->bindValue(':username', $newUser["username"]);
             $stmt->bindValue(':email', $newUser["email"]);
@@ -204,11 +204,44 @@ class userRepository extends Repository
             $stmt->bindValue(':role', Roles::getLabel($newUser['role']));
             $stmt->execute();
 
+            $userId=$this->connection->lastInsertId(); // Get the newly inserted user ID
+
+//             Create a new order for the user
+//            $orderId = $this->createNewOrder($userId);
+//
+//            // Store order ID and user ID in session
+//            $_SESSION['userId'] = $userId;
+//            $_SESSION['orderId'] = $orderId;
+
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
+
+
+    public function updateOrderTableWithNewUserId($customerId, $orderId)
+    {
+        try {
+            $stmt = $this->connection->prepare("UPDATE [dbo].[Order] SET customerId = :customerId WHERE orderId = :orderId");
+            $stmt->bindValue(':customerId', $customerId);
+            $stmt->bindValue(':orderId', $orderId);
+            $stmt->execute();
+
+            // Check if the update was successful
+            if ($stmt->rowCount() == 0) {
+                return false;
+            } else {
+                // Unset the session variable to expire it
+                unset($_SESSION['orderId']);
+                return true;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
 }
 

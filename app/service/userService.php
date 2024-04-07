@@ -71,6 +71,8 @@ class userService
     {
         return $this->userRepository->updateUser($user);
     }
+
+
     public function verifyPassword($email, $currentPassword): bool
     {
         // Fetch the user's hashed password from the database using their email
@@ -100,6 +102,8 @@ class userService
      return  $this->userRepository->registerUser($newUser);
 
     }
+
+
     public function userImage($image)
     {
         $ext = pathinfo($image['name'], PATHINFO_EXTENSION);
@@ -114,5 +118,22 @@ class userService
     {
         return password_hash($password, PASSWORD_DEFAULT);
     }
+
+    public function captchaVerification(&$systemMessage)
+    {
+        $secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
+        $response = $_POST['g-recaptcha-response'];
+        $remoteip = $_SERVER['REMOTE_ADDR'];
+        $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip";
+        $data = file_get_contents($url);
+        $row = json_decode($data);
+        if ($row->success == "true") {
+            return true;
+        } else {
+            $systemMessage = "you are a robot";
+            return false;
+        }
+    }
+
 }
 

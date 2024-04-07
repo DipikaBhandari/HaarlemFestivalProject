@@ -11,6 +11,15 @@
       <change beforePath="$PROJECT_DIR$/app/service/pageManagementService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/pageManagementService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/editorModal.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/editorModal.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/sectionEditor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/sectionEditor.php" afterDir="false" />
+    <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="minor changes to frontend">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/ticketRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/ticketRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/ticketService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/ticketService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/history/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/history/homepage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/historyComponents/introduction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/historyComponents/introduction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/historyComponents/list.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/historyComponents/list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/historyComponents/timetable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/historyComponents/timetable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/wishlist/listview.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/wishlist/listview.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +35,13 @@
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/app/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -45,6 +61,7 @@
     <include_path>
       <path value="$PROJECT_DIR$/app/vendor/composer" />
       <path value="$PROJECT_DIR$/app/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -82,6 +99,29 @@
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "actions.on.save",
     "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Docker.PHP.Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Dipika&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Inholland/Documents/RecipeBookWebsite&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;php.add.doc.comment.for.fields.panel.add.php.doc.for.all.properties&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }]]></component>
   <component name="RecentsManager">
@@ -129,11 +169,10 @@
     </configuration>
     <recent_temporary>
       <list>
+
         <item itemvalue="Docker.PHP.Dockerfile" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="PHP Script.historyController.php" />
-        <item itemvalue="Docker.PHP.Dockerfile" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -176,6 +215,38 @@
       <updated>1709924176941</updated>
     </task>
     <option name="localTasksCounter" value="3" />
+      <workItem from="1709381706239" duration="909000" />
+      <workItem from="1709555561005" duration="21005000" />
+      <workItem from="1709887751685" duration="18634000" />
+      <workItem from="1710157741802" duration="24314000" />
+      <workItem from="1710331604134" duration="14168000" />
+      <workItem from="1710448190202" duration="5775000" />
+      <workItem from="1710493220113" duration="21384000" />
+      <workItem from="1710532237326" duration="2705000" />
+      <workItem from="1710761693590" duration="14769000" />
+      <workItem from="1710847942186" duration="17181000" />
+      <workItem from="1710941690740" duration="1439000" />
+      <workItem from="1711025190943" duration="7182000" />
+      <workItem from="1711040797657" duration="105000" />
+      <workItem from="1711191176483" duration="39276000" />
+      <workItem from="1711536789463" duration="10524000" />
+      <workItem from="1711634219183" duration="10649000" />
+      <workItem from="1712144123460" duration="11092000" />
+      <workItem from="1712334087941" duration="1930000" />
+      <workItem from="1712341402244" duration="8299000" />
+      <workItem from="1712395862768" duration="15403000" />
+      <workItem from="1712418475026" duration="10258000" />
+      <workItem from="1712473598325" duration="10052000" />
+    </task>
+    <task id="LOCAL-00001" summary="minor changes to frontend">
+      <option name="closed" value="true" />
+      <created>1710277835855</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710277835855</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,5 +269,7 @@
     <MESSAGE value="first draft editing pages, TODO: save changes" />
     <MESSAGE value="editing pages display current content working, TODO: save changes" />
     <option name="LAST_COMMIT_MESSAGE" value="editing pages display current content working, TODO: save changes" />
+    <MESSAGE value="minor changes to frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor changes to frontend" />
   </component>
 </project>

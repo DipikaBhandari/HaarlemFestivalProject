@@ -107,6 +107,8 @@ class logincontroller
                 $_SESSION['username'] = $loggedUser->getUsername();
                 $_SESSION['email'] = $loggedUser->getEmail();
                 $_SESSION['role'] = $loggedUser->getRole();
+                $_SESSION['id'] = $loggedUser->getUserId();
+
 
 
                 // Redirect to the festival index page
@@ -123,23 +125,25 @@ class logincontroller
 
 
 
-//    public function register()
-//    {
-//        $errorMessage = "";
-//        if (isset($_POST["registerBtn"])) {
-//            if (empty($_POST["username"])) {
-//                $errorMessage = "Please fill out your first name";
-//            }
-//            else if (empty($_POST["email"])) {
-//                $errorMessage = "Please fill out your email";
-//            } else if (empty($_POST["password"])) {
-//                $errorMessage = "Please fill out your password";
-//            } else {
-//                $this->createNewUser();
-//            }
-//        }
-//        require __DIR__ . '/../views/Login/registeruser.php';
-//    }
+    public function register()
+    {
+        $errorMessage = "";
+        if (isset($_POST["registerBtn"])) {
+            if (empty($_POST["username"])) {
+                $errorMessage = "Please fill out your first name";
+            }
+            else if (empty($_POST["email"])) {
+                $errorMessage = "Please fill out your email";
+            } else if (empty($_POST["password"])) {
+                $errorMessage = "Please fill out your password";
+            } else {
+                if ($this->userService->captchaVerification($errorMessage)) {
+
+                    $this->createNewUser();}
+            }
+        }
+        require __DIR__ . '/../views/Login/registeruser.php';
+    }
 
     public function createNewUser():void
     {
@@ -164,12 +168,18 @@ class logincontroller
                     "picture" => $picture,
                     "role" => $role
                 );
-
+                if (empty($_SESSION['orderId'])) {
+                    $orderId = null;
+                } else {
+                    $orderId = $_SESSION['orderId'];
+                }
                 $registrationSuccess = $this->userService->registered($newUser);
 
                 if ($registrationSuccess) {
                     // Redirect to login page after successful registration
-                    header("Location: /login/login");
+//                    header("Location: /login/login");
+                    echo "<script>window.location.replace('/home');</script>";
+
                     exit();
                 } else {
                     // Registration failed, show the registration form again with an error message
@@ -180,9 +190,6 @@ class logincontroller
                 $_SESSION['registration_error'] = "Please fill out all required fields correctly.";
             }
         }
-
-        require __DIR__ . '/../views/Login/registeruser.php';
-
     }
     public function logout(){
         $_SESSION = array();

@@ -43,6 +43,23 @@ class historyRepository extends Repository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getHistoryDetailsBySection($sectionId)
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM HistoryDetails WHERE sectionId = :sectionId");
+        $stmt->bindParam(':sectionId', $sectionId);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getGuideName()
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM HistoryGuide");
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getCarouselItemsBySection($sectionId)
     {
         $stmt = $this->connection->prepare("SELECT * FROM CarouselItems WHERE sectionId = :sectionId");
@@ -51,4 +68,6 @@ class historyRepository extends Repository
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
 }
