@@ -18,8 +18,6 @@ class ticketController
     {
         session_start(); // Start the session
         if (isset($_SESSION['id'])) {
-            // Debugging statement to check the value of $_SESSION['id']
-
 
             // Fetch orders for the logged-in user
             $orders = $this->ticketService->getOrderItemByUserId($_SESSION['id']);
@@ -27,9 +25,6 @@ class ticketController
             if( !empty($_SESSION['id'])) {
                 $orderItemId = $this->ticketService->getOrderIdByUserId($_SESSION['id']);
             }
-
-            // Debugging statement to inspect the contents of $orders array
-
 
             // Transform orders into events compatible with FullCalendar
             $events = [];
@@ -58,16 +53,10 @@ class ticketController
                 if ($_SERVER['REQUEST_METHOD'] == "GET") {
                     $orderItems =$this->ticketService->DisplayEventsByUser($_SESSION['id']);
                 }
-            // Pass events and sharing URL to the view
+
             require __DIR__ . '/../views/wishlist/listview.php';
-
-
-
-
-
-
         } else {
-            echo "User is not logged in or session data is not set.";
+            require __DIR__ . '/../views/wishlist/emptyCalendar.php';
         }
     }
 
@@ -83,20 +72,18 @@ class ticketController
 
     public function addOrder()
     {
-        session_start();
+        if (!isset($_SESSION['id'])) {
+            session_start();
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id'])) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id'])) {
 
-            $regularTicket = $_POST["tourSingleTicket"] ?? 0;
-            $familyTicket = isset($_POST["tourFamilyTicket"]) ? 4 : 0;
-            $price = $regularTicket * 17.50 + $familyTicket * 15.00;
-            $numberOfTickets = $regularTicket + $familyTicket;
+                $regularTicket = $_POST["tourSingleTicket"] ?? 0;
+                $familyTicket = isset($_POST["tourFamilyTicket"]) ? 4 : 0;
+                $price = $regularTicket * 17.50 + $familyTicket * 15.00;
+                $numberOfTickets = $regularTicket + $familyTicket;
 
-            $event = "History Tour Event";
-            $userId = $_SESSION['id'];
-
-//            $orderId = $this->ticketService->getOrderIdByCustomerId($userId);
-
+                $event = "History Tour Event";
+                $userId = $_SESSION['id'];
                 $date = htmlspecialchars($_POST['date']);
                 $startTime = htmlspecialchars($_POST['startTime']);
                 $endTime = htmlspecialchars($_POST['endTime']);
@@ -125,10 +112,10 @@ class ticketController
 
                     // Attempt to create the order
                     $order = $this->ticketService->createOrderItem($newOrderItem);
-                    var_dump($order);
+
                     if ($order) {
                         // Update the order table with the total price
-                       $this->ticketService->updateTotalPrice($userId);
+                        $this->ticketService->updateTotalPrice($userId);
 
                         // Return JSON response
                         echo json_encode(['success' => true, 'message' => 'Order created successfully', 'order' => $newOrderItem]);
@@ -136,13 +123,14 @@ class ticketController
                         // Return error response if order creation failed
                         echo json_encode(['error' => 'Failed to create order. Please try again.']);
                     }
+
                 } else {
                     // Return error response if required fields are empty
                     echo json_encode(['error' => 'Missing or empty required fields']);
                 }
-
+            }
+            exit;
         }
-        exit;
     }
     public function updateQuantitsy()
     {

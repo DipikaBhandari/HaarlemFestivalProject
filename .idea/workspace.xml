@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="minor changes to frontend">
+      <change afterPath="$PROJECT_DIR$/app/views/wishlist/emptyCalendar.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/shoppingCartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/shoppingCartController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ticketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ticketController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/repositories/ticketRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/ticketRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/ticketService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/ticketService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/history/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/history/homepage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/historyComponents/introduction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/historyComponents/introduction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/historyComponents/list.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/historyComponents/list.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/historyComponents/timetable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/historyComponents/timetable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/cart/shoppingCart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cart/shoppingCart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/wishlist/listview.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/wishlist/listview.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,31 +62,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Docker.PHP.Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Dipika&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Inholland/Documents/RecipeBookWebsite&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.add.doc.comment.for.fields.panel.add.php.doc.for.all.properties&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Docker.PHP.Dockerfile.executor": "Run",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Dipika",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Inholland/Documents/RecipeBookWebsite3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "php.add.doc.comment.for.fields.panel.add.php.doc.for.all.properties": "true",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Inholland\Documents\GitHub\HaarlemFestivalProject\app\public\img" />
@@ -176,7 +175,7 @@
       <workItem from="1712341402244" duration="8299000" />
       <workItem from="1712395862768" duration="15403000" />
       <workItem from="1712418475026" duration="10258000" />
-      <workItem from="1712473598325" duration="10052000" />
+      <workItem from="1712473598325" duration="26746000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes to frontend">
       <option name="closed" value="true" />

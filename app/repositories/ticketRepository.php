@@ -46,7 +46,7 @@ class ticketRepository extends Repository
     public function DisplayEventsByUser($userId)
     {
         try {
-            $stmt = $this->connection->prepare("SELECT orderItemId, eventName, numberOfTickets, date, startTime, endTime, status FROM [orderItem] WHERE userId = :userId;");
+            $stmt = $this->connection->prepare("SELECT orderItemId, eventName, numberOfTickets, date, startTime, endTime, price, status FROM [orderItem] WHERE userId = :userId;");
             $stmt->bindValue(':userId', $userId);
             $stmt->execute();
             $orderItems = $stmt->fetchAll(PDO::FETCH_CLASS, 'App\model\orderItem');
@@ -257,8 +257,10 @@ class ticketRepository extends Repository
     public function getTotalPrice($userId)
     {
         try {
-            $stmt = $this->connection->prepare("SELECT totalPrice FROM [Order] WHERE customerId = :customerId;");
+            $stmt = $this->connection->prepare("SELECT totalPrice FROM [Order] WHERE customerId = :customerId");
             $stmt->bindParam(':customerId', $userId);
+
+
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetching the result as an associative array
             if ($result) {
@@ -386,9 +388,11 @@ class ticketRepository extends Repository
 
     public function updateOrderId($userId, $orderId)
     {
-        $stmt = $this->connection->prepare('UPDATE [orderItem] SET orderId = :orderId WHERE  userId = :userId');
+        $stmt = $this->connection->prepare('UPDATE [orderItem] SET orderId = :orderId WHERE  userId = :userId AND status = :status');
         $stmt->bindParam(':userId', $userId);
         $stmt->bindParam(':orderId', $orderId);
+        $stmt->bindValue(':status', 'unpaid');
+
         $stmt->execute();
     }
 
