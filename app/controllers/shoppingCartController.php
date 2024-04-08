@@ -32,12 +32,16 @@ class shoppingCartController
                 $totalPrice = $this->ticketService->getTotalPrice($userId);
 
             }
-//            $this->userService->createNewOrder($userId);
-            if (isset($_POST['payNow']) && !empty($_SESSION['id'])) {
+        }
+        require __DIR__ . '/../views/cart/shoppingCart.php';
+    }
 
+    public function pay() {
+        if (isset($_SESSION['id'])) {
+            $userId = $_SESSION['id'];
+            if (isset($_POST['payNow']) && !empty($_SESSION['id'])) {
                 if (!empty($_POST["amount"])) {
                     $orderId = $this->ticketService->createNewOrderId($userId);
-                    var_dump($orderId);
                     //$orderId = $this->ticketService->getOrderIdByCustomerId($userId);
                     $this->ticketService->updateOrderId($userId, $orderId);
                     // Get payment parameters from form submission
@@ -56,10 +60,7 @@ class shoppingCartController
                 echo "Error: Amount is missing or empty.";
             }
         }
-
-        require __DIR__ . '/../views/cart/shoppingCart.php';
     }
-
     public function updateQuantity()
     {
         session_start();
