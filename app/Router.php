@@ -59,7 +59,7 @@ class Router
             $controller->manageRestaurant($restaurantId);
             return;
         }
-        if ($explodedUri[0] === 'restaurant' && $methodName === 'getSessionsForRestaurant' && isset($explodedUri[2])) {
+       if ($explodedUri[0] === 'restaurant' && $methodName === 'getSessionsForRestaurant' && isset($explodedUri[2])) {
             $restaurantId = $explodedUri[2];
             $controller = new \App\Controllers\RestaurantController();
             $controller->getSessionsForRestaurant($restaurantId);
@@ -95,7 +95,7 @@ class Router
                 return $isAdmin;
             case 'App\Controllers\ManageOrderController':
                 return $isAdmin;
-            case 'App\Controllers\ManageReservationControllerController':
+            case 'App\Controllers\ManageReservationController':
                 return $isAdmin;
             case 'App\Controllers\ManageHistoryController':
                 return $isAdmin;

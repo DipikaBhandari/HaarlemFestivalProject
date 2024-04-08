@@ -6,6 +6,7 @@ use App\model\user;
 use App\service\restaurantService;
 use App\service\userService;
 use Exception;
+include '../config/constants.php';
 
 class restaurantController
 {
@@ -19,7 +20,7 @@ class restaurantController
 
     }
     public function YummyHome(){
-        $sections = $this->restaurantService->getSectionsByPage(3);
+        $sections = $this->restaurantService->getSectionsByPage(YUMMY_PAGE_ID);
         //$headerSection = $this->restaurantService->getSectionByType('header', 2);
         //$introductionSection = $this->restaurantService->getSectionByType('introduction', 2);
 

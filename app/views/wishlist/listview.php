@@ -72,13 +72,17 @@ if(isset($_SESSION['username'])) {
             text-decoration: none;
             cursor: pointer;
         }
-
         button{
             background-color: #5aa9b0;
         }
         button:hover{
             background-color: #cccccc;
         }
+        .paid {
+            color: #888888;
+            background-color: rgba(136, 231, 149, 0.43); /* Light red for work tasks */
+        }
+
     </style>
 </head>
 <body>
@@ -98,8 +102,11 @@ if (!empty($sharingUrl)) {
 
 <div id="calendarContainer">
     <h1>Your Personal Program</h1>
+
         <div id="calendar" class="pdf-page" data-events="<?php echo htmlspecialchars(json_encode($events)); ?>"></div>
+
 </div>
+
 
 <!-- Modal -->
 <div id="shareModal" class="modal">
@@ -116,29 +123,46 @@ if (!empty($sharingUrl)) {
     </div>
 </div>
 
-<?php if (!empty($orderItems)): ?>
-    <div id="agendacontainer" class="agenda" style="display: none">
-        <h1>Your Personal Program</h1>
+
+<div id="agendacontainer" class="agenda" style="display: none; margin: 100px;">
+    <h1>Your Personal Program</h1>
+    <div class="row">
         <?php foreach ($orderItems as $order): ?>
             <?php
-            // Check the status of the order
-            $status = $order->getStatus();
-            $backgroundColor = ($status === 'paid') ? '#dff0d8' : '#f2dede'; // Green for paid, Red for unpaid
-            ?>
-            <div class="mb-3" style="background-color: <?= $backgroundColor; ?>">
-                <div class="card">
-                    <div class="card-body">
-                        <div>
-                            <h6 class="card-subtitle mb-2 text-muted"><?= $order->getDate() ?></h6>
-                            <h6 class="card-subtitle mb-2 text-muted"><?= $order->getStartTime()?> till <?= $order->getEndTime()?> </h6>
-                        </div>
+            // Determine the status and set the appropriate class for background color
+            $statusClass = '';
+            $orderStatus = $order->getStatus(); // Assuming getStatus() returns the status of the orderItem
 
-                        <div>
-                            <h5 class="card-title">Event: <?= $order->getEventName() ?></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Participants: <?= $order->getNumberOfTickets() ?></h6>
+            if ($orderStatus === 'paid') {
+                $statusClass = 'paid';
+            } elseif ($orderStatus === 'open') {
+                $statusClass = 'open';
+            }
+            ?>
+            <div class="col-md-6 mb-4">
+                <div class="card <?php echo $statusClass; ?>">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 text-right"> <!-- Adjust column width and text alignment -->
+                                <h3 class="card-title"><?= $order->getEventName() ?></h3>
+                            </div>
                         </div>
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-danger delete-btn" data-id="<?= $order->getOrderItemId() ?>">Delete</button>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="card-subtitle mb-2 text-muted`-white">Date: <?= $order->getDate() ?></h6>
+                                <h6 class="card-subtitle mb-2 text-muted-white">Time: <?= $order->getStartTime()?> - <?= $order->getEndTime()?></h6>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="card-subtitle mb-2 text-muted-white">Participants: <?= $order->getNumberOfTickets() ?></h6>
+                                <h6 class="card-subtitle mb-2 text-muted-white">Price: €<?= $order->getPrice() ?></h6>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-right"> <!-- Adjust column width and text alignment -->
+                            <?php if ($orderStatus !== 'paid'): ?>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-danger delete-btn" data-id="<?= $order->getOrderItemId() ?>">Delete</button>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
                     </div>
@@ -146,9 +170,16 @@ if (!empty($sharingUrl)) {
             </div>
         <?php endforeach; ?>
     </div>
-<?php else: ?>
-    <p>No items found in the order list.</p>
-<?php endif; ?>
+    <div class="index">
+        <span class="index-item paid" style="background-color: #rgba(136, 231, 149, 0.43);">Paid</span>
+        <span class="index-item open" style="background-color: #006D77;">Unpaid</span>
+    </div>
+</div>
+
+
+
+
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>

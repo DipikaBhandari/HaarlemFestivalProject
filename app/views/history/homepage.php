@@ -76,7 +76,7 @@ if(isset($_SESSION['username'])) {
 background: #582F0E; color: #FFFFFF; ">
     <h2>Click on flag to select language, date and time. </h2>
 </div>
-<div>
+<div class="col-8">
     <?php
     foreach ($sections as $section) {
         if ($section['type'] === 'timetable') {
@@ -100,5 +100,17 @@ background: #582F0E; color: #FFFFFF; ">
 <?php
 include __DIR__ . '/../footer.php';
 ?>
+<style>
+    /* Base Styles */
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        font-family: 'Aleo', serif;
+    }
+
+    /* Make use of the full width while reserving some margin */
+
+</style>
 
 

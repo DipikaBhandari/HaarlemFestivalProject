@@ -35,11 +35,10 @@ class emailService
 
     public function sendTicketEmail($ticketData)
     {
-        $emailAddress = $ticketData['email'];
-        $pdfPath = $ticketData['pdfPath'];
-
         $mail = new PHPMailer(true);
-
+        $email = $ticketData[0]['email'];
+        $firstName = $ticketData[0]['firstName'];
+        $pdfPaths = [];
         try{
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
@@ -50,13 +49,20 @@ class emailService
             $mail->Port = 587;
 
             $mail->setFrom('haarlem.festival2024@gmail.com', 'Haarlem Festival');
-            $mail->addAddress($emailAddress);
             $mail->isHTML(true);
             $mail->Subject = 'Your Festival Tickets';
-            $mail->Body = 'Dear ' . $ticketData['firstName'] . ', <br><br>Congratulations, you got tickets for the Haarlem Festival! Your tickets are attached to this email as PDF. Please bring them either on your phone or printed out so we can scan them at the Festival.<br> <br><br>We hope you enjoy the event.<br><br>Kind regards,<br>Your Festival Team';
+            $mail->Body = 'Dear ' . $firstName . ', <br><br>Congratulations, you got tickets for the Haarlem Festival! Your tickets are attached to this email as PDF. Please bring them either on your phone or printed out so we can scan them at the Festival.<br> <br><br>We hope you enjoy the event.<br><br>Kind regards,<br>Your Festival Team';
 
-            $mail->addAttachment($pdfPath);
+            foreach ($ticketData as $ticketData) {
+                if (isset($ticketData['pdfPath'])) {
+                    $pdfPaths[] = $ticketData['pdfPath'];
+                }
+            }
+            foreach ($pdfPaths as $pdfPath) {
+                $mail->addAttachment($pdfPath);
+            }
 
+            $mail->addAddress($email);
             $mail->send();
             return true;
         } catch (Exception $e) {

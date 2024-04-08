@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\model\history;
+include '../config/constants.php';
 
 class historyController
 {
@@ -16,7 +17,7 @@ class historyController
 
     public function index(): void
     {
-        $sections = $this->historyService->getSectionsByPage(2);
+        $sections = $this->historyService->getSectionsByPage(HISTORY_PAGE_ID);
 
         foreach ($sections as $key => $section) {
             if ($section['type'] === 'marketing') {
@@ -37,12 +38,6 @@ class historyController
 
             $paragraphs[$key]['locations'] = $this->historyService->getLocationBySection($paragraph['paragraphId']);
         }
-//        if(isset($_GET['historyId'])) {
-//            $historyId = $_GET['historyId'];
-//            $paragraph = $this->historyService->getImageBySection($historyId);
-//            echo json_encode($paragraph);
-//            exit;
-//        }
         require __DIR__ . '/../views/history/homepage.php';
     }
 

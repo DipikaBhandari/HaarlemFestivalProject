@@ -137,7 +137,8 @@ class logincontroller
             } else {
                 if ($this->userService->captchaVerification($errorMessage)) {
 
-                    $this->createNewUser();}
+                    $this->createNewUser();
+                }
             }
         }
         require __DIR__ . '/../views/Login/registeruser.php';

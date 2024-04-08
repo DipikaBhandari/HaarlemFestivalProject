@@ -236,7 +236,7 @@ class restaurantRepository extends Repository
         $endTime = $sessionDetails['endTime'];
         $status= "unpaid";
         $eventName ="Yummy";
-        $stmt = $this->connection->prepare("INSERT INTO orderItem (userId, sessionId, startTime,endTime,date, numberOfTickets, price, specialRequest, restaurantSectionId, status, eventName) VALUES (:userId, :sessionId,:startTime,:endTime, :date, :numberOfTickets, :price, :specialRequest, :restaurantSectionId, :status, :eventName)");
+        $stmt = $this->connection->prepare("INSERT INTO orderItem (userId, sessionId, startTime,endTime,date, numberOfTickets, price, specialRequest, restaurantSectionId, status, eventName, orderId) VALUES (:userId, :sessionId,:startTime,:endTime, :date, :numberOfTickets, :price, :specialRequest, :restaurantSectionId, :status, :eventName, :orderId)");
         $stmt->bindValue(':userId', $orderData['userId']);
         $stmt->bindValue(':sessionId', $orderData['session']);
         $stmt->bindValue(':startTime', $startTime);
@@ -248,6 +248,7 @@ class restaurantRepository extends Repository
         $stmt->bindValue(':restaurantSectionId', $orderData['restaurantSectionId']);
         $stmt->bindValue(':status', $status);
         $stmt->bindValue(':eventName', $eventName);
+        $stmt->bindValue(':orderId', $orderData['orderId']);
 
 
         $stmt->execute();
