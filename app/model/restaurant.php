@@ -14,6 +14,41 @@ class restaurant
     private string $kidPrice;
     private string $adultPrice;
 
+    private string $Picture;
+
+    private string $FoodOfferings;
+     private string $Description;
+
+    public function getPicture(): string
+    {
+        return $this->Picture;
+    }
+
+    public function setPicture(string $Picture): void
+    {
+        $this->Picture = $Picture;
+    }
+
+    public function getFoodOfferings(): string
+    {
+        return $this->FoodOfferings;
+    }
+
+    public function setFoodOfferings(string $FoodOfferings): void
+    {
+        $this->FoodOfferings = $FoodOfferings;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->Description;
+    }
+
+    public function setDescription(string $Description): void
+    {
+        $this->Description = $Description;
+    }
+
     public function getKidPrice(): string
     {
         return $this->kidPrice;

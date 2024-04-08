@@ -87,6 +87,11 @@
     .card-description {
         /* Style for the restaurant description */
     }
+    .card-img-top {
+        height: 300px; /* Fixed height for all card images */
+        object-fit: cover; /* Ensures the image covers the element's box */
+        width: 100%; /* Ensures the image spans the full width of the card */
+    }
 
     .more-info-button {
         /* Style the 'MORE INFO' button */

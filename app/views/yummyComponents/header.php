@@ -343,63 +343,63 @@
     });
 
     document.addEventListener('DOMContentLoaded', function() {
-        var reserveButton = document.getElementById('reserveButton');
-        var reservationPopup = document.getElementById('reservationPopup');
-        var closePopup = document.getElementById('closePopup');
-        var reservationForm = document.getElementById('reservationForm');
+            var reserveButton = document.getElementById('reserveButton');
+            var reservationPopup = document.getElementById('reservationPopup');
+            var closePopup = document.getElementById('closePopup');
+            var reservationForm = document.getElementById('reservationForm');
 
-        reserveButton.onclick = function() {
-            reservationPopup.style.display = 'block';
-        }
-        closePopup.onclick = function() {
-            reservationPopup.style.display = 'none';
-        }
-        // Close the popup if user clicks outside of it
-        window.onclick = function(event) {
-            if (event.target == reservationPopup) {
+            reserveButton.onclick = function() {
+                reservationPopup.style.display = 'block';
+            }
+            closePopup.onclick = function() {
                 reservationPopup.style.display = 'none';
             }
-        }
-        reservationForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
+            // Close the popup if user clicks outside of it
+            window.onclick = function(event) {
+                if (event.target == reservationPopup) {
+                    reservationPopup.style.display = 'none';
+                }
+            }
+            reservationForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
 
-            var formData= new FormData(reservationForm);
-           /* const formData = {
-                restaurant: document.getElementById('restaurant').value.trim(),
-                numAdults: parseInt(document.getElementById('numAdults').value.trim(), 10),
-                numChildren: parseInt(document.getElementById('numChildren').value.trim(), 10),
-                date: document.getElementById('date').value.trim(),
-                session: document.getElementById('session').value.trim(),
-                specialRequests: document.getElementById('specialRequests').value.trim(),
-            };*/
-            fetch('/CreateReservation/create', {
-                method: 'POST',
-                body: formData,
+                var formData= new FormData(reservationForm);
+               /* const formData = {
+                    restaurant: document.getElementById('restaurant').value.trim(),
+                    numAdults: parseInt(document.getElementById('numAdults').value.trim(), 10),
+                    numChildren: parseInt(document.getElementById('numChildren').value.trim(), 10),
+                    date: document.getElementById('date').value.trim(),
+                    session: document.getElementById('session').value.trim(),
+                    specialRequests: document.getElementById('specialRequests').value.trim(),
+                };*/
+                fetch('/CreateReservation/create', {
+                    method: 'POST',
+                    body: formData,
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            alert('Reservation created successfully!');
+                            reservationPopup.style.display = 'none';
+                            // Clear the form or redirect the user
+                            reservationForm.reset();
+                            // window.location.href = '/reservationSuccess'; // Redirect if needed
+                        } else {
+                            alert('Failed to create reservation: ' + data.message);
+                        }
+                    })
+                    .catch((error) => {
+                        alert('There was a problem with your reservation: ' + error.message);
+                    })
+                    .finally(() => {
+                        //  hide spinner here
+                    });
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.success) {
-                        alert('Reservation created successfully!');
-                        reservationPopup.style.display = 'none';
-                        // Clear the form or redirect the user
-                        reservationForm.reset();
-                        // window.location.href = '/reservationSuccess'; // Redirect if needed
-                    } else {
-                        alert('Failed to create reservation: ' + data.message);
-                    }
-                })
-                .catch((error) => {
-                    alert('There was a problem with your reservation: ' + error.message);
-                })
-                .finally(() => {
-                    //  hide spinner here
-                });
-        })
     });
 </script>
 

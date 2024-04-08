@@ -30,6 +30,8 @@ if (!isset($user) || !$user instanceof user) {
                         <option value="">Filter by Role</option>
                         <option value="Administrator">Administrator</option>
                         <option value="Customer">Customer</option>
+                        <option value="Employee">Employee</option>
+
                     </select>
                 </div>
                 <div id="spinner" class="spinner" style="display:none;"></div>
@@ -65,7 +67,7 @@ if (!isset($user) || !$user instanceof user) {
                                 <?php foreach ($users as $user): ?>
                                         <tr>
                                             <td></td>
-                                            <td><img src="../img/<?php echo htmlentities($user['picture'] ?? 'default.jpg');?>" style="width:50px; border-radius:50%;"/></td>
+                                            <td><img src="../img/<?php echo htmlentities($user['picture'] ?? 'blankPerson.png');?>" style="width:50px; border-radius:50%;"/></td>
                                             <td><?php echo htmlentities($user['username'] ?? 'N/A');?></td>
                                             <td><?php echo htmlentities($user['email'] ?? 'N/A');?></td>
                                             <td><?php echo htmlentities($user['address'] ?? 'N/A');?></td>

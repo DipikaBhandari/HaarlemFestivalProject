@@ -18,6 +18,12 @@ if (!isset($user) || !$user instanceof user) {
     <h2>Create New Restaurant</h2>
     <div id="spinner" class="spinner"></div>
     <form id="createRestaurantForm">
+
+        <div class="form-group">
+            <label for="restaurantImage">Restaurant Image:</label>
+            <input type="file" class="form-control" id="restaurantImage" name="restaurantImage">
+        </div>
+
         <div class="form-group">
             <label for="restaurantName">Restaurant Name:</label>
             <input type="text" class="form-control" id="restaurantName" name="restaurantName" required>
@@ -42,6 +48,15 @@ if (!isset($user) || !$user instanceof user) {
             <label for="adultPrice">Adult's Price:</label>
             <input type="text" class="form-control"  id="adultPrice" name="adultPrice" required>
         </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="foodOfferings">Food Offerings:</label>
+            <input type="text" class="form-control" id="foodOfferings" name="foodOfferings" required>
+        </div>
+
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Add Restaurant</button>
@@ -60,19 +75,16 @@ if (!isset($user) || !$user instanceof user) {
 
             spinner.style.display = 'block';
 
-            const restaurantData = {
-                restaurantName: document.getElementById('restaurantName').value.trim(),
-                location: document.getElementById('location').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                numberOfSeats: parseInt(document.getElementById('numberOfSeats').value.trim()),
-                kidPrice: parseFloat(document.getElementById('kidPrice').value.trim().replace('€', '')),
-                adultPrice: parseFloat(document.getElementById('adultPrice').value.trim().replace('€', '')),
-            };
+            const formData = new FormData(createRestaurantForm);
+            formData.append('numberOfSeats', parseInt(formData.get('numberOfSeats')));
+            formData.append('kidPrice', parseFloat(formData.get('kidPrice').replace('€', '')));
+            formData.append('adultPrice', parseFloat(formData.get('adultPrice').replace('€', '')));
+
 
             fetch('/CreateRestaurant/create', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(restaurantData),
+                //headers: { 'Content-Type': 'application/json' },
+                body: formData,
             })
                 .then(response => response.json())
                 .then(data => {

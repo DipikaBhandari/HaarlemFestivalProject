@@ -94,8 +94,10 @@ echo '<style>
                                     <label for="restaurantSection">Restaurant Section</label>
                                     <select class="form-control" id="restaurantSection" name="restaurantSectionId" required>
                                         <?php foreach ($getAllRestaurantSections as $detail): ?>
-                                            <option value="<?=  ($detail['restaurantSectionId']); ?>"><?php echo htmlspecialchars($detail['restaurantName']); ?></option>
+                                            <option value="<?= htmlspecialchars($detail['restaurantId']); ?>"><?= ($detail['restaurantName']); ?></option>
                                         <?php endforeach; ?>
+
+
                                     </select>
                                 </div>
                                 <div class="form-group">

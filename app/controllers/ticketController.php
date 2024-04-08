@@ -129,7 +129,6 @@ class ticketController
 
                     // Attempt to create the order
                     $order = $this->ticketService->createOrderItem($newOrderItem);
-                    var_dump($order);
                     if ($order) {
                         // Update the order table with the total price
                        $this->ticketService->updateTotalPrice($userId);

@@ -26,7 +26,6 @@ class shoppingCartController
 
             if ($_SERVER['REQUEST_METHOD'] == "GET") {
                 $orders = $this->ticketService->getOrderByUserId($userId);
-                var_dump($orders);
 
                 $totalPrice = $this->ticketService->getTotalPrice($userId);
 

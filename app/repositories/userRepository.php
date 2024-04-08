@@ -125,9 +125,6 @@ class userRepository extends Repository
                 $user->getPhoneNumber(),
                 $user->getProfilePicture(),
                 $user->getEmail(),
-
-
-
             ]);
 
             return true;

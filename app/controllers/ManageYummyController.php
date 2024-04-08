@@ -75,49 +75,53 @@ class ManageYummyController
     public function updateRestaurant()
     {
         ob_start();
-        ini_set('display_errors', 1);
-        error_reporting(E_ALL);
+        // Assuming error reporting is set correctly elsewhere in your application
         try {
-            // Check if the content type is JSON
-            $contentType = isset($_SERVER['CONTENT_TYPE']) ? trim($_SERVER['CONTENT_TYPE']) : '';
-            if (stripos($contentType, 'application/json') === false) {
-                throw new Exception('Content-Type is not set to JSON');
+            // Verify this is a POST request
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                throw new Exception('Invalid request method. Only POST is allowed.');
             }
 
-            $rawData = file_get_contents('php://input');
-            $data = json_decode($rawData, true);
-            //echo 'Received the following data: ' . print_r($data, true);
-
-            if (is_null($data)) {
-                throw new Exception('JSON is null');
-            }
-
-            // Assuming $data is your decoded JSON data
+            // Process form data
             $sanitizedData = [
-                'restaurantId' => filter_var($data['restaurantId'], FILTER_VALIDATE_INT),
-                'restaurantName' => filter_var($data['restaurantName'], FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-                'location' => filter_var($data['location'], FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-                'email' => filter_var($data['email'], FILTER_SANITIZE_EMAIL),
-                'kidPrice' => filter_var(trim(str_replace('€', '', $data['kidPrice'])), FILTER_VALIDATE_FLOAT),
-                'adultPrice' => filter_var(trim(str_replace('€', '', $data['adultPrice'])), FILTER_VALIDATE_FLOAT),
-                'phoneNumber' => isset($data['phoneNumber']) ? filter_var($data['phoneNumber'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : null,
-                'numberOfSeats'=> filter_var($data['numberOfSeats'], FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'restaurantId' => filter_input(INPUT_POST, 'restaurantId', FILTER_VALIDATE_INT),
+                'restaurantName' => filter_input(INPUT_POST, 'restaurantName', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'location' => filter_input(INPUT_POST, 'location', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'email' => filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL),
+                'kidPrice' => filter_var(trim(str_replace('€', '', $_POST['kidPrice'])), FILTER_VALIDATE_FLOAT),
+                'adultPrice' => filter_var(trim(str_replace('€', '', $_POST['adultPrice'])), FILTER_VALIDATE_FLOAT),
+                'phoneNumber' => filter_input(INPUT_POST, 'phoneNumber', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'numberOfSeats' => filter_input(INPUT_POST, 'numberOfSeats', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'description' => filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'foodOfferings' => filter_input(INPUT_POST, 'foodOfferings', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
             ];
 
+            // Handle file upload if provided
+            if (isset($_FILES['restaurantImage']) && $_FILES['restaurantImage']['error'] === UPLOAD_ERR_OK) {
+                $sanitizedData['restaurantImage'] = $this->handleFileUpload($_FILES['restaurantImage']);
+            } else {
+                // Fallback or error handling for missing image
+                $sanitizedData['restaurantPicture'] = $_POST['currentImagePath'] ?? null; // Or handle appropriately
+            }
 
+
+            // Update the restaurant details in the database
             $result = $this->restaurantService->updateRestaurantDetails($sanitizedData);
-            header('Content-Type: application/json');
             if(!$result) {
                 throw new Exception('Failed to update restaurant details');
             }
+
+            // Respond with JSON
+            header('Content-Type: application/json');
+            echo json_encode(['success' => true, 'message' => 'Restaurant updated successfully.']);
             http_response_code(200); // Success response code
-           echo json_encode(['success' => true, 'message' => 'Restaurant updated successfully.']);
-        }catch (Exception $e) {
-           // echo json_encode(['success' => false, 'message' => $e->getMessage()]);
-            http_response_code(400);
+        } catch (Exception $e) {
+            http_response_code(400); // Bad Request or appropriate status code
+            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
         }
         ob_end_flush();
     }
+
     public function delete(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Get the raw POST data
@@ -140,6 +144,33 @@ class ManageYummyController
             }
         }
     }
+    private function handleFileUpload($file)
+    {
+        // Check for errors
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            throw new Exception("File upload error number: {$file['error']}");
+        }
+
+        // Verify the file is an image
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        $fileType = mime_content_type($file['tmp_name']);
+
+        if (!in_array($fileType, $allowedTypes)) {
+            throw new Exception("Invalid file type.");
+        }
+
+        $targetDir = __DIR__ . '/../public/img/';
+        $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $safeFilename = bin2hex(random_bytes(16)) . '.' . $fileExtension;
+        $targetFile = $targetDir . $safeFilename;
+
+        if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
+            throw new Exception("Failed to move uploaded file.");
+        }
+
+        return '../img/' . $safeFilename; // Return the path relative to the public directory
+    }
+
 
 }
 

@@ -27,11 +27,32 @@ if (!isset($restaurantArray) || !is_array($restaurantArray)) {
 
     <!-- User Information Form -->
     <form id="restaurantInfoForm" action="/ManageYummy/updateRestaurant/<?php echo htmlspecialchars($restaurantArray['restaurantId']); ?>" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="restaurantId" value="<?php echo htmlspecialchars($restaurantArray['restaurantId']); ?>">
+        <input type="hidden" name="currentImagePath" value="<?php echo htmlentities($restaurantDetails->getPicture()); ?>">
+
+        <!-- Current Image and Upload Input Grouped Together -->
+        <div class="mb-3">
+            <label for="restaurantImage">Restaurant Image:</label>
+            <div class="image-upload-container">
+                <!-- Image Preview Container -->
+                <div class="image-preview mb-2">
+                    <img id="currentImage" src="/img/<?php echo htmlentities($restaurantDetails->getPicture()); ?>" alt="Current Image" class="img-thumbnail" style="height: 200px;">
+                </div>
+                <!-- Upload Input with Label -->
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="restaurantImage" name="restaurantImage" onchange="previewImage(event)">
+                    <label class="custom-file-label" for="restaurantImage">Choose file</label>
+                </div>
+            </div>
+        </div>
+
         <!-- Name -->
         <div class="mb-3">
             <label for="restaurantName">Restaurant Name:</label>
             <input type="text" class="form-control" id="restaurantName" name="restaurantName" value="<?php echo htmlspecialchars($restaurantArray['restaurantName']); ?>" required>
         </div>
+
+
         <!-- Number of Seats -->
         <div class="mb-3">
             <label for="numberOfSeats">Number of Seats:</label>
@@ -55,12 +76,25 @@ if (!isset($restaurantArray) || !is_array($restaurantArray)) {
             <label for="adultPrice">Adult's Price:</label>
             <input type="text" class="form-control"  id="adultPrice" name="adultPrice" value="<?php echo htmlspecialchars($restaurantDetails->getAdultPrice()); ?>" required>
         </div>
+        <div class="mb-3">
+            <label for="description">Description:</label>
+            <textarea class="form-control" id="description" name="description" rows="4"><?= isset($restaurantDetails) ? htmlspecialchars($restaurantDetails->getDescription()) : ''; ?></textarea>
+        </div>
+
+        <!-- Add Food Offerings -->
+        <div class="mb-3">
+            <label for="foodOfferings">Food Offerings:</label>
+            <input type="text" class="form-control" id="foodOfferings" name="foodOfferings" value="<?= isset($restaurantDetails) ? htmlspecialchars($restaurantDetails->getFoodOfferings()) : ''; ?>">
+        </div>
+
+
 
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Update Restaurant</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
+
 
     </form>
 </div>
@@ -76,27 +110,17 @@ if (!isset($restaurantArray) || !is_array($restaurantArray)) {
             spinner.style.display = 'block';
             const restaurantId = form.action.split('/').pop();
             const formData = new FormData(this);
-            const jsonObject = {restaurantId: restaurantId };
-
-            for (const [key, value] of formData.entries()) {
-                jsonObject[key] = value;
-            }
-
 
             fetch(form.action, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify(jsonObject),
+                body: formData, // FormData will set the proper content type for file upload
             })
                 .then(response => response.json())
                 .then(data => {
                     if(data.success) {
                         setTimeout(() => {
-                            spinner.style.display = 'none';
-                            window.location.href = '/ManageYummy/manageYummy'; // Redirect
+                           // spinner.style.display = 'none';
+                            //window.location.href = '/ManageYummy/manageYummy'; // Redirect
                         }, 3000); // 3000 milliseconds = 3 seconds
                     } else {
                         spinner.style.display = 'none';
@@ -110,6 +134,15 @@ if (!isset($restaurantArray) || !is_array($restaurantArray)) {
                 });
         });
     });
+    function previewImage(event) {
+        const reader = new FileReader();
+        reader.onload = function() {
+            const output = document.getElementById('currentImage');
+            output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
 </script>
 <style>
     .spinner {
