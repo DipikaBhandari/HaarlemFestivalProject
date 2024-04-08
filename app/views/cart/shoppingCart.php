@@ -62,7 +62,7 @@
                                             <h5>Total Price</h5>
                                             <h5 id="totalPrice">€<?php echo $totalPrice; ?></h5>
                                         </div>
-                                        <form method="post">
+                                        <form method="post" action="/shoppingCart/pay">
                                             <input type="hidden" name="amount" value="<?php echo $totalPrice; ?>">
                                             <input type="hidden" name="description" value="Test">
                                             <input type="hidden" name="redirectUrl" value="http://localhost/shoppingCart/paymentRedirect">
