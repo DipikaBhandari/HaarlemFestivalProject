@@ -18,7 +18,7 @@
 
             foreach ($section['images'] as $image):?>
                 <div class="<?php echo $col_class; ?> g-0 header-img">
-                    <img class="img-fluid" src="<?php echo $image['imagePath']; ?>" alt="<?php echo $image['imageName']; ?>">
+                    <img class="img-fluid" src="<?php echo $image['imagePath']; ?>" alt="<?php echo $image['imageName']; ?>" style="min-width: 100%;">
                 </div>
             <?php endforeach;
         endif; ?>
