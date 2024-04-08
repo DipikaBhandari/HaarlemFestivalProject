@@ -28,7 +28,6 @@ class shoppingCartController
 
             if ($_SERVER['REQUEST_METHOD'] == "GET") {
                 $orders = $this->ticketService->getOrderByUserId($userId);
-
                 $totalPrice = $this->ticketService->getTotalPrice($userId);
 
             }
@@ -36,9 +35,7 @@ class shoppingCartController
             if (isset($_POST['payNow']) && !empty($_SESSION['id'])) {
 
                 if (!empty($_POST["amount"])) {
-                    $orderId = $this->ticketService->createNewOrderId($userId);
-                    var_dump($orderId);
-                    //$orderId = $this->ticketService->getOrderIdByCustomerId($userId);
+                    $orderId=$this->ticketService->createNewOrderId($userId);
                     $this->ticketService->updateOrderId($userId, $orderId);
                     // Get payment parameters from form submission
                     $amount = number_format($_POST["amount"], 2, '.', '');
@@ -48,15 +45,12 @@ class shoppingCartController
 
                     // Create Mollie payment
                     $payment = $this->ticketService->createPayment($userId, $orderId, $amount, $description, $redirectUrl, $webhookUrl);
-
                 }
-            } else {
-                // Handle the case where amount is not set or empty
-                // For example, display an error message or redirect back to the form
-                echo "Error: Amount is missing or empty.";
+                else {
+                    $totalPrice = NULL;
+                }
             }
         }
-
         require __DIR__ . '/../views/cart/shoppingCart.php';
     }
 
@@ -78,18 +72,7 @@ class shoppingCartController
                 $this->ticketService->updateTotalPrice($userId);
             }
         }
-//        if (isset($_SESSION['id'])) {
-//            $userId = $_SESSION['id'];
-//            $this->updateOrderPrice($userId, $updatedPrice);
-//            $totalPrice = $this->ticketService->getTotalPrice($userId);
-//            echo json_encode(['success' => true, 'totalPrice' => $totalPrice]);
-//        } else {
-//            // Handle the case where updating the price or quantity fails
-//            echo json_encode(['success' => false, 'message' => 'Failed to update price or quantity']);
-//        }
-
         require __DIR__ . '/../views/cart/shoppingCart.php';
-
     }
 
     public function updateOrderPrice($userId, $updatedPrice)
@@ -129,9 +112,6 @@ class shoppingCartController
                 }
             }
     }
-
-
-
 
     public function deleteOrderItem()
     { session_start();
