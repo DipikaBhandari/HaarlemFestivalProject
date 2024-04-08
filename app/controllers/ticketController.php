@@ -5,7 +5,6 @@ namespace App\Controllers;
 class ticketController
 {
     private $ticketService;
-
     private $userService;
 
     public function __construct()
@@ -16,19 +15,17 @@ class ticketController
 
     public function index()
     {
-    if(!isset($_SESSION)) {
+        if(!isset($_SESSION)) {
         session_start(); // Start the session
-    }
+        }
 
         if (isset($_SESSION['id'])) {
-
             // Fetch orders for the logged-in user
             $orders = $this->ticketService->getOrderItemByUserId($_SESSION['id']);
 
-            if( !empty($_SESSION['id'])) {
-                $orderItemId = $this->ticketService->getOrderIdByUserId($_SESSION['id']);
+            if(!empty($_SESSION['id'])) {
+                $orderItemId = $this->ticketService->getOrderItemIdByUserId($_SESSION['id']);
             }
-
             // Transform orders into events compatible with FullCalendar
             $events = [];
             if (!empty($orders)) {
@@ -49,7 +46,6 @@ class ticketController
             } else {
                 echo "No order items found.";
             }
-
             // Generate the sharing URL
             $sharingUrl = $this->getSharingUrl($orderItemId);
 
@@ -76,19 +72,24 @@ class ticketController
 
     public function addOrder()
     {
+        $orderId = null;
         if(!isset($_SESSION)){
             session_start();
         }
-
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id'])) {
-
+                $userId = $_SESSION['id'];
+                if (!isset($_SESSION['orderId'])){
+                    $orderId = $this->ticketService->createNewOrderId($userId);
+                    $_SESSION['orderId'] = $orderId;
+                } else{
+                    $orderId = $_SESSION['orderId'];
+                }
                 $regularTicket = $_POST["tourSingleTicket"] ?? 0;
                 $familyTicket = isset($_POST["tourFamilyTicket"]) ? 4 : 0;
                 $price = $regularTicket * 17.50 + $familyTicket * 15.00;
                 $numberOfTickets = $regularTicket + $familyTicket;
 
                 $event = "History Tour Event";
-                $userId = $_SESSION['id'];
                 $date = htmlspecialchars($_POST['date']);
                 $startTime = htmlspecialchars($_POST['startTime']);
                 $endTime = htmlspecialchars($_POST['endTime']);
@@ -112,6 +113,7 @@ class ticketController
                         'eventName' => $event,
                         'numberOfTickets' => $numberOfTickets,
                         'price' => $price,
+                        'orderId' => $orderId,
                         'ticketData' => $ticketDataJson // Store ticket data as JSON string
                     );
 
@@ -119,37 +121,18 @@ class ticketController
                     $order = $this->ticketService->createOrderItem($newOrderItem);
                     if ($order) {
                         // Update the order table with the total price
-                        $this->ticketService->updateTotalPrice($userId);
-
-                        // Return JSON response
+                        $this->ticketService->updateTotalPrice($orderId);
                         echo json_encode(['success' => true, 'message' => 'Order created successfully', 'order' => $newOrderItem]);
                     } else {
                         // Return error response if order creation failed
                         echo json_encode(['error' => 'Failed to create order. Please try again.']);
                     }
-
                 } else {
                     // Return error response if required fields are empty
                     echo json_encode(['error' => 'Missing or empty required fields']);
                 }
             }
-            exit;
         }
-    }
-    public function updateQuantitsy()
-    {
-        session_start();
-        if (isset($_SESSION['id'])) {
-            $userId = $_SESSION['id'];// Start the session
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $orderItemId = $_POST['orderItemId'];
-                $orderId = $this->ticketService->getOrderIdByCustomerId($userId);
-                $numberOfTickets = $_POST['numberOfTickets'];
-                $this->ticketService->updateQuantity($orderItemId, $numberOfTickets);
-                $this->ticketService->updateTotalPrice($orderId);
-            }
-        }
-    }
 
     public function deleteOrder(): void
     {

@@ -23,9 +23,9 @@ class ticketService
         $this->mollie->setApiKey('test_uVFQArn7P2nxgxUv5DnnHTJPvvudER');
 
     }
-    public function getOrderByUserId($userId)
+    public function getOrderByOrderId($orderId)
     {
-        return $this->ticketRepository->getOrderByUserId($userId);
+        return $this->ticketRepository->getOrderByOrderId($orderId);
     }
 
     public function PaidOrders($userId)
@@ -55,14 +55,14 @@ class ticketService
          $this->ticketRepository->deleteOrderbyOrderId($orderItemId);
     }
 
-    public function getOrderIdByUserId($userId)
+    public function getOrderItemIdByUserId($userId)
     {
         return $this->ticketRepository->getOrderItemIdByUserId($userId);
     }
 
-    public function updateTotalPrice($userId)
+    public function updateTotalPrice($orderId)
     {
-       $this->ticketRepository->updateTotalPrice($userId);
+       return $this->ticketRepository->updateTotalPrice($orderId);
     }
 
     public function updateQuantity($orderItemId, $numberOfTickets)
@@ -71,7 +71,7 @@ class ticketService
     }
     public function getOrderPriceById($orderItemId)
     {
-        $this->ticketRepository->getOrderPriceById($orderItemId);
+       return $this->ticketRepository->getOrderPriceById($orderItemId);
     }
 
 
@@ -80,14 +80,14 @@ class ticketService
        return $this->ticketRepository->updatePrice($orderItemId, $price);
     }
 
-    public function updateOrderPrice($totalPrice, $userId)
+    public function updateOrderPrice($totalPrice, $orderId)
     {
-        return $this->ticketRepository->updateOrderPrice($totalPrice, $userId);
+        return $this->ticketRepository->updateOrderPrice($totalPrice, $orderId);
     }
 
-    public function getTotalPrice($userId)
+    public function getTotalPrice($orderId)
     {
-       return $this->ticketRepository->getTotalPrice($userId);
+       return $this->ticketRepository->getTotalPrice($orderId);
     }
     public function getPaymentStatusFromMollie($paymentCode)
     {
@@ -142,9 +142,9 @@ class ticketService
     }
 
 
-    public function updateOrderId($userId, $orderId)
+    public function updateOrderId($orderItem, $orderId)
     {
-        $this->ticketRepository->updateOrderId($userId, $orderId);
+        $this->ticketRepository->updateOrderId($orderItem, $orderId);
     }
     public function createNewOrderId($userId)
     {

@@ -2,18 +2,29 @@
 
 namespace App\Controllers;
 use App\service\restaurantService;
+use App\service\ticketService;
 use Exception;
 
 class CreateReservationController
 {
     private $restaurantService;
+    private $ticketService;
     public function __construct()
     {
         $this->restaurantService = new restaurantService();
+        $this->ticketService = new ticketService();
     }
     public function create(){
         if(!isset($_SESSION)){
             session_start();
+        }
+        $orderId = null;
+        if (!isset($_SESSION['orderId'])){
+            $userId = $_SESSION['id'];
+            $orderId = $this->ticketService->createNewOrderId($userId);
+            $_SESSION['orderId'] = $orderId;
+        } else{
+            $orderId = $_SESSION['orderId'];
         }
 
         if (!isset($_POST['restaurant'], $_POST['numAdults'], $_POST['numChildren'], $_POST['date'], $_POST['session'])) {
@@ -40,9 +51,11 @@ class CreateReservationController
                 'price' => 10 * $totalPeople,
                 'special_requests' => $_POST['specialRequests'],
                 'restaurantSectionId' => $_POST['restaurant'],
+                'orderId' => $orderId
             ];
 
             $result = $this->restaurantService->createReservation($reservationData);
+
             if ($result) {
                 echo json_encode(['success' => true, 'message' => 'Reservation created successfully']);
             } else {

@@ -15,7 +15,7 @@
         }
         .container {
             display: flex;
-            padding: 10px;
+            padding: 2px;
         }
 
         .item {
@@ -45,7 +45,7 @@
 <body>
 <div class="container" style="display: flex;">
     <!-- First table -->
-    <div class="time-container" style="text-align: center; margin-left: 10%; margin-bottom: 50px;">
+    <div class="time-container" style="text-align: center; margin-bottom: 50px;">
         <table>
             <thead>
             <tr>

@@ -73,7 +73,6 @@ class userService
         return $this->userRepository->updateUser($user);
     }
 
-
     public function verifyPassword($email, $currentPassword): bool
     {
         // Fetch the user's hashed password from the database using their email

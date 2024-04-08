@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 class shoppingCartController
 {
-
     private $ticketService;
     private $userService;
     private $orderService;
@@ -25,11 +24,15 @@ class shoppingCartController
         }
         if (isset($_SESSION['id'])) {
             $userId = $_SESSION['id'];// Start the session
-
             if ($_SERVER['REQUEST_METHOD'] == "GET") {
-                $orders = $this->ticketService->getOrderByUserId($userId);
-                $totalPrice = $this->ticketService->getTotalPrice($userId);
+                $orderId = $_SESSION['orderId'];
+                $orders = $this->ticketService->getOrderByOrderId($orderId);
 
+                foreach( $orders as $orderItem){
+                    $this->ticketService->updateOrderId($orderItem, $orderId);
+                }
+                $this->ticketService->updateTotalPrice($orderId);
+                $totalPrice = $this->ticketService->getTotalPrice($orderId);
             }
         }
         require __DIR__ . '/../views/cart/shoppingCart.php';
@@ -40,9 +43,8 @@ class shoppingCartController
             $userId = $_SESSION['id'];
             if (isset($_POST['payNow']) && !empty($_SESSION['id'])) {
                 if (!empty($_POST["amount"])) {
-                    $orderId=$this->ticketService->createNewOrderId($userId);
+                    $orderId = $_SESSION['orderId'];
 
-                    $this->ticketService->updateOrderId($userId, $orderId);
                     // Get payment parameters from form submission
                     $amount = number_format($_POST["amount"], 2, '.', '');
                     $description = $_POST["description"];
@@ -62,33 +64,37 @@ class shoppingCartController
     {
         session_start();
         $data = json_decode(file_get_contents('php://input'), true);
-        $this->ticketService->updateQuantity($data['orderItemId'], $data['numberOfTickets']);
-
         $currentPrice = $this->ticketService->getOrderPriceById($data['orderItemId']);
-        $additionalPricePerTicket = 17.5;
+        $this->ticketService->updateQuantity($data['orderItemId'], $data['numberOfTickets']);
+        $price=null;
+        if($data['eventName'] == "Yummy") {
+            $price = 10;
+        }
+        else{
+            $price = 17.5;
+        }
+        if($data['calculationMethod'] == 'increase'){
+            $newPrice = $currentPrice + $price;
+        } else {
+            $newPrice = $currentPrice - $price;
+        }
 
-        $newPrice = $currentPrice + ($data['numberOfTickets'] * $additionalPricePerTicket);
         $updatedPrice = $this->ticketService->updatePrice($data['orderItemId'], $newPrice);
 
         if($updatedPrice){
-            if (isset($_SESSION['id'])) {
-                $userId = $_SESSION['id'];
-                $this->ticketService->updateTotalPrice($userId);
+            if (isset($_SESSION['orderId'])) {
+                $orderId = $_SESSION['orderId'];
+                $this->ticketService->updateTotalPrice($orderId);
             }
         }
         require __DIR__ . '/../views/cart/shoppingCart.php';
     }
 
-    public function updateOrderPrice($userId, $updatedPrice)
-    {
-        if ($_SERVER['REQUEST_METHOD'] == "GET") {
-            $totalPrice = $this->ticketService->getTotalPrice($userId); // Assuming there's a method to retrieve total price
-            $newTotalPrice = $totalPrice + $updatedPrice;
-            $this->ticketService->updateOrderPrice($newTotalPrice, $userId);
-        }
-    }
     public function showPaidOrders()
-    {     session_start();
+    {
+        if (!isset($_SESSION)){
+            session_start();
+        }
         if (isset($_SESSION['id'])) {
         $userId = $_SESSION['id'];// Start the session
             if ($_SERVER['REQUEST_METHOD'] == "GET") {
@@ -96,37 +102,22 @@ class shoppingCartController
             }
         }
         require __DIR__ . '/../views/cart/listOfPaidOrders.php';
-
     }
     public function paymentRedirect()
     {
-
-            if (isset($_GET['orderId'])) {
-                $orderId = htmlspecialchars($_GET['orderId']);
-                $paymentCode = $this->ticketService->getPaymentCodeByOrderId($orderId);
-                $paymentStatus = $this->ticketService->getPaymentStatusFromMollie($paymentCode);
-                if ($paymentStatus == "paid") {
-                    $this->ticketService->changePaymentToPaid($paymentCode, $orderId);
-                    $this->orderService->finalizeOrder($orderId);
-                    $this->sendTicket($orderId);
-                    $this->sendInvoice($orderId);
-                    include __DIR__ . '/../views/cart/paymentSuccessful.php';
-                } else {
-                    include __DIR__ . '/../../views/ShoppingCart/paymentError.php.php';
-                }
-            }
-    }
-
-    public function deleteOrderItem()
-    { session_start();
-        if (isset($_SESSION['id'])) {
-            $userId = $_SESSION['id'];// Start the session
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $orderItemId = $_POST['orderItemId'];
-                $orderId = $this->ticketService->getOrderIdByCustomerId($userId);
-                $this->ticketService->deleteOrderbyOrderId($orderItemId);
-                $this->ticketService->updateTotalPrice($orderId);
-
+        if (isset($_GET['orderId'])) {
+            $orderId = htmlspecialchars($_GET['orderId']);
+            $paymentCode = $this->ticketService->getPaymentCodeByOrderId($orderId);
+            $paymentStatus = $this->ticketService->getPaymentStatusFromMollie($paymentCode);
+            if ($paymentStatus == "paid") {
+                $this->ticketService->changePaymentToPaid($paymentCode, $orderId);
+                $this->orderService->finalizeOrder($orderId);
+                $this->sendTicket($orderId);
+                $this->sendInvoice($orderId);
+                unset($_SESSION['orderId']);
+                include __DIR__ . '/../views/cart/paymentSuccessful.php';
+            } else {
+                include __DIR__ . '/../views/cart/paymentError.php';
             }
         }
     }

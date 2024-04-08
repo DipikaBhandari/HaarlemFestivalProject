@@ -44,7 +44,7 @@
                                                 <div class="card">
                                                     <div class="card-body d-flex justify-content-between align-items-center">
                                                         <div>
-                                                            <h5 class="card-title"><?= $order->getEventName() ?></h5>
+                                                            <h5 id="eventName<?= $order->getOrderItemId() ?>" class="card-title"><?= $order->getEventName() ?></h5>
                                                             <h6 class="card-subtitle mb-2 text-muted">Participants: <?= $order->getNumberOfTickets() ?></h6>
                                                             <h6 id="participants<?= $order->getOrderItemId() ?>" class="card-subtitle mb-2 text-muted">Price: €<?= $order->getPrice() ?></h6>
                                                         </div>
@@ -89,13 +89,15 @@
             item.addEventListener('click', event => {
                 const orderId = event.target.dataset.id;
                 const participantsCountElem = document.getElementById(`participants-count-${orderId}`);
+                const eventNameElement = document.getElementById(`eventName${orderId}`).textContent;
+
                 let count = parseInt(participantsCountElem.textContent);
 
                 count++;
                 participantsCountElem.textContent = count;
 
                 // Send AJAX request to update quantity and retrieve updated price
-                updateQuantity(orderId, count);
+                updateQuantity(orderId, count, eventNameElement, 'increase');
 
             });
         });
@@ -104,18 +106,15 @@
             item.addEventListener('click', event => {
                 const orderId = event.target.dataset.id;
                 const participantsCountElem = document.getElementById(`participants-count-${orderId}`);
+                const eventNameElement = document.getElementById(`eventName${orderId}`).textContent;
+
                 let count = parseInt(participantsCountElem.textContent);
                 if (count > 0) {
                     count--;
                     participantsCountElem.textContent = count;
 
-                    // Calculate total price
-                    const priceElement = document.getElementById(`participants${orderId}`);
-                    const currentPrice = parseFloat(priceElement.textContent.replace('Price: €', '').trim());
-                    const totalPrice = currentPrice - 17.5; // Decrease by the price of one ticket
-
                     // Send AJAX request to update quantity and price
-                    updateQuantity(orderId, count, totalPrice);
+                    updateQuantity(orderId, count, eventNameElement, 'decrease');
 
                 }
             });
@@ -152,17 +151,17 @@
                 });
         }
 
-        function updateQuantity(orderItemId, count) {
+        function updateQuantity(orderItemId, count, eventName, calculationMethod) {
             fetch('/shoppingcart/updateQuantity', {
                 method: 'POST',
-                body: JSON.stringify({orderItemId: orderItemId, numberOfTickets: count}),
+                body: JSON.stringify({orderItemId: orderItemId, numberOfTickets: count, eventName: eventName, calculationMethod: calculationMethod}),
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
                 .then(response => {
                     if (response.ok) {
-                        window.location.reload();
+                         window.location.reload();
                         console.log('Quantity updated successfully');
 
                         // Optionally, update the total price or UI

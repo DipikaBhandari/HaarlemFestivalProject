@@ -38,12 +38,6 @@ class historyController
 
             $paragraphs[$key]['locations'] = $this->historyService->getLocationBySection($paragraph['paragraphId']);
         }
-//        if(isset($_GET['historyId'])) {
-//            $historyId = $_GET['historyId'];
-//            $paragraph = $this->historyService->getImageBySection($historyId);
-//            echo json_encode($paragraph);
-//            exit;
-//        }
         require __DIR__ . '/../views/history/homepage.php';
     }
 
