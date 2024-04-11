@@ -56,6 +56,7 @@ if(isset($_SESSION['username'])) {
             plugins: 'lists',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | removeformat',
         });
+        //fill modal with current section content
         fetch('/pageManagement/getSectionContent?sectionId=' + sectionId)
             .then(response => {
                 if (response.ok) {
@@ -117,7 +118,7 @@ if(isset($_SESSION['username'])) {
             currentImage.src = imagePath;
         }
     }
-
+    //save changes
     function saveContent(){
         const newContent = tinyMCE.activeEditor.getContent("editor");
         const formData = new FormData();

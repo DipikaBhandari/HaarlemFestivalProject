@@ -32,6 +32,7 @@
 </body>
 </html>
 <script>
+    //fill section type dropdown
     fetch('/pageManagement/getSectionTypes')
         .then(response => {
             if (!response.ok) {
