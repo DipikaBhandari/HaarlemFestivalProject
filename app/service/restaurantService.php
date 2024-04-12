@@ -2,6 +2,8 @@
 
 namespace App\service;
 use App\Repositories\restaurantRepository;
+use Exception;
+
 class restaurantService
 {
     private $restaurantRepository;
@@ -56,13 +58,30 @@ class restaurantService
         return $this->restaurantRepository->findDetail($restaurantId);
     }
 
-    public function updateRestaurantDetails($restaurantDetails)
+//    public function updateRestaurantDetails($restaurantDetails)
+//    {
+//        return $this->restaurantRepository->updateRestaurantDetails($restaurantDetails);
+//    }
+    /**
+     * @throws Exception
+     */
+    public function updateRestaurantDetails($restaurantId, $data)
     {
-        return $this->restaurantRepository->updateRestaurantDetails($restaurantDetails);
+        if (empty($restaurantId) || !isset($data['restaurantName'])) {
+            throw new Exception('Required restaurant details are missing.');
+        }
+
+        // Assuming data is already sanitized and validated
+        $result = $this->restaurantRepository->updateRestaurantDetails($restaurantId, $data);
+
+        if (!$result) {
+            throw new Exception('Failed to update restaurant details.');
+        }
+
+        return $result;
     }
     public function createNewRestaurant($restaurantData)
     {
-
         return $this->restaurantRepository->create($restaurantData);
     }
     Public function getSessionById($sessionId) {

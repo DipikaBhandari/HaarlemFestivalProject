@@ -59,9 +59,6 @@ class ManageAccountController
             $user->setAddress(htmlspecialchars($_POST['address']));
             $user->setPhoneNumber(htmlspecialchars($_POST['phoneNumber']));
 
-
-
-
             // Handle file upload
             $picture_path = $this->handleFileUpload();
             if ($picture_path !== null) {
@@ -95,7 +92,7 @@ class ManageAccountController
     }
     private function handleFileUpload() {
         if (isset($_FILES['profilePictureInput']) && $_FILES['profilePictureInput']['error'] == UPLOAD_ERR_OK) {
-            $targetDir = __DIR__ . '/../public/img/';
+            $targetDir = '/../public/img/';
             $safeFilename = bin2hex(random_bytes(16)) . '.' . pathinfo($_FILES['profilePictureInput']['name'], PATHINFO_EXTENSION);
             $targetFile = $targetDir . $safeFilename;
             if (move_uploaded_file($_FILES['profilePictureInput']['tmp_name'], $targetFile)) {

@@ -32,10 +32,9 @@ class CreateRestaurantController
     }
     public function create()
     {
-
         ob_start();
         try {
-            session_start();
+
             if (!isset($_SESSION['email'])) {
                 throw new Exception("User not logged in");
             }
@@ -44,7 +43,6 @@ class CreateRestaurantController
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 throw new Exception('Invalid request method. Please use POST.');
             }
-
             // Handle File Upload
             $imagePath = $this->handleFileUpload();
 
@@ -90,7 +88,6 @@ class CreateRestaurantController
             throw new Exception("No file uploaded or upload error.");
         }
     }
-
 
     private function sanitizeRestaurantData($data) {
         return [

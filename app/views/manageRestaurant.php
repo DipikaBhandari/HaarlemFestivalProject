@@ -119,8 +119,8 @@ if (!isset($restaurantArray) || !is_array($restaurantArray)) {
                 .then(data => {
                     if(data.success) {
                         setTimeout(() => {
-                           // spinner.style.display = 'none';
-                            //window.location.href = '/ManageYummy/manageYummy'; // Redirect
+                            spinner.style.display = 'none';
+                            window.location.href = '/ManageYummy/manageYummy'; // Redirect
                         }, 3000); // 3000 milliseconds = 3 seconds
                     } else {
                         spinner.style.display = 'none';

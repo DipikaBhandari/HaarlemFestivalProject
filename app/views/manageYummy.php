@@ -13,36 +13,41 @@ if (!isset($user) || !$user instanceof user) {
     exit('User data is not available.');
 }
 ?>
-
 <div class="container">
+    <br>
+    <br>
     <h2 class="text-center">Restaurant List</h2>
     <br>
     <div class="restaurant-grid">
-        <!-- New restaurant button -->
+        <!-- Create New Restaurant button always first -->
         <div class="restaurant-tile add-new">
             <a href="/CreateRestaurant/createRestaurant" class="restaurant-tile-content add-new-content">
                 <i class="fas fa-plus"></i>
                 <h3>Create New Restaurant</h3>
             </a>
         </div>
-        <?php foreach ($restaurants as $index => $restaurant): ?>
-        <a href="/ManageYummy/manageRestaurant/<?php echo $restaurant['restaurantId']; ?>" class="restaurant-tile-link">
-            <div class="restaurant-tile<?php echo ($index + 1) % 3 == 0 ? ' featured' : ''; ?>">
-                <div class="restaurant-tile-content">
-                    <h3><?php echo $restaurant['restaurantName']; ?></h3>
-                    <p>No. of Seats: <?php echo $restaurant['numberOfSeats'];?></p>
-                </div>
-        </a>
+
+        <!-- Existing restaurant tiles -->
+        <?php foreach ($restaurants as $restaurant): ?>
+            <div class="restaurant-tile">
+                <a href="/ManageYummy/manageRestaurant/<?php echo $restaurant['restaurantId']; ?>" class="restaurant-tile-link">
+                    <div class="restaurant-tile-content">
+                        <h3><?php echo $restaurant['restaurantName']; ?></h3>
+                        <p>No. of Seats: <?php echo $restaurant['numberOfSeats'];?></p>
+                    </div>
+                </a>
                 <div class="delete-btn-container">
                     <button class="delete-btn" onclick="confirmDelete('<?php echo $restaurant['restaurantId']; ?>')">Delete</button>
                 </div>
             </div>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
+
     </div>
 </div>
+
 <style>
     .container {
-        max-width: 1200px;
+        max-width: 800px;
         margin: 0 auto;
         padding: 20px;
         text-align: center;
@@ -52,7 +57,7 @@ if (!isset($user) || !$user instanceof user) {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        gap: 10px;
+        gap: 25px;
     }
 
     .restaurant-tile {
@@ -157,6 +162,10 @@ if (!isset($user) || !$user instanceof user) {
                 body: JSON.stringify({restaurantId: restaurantId}),
             })
                 .then(response => response.json())
+                .then(response => {
+                    console.log(response.status); // Should log 200 for a successful POST request
+                    return response.json();
+                })
                 .then(data => {
                     if(data.success) {
                         alert("Restaurant deleted successfully.");

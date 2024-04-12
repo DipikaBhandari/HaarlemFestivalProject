@@ -289,20 +289,15 @@ class userRepository extends Repository
             return false;
         }
     }
-    public function deleteUser($identifier)
-    {
-        try {
-            $sql = "DELETE FROM [User] WHERE username = :username OR email = :email";
-            $stmt = $this->connection->prepare($sql);
-            $stmt->bindParam(':username', $identifier);
-            $stmt->bindParam(':email', $identifier);
-            $stmt->execute();
+    public function deleteUser($username) {
+        $sql = "DELETE FROM [dbo].[User] WHERE username = ?";
+        $stmt = $this->connection->prepare($sql);
 
+        if ($stmt->execute([$username])) {
             return $stmt->rowCount() > 0;
-        } catch (PDOException $e) {
-            error_log("Error deleting user: " . $e->getMessage());
-            return false;
         }
+
+        return false;
     }
     public function updateUsers(User $user): bool {
         try {

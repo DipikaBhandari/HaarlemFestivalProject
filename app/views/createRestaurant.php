@@ -90,7 +90,7 @@ if (!isset($user) || !$user instanceof user) {
                 .then(data => {
                     if (data.success) {
                         alert('Restaurant created successfully!');
-                        //window.location.href = '/manageYummy/manageRestaurant';
+                        window.location.href = '/ManageYummy/manageYummy';
                     } else {
                         alert('Failed to create new restaurant: ' + data.message);
                     }

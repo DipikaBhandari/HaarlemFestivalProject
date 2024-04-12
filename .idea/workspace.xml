@@ -4,14 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="minor changes to frontend">
-      <change afterPath="$PROJECT_DIR$/app/views/wishlist/emptyCalendar.php" afterDir="false" />
+    <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="final change">
+      <change afterPath="$PROJECT_DIR$/app/controllers/public/img/Screenshot_2023-11-17_145258.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/public/img/logoo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/3d25ceffec9164d1d795ef863d54b451.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/52fde6347addb94b18e69596c83733be.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/53e55f3bb46e43f1159ee244f98109f3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/54630903785a63355b58d852bf4d9bf0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/743fd06be1ff371b0506a40550254b10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/75d6c08e9ca59abb7af6f9a6daecc4cb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/87243970bc9495a0599166fad65d7676.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/8a94fad5a801a6951b6f4b410e34eac9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/96a257c6ff49521ae100c4a7851e1f60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/9c8c9acda0d27116ff6627742be85887.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/Screenshot 2023-11-15 213835.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/Screenshot 2023-11-15 213917.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/Screenshot 2023-11-15 214714.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/Screenshot 2023-11-17 145258.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/Screenshot 2023-11-28 211359.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/Screenshot_2023-11-17_145258.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/Screenshot_2023-12-12_225434.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/a6d2001912f8de33d191970bc28b2426.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/d794b4e853b252de8bd1342c6a44fa42.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/logoo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/new.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/public/img/yummyImages/img_7.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/shoppingCartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/shoppingCartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ticketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ticketController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/ticketRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/ticketRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cart/shoppingCart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cart/shoppingCart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/wishlist/listview.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/wishlist/listview.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/CreateRestaurantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/CreateRestaurantController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ManageAccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ManageAccountController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ManageUsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ManageUsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ManageYummyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ManageYummyController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/restaurantRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/restaurantRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repositories/userRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/userRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/restaurantService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/restaurantService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/createRestaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/createRestaurant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/manageRestaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageRestaurant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/manageYummy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageYummy.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +77,26 @@
       <path value="$PROJECT_DIR$/app/vendor/composer" />
       <path value="$PROJECT_DIR$/app/vendor/phpmailer/phpmailer" />
       <path value="$PROJECT_DIR$/app/vendor/mollie/mollie-api-php" />
+      <path value="$PROJECT_DIR$/app/vendor/voku/anti-xss" />
+      <path value="$PROJECT_DIR$/app/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/app/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/app/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/app/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/app/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/app/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/app/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/app/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/app/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/app/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/app/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/app/vendor/voku/portable-utf8" />
+      <path value="$PROJECT_DIR$/app/vendor/symfony/polyfill-iconv" />
+      <path value="$PROJECT_DIR$/app/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/app/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/app/vendor/setasign/fpdf" />
+      <path value="$PROJECT_DIR$/app/vendor/dasprid/enum" />
+      <path value="$PROJECT_DIR$/app/vendor/endroid/qr-code" />
+      <path value="$PROJECT_DIR$/app/vendor/bacon/bacon-qr-code" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -70,7 +118,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Dipika",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Ador",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Inholland/Documents/RecipeBookWebsite3",
@@ -97,7 +146,7 @@
       <recent name="C:\Users\Inholland\Documents\GitHub\HaarlemFestivalProject\app\public\img" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.PHP.Dockerfile">
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration name="historyController.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/app/controllers/historyController.php">
       <method v="2" />
     </configuration>
@@ -131,8 +180,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.PHP.Dockerfile" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.PHP.Dockerfile" />
         <item itemvalue="PHP Script.historyController.php" />
       </list>
     </recent_temporary>
@@ -176,6 +225,7 @@
       <workItem from="1712395862768" duration="15403000" />
       <workItem from="1712418475026" duration="10258000" />
       <workItem from="1712473598325" duration="26746000" />
+      <workItem from="1712850134052" duration="21570000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes to frontend">
       <option name="closed" value="true" />
@@ -194,6 +244,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="minor changes to frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor changes to frontend" />
+    <MESSAGE value="final change" />
+    <option name="LAST_COMMIT_MESSAGE" value="final change" />
   </component>
 </project>

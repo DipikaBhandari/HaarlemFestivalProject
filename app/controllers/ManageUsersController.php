@@ -56,7 +56,7 @@ class ManageUsersController
 
             // Create a new User object and set its properties
             $user = new \App\model\user();
-            $user->setId($userId);
+            $user->setUserId($userId);
             $user->setUsername($username);
             $user->setEmail($email);
             $user->setAddress($address);

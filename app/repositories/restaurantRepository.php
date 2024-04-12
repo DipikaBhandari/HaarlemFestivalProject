@@ -129,51 +129,60 @@ class restaurantRepository extends Repository
 
         return $restaurant;
     }
-    public function updateRestaurantDetails($restaurantDetails)
-    {
-        $sql = "UPDATE Yummyyy SET 
-                location = :location, 
-                email = :email, 
-                phoneNumber = :phoneNumber, 
-                kidPrice = :kidPrice, 
-                adultPrice = :adultPrice, 
-                restaurantName = :restaurantName, 
-                numberOfSeats = :numberOfSeats,
-                description = :description, 
-                foodOfferings = :foodOfferings,
-                /*restaurantPicture = :restaurantPicture*/
+
+    public function updateRestaurantDetails($restaurantId, $data) {
+        try {
+            $sql = "UPDATE Yummyyy SET 
+                    location = :location, 
+                    email = :email, 
+                    kidPrice = :kidPrice, 
+                    adultPrice = :adultPrice, 
+                    restaurantName = :restaurantName, 
+                    numberOfSeats = :numberOfSeats,
+                    description = :description, 
+                    foodOfferings = :foodOfferings,
+                    restaurantPicture = :restaurantPicture
+                    WHERE restaurantId = :restaurantId";
+
+                        $stmt = $this->connection->prepare($sql);
+
+                        // Bind values to the statement
+                        $stmt->bindValue(':location', $data['location']);
+                        $stmt->bindValue(':email', $data['email']);
+                       // $stmt->bindValue(':phoneNumber', $data['phoneNumber']);
+                        $stmt->bindValue(':kidPrice', $data['kidPrice']);
+                        $stmt->bindValue(':adultPrice', $data['adultPrice']);
+                        $stmt->bindValue(':restaurantName', $data['restaurantName']);
+                        $stmt->bindValue(':numberOfSeats', $data['numberOfSeats'], PDO::PARAM_INT);
+                        $stmt->bindValue(':description', $data['description']);
+                        $stmt->bindValue(':foodOfferings', $data['foodOfferings']);
+                        $stmt->bindValue(':restaurantPicture', $data['restaurantPicture']);
+                        $stmt->bindValue(':restaurantId', $restaurantId, PDO::PARAM_INT);
+
+
+                         // Execute the query
+                        if (!$stmt->execute()) {
+                            // Handle error appropriately
+                            throw new Exception("Database error: " . $stmt->errorInfo()[2]);
+                        }
+            $sqlSession = "UPDATE Session SET 
+                numberOfSeats = :numberOfSeats
                 WHERE restaurantId = :restaurantId";
 
-        $stmt = $this->connection->prepare($sql);
+            $stmtSession = $this->connection->prepare($sqlSession);
+            $stmtSession->bindValue(':numberOfSeats', $data['numberOfSeats'], PDO::PARAM_INT);
+            $stmtSession->bindValue(':restaurantId', $restaurantId, PDO::PARAM_INT);
 
-        // Convert prices to float and trim any whitespace
-        $kidPrice = floatval(str_replace(' ', '', $restaurantDetails['kidPrice']));
-        $adultPrice = floatval(str_replace(' ', '', $restaurantDetails['adultPrice']));
+            if (!$stmtSession->execute()) {
+                throw new Exception("Database error: " . $stmtSession->errorInfo()[2]);
+            }
 
-        // Bind values to the statement
-        $stmt->bindValue(':location', $restaurantDetails['location'], PDO::PARAM_STR);
-        $stmt->bindValue(':email', $restaurantDetails['email'], PDO::PARAM_STR);
-        $stmt->bindValue(':phoneNumber', $restaurantDetails['phoneNumber'] ?? null, $restaurantDetails['phoneNumber'] ? PDO::PARAM_STR : PDO::PARAM_NULL);
-        $stmt->bindValue(':kidPrice', $kidPrice);
-        $stmt->bindValue(':adultPrice', $adultPrice);
-        $stmt->bindValue(':restaurantName', $restaurantDetails['restaurantName'], PDO::PARAM_STR);
-        $stmt->bindValue(':numberOfSeats', $restaurantDetails['numberOfSeats'], PDO::PARAM_INT);
-        $stmt->bindValue(':restaurantId', $restaurantDetails['restaurantId'], PDO::PARAM_INT);
-        $stmt->bindValue(':description', $restaurantDetails['description'], PDO::PARAM_STR);
-        $stmt->bindValue(':foodOfferings', $restaurantDetails['foodOfferings'], PDO::PARAM_STR);
-      //  $stmt->bindValue(':restaurantPicture', $restaurantDetails['restaurantImage'], PDO::PARAM_STR);
-
-        if (!$stmt->execute()) {
-            $error = $stmt->errorInfo();
-            throw new Exception("Database error: " . $error[2]);
+            $this->connection->commit();
+            return true;
+        } catch (Exception $e) {
+            // Log error (optional)
+            throw new Exception("Database error: " . $e->getMessage());
         }
-
-        $affectedRows = $stmt->rowCount();
-        if ($affectedRows === 0) {
-            throw new Exception("No rows were updated. Ensure the restaurantId exists and the data differs from the existing data.");
-        }
-
-        return true;
     }
 
     public function create($restaurantData)
