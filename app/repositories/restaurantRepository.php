@@ -264,7 +264,7 @@ class restaurantRepository extends Repository
         return $this->connection->lastInsertId();
     }
     public function getSessionsForRestaurantId($restaurantId) {
-        $stmt = $this->connection->prepare("SELECT sessionId, startTime, endTime FROM Session WHERE restaurantSectionId = :restaurantId");
+        $stmt = $this->connection->prepare("SELECT sessionId, startTime, endTime FROM Session WHERE restaurantId = :restaurantId");
         $stmt->bindParam(':restaurantId', $restaurantId, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
