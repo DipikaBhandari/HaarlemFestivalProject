@@ -50,6 +50,11 @@ include __DIR__ . '/footer.php';
     if(document.getElementById('photo-col')){
         document.getElementById('photo-col').style.display = "block";
     }
+    var elements = document.querySelectorAll('.container.subsection');
+
+    elements.forEach(function(element) {
+        element.style.display = 'block';
+    });
 </script>
 
 <style>

@@ -63,7 +63,7 @@ h1{
     max-width:100%;
 }
 
-.header .header-img img {
+.header header-img img {
     max-width: 100%;
 }
 
@@ -100,6 +100,5 @@ h1{
     .row{
         width: 60%;
         margin: 0 auto;
-
     }
 }

@@ -14,13 +14,14 @@ class pageManagementController
     }
     public function index() {
         try{
-            $pages =$this->pageManagementService->getAllPages();
+            $pages = $this->pageManagementService->getAllPages();
             require __DIR__ . '/../views/pageEditor.php';
         } catch(Exception $e){
             error_log("Error retrieving pages: " . $e->getMessage());
         }
     }
 
+    //called when a page is chosen to be edited
     public function sections(){
         try{
             $pageId = filter_var($_GET['pageId'],FILTER_SANITIZE_NUMBER_INT);
@@ -47,6 +48,7 @@ class pageManagementController
         }
     }
 
+    //save changes
     public function saveNewContent(){
         try{
             if (isset($_POST['sectionId']) && isset($_POST['content'])){
@@ -65,6 +67,7 @@ class pageManagementController
         }
     }
 
+    //filter out heading and subtitles
     private function extractHeadingAndSubTitle($content) {
         try{
             $dom = new DOMDocument();
@@ -97,6 +100,7 @@ class pageManagementController
         }
     }
 
+    //filter out paragraphs
     private function extractParagraphs($content) {
         try{
             $dom = new DOMDocument();
@@ -132,18 +136,7 @@ class pageManagementController
         }
     }
 
-    private function deleteUnusedParagraphs($paragraphs, $sectionId) {
-        try{
-            $existingParagraphs = $this->pageManagementService->getParagraphsBySection($sectionId);
-            if (count($existingParagraphs) > count($paragraphs)) {
-                $placeholders = rtrim(str_repeat('?,', count($existingParagraphs)), ',');
-                $this->pageManagementService->deleteUnusedParagraphs($placeholders);
-            }
-        } catch(Exception $e){
-            error_log("Error deleting old paragraphs: " . $e->getMessage());
-        }
-    }
-
+    //upload image for new section
     private function uploadImages($uploadedImages, $sectionId) {
         try{
             foreach ($uploadedImages['tmp_name'] as $key => $tmp_name) {
@@ -184,6 +177,7 @@ class pageManagementController
         require __DIR__ . '/../views/addPage.php';
     }
 
+    //used to fill section type dropdown
     public function getSectionTypes(){
         try{
             $sectionTypes = $this->pageManagementService->getSectionTypes();
@@ -314,6 +308,8 @@ class pageManagementController
             echo json_encode("An error occurred while loading the page. Please try again.");
         }
     }
+
+    //to also include new pages in navbar
     public function nav(){
         try {
             $pages = $this->pageManagementService->nav();

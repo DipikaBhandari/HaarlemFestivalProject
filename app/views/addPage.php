@@ -38,6 +38,7 @@ if(isset($_SESSION['username'])) {
 
 <script>
     let numberOfSections = 1;
+    //set focus on current tinyMCE editor
     document.addEventListener('focusin', (e) => {
         if (e.target.closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root") !== null) {
             e.stopImmediatePropagation();
@@ -98,6 +99,7 @@ if(isset($_SESSION['username'])) {
     }
 
     function savePage(){
+        //retrieve content
         const pageTitle = document.getElementById('pageTitleInput').value;
         const sections = document.querySelectorAll('[id^=section]');
         const formData = new FormData();
