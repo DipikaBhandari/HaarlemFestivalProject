@@ -4,43 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="final change">
-      <change afterPath="$PROJECT_DIR$/app/controllers/public/img/Screenshot_2023-11-17_145258.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/public/img/logoo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/3d25ceffec9164d1d795ef863d54b451.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/52fde6347addb94b18e69596c83733be.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/53e55f3bb46e43f1159ee244f98109f3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/54630903785a63355b58d852bf4d9bf0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/743fd06be1ff371b0506a40550254b10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/75d6c08e9ca59abb7af6f9a6daecc4cb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/87243970bc9495a0599166fad65d7676.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/8a94fad5a801a6951b6f4b410e34eac9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/96a257c6ff49521ae100c4a7851e1f60.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/9c8c9acda0d27116ff6627742be85887.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/Screenshot 2023-11-15 213835.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/Screenshot 2023-11-15 213917.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/Screenshot 2023-11-15 214714.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/Screenshot 2023-11-17 145258.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/Screenshot 2023-11-28 211359.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/Screenshot_2023-11-17_145258.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/Screenshot_2023-12-12_225434.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/a6d2001912f8de33d191970bc28b2426.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/d794b4e853b252de8bd1342c6a44fa42.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/logoo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/new.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/public/img/yummyImages/img_7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/CreateRestaurantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/CreateRestaurantController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ManageAccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ManageAccountController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ManageUsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ManageUsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ManageYummyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ManageYummyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/restaurantRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/restaurantRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repositories/userRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/repositories/userRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/restaurantService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/restaurantService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/createRestaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/createRestaurant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manageRestaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageRestaurant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manageYummy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manageYummy.php" afterDir="false" />
-    </list>
+    <list default="true" id="8f15b499-67ea-419c-8c0c-584dcb77053a" name="Changes" comment="final change" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -225,7 +189,7 @@
       <workItem from="1712395862768" duration="15403000" />
       <workItem from="1712418475026" duration="10258000" />
       <workItem from="1712473598325" duration="26746000" />
-      <workItem from="1712850134052" duration="21570000" />
+      <workItem from="1712850134052" duration="21665000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes to frontend">
       <option name="closed" value="true" />
